@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/projectSettingsUpdater.xml
+/contentModel.xml
+/.idea.ProjectArkham.iml
+/modules.xml
+# Datasource local storage ignored files
+/../../../../../../../../../../:\Users\Duong\Documents\Development\Projects\ProjectArkham\.idea\.idea.ProjectArkham\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
