@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 3754980987953214857}
   - component: {fileID: 666518690547831977}
   - component: {fileID: 4055728663644082016}
+  - component: {fileID: 2431326392611224044}
   m_Layer: 8
   m_Name: PracticeDummy
   m_TagString: Enemy
@@ -306,4 +307,16 @@ MonoBehaviour:
   rig:
   - {fileID: 3100516091274329936}
   bloodSpatPrefab: {fileID: 3827419661170153826, guid: 72b00453f47a5a74c983dcc772a90b9f, type: 3}
-  coinPrefab: {fileID: 3165515211565958763, guid: 1341682c52484894ebd763d542ba8070, type: 3}
+--- !u!114 &2431326392611224044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6943002477900471190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a9860955805704abdd45d6cde65715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectable: {fileID: 3221113151334302741, guid: 1341682c52484894ebd763d542ba8070, type: 3}

@@ -11,7 +11,7 @@ public class Coin : Collectable
 
         Player.Instance.Resources.CollectedCoins += 1 * Player.Instance.Combo.Multiplier;
         animator.SetTrigger("collect");
-        destroyDelay.enabled = true;
+        delayDestroyer.enabled = true;
         isCollected = true;
     }
 }

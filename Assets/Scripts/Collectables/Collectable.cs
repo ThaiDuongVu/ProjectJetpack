@@ -11,7 +11,7 @@ public class Collectable : MonoBehaviour
     private const float CollectDelay = 0.5f;
     protected bool isCollected;
     protected Animator animator;
-    protected DestroyDelay destroyDelay;
+    protected DelayDestroyer delayDestroyer;
 
     /// <summary>
     /// Unity Event function.
@@ -20,8 +20,8 @@ public class Collectable : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        destroyDelay = GetComponent<DestroyDelay>();
-        destroyDelay.enabled = false;
+        delayDestroyer = GetComponent<DelayDestroyer>();
+        delayDestroyer.enabled = false;
     }
 
     /// <summary>

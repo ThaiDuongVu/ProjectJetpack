@@ -559,7 +559,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.2}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.2
 --- !u!95 &7613669812739727439
 Animator:
   serializedVersion: 3
@@ -616,7 +616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94db8ab6654887f4dbd4586915982aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashPosition: {x: 0, y: 0}
 --- !u!114 &2681192657381450462
 MonoBehaviour:
   m_ObjectHideFlags: 0

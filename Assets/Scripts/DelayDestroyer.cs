@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class DestroyDelay : MonoBehaviour
+public class DelayDestroyer : MonoBehaviour
 {
     [SerializeField] private float delay;
 

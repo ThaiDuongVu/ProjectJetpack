@@ -24,9 +24,9 @@ public class PlayerMovement : MonoBehaviour
     public float DashDistance { get; set; } = 15f;
     public float DashEpsilon { get; set; } = 1f;
     public float DashInterpolationRatio { get; set; } = 0.2f;
-    public Vector2 dashPosition;
+    public Vector2 DashPosition { get; private set; }
     public float DashRate { get; set; } = 2f;
-    private float dashCooldown;
+    public float DashCooldown { get; private set; }
 
     private InputManager inputManager;
 
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         InputTypeController.Instance.CheckInputType(context);
         if (GameController.Instance.State != GameState.Started || player.IsStaggered) return;
 
-        if (dashCooldown >= 1f / DashRate)
+        if (DashCooldown >= 1f / DashRate)
             EnterDash();
     }
 
@@ -123,8 +123,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Perform dash if player is dashing
         if (player.IsDashing) Dash();
-        if (dashCooldown < 1f / DashRate) dashCooldown += Time.fixedDeltaTime;
-        player.directionArrow.localScale = new Vector3(dashCooldown * DashRate, dashCooldown * DashRate, 1f);
+        if (DashCooldown < 1f / DashRate) DashCooldown += Time.fixedDeltaTime;
+        player.directionArrow.localScale = new Vector3(DashCooldown * DashRate, DashCooldown * DashRate, 1f);
 
         // Move player at current velocity
         if (!player.IsStaggered) Run();
@@ -200,13 +200,13 @@ public class PlayerMovement : MonoBehaviour
         player.IsDashing = true;
         player.CircleCollider2D.enabled = false;
         // Set dash position
-        if (player.WallPoint == Vector2.zero) dashPosition = player.transform.position + player.transform.up * (DashDistance + DashEpsilon);
-        else dashPosition = player.WallPoint - (Vector2)player.transform.up;
+        if (player.WallPoint == Vector2.zero) DashPosition = player.transform.position + player.transform.up * (DashDistance + DashEpsilon);
+        else DashPosition = player.WallPoint - (Vector2)player.transform.up;
         // Set player trail color & animation
         player.Trail.SetColor(player.blue);
         player.Animator.SetTrigger(EnterDashAnimationTrigger);
 
-        dashCooldown = 0f;
+        DashCooldown = 0f;
         // Enable motion blur effect
         EffectsController.Instance.SetMotionBlur(true);
 
@@ -238,8 +238,8 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Dash()
     {
-        player.transform.position = Vector2.Lerp(player.transform.position, dashPosition, DashInterpolationRatio);
-        if (((Vector2)player.transform.position - dashPosition).magnitude <= DashEpsilon)
+        player.transform.position = Vector2.Lerp(player.transform.position, DashPosition, DashInterpolationRatio);
+        if (((Vector2)player.transform.position - DashPosition).magnitude <= DashEpsilon)
             ExitDash();
     }
 
@@ -261,7 +261,7 @@ public class PlayerMovement : MonoBehaviour
         // Enable player preview if upgrade enable
         player.previewRig.SetActive(true);
         // Set rig position & scale
-        player.previewRig.transform.position = player.transform.position + player.transform.up * DashDistance * dashCooldown * DashRate;
-        player.previewRig.transform.localScale = new Vector3(dashCooldown * DashRate, dashCooldown * DashRate, 1f);
+        player.previewRig.transform.position = player.transform.position + player.transform.up * DashDistance * DashCooldown * DashRate;
+        player.previewRig.transform.localScale = new Vector3(DashCooldown * DashRate, DashCooldown * DashRate, 1f);
     }
 }

@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private CircleCollider2D[] circleColliders2D;
     private ShadowCaster2D shadowCaster2D;
     private Animator animator;
+    private CollectableSpawner collectableSpawner;
 
     public float CurrentHealth { get; set; }
     public float MaxHealth;
@@ -23,17 +24,13 @@ public class Enemy : MonoBehaviour, IDamageable
     public const float RagdollInterpolationRatio = 0.025f;
 
     [SerializeField] private ParticleSystem bloodSpatPrefab;
-    [SerializeField] private GameObject coinPrefab;
-    private int MinCoinSpawn = 3;
-    private int MaxCoinSpawn = 8;
-    private float CoinSpawnRadius = 6f;
 
-    private DestroyDelay destroyDelay;
+    private DelayDestroyer delayDestroyer;
 
     private Vector2 knockBackPosition;
     private const float KnockBackDistance = 5f;
-    private const float KnockBackEpsilon = 0.1f;
-    private const float KnockBackInterpolationRatio = 0.2f;
+    private const float KnockBackEpsilon = 0.5f;
+    private const float KnockBackInterpolationRatio = 0.25f;
 
     /// <summary>
     /// Unity Event function.
@@ -44,12 +41,13 @@ public class Enemy : MonoBehaviour, IDamageable
         circleColliders2D = GetComponents<CircleCollider2D>();
         shadowCaster2D = GetComponent<ShadowCaster2D>();
         animator = GetComponent<Animator>();
+        collectableSpawner = GetComponent<CollectableSpawner>();
 
         CurrentHealth = MaxHealth;
         ragdollPositions = new Vector2[rig.Length];
 
-        destroyDelay = GetComponent<DestroyDelay>();
-        destroyDelay.enabled = false;
+        delayDestroyer = GetComponent<DelayDestroyer>();
+        delayDestroyer.enabled = false;
     }
 
     /// <summary>
@@ -71,7 +69,7 @@ public class Enemy : MonoBehaviour, IDamageable
         StartKnockBack();
 
         if (isPracticeDummy) return;
-        
+
         CurrentHealth -= damage;
 
         if (CurrentHealth <= 0f)
@@ -87,8 +85,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
         StartCoroutine(GameController.Instance.SlowDownEffect());
         EnableRagdoll();
-        SpawnCoins();
-        destroyDelay.enabled = true;
+        collectableSpawner.Spawn();
+        delayDestroyer.enabled = true;
     }
 
     /// <summary>
@@ -117,15 +115,6 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         for (int i = 0; i < rig.Length; i++)
             rig[i].position = Vector2.Lerp(rig[i].position, ragdollPositions[i], RagdollInterpolationRatio);
-    }
-
-    /// <summary>
-    /// Spawn some coins on dead.
-    /// </summary>
-    private void SpawnCoins()
-    {
-        for (int i = 0; i < Random.Range(MinCoinSpawn, MaxCoinSpawn); i++)
-            Instantiate(coinPrefab, transform.position, transform.rotation).GetComponent<Coin>().InitPosition = (Vector2)transform.position + new Vector2(Random.Range(-CoinSpawnRadius, CoinSpawnRadius), Random.Range(-CoinSpawnRadius, CoinSpawnRadius));
     }
 
     /// <summary>

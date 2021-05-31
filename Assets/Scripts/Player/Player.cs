@@ -69,7 +69,7 @@ public class Player : MonoBehaviour, IDamageable
     public Color blue;
     public Transform directionArrow;
     public SpriteRenderer directionArrowSprite;
-    private RaycastHit2D[] hit2D;
+    private RaycastHit2D[] hit2Ds;
     public Enemy Target { get; set; }
     public UpgradeActivator ActivatorTarget { get; set; }
     public Vector2 WallPoint { get; set; }
@@ -127,19 +127,23 @@ public class Player : MonoBehaviour, IDamageable
         ActivatorTarget = null;
         WallPoint = Vector2.zero;
 
+        if (Movement.DashCooldown < 1f / Movement.DashRate) return;
+
         // Perform raycast and return if nothing detected
-        hit2D = Physics2D.RaycastAll(raycastPoint.position, transform.up,
+        hit2Ds = Physics2D.RaycastAll(raycastPoint.position, transform.up,
                                   Movement.DashDistance + (transform.position.y - raycastPoint.position.y),
                                   LayerMask.GetMask("Enemy", "UpgradeActivator", "Wall"));
 
-        if (hit2D.Length == 0) return;
+        if (hit2Ds.Length == 0) return;
 
         directionArrowSprite.color = red;
         // Acquire targets
-        if (hit2D[0].transform.CompareTag("Enemy")) Target = hit2D[0].transform.GetComponent<Enemy>();
-        else if (hit2D[0].transform.CompareTag("UpgradeActivator")) ActivatorTarget = hit2D[0].transform.GetComponent<UpgradeActivator>();
+        if (hit2Ds[0].transform.CompareTag("Enemy")) Target = hit2Ds[0].transform.GetComponent<Enemy>();
+        else if (hit2Ds[0].transform.CompareTag("UpgradeActivator")) ActivatorTarget = hit2Ds[0].transform.GetComponent<UpgradeActivator>();
 
-        if (hit2D[hit2D.Length - 1].transform.CompareTag("Wall")) WallPoint = hit2D[hit2D.Length - 1].point;
+        // Confine player within map bound
+        foreach (RaycastHit2D hit in hit2Ds)
+            if (hit.transform.CompareTag("Wall")) WallPoint = hit.point;
     }
 
     /// <summary>
