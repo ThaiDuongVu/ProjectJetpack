@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool IsRagdoll { get; set; }
     public bool IsKnockingBack { get; set; }
 
+    public bool IsStaggered { get; set; }
+    private const float StaggerDuration = 0.5f;
+
     [SerializeField] private Transform[] rig;
     private Vector2[] ragdollPositions;
     public const float RagdollRange = 4f;
@@ -29,8 +32,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private Vector2 knockBackPosition;
     private const float KnockBackDistance = 5f;
-    private const float KnockBackEpsilon = 0.5f;
-    private const float KnockBackInterpolationRatio = 0.25f;
+    private const float KnockBackEpsilon = 1f;
+    private const float KnockBackInterpolationRatio = 0.2f;
 
     /// <summary>
     /// Unity Event function.
@@ -66,14 +69,17 @@ public class Enemy : MonoBehaviour, IDamageable
     /// <param name="damage">Damage to deal</param>
     void IDamageable.TakeDamage(float damage)
     {
-        StartKnockBack();
-
-        if (isPracticeDummy) return;
+        if (isPracticeDummy)
+        {
+            StartCoroutine(Stagger());
+            return;
+        }
 
         CurrentHealth -= damage;
-
         if (CurrentHealth <= 0f)
             (this as IDamageable).Die();
+        else
+            StartCoroutine(Stagger());
     }
 
     /// <summary>
@@ -139,5 +145,21 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         transform.position = Vector2.Lerp(transform.position, knockBackPosition, KnockBackInterpolationRatio);
         if (((Vector2)transform.position - knockBackPosition).magnitude <= KnockBackEpsilon) IsKnockingBack = false;
+    }
+
+    /// <summary>
+    /// Add stagger effects to player.
+    /// </summary>
+    private IEnumerator Stagger()
+    {
+        IsStaggered = true;
+        StartKnockBack();
+        animator.SetTrigger("enterStagger");
+
+        yield return new WaitForSeconds(StaggerDuration);
+
+        IsStaggered = false;
+        animator.SetTrigger("exitStagger");
+        animator.ResetTrigger("enterStagger");
     }
 }

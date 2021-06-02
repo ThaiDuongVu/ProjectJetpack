@@ -297,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 984a7c1b05751c74da9c3a093075cfe2, type: 2}
     - target: {fileID: 9114364218141166674, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_text
-      value: Knowledge Base
+      value: "Knowledge \nBase"
       objectReference: {fileID: 0}
     - target: {fileID: 9114364218141166674, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_fontAsset

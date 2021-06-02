@@ -305,7 +305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9114364218141166674, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_text
-      value: KnowledgeBase
+      value: "Knowledge \nBase"
       objectReference: {fileID: 0}
     - target: {fileID: 9114364218395738512, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

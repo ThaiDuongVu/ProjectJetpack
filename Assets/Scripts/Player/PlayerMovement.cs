@@ -23,9 +23,9 @@ public class PlayerMovement : MonoBehaviour
 
     public float DashDistance { get; set; } = 15f;
     public float DashEpsilon { get; set; } = 1f;
-    public float DashInterpolationRatio { get; set; } = 0.2f;
+    public float DashInterpolationRatio { get; set; } = 0.22f;
     public Vector2 DashPosition { get; private set; }
-    public float DashRate { get; set; } = 2f;
+    public float DashRate { get; set; } = 2.5f;
     public float DashCooldown { get; private set; }
 
     private InputManager inputManager;
@@ -212,8 +212,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Deal damage to enemy if acquired
         if (player.Target) player.Combat.DealDamage(player.Target);
-        // Activate upgrade if acquired
-        else if (player.ActivatorTarget) player.ActivatorTarget.Activate();
         else CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 

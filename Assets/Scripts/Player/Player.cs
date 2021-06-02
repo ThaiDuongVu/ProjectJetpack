@@ -41,7 +41,7 @@ public class Player : MonoBehaviour, IDamageable
     public bool IsRunning { get; set; }
     public bool IsDashing { get; set; }
     public bool IsStaggered { get; set; }
-    private const float StaggerDuration = 1f;
+    private const float StaggerDuration = 0.5f;
 
     #endregion
 
@@ -71,7 +71,6 @@ public class Player : MonoBehaviour, IDamageable
     public SpriteRenderer directionArrowSprite;
     private RaycastHit2D[] hit2Ds;
     public Enemy Target { get; set; }
-    public UpgradeActivator ActivatorTarget { get; set; }
     public Vector2 WallPoint { get; set; }
 
     public GameObject previewRig;
@@ -124,14 +123,13 @@ public class Player : MonoBehaviour, IDamageable
         // Default states
         directionArrowSprite.color = white;
         Target = null;
-        ActivatorTarget = null;
         WallPoint = Vector2.zero;
 
         if (Movement.DashCooldown < 1f / Movement.DashRate) return;
 
         // Perform raycast and return if nothing detected
         hit2Ds = Physics2D.RaycastAll(raycastPoint.position, transform.up,
-                                  Movement.DashDistance + (transform.position.y - raycastPoint.position.y),
+                                  Movement.DashDistance + (transform.position.y - raycastPoint.position.y) + Movement.DashEpsilon,
                                   LayerMask.GetMask("Enemy", "UpgradeActivator", "Wall"));
 
         if (hit2Ds.Length == 0) return;
@@ -139,7 +137,6 @@ public class Player : MonoBehaviour, IDamageable
         directionArrowSprite.color = red;
         // Acquire targets
         if (hit2Ds[0].transform.CompareTag("Enemy")) Target = hit2Ds[0].transform.GetComponent<Enemy>();
-        else if (hit2Ds[0].transform.CompareTag("UpgradeActivator")) ActivatorTarget = hit2Ds[0].transform.GetComponent<UpgradeActivator>();
 
         // Confine player within map bound
         foreach (RaycastHit2D hit in hit2Ds)
