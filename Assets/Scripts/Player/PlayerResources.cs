@@ -37,7 +37,7 @@ public class PlayerResources : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        player = GetComponent<Player>();
+        player = Player.Instance;
     }
 
     /// <summary>

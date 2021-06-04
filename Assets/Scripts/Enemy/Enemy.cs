@@ -90,6 +90,7 @@ public class Enemy : MonoBehaviour, IDamageable
         IsDead = true;
 
         StartCoroutine(GameController.Instance.SlowDownEffect());
+        Instantiate(bloodSpatPrefab, transform.position, Player.Instance.transform.rotation);
         EnableRagdoll();
         collectableSpawner.Spawn();
         delayDestroyer.enabled = true;
@@ -144,7 +145,11 @@ public class Enemy : MonoBehaviour, IDamageable
     private void KnockBack()
     {
         transform.position = Vector2.Lerp(transform.position, knockBackPosition, KnockBackInterpolationRatio);
-        if (((Vector2)transform.position - knockBackPosition).magnitude <= KnockBackEpsilon) IsKnockingBack = false;
+        if (((Vector2)transform.position - knockBackPosition).magnitude <= KnockBackEpsilon)
+        {
+            Instantiate(bloodSpatPrefab, transform.position, Player.Instance.transform.rotation);
+            IsKnockingBack = false;
+        }
     }
 
     /// <summary>

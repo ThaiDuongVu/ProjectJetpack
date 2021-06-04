@@ -40,7 +40,7 @@ public class PlayerCombat : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        player = GetComponent<Player>();
+        player = Player.Instance;
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ public class PlayerCombat : MonoBehaviour
 
         // Combat flavours
         Instantiate(player.dashSlicePrefab, player.transform.position, player.transform.rotation);
-        Instantiate(player.bloodSpatPrefab, enemy.transform.position, player.transform.rotation);
+        // Instantiate(player.bloodSpatPrefab, enemy.transform.position, player.transform.rotation);
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
     }
 }

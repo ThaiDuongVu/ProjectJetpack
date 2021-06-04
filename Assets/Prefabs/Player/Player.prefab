@@ -595,7 +595,6 @@ MonoBehaviour:
   - {fileID: 564064308065096754}
   dashSlicePrefab: {fileID: 734268438956018802, guid: 6e5d99882f8f45a488ea53b6a5ce76c9, type: 3}
   bloodSpatPrefab: {fileID: 3827419661170153826, guid: 72b00453f47a5a74c983dcc772a90b9f, type: 3}
-  feedbackTextPrefab: {fileID: 447456666366894733, guid: c483a9acb020fdb4d96fe35d912b906e, type: 3}
   trailPrefab: {fileID: 617821765887439422, guid: e4b363efb39027040b99e7a81f4af858, type: 3}
   white: {r: 0.78431374, g: 0.8392157, b: 0.8980392, a: 1}
   red: {r: 0.93333334, g: 0.32156864, b: 0.3254902, a: 1}
@@ -1454,7 +1453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7212171148901347406, guid: f62fff99e6c5d204e99059da1d7cedff, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -500
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 7212171148901347406, guid: f62fff99e6c5d204e99059da1d7cedff, type: 3}
       propertyPath: m_AnchoredPosition.y

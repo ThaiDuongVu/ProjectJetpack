@@ -10,6 +10,7 @@ public class PlayerCombo : MonoBehaviour
     [SerializeField] private TMP_Text text;
     [SerializeField] private RectTransform textTransform;
     private const float TextScaleFactor = 1.5f;
+    private const float TextScaleInterpolationRatio = 0.5f;
 
     /// <summary>
     /// Unity Event function.
@@ -22,7 +23,7 @@ public class PlayerCombo : MonoBehaviour
         if (timer > 0f) timer -= Time.fixedDeltaTime * Time.timeScale;
         else if (timer <= 0f) Cancel();
 
-        textTransform.localScale = new Vector2(1f, 1f) * (timer / TimerMax * TextScaleFactor);
+        textTransform.localScale = Vector2.Lerp(textTransform.localScale, new Vector2(1f, 1f) * (timer / TimerMax * TextScaleFactor), TextScaleInterpolationRatio);
     }
 
     /// <summary>

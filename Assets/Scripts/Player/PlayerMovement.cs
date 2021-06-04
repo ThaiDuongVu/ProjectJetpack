@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        player = GetComponent<Player>();
+        player = Player.Instance;
         camera = Camera.main;
     }
 
@@ -201,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
         player.CircleCollider2D.enabled = false;
         // Set dash position
         if (player.WallPoint == Vector2.zero) DashPosition = player.transform.position + player.transform.up * (DashDistance + DashEpsilon);
-        else DashPosition = player.WallPoint - (Vector2)player.transform.up;
+        else DashPosition = player.WallPoint - (Vector2)player.transform.up * (DashEpsilon);
         // Set player trail color & animation
         player.Trail.SetColor(player.blue);
         player.Animator.SetTrigger(EnterDashAnimationTrigger);

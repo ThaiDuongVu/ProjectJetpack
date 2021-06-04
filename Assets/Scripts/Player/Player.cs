@@ -57,7 +57,6 @@ public class Player : MonoBehaviour, IDamageable
 
     public LineRenderer dashSlicePrefab;
     public ParticleSystem bloodSpatPrefab;
-    public Transform feedbackTextPrefab;
 
     #endregion
 
@@ -134,9 +133,12 @@ public class Player : MonoBehaviour, IDamageable
 
         if (hit2Ds.Length == 0) return;
 
-        directionArrowSprite.color = red;
         // Acquire targets
-        if (hit2Ds[0].transform.CompareTag("Enemy")) Target = hit2Ds[0].transform.GetComponent<Enemy>();
+        if (hit2Ds[0].transform.CompareTag("Enemy"))
+        {
+            Target = hit2Ds[0].transform.GetComponent<Enemy>();
+            directionArrowSprite.color = red;
+        }
 
         // Confine player within map bound
         foreach (RaycastHit2D hit in hit2Ds)
