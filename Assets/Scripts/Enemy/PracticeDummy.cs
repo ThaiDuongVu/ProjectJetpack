@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PracticeDummy : Enemy, IDamageable
+public class PracticeDummy : MonoBehaviour
 {
-    
+
 }

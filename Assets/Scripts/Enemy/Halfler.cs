@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Halfler : Enemy, IDamageable
+public class Halfler : MonoBehaviour
 {
-    
+
 }
