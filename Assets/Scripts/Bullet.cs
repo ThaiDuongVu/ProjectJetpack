@@ -3,7 +3,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private new Rigidbody2D rigidbody2D;
-    protected float speed = 15f;
+    protected float speed = 40f;
+    protected float damage = 1f;
 
     /// <summary>
     /// Unity Event function.
@@ -38,14 +39,10 @@ public class Bullet : MonoBehaviour
     /// <param name="other">Collision to check</param>
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.transform.CompareTag("Wall"))
-        {
-
-        }
+        if (other.transform.CompareTag("Enemy"))
+            (other.transform.GetComponent<Enemy>() as IDamageable).TakeDamage(damage, transform.up);
         else if (other.transform.CompareTag("Player") && !Player.Instance.IsDashing)
-        {
-            (Player.Instance as IDamageable).TakeDamage(1);
-        }
+            (Player.Instance as IDamageable).TakeDamage(damage, transform.up);
 
         Destroy(gameObject);
     }

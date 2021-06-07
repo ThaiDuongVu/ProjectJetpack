@@ -149,7 +149,7 @@ public class Player : MonoBehaviour, IDamageable
     /// Deal damage to player.
     /// </summary>
     /// <param name="damage">Damage to deal</param>
-    void IDamageable.TakeDamage(float damage)
+    void IDamageable.TakeDamage(float damage, Vector2 direction)
     {
         Resources.CurrentHealth -= damage;
         if (IsDashing) Movement.ExitDash();
@@ -173,6 +173,8 @@ public class Player : MonoBehaviour, IDamageable
     /// </summary>
     private IEnumerator Stagger()
     {
+        if (IsStaggered) yield return null;
+
         IsStaggered = true;
         Animator.SetTrigger("enterStagger");
 

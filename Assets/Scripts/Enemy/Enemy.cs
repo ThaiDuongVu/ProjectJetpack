@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private DelayDestroyer delayDestroyer;
 
     private Vector2 knockBackPosition;
+    private Vector2 knockBackDirection;
     private const float KnockBackDistance = 5f;
     private const float KnockBackEpsilon = 1f;
     private const float KnockBackInterpolationRatio = 0.2f;
@@ -67,13 +68,16 @@ public class Enemy : MonoBehaviour, IDamageable
     /// Deal damage to enemy.
     /// </summary>
     /// <param name="damage">Damage to deal</param>
-    void IDamageable.TakeDamage(float damage)
+    void IDamageable.TakeDamage(float damage, Vector2 direction)
     {
+        knockBackDirection = direction;
+
         if (isPracticeDummy)
         {
             StartCoroutine(Stagger());
             return;
         }
+
 
         CurrentHealth -= damage;
         if (CurrentHealth <= 0f)
@@ -94,6 +98,7 @@ public class Enemy : MonoBehaviour, IDamageable
         EnableRagdoll();
         collectableSpawner.Spawn();
         delayDestroyer.enabled = true;
+        EnemySpawner.Instance.CurrentPopulation--;
     }
 
     /// <summary>
@@ -135,7 +140,7 @@ public class Enemy : MonoBehaviour, IDamageable
     /// </summary>
     private void StartKnockBack()
     {
-        knockBackPosition = transform.position + Player.Instance.transform.up * KnockBackDistance;
+        knockBackPosition = (Vector2)transform.position + knockBackDirection * KnockBackDistance;
         IsKnockingBack = true;
     }
 

@@ -68,7 +68,6 @@ public class GameController : MonoBehaviour
     private void TestOnPerformed(InputAction.CallbackContext context)
     {
         InputTypeController.Instance.CheckInputType(context);
-        (Player.Instance as IDamageable).TakeDamage(1f);
     }
 
     #endregion

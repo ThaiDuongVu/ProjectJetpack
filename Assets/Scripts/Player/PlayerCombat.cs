@@ -49,7 +49,7 @@ public class PlayerCombat : MonoBehaviour
     /// <param name="enemy">Enemy to damage</param>
     public void DealDamage(Enemy enemy)
     {
-        (enemy as IDamageable).TakeDamage(Damage);
+        (enemy as IDamageable).TakeDamage(Damage, transform.up);
         // Add player combo
         player.Combo.Add(ComboToAdd);
 

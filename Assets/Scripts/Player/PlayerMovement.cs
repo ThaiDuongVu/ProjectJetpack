@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     private void MoveOnPerformed(InputAction.CallbackContext context)
     {
         InputTypeController.Instance.CheckInputType(context);
-        if (GameController.Instance.State != GameState.Started) return;
+        if (GameController.Instance.State != GameState.Started || player.IsStaggered) return;
 
         // Set movement vector
         currentDirection = context.ReadValue<Vector2>();

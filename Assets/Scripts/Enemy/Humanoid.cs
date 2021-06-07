@@ -7,8 +7,8 @@ public class Humanoid : MonoBehaviour
     private const float MinAccuracy = 0.025f;
     private const float MaxAccuracy = 0.15f;
 
-    private const float MinFireRate = 0.5f;
-    private const float MaxFireRate = 2f;
+    private const float MinFireRate = 1f;
+    private const float MaxFireRate = 2.5f;
     private float timer;
     private float timerMax;
 
@@ -17,6 +17,8 @@ public class Humanoid : MonoBehaviour
 
     [SerializeField] private Transform firePoint;
     [SerializeField] private Bullet bulletPrefab;
+
+    private Vector2 currentDirection;
 
     /// <summary>
     /// Unity Event function.
@@ -36,6 +38,7 @@ public class Humanoid : MonoBehaviour
     {
         // Generate a random aim accuracy for this enemy
         lookAccuracy = Random.Range(MinAccuracy, MaxAccuracy);
+        ResetTimer();
     }
 
     /// <summary>
@@ -47,6 +50,8 @@ public class Humanoid : MonoBehaviour
         if (enemy.IsDead) return;
 
         LookAt(Player.Instance.transform);
+        Walk(currentDirection);
+
         if (IsTimer())
         {
             Fire();
@@ -88,6 +93,7 @@ public class Humanoid : MonoBehaviour
     {
         timer = 0f;
         timerMax = Random.Range(MinFireRate, MaxFireRate);
+        currentDirection = (new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f))).normalized;
     }
 
     /// <summary>
@@ -98,5 +104,22 @@ public class Humanoid : MonoBehaviour
     {
         timer += Time.fixedDeltaTime;
         return timer >= timerMax;
+    }
+
+    /// <summary>
+    /// Unity Event function.
+    /// Handle trigger collision with other objects.
+    /// </summary>
+    /// <param name="other">Collider to check</param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Wall") || other.CompareTag("Enemy"))
+        {
+            currentDirection = -currentDirection;
+        }
+        else if (other.CompareTag("Player"))
+        {
+            currentDirection = -Player.Instance.transform.up;
+        }
     }
 }
