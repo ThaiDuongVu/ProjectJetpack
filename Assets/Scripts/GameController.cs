@@ -88,10 +88,6 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         DisableCursor();
-
-        EffectsController.Instance.SetDepthOfField(false);
-        EffectsController.Instance.SetMotionBlur(false);
-        EffectsController.Instance.SetChromaticAberration(false);
     }
 
     /// <summary>

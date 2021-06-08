@@ -46,3 +46,5 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 3287696065407704158, guid: 4d546fc42d5d46949b0920e490217fbd, type: 3}
   - {fileID: 3531288385666071005, guid: 612b6e54b3ba74f4bb74f69da57ce925, type: 3}
+  minPosition: {x: -30, y: -30}
+  maxPosition: {x: 30, y: 30}

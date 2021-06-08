@@ -24,6 +24,11 @@ public class EnemySpawner : MonoBehaviour
     public int CurrentPopulation { get; set; }
     [SerializeField] private Enemy[] enemyPrefabs;
 
+    [SerializeField] private Vector2 minPosition;
+    [SerializeField] private Vector2 maxPosition;
+
+    public bool IsInWave { get; set; }
+
     /// <summary>
     /// Unity Event function.
     /// Get component references.
@@ -66,6 +71,7 @@ public class EnemySpawner : MonoBehaviour
     public void Spawn()
     {
         Enemy enemyToSpawn = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+        Instantiate(enemyToSpawn, new Vector2(Random.Range(minPosition.x, maxPosition.x), Random.Range(minPosition.y, maxPosition.y)), transform.rotation);
         CurrentPopulation++;
     }
 }

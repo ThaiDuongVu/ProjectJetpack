@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class MainCamera : MonoBehaviour
 {
     private const float FollowInterpolationRatio = 0.05f;
-    private const float YOffset = 0f;
+    private const float YOffset = 10f;
     public Transform followTarget;
 
     private float lookVelocity;
@@ -69,8 +69,8 @@ public class MainCamera : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        // Follow(followTarget);
-        // Rotate();
+        Follow(followTarget);
+        Rotate();
     }
 
     /// <summary>

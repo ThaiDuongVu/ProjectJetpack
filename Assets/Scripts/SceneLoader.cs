@@ -33,7 +33,7 @@ public class SceneLoader : MonoBehaviour
         asyncOperation.allowSceneActivation = false;
 
         // Enable motion blur effect
-        EffectsController.Instance.SetMotionBlur(true);
+        // EffectsController.Instance.SetMotionBlur(true);
         EffectsController.Instance.SetDepthOfField(false);
         // Play camera animation
         cameraAnimator.SetTrigger(OutroTrigger);

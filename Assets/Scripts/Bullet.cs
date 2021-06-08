@@ -3,7 +3,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private new Rigidbody2D rigidbody2D;
-    protected float speed = 40f;
+    protected float speed = 35f;
     protected float damage = 1f;
 
     /// <summary>
@@ -40,7 +40,9 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.transform.CompareTag("Enemy"))
-            (other.transform.GetComponent<Enemy>() as IDamageable).TakeDamage(damage, transform.up);
+        {
+            // (other.transform.GetComponent<Enemy>() as IDamageable).TakeDamage(damage, transform.up);
+        }
         else if (other.transform.CompareTag("Player") && !Player.Instance.IsDashing)
             (Player.Instance as IDamageable).TakeDamage(damage, transform.up);
 

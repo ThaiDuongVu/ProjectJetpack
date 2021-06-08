@@ -8,7 +8,7 @@ public class Humanoid : MonoBehaviour
     private const float MaxAccuracy = 0.15f;
 
     private const float MinFireRate = 1f;
-    private const float MaxFireRate = 2.5f;
+    private const float MaxFireRate = 3f;
     private float timer;
     private float timerMax;
 

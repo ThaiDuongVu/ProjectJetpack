@@ -46,7 +46,7 @@ public class EffectsController : MonoBehaviour
     {
         SetDepthOfField(false);
         SetChromaticAberration(false);
-        SetMotionBlur(false);
+        // SetMotionBlur(false);
     }
 
     /// <summary>

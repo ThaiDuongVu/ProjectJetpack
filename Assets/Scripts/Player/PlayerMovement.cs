@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private static readonly int EnterDashAnimationTrigger = Animator.StringToHash("enterDash");
     private static readonly int ExitDashAnimationTrigger = Animator.StringToHash("exitDash");
 
-    private float LookInterpolationRatio { get; set; } = 0.4f;
+    private float LookInterpolationRatio { get; set; } = 0.25f;
 
     public float DashDistance { get; set; } = 15f;
     public float DashEpsilon { get; set; } = 1f;
@@ -189,6 +189,7 @@ public class PlayerMovement : MonoBehaviour
             player.Rigidbody2D.position + movement * (currentVelocity * Time.fixedDeltaTime));
         // Rotate player to movement direction
         player.transform.up = Vector2.Lerp(player.transform.up, movement, LookInterpolationRatio);
+        // player.transform.up = Vector2.Lerp(player.transform.up, camera.transform.up, LookInterpolationRatio);
     }
 
     /// <summary>
@@ -208,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
 
         DashCooldown = 0f;
         // Enable motion blur effect
-        EffectsController.Instance.SetMotionBlur(true);
+        // EffectsController.Instance.SetMotionBlur(true);
 
         // Deal damage to enemy if acquired
         if (player.Target) player.Combat.DealDamage(player.Target);
@@ -228,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
         player.Animator.SetTrigger(ExitDashAnimationTrigger);
 
         // Disable motion blur effect
-        EffectsController.Instance.SetMotionBlur(false);
+        // EffectsController.Instance.SetMotionBlur(false);
     }
 
     /// <summary>
