@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private static readonly int EnterDashAnimationTrigger = Animator.StringToHash("enterDash");
     private static readonly int ExitDashAnimationTrigger = Animator.StringToHash("exitDash");
 
-    private float LookInterpolationRatio { get; set; } = 0.25f;
+    private float LookInterpolationRatio { get; set; } = 0.3f;
 
     public float DashDistance { get; set; } = 15f;
     public float DashEpsilon { get; set; } = 1f;

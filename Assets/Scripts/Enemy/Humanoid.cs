@@ -7,11 +7,6 @@ public class Humanoid : MonoBehaviour
     private const float MinAccuracy = 0.025f;
     private const float MaxAccuracy = 0.15f;
 
-    private const float MinFireRate = 1f;
-    private const float MaxFireRate = 3f;
-    private float timer;
-    private float timerMax;
-
     private new Rigidbody2D rigidbody2D;
     private const float MovementSpeed = 5f;
 
@@ -19,6 +14,8 @@ public class Humanoid : MonoBehaviour
     [SerializeField] private Bullet bulletPrefab;
 
     private Vector2 currentDirection;
+
+    private TimeToAttack timeToAttack;
 
     /// <summary>
     /// Unity Event function.
@@ -28,6 +25,7 @@ public class Humanoid : MonoBehaviour
     {
         enemy = GetComponent<Enemy>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        timeToAttack = GetComponent<TimeToAttack>();
     }
 
     /// <summary>
@@ -38,7 +36,11 @@ public class Humanoid : MonoBehaviour
     {
         // Generate a random aim accuracy for this enemy
         lookAccuracy = Random.Range(MinAccuracy, MaxAccuracy);
-        ResetTimer();
+
+        timeToAttack.OnTimerReset = () => { currentDirection = (new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f))).normalized; };
+        timeToAttack.MinAttackRate = 1f;
+        timeToAttack.MaxAttackRate = 3f;
+        timeToAttack.ResetTimer();
     }
 
     /// <summary>
@@ -52,10 +54,10 @@ public class Humanoid : MonoBehaviour
         LookAt(Player.Instance.transform);
         Walk(currentDirection);
 
-        if (IsTimer())
+        if (timeToAttack.IsTimer())
         {
             Fire();
-            ResetTimer();
+            timeToAttack.ResetTimer();
         }
     }
 
@@ -84,26 +86,6 @@ public class Humanoid : MonoBehaviour
     private void Fire()
     {
         Instantiate(bulletPrefab, firePoint.transform.position, transform.rotation);
-    }
-
-    /// <summary>
-    /// Reset fire timer.
-    /// </summary>
-    private void ResetTimer()
-    {
-        timer = 0f;
-        timerMax = Random.Range(MinFireRate, MaxFireRate);
-        currentDirection = (new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f))).normalized;
-    }
-
-    /// <summary>
-    /// Check if fire timer is reached.
-    /// </summary>
-    /// <return>Whether fire timer is reached</return>
-    private bool IsTimer()
-    {
-        timer += Time.fixedDeltaTime;
-        return timer >= timerMax;
     }
 
     /// <summary>
