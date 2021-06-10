@@ -9,6 +9,16 @@ public class TimeToAttack : MonoBehaviour
     private float timerMax;
 
     public Action OnTimerReset { get; set; }
+    [SerializeField] private Transform indicator;
+
+    /// <summary>
+    /// Unity Event function.
+    /// Update at consistent time.
+    /// </summary>
+    private void FixedUpdate()
+    {
+        indicator.localScale = new Vector2(timer / timerMax, indicator.localScale.y);
+    }
 
     /// <summary>
     /// Reset attack timer.
