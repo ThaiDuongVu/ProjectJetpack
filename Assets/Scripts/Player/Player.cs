@@ -32,14 +32,12 @@ public class Player : MonoBehaviour, IDamageable
 
     public Animator Animator { get; private set; }
     public Rigidbody2D Rigidbody2D { get; private set; }
-    public CircleCollider2D CircleCollider2D { get; private set; }
 
     #endregion
 
     #region Player States
 
-    public bool IsRunning { get; set; }
-    public bool IsStaggered { get; set; }
+    public PlayerState State { get; set; } = PlayerState.Idle;
     private const float StaggerDuration = 0.5f;
 
     #endregion
@@ -60,9 +58,6 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Trail trailPrefab;
     public Trail Trail { get; set; }
 
-    public GameObject previewRig;
-    public Transform raycastPoint;
-
     /// <summary>
     /// Unity Event function.
     /// Get component references.
@@ -77,7 +72,6 @@ public class Player : MonoBehaviour, IDamageable
 
         Animator = GetComponent<Animator>();
         Rigidbody2D = GetComponent<Rigidbody2D>();
-        CircleCollider2D = GetComponent<CircleCollider2D>();
     }
 
     /// <summary>
@@ -88,8 +82,6 @@ public class Player : MonoBehaviour, IDamageable
     {
         Trail = Instantiate(trailPrefab, transform.position, transform.rotation).GetComponent<Trail>();
         Trail.Target = transform;
-
-        previewRig.SetActive(false);
     }
 
     /// <summary>
@@ -129,14 +121,14 @@ public class Player : MonoBehaviour, IDamageable
     /// </summary>
     private IEnumerator Stagger()
     {
-        if (IsStaggered) yield return null;
+        if (State == PlayerState.Stagger) yield return null;
 
-        IsStaggered = true;
+        State = PlayerState.Stagger;
         Animator.SetTrigger("enterStagger");
 
         yield return new WaitForSeconds(StaggerDuration);
 
-        IsStaggered = false;
+        State = PlayerState.Idle;
         Animator.SetTrigger("exitStagger");
         Animator.ResetTrigger("enterStagger");
     }

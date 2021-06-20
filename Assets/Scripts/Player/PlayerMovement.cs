@@ -8,16 +8,18 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement;
     private Vector2 currentDirection;
+    private Vector2 tempDirection;
     private float currentVelocity;
 
-    public float MaxVelocity { get; set; } = 30f;
-    public float MinVelocity { get; set; } = 0f;
-    public float Acceleration { get; set; } = 60f;
-    public float Deceleration { get; set; } = 60f;
+    public float MaxRunningVelocity { get; set; } = 25f;
+    public float MaxFlyingVelocity { get; set; } = 50f;
+    public float CurrentMaxVelocity { get; set; }
+    public float CurrentMinVelocity { get; set; } = 0f;
+    public float Acceleration { get; set; } = 80f;
+    public float Deceleration { get; set; } = 100f;
 
     private static readonly int IsRunningAnimationTrigger = Animator.StringToHash("isRunning");
-    private static readonly int EnterDashAnimationTrigger = Animator.StringToHash("enterDash");
-    private static readonly int ExitDashAnimationTrigger = Animator.StringToHash("exitDash");
+    private static readonly int IsFlyingAnimationTrigger = Animator.StringToHash("isFlying");
 
     private float LookInterpolationRatio { get; set; } = 0.3f;
 
@@ -35,6 +37,10 @@ public class PlayerMovement : MonoBehaviour
         inputManager.Player.Move.performed += MoveOnPerformed;
         inputManager.Player.Move.canceled += MoveOnCanceled;
 
+        // Handle bullet input
+        inputManager.Player.Fly.performed += FlyOnPerformed;
+        inputManager.Player.Fly.canceled += FlyOnCanceled;
+
         inputManager.Enable();
     }
 
@@ -47,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     private void MoveOnPerformed(InputAction.CallbackContext context)
     {
         InputTypeController.Instance.CheckInputType(context);
-        if (GameController.Instance.State != GameState.Started || player.IsStaggered) return;
+        if (GameController.Instance.State != GameState.Started || player.State == PlayerState.Stagger || player.State == PlayerState.Flying) return;
 
         // Set movement vector
         currentDirection = context.ReadValue<Vector2>();
@@ -60,8 +66,34 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="context">Input context</param>
     private void MoveOnCanceled(InputAction.CallbackContext context)
     {
-        // Update player state
-        player.IsRunning = false;
+        if (GameController.Instance.State != GameState.Started || player.State == PlayerState.Stagger || player.State == PlayerState.Flying) return;
+
+        // Reset movement vector
+        currentDirection = Vector2.zero;
+    }
+
+    /// <summary>
+    /// On bullet mode input started.
+    /// </summary>
+    /// <param name="context">Input context</param>
+    private void FlyOnPerformed(InputAction.CallbackContext context)
+    {
+        InputTypeController.Instance.CheckInputType(context);
+        if (GameController.Instance.State != GameState.Started) return;
+
+        // Set movement vector
+        currentDirection = transform.up;
+        StartFlying();
+    }
+
+    /// <summary>
+    /// On bullet mode input canceled.
+    /// </summary>
+    /// <param name="context">Input context</param>
+    private void FlyOnCanceled(InputAction.CallbackContext context)
+    {
+        // Reset movement vector
+        currentDirection = Vector2.zero;
     }
 
     #endregion
@@ -87,21 +119,26 @@ public class PlayerMovement : MonoBehaviour
 
     /// <summary>
     /// Unity Event function.
+    /// Initialize before first frame update.
+    /// </summary>
+    private void Start()
+    {
+        CurrentMaxVelocity = MaxRunningVelocity;
+    }
+
+    /// <summary>
+    /// Unity Event function.
     /// Update at consistent time.
     /// </summary>
     private void FixedUpdate()
     {
         if (Time.timeScale == 0f) return;
 
-        // If current direction is not empty then accelerate
-        if (player.IsRunning) Accelerate();
-        // If not then decelerate
-        else Decelerate();
-
         // Move player at current velocity
-        if (!player.IsStaggered) Run();
+        if (player.State == PlayerState.Running) Run();
+        else if (player.State == PlayerState.Flying) Fly();
         // Sync player animation with current velocity
-        if (!player.IsStaggered) Animate();
+        Animate();
     }
 
     /// <summary>
@@ -112,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         // Play run animation
         player.Animator.SetBool(IsRunningAnimationTrigger, true);
         // Update player state
-        player.IsRunning = true;
+        player.State = PlayerState.Running;
     }
 
     /// <summary>
@@ -120,10 +157,34 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void StopRunning()
     {
-        // Reset current direction
-        currentDirection = Vector2.zero;
         // Stop run animation
         player.Animator.SetBool(IsRunningAnimationTrigger, false);
+        // Update player state
+        player.State = PlayerState.Idle;
+    }
+
+    /// <summary>
+    /// Player start flying.
+    /// </summary>
+    private void StartFlying()
+    {
+        // Play fly animation
+        player.Animator.SetBool(IsFlyingAnimationTrigger, true);
+        // Update player state & max velocity
+        player.State = PlayerState.Flying;
+        CurrentMaxVelocity = MaxFlyingVelocity;
+    }
+
+    /// <summary>
+    /// Player stop flying.
+    /// </summary>
+    private void StopFlying()
+    {
+        // Stop fly animation
+        player.Animator.SetBool(IsFlyingAnimationTrigger, false);
+        // Update player state & max velocity
+        player.State = PlayerState.Idle;
+        CurrentMaxVelocity = MaxRunningVelocity;
     }
 
     /// <summary>
@@ -131,8 +192,8 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Accelerate()
     {
-        if (currentVelocity < MaxVelocity) currentVelocity += Acceleration * Time.deltaTime;
-        else if (currentVelocity > MaxVelocity) currentVelocity = MaxVelocity;
+        if (currentVelocity < CurrentMaxVelocity) currentVelocity += Acceleration * Time.deltaTime;
+        else if (currentVelocity > CurrentMaxVelocity) currentVelocity -= Deceleration * Time.deltaTime;
     }
 
     /// <summary>
@@ -140,9 +201,14 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Decelerate()
     {
-        if (currentVelocity > MinVelocity) currentVelocity -= Deceleration * Time.deltaTime;
-        // If player near stopping then stop
-        else StopRunning();
+        if (currentVelocity > CurrentMinVelocity) currentVelocity -= Deceleration * Time.deltaTime;
+        else if (currentVelocity < CurrentMinVelocity)
+        {
+            currentVelocity = CurrentMinVelocity;
+            // Stop running/flying if velocity reaches 0
+            StopRunning();
+            StopFlying();
+        }
     }
 
     /// <summary>
@@ -150,13 +216,40 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Run()
     {
+        // Accelerate/decelerate according to current direction
+        if (currentDirection != Vector2.zero)
+        {
+            Accelerate();
+            tempDirection = currentDirection;
+        }
+        else
+        {
+            Decelerate();
+        }
         // Movement vector derived from input direction and camera angle
-        movement = Quaternion.Euler(0f, 0f, camera.transform.eulerAngles.z) * currentDirection;
+        movement = Quaternion.Euler(0f, 0f, camera.transform.eulerAngles.z) * tempDirection;
+
         // Move player
-        player.Rigidbody2D.MovePosition(
-            player.Rigidbody2D.position + movement * (currentVelocity * Time.fixedDeltaTime));
+        player.Rigidbody2D.MovePosition(player.Rigidbody2D.position + movement * (currentVelocity * Time.fixedDeltaTime));
         // Rotate player to movement direction
-        // player.transform.up = Vector2.Lerp(player.transform.up, movement, LookInterpolationRatio);
+        player.transform.up = Vector2.Lerp(player.transform.up, camera.transform.up, LookInterpolationRatio);
+    }
+
+    /// <summary>
+    /// Move player forward at a higher speed.
+    /// </summary>
+    private void Fly()
+    {
+        // Accelerate/decelerate according to current direction
+        if (currentDirection != Vector2.zero) Accelerate();
+        else Decelerate();
+
+        // Movement vector derived from input direction and camera angle
+        movement = camera.transform.up;
+
+        // Move player
+        player.Rigidbody2D.MovePosition(player.Rigidbody2D.position + movement * (currentVelocity * Time.fixedDeltaTime));
+        // Rotate player to movement direction
         player.transform.up = Vector2.Lerp(player.transform.up, camera.transform.up, LookInterpolationRatio);
     }
 
@@ -165,8 +258,15 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Animate()
     {
+        // If player is not running then default animation speed
+        if (player.State != PlayerState.Running)
+        {
+            player.Animator.speed = 1f;
+            return;
+        }
+
         // Set animation speed to velocity length if sync animation is enabled
-        if (currentVelocity > 0f) player.Animator.speed = currentVelocity / MaxVelocity;
+        if (currentVelocity > 0f) player.Animator.speed = currentVelocity / CurrentMaxVelocity;
         else player.Animator.speed = 1f;
     }
 }

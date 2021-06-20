@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class MainCamera : MonoBehaviour
 {
-    private const float FollowInterpolationRatio = 0.05f;
-    private const float YOffset = 10f;
+    private const float FollowInterpolationRatio = 0.1f;
+    private const float YOffset = 15f;
     public Transform followTarget;
 
     private float lookVelocity;

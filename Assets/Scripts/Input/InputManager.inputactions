@@ -304,7 +304,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "EnterBullet",
+                    "name": "Fly",
                     "type": "Button",
                     "id": "96273607-5c0d-4921-bf75-57029912604a",
                     "expectedControlType": "Button",
@@ -705,7 +705,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "EnterBullet",
+                    "action": "Fly",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -716,7 +716,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
-                    "action": "EnterBullet",
+                    "action": "Fly",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

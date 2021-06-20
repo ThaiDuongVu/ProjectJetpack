@@ -39,8 +39,8 @@ public class SceneLoader : MonoBehaviour
         cameraAnimator.SetTrigger(OutroTrigger);
 
         // Disable all game UI
-        foreach (Canvas canvas in canvases)
-            canvas.gameObject.SetActive(false);
+        // foreach (Canvas canvas in canvases)
+        //     canvas.gameObject.SetActive(false);
 
         // Wait for camera animation to complete
         yield return new WaitForSeconds(cameraOutroAnimationClip.averageDuration);

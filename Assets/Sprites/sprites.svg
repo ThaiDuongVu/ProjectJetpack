@@ -57,9 +57,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994952"
-     inkscape:cx="1523.8151"
-     inkscape:cy="537.90622"
+     inkscape:zoom="0.12374369"
+     inkscape:cx="1571.7973"
+     inkscape:cy="634.37578"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -68,8 +68,8 @@
      showborder="false"
      inkscape:window-width="1920"
      inkscape:window-height="1057"
-     inkscape:window-x="-8"
-     inkscape:window-y="-1"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -87,17 +87,6 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <rect
-       inkscape:export-ydpi="25.4"
-       inkscape:export-xdpi="25.4"
-       ry="0"
-       y="-4.6746234e-16"
-       x="-300"
-       height="100"
-       width="100"
-       id="rect830"
-       style="fill:#222831;fill-opacity:1;stroke:none;stroke-width:5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.3"
-       inkscape:export-filename="C:\Users\Duong\Documents\Development\Projects\ProjectArkham\Assets\Sprites\Tiles\tile_0.png" />
     <circle
        r="50"
        style="fill:#0abde3;fill-opacity:1;stroke:none;stroke-width:10;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -307,60 +296,6 @@
        inkscape:export-filename="C:\Users\Duong\Documents\Development\Projects\ProjectArkham\Assets\Sprites\Enemies\Halfler\halfler_spine.png"
        inkscape:export-xdpi="25.400002"
        inkscape:export-ydpi="25.400002" />
-    <rect
-       style="fill:#c8d6e5;fill-opacity:1;stroke:none;stroke-width:4.99999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.3"
-       id="rect855"
-       width="100"
-       height="100"
-       x="-300"
-       y="200"
-       inkscape:export-filename="C:\Users\Duong\Documents\Development\Projects\ProjectHome\Assets\Sprites\Tiles\tile_1.png"
-       inkscape:export-xdpi="25.4"
-       inkscape:export-ydpi="25.4" />
-    <g
-       inkscape:export-ydpi="25.4"
-       inkscape:export-xdpi="25.4"
-       inkscape:export-filename="C:\Users\Duong\Documents\Development\Projects\ProjectArkham\Assets\Sprites\Tiles\tile_2.png"
-       id="g902"
-       transform="translate(0,-200)">
-      <circle
-         style="fill:#c8d6e5;stroke-width:4.99999;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.3"
-         id="path893"
-         cx="-249.99998"
-         cy="650.00006"
-         r="50" />
-      <rect
-         style="fill:#c8d6e5;fill-opacity:1;stroke:none;stroke-width:4.99999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.3"
-         id="rect895"
-         width="100"
-         height="50"
-         x="-300"
-         y="600"
-         inkscape:export-filename="C:\Users\Duong\Documents\Development\Projects\ProjectArkham\Assets\Sprites\Tiles\tile_1.png"
-         inkscape:export-xdpi="25.4"
-         inkscape:export-ydpi="25.4" />
-      <rect
-         inkscape:export-ydpi="25.4"
-         inkscape:export-xdpi="25.4"
-         inkscape:export-filename="C:\Users\Duong\Documents\Development\Projects\ProjectArkham\Assets\Sprites\Tiles\tile_1.png"
-         y="200"
-         x="600"
-         height="50"
-         width="100"
-         id="rect897"
-         style="fill:#c8d6e5;fill-opacity:1;stroke:none;stroke-width:4.99999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.3"
-         transform="rotate(90)" />
-    </g>
-    <rect
-       inkscape:export-ydpi="25.4"
-       inkscape:export-xdpi="25.4"
-       inkscape:export-filename="C:\Users\Duong\Documents\Development\Projects\ProjectHome\Assets\Sprites\Tiles\tile_1.png"
-       y="200"
-       x="-300"
-       height="100"
-       width="100"
-       id="rect860"
-       style="fill:#c8d6e5;fill-opacity:1;stroke:none;stroke-width:4.99999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.3" />
     <rect
        transform="rotate(-90)"
        style="fill:#ee5253;fill-opacity:1;stroke:none;stroke-width:11.5469;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"

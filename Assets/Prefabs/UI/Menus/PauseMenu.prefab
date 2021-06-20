@@ -231,11 +231,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9114364217101221597, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_text
-      value: Hub World
+      value: Main Menu
       objectReference: {fileID: 0}
     - target: {fileID: 9114364217356383005, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_Name
-      value: Button_2_KnowledgeBase
+      value: Button_2_Customize
       objectReference: {fileID: 0}
     - target: {fileID: 9114364217356383007, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -305,7 +305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9114364218141166674, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_text
-      value: "Knowledge \nBase"
+      value: Customize
       objectReference: {fileID: 0}
     - target: {fileID: 9114364218395738512, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -353,7 +353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9114364218395738512, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: HubWorld
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 9114364218395738512, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -365,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9114364218395738514, guid: 5080377060a21db4f970a4380149647a, type: 3}
       propertyPath: m_Name
-      value: Button_3_Hub
+      value: Button_3_Main
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5080377060a21db4f970a4380149647a, type: 3}

@@ -317,7 +317,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""EnterBullet"",
+                    ""name"": ""Fly"",
                     ""type"": ""Button"",
                     ""id"": ""96273607-5c0d-4921-bf75-57029912604a"",
                     ""expectedControlType"": ""Button"",
@@ -718,7 +718,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""EnterBullet"",
+                    ""action"": ""Fly"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -729,7 +729,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
-                    ""action"": ""EnterBullet"",
+                    ""action"": ""Fly"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -776,7 +776,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_EnterBullet = m_Player.FindAction("EnterBullet", throwIfNotFound: true);
+        m_Player_Fly = m_Player.FindAction("Fly", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -885,14 +885,14 @@ public class @InputManager : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_EnterBullet;
+    private readonly InputAction m_Player_Fly;
     public struct PlayerActions
     {
         private @InputManager m_Wrapper;
         public PlayerActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @EnterBullet => m_Wrapper.m_Player_EnterBullet;
+        public InputAction @Fly => m_Wrapper.m_Player_Fly;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -908,9 +908,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                @EnterBullet.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterBullet;
-                @EnterBullet.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterBullet;
-                @EnterBullet.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterBullet;
+                @Fly.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFly;
+                @Fly.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFly;
+                @Fly.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFly;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -921,9 +921,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @EnterBullet.started += instance.OnEnterBullet;
-                @EnterBullet.performed += instance.OnEnterBullet;
-                @EnterBullet.canceled += instance.OnEnterBullet;
+                @Fly.started += instance.OnFly;
+                @Fly.performed += instance.OnFly;
+                @Fly.canceled += instance.OnFly;
             }
         }
     }
@@ -957,6 +957,6 @@ public class @InputManager : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnEnterBullet(InputAction.CallbackContext context);
+        void OnFly(InputAction.CallbackContext context);
     }
 }
