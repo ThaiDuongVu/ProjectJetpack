@@ -826,7 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPracticeDummy: 0
   light2D: {fileID: 1169574463398243947}
-  MaxHealth: 1
+  MaxHealth: 2
   rig:
   - {fileID: 1169574463524079578}
   - {fileID: 1169574463193811282}

@@ -4,8 +4,27 @@ using TMPro;
 
 public class PlayerHud : MonoBehaviour
 {
+    private Player player;
     [SerializeField] private Image healthBar;
     [SerializeField] private TMP_Text coinText;
+
+    /// <summary>
+    /// Unity Event function.
+    /// Get component references.
+    /// </summary>
+    private void Awake()
+    {
+        player = Player.Instance;
+    }
+
+    /// <summary>
+    /// Unity Event function.
+    /// Initialize before first frame update.
+    /// </summary>
+    private void Start()
+    {
+
+    }
 
     // <summary>
     /// Update player health bar to reflect current health.

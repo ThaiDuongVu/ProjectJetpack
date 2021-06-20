@@ -8,7 +8,7 @@ public class MainCamera : MonoBehaviour
     public Transform followTarget;
 
     private float lookVelocity;
-    public const float LookSensitivity = 1f;
+    public const float LookSensitivity = 1.2f;
     private const float MaxLookVelocity = 6f;
     private const float LookDeadZone = 0.1f;
 
