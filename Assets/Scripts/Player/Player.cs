@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -30,6 +29,7 @@ public class Player : MonoBehaviour, IDamageable
     public PlayerCombo Combo { get; private set; }
     public PlayerResources Resources { get; private set; }
     public PlayerHud Hud { get; set; }
+
     public Animator Animator { get; private set; }
     public Rigidbody2D Rigidbody2D { get; private set; }
     public CircleCollider2D CircleCollider2D { get; private set; }
@@ -39,7 +39,6 @@ public class Player : MonoBehaviour, IDamageable
     #region Player States
 
     public bool IsRunning { get; set; }
-    public bool IsDashing { get; set; }
     public bool IsStaggered { get; set; }
     private const float StaggerDuration = 0.5f;
 
@@ -48,8 +47,6 @@ public class Player : MonoBehaviour, IDamageable
     #region Player Upgrades
 
     public List<PlayerUpgrade> upgrades = new List<PlayerUpgrade>();
-    // Upgrade IDs
-    // 0: Preview
 
     #endregion
 
@@ -62,14 +59,6 @@ public class Player : MonoBehaviour, IDamageable
 
     [SerializeField] private Trail trailPrefab;
     public Trail Trail { get; set; }
-
-    public Color white;
-    public Color red;
-    public Color blue;
-    public Transform directionArrow;
-    public SpriteRenderer directionArrowSprite;
-    private RaycastHit2D[] hit2Ds;
-    public Enemy Target { get; set; }
 
     public GameObject previewRig;
     public Transform raycastPoint;
@@ -85,6 +74,7 @@ public class Player : MonoBehaviour, IDamageable
         Combo = GetComponent<PlayerCombo>();
         Resources = GetComponent<PlayerResources>();
         Hud = GetComponent<PlayerHud>();
+
         Animator = GetComponent<Animator>();
         Rigidbody2D = GetComponent<Rigidbody2D>();
         CircleCollider2D = GetComponent<CircleCollider2D>();
@@ -109,34 +99,6 @@ public class Player : MonoBehaviour, IDamageable
     private void FixedUpdate()
     {
         if (Time.timeScale == 0f) return;
-
-        CheckTarget();
-    }
-
-    /// <summary>
-    /// Perform a raycast from player forward to check if any target is within dash range.
-    /// </summary>
-    private void CheckTarget()
-    {
-        // Default states
-        directionArrowSprite.color = white;
-        Target = null;
-
-        if (Movement.DashCooldown < 1f / Movement.DashRate) return;
-
-        // Perform raycast and return if nothing detected
-        hit2Ds = Physics2D.RaycastAll(raycastPoint.position, transform.up,
-                                  Movement.DashDistance + (transform.position.y - raycastPoint.position.y) + Movement.DashEpsilon,
-                                  LayerMask.GetMask("Enemy"));
-
-        if (hit2Ds.Length == 0) return;
-
-        // Acquire targets
-        if (hit2Ds[0].transform.CompareTag("Enemy"))
-        {
-            Target = hit2Ds[0].transform.GetComponent<Enemy>();
-            directionArrowSprite.color = red;
-        }
     }
 
     /// <summary>
@@ -146,7 +108,7 @@ public class Player : MonoBehaviour, IDamageable
     void IDamageable.TakeDamage(float damage, Vector2 direction)
     {
         Resources.CurrentHealth -= damage;
-        if (IsDashing) Movement.ExitDash();
+
         // Flavours
         StartCoroutine(Stagger());
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);

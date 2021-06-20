@@ -317,7 +317,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Dash"",
+                    ""name"": ""EnterBullet"",
                     ""type"": ""Button"",
                     ""id"": ""96273607-5c0d-4921-bf75-57029912604a"",
                     ""expectedControlType"": ""Button"",
@@ -718,18 +718,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""290f7e98-1cb2-4cb9-8239-aa9ec9b41c82"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MouseKeyboard"",
-                    ""action"": ""Dash"",
+                    ""action"": ""EnterBullet"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -740,18 +729,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""449e9cb2-36f1-4a68-a19e-accfc8c917de"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Dash"",
+                    ""action"": ""EnterBullet"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -798,7 +776,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_EnterBullet = m_Player.FindAction("EnterBullet", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -907,14 +885,14 @@ public class @InputManager : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_EnterBullet;
     public struct PlayerActions
     {
         private @InputManager m_Wrapper;
         public PlayerActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @EnterBullet => m_Wrapper.m_Player_EnterBullet;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -930,9 +908,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @EnterBullet.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterBullet;
+                @EnterBullet.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterBullet;
+                @EnterBullet.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterBullet;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -943,9 +921,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @Dash.started += instance.OnDash;
-                @Dash.performed += instance.OnDash;
-                @Dash.canceled += instance.OnDash;
+                @EnterBullet.started += instance.OnEnterBullet;
+                @EnterBullet.performed += instance.OnEnterBullet;
+                @EnterBullet.canceled += instance.OnEnterBullet;
             }
         }
     }
@@ -979,6 +957,6 @@ public class @InputManager : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnDash(InputAction.CallbackContext context);
+        void OnEnterBullet(InputAction.CallbackContext context);
     }
 }

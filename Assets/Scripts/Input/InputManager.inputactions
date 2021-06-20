@@ -304,7 +304,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Dash",
+                    "name": "EnterBullet",
                     "type": "Button",
                     "id": "96273607-5c0d-4921-bf75-57029912604a",
                     "expectedControlType": "Button",
@@ -705,18 +705,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "290f7e98-1cb2-4cb9-8239-aa9ec9b41c82",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "MouseKeyboard",
-                    "action": "Dash",
+                    "action": "EnterBullet",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -727,18 +716,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "449e9cb2-36f1-4a68-a19e-accfc8c917de",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Dash",
+                    "action": "EnterBullet",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
