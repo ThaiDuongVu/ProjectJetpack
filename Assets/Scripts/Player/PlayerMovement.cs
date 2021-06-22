@@ -5,18 +5,21 @@ public class PlayerMovement : MonoBehaviour
 {
     private Player player;
     private new Camera camera;
+    private MainCamera mainCamera;
 
     private Vector2 movement;
     private Vector2 currentDirection;
     private Vector2 tempDirection;
     private float currentVelocity;
 
-    public float MaxRunningVelocity { get; set; } = 25f;
-    public float MaxFlyingVelocity { get; set; } = 50f;
+    public float MaxRunningVelocity { get; set; } = 30f;
+    public float MaxFlyingVelocity { get; set; } = 60f;
+    public float BoostVelocity { get; set; } = 80f;
+    public float BrakeVelocity { get; set; } = 40f;
     public float CurrentMaxVelocity { get; set; }
     public float CurrentMinVelocity { get; set; } = 0f;
-    public float Acceleration { get; set; } = 80f;
-    public float Deceleration { get; set; } = 100f;
+    public float Acceleration { get; set; } = 120f;
+    public float Deceleration { get; set; } = 120f;
 
     private static readonly int IsRunningAnimationTrigger = Animator.StringToHash("isRunning");
     private static readonly int IsFlyingAnimationTrigger = Animator.StringToHash("isFlying");
@@ -40,6 +43,12 @@ public class PlayerMovement : MonoBehaviour
         // Handle bullet input
         inputManager.Player.Fly.performed += FlyOnPerformed;
         inputManager.Player.Fly.canceled += FlyOnCanceled;
+
+        // Handle boost/brake input
+        inputManager.Player.Boost.performed += BoostOnPerformed;
+        inputManager.Player.Brake.performed += BrakeOnPerformed;
+        inputManager.Player.Boost.canceled += BoostBrakeOnCanceled;
+        inputManager.Player.Brake.canceled += BoostBrakeOnCanceled;
 
         inputManager.Enable();
     }
@@ -96,6 +105,50 @@ public class PlayerMovement : MonoBehaviour
         currentDirection = Vector2.zero;
     }
 
+    /// <summary>
+    /// On boost input performed.
+    /// </summary>
+    /// <param name="context">Input context</param>
+    private void BoostOnPerformed(InputAction.CallbackContext context)
+    {
+        InputTypeController.Instance.CheckInputType(context);
+        if (GameController.Instance.State != GameState.Started || player.State != PlayerState.Flying) return;
+
+        CurrentMaxVelocity = BoostVelocity;
+        // Play camera boost animation
+        mainCamera.Animator.SetBool("isBraking", false);
+        mainCamera.Animator.SetBool("isBoosting", true);
+    }
+
+    /// <summary>
+    /// On brake input performed.
+    /// </summary>
+    /// <param name="context">Input context</param>
+    private void BrakeOnPerformed(InputAction.CallbackContext context)
+    {
+        InputTypeController.Instance.CheckInputType(context);
+        if (GameController.Instance.State != GameState.Started || player.State != PlayerState.Flying) return;
+
+        CurrentMaxVelocity = BrakeVelocity;
+        // Play camera brake animation
+        mainCamera.Animator.SetBool("isBoosting", false);
+        mainCamera.Animator.SetBool("isBraking", true);
+    }
+
+    /// <summary>
+    /// On boost/brake input canceled.
+    /// </summary>
+    /// <param name="context">Input context</param>
+    private void BoostBrakeOnCanceled(InputAction.CallbackContext context)
+    {
+        if (GameController.Instance.State != GameState.Started || player.State != PlayerState.Flying) return;
+
+        CurrentMaxVelocity = MaxFlyingVelocity;
+        // Stop camera boost/brake animation
+        mainCamera.Animator.SetBool("isBraking", false);
+        mainCamera.Animator.SetBool("isBoosting", false);
+    }
+
     #endregion
 
     /// <summary>
@@ -115,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
     {
         player = Player.Instance;
         camera = Camera.main;
+        mainCamera = camera.GetComponent<MainCamera>();
     }
 
     /// <summary>
@@ -123,7 +177,8 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        CurrentMaxVelocity = MaxRunningVelocity;
+        StopRunning();
+        StopFlying();
     }
 
     /// <summary>
@@ -173,6 +228,10 @@ public class PlayerMovement : MonoBehaviour
         // Update player state & max velocity
         player.State = PlayerState.Flying;
         CurrentMaxVelocity = MaxFlyingVelocity;
+
+        // Enable/disable player trigger colliders
+        player.CircleCollider2D.enabled = false;
+        player.BoxCollider2D.enabled = true;
     }
 
     /// <summary>
@@ -185,6 +244,10 @@ public class PlayerMovement : MonoBehaviour
         // Update player state & max velocity
         player.State = PlayerState.Idle;
         CurrentMaxVelocity = MaxRunningVelocity;
+
+        // Enable/disable player trigger colliders
+        player.CircleCollider2D.enabled = true;
+        player.BoxCollider2D.enabled = false;
     }
 
     /// <summary>

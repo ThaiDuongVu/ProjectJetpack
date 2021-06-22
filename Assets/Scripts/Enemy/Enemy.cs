@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool IsDead { get; set; }
     public bool IsRagdoll { get; set; }
     public bool IsKnockingBack { get; set; }
+    public bool CanTakeDamage { get; set; } = true;
 
     public bool IsStaggered { get; set; }
     private const float StaggerDuration = 0.5f;
@@ -24,7 +25,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private Transform[] rig;
     private Vector2[] ragdollPositions;
     public const float RagdollRange = 4f;
-    public const float RagdollInterpolationRatio = 0.025f;
+    public const float RagdollInterpolationRatio = 0.02f;
 
     [SerializeField] private ParticleSystem bloodSpatPrefab;
 
@@ -34,7 +35,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private Vector2 knockBackDirection;
     private const float KnockBackDistance = 5f;
     private const float KnockBackEpsilon = 1f;
-    private const float KnockBackInterpolationRatio = 0.2f;
+    private const float KnockBackInterpolationRatio = 0.1f;
 
     /// <summary>
     /// Unity Event function.
@@ -78,12 +79,9 @@ public class Enemy : MonoBehaviour, IDamageable
             return;
         }
 
-
         CurrentHealth -= damage;
-        if (CurrentHealth <= 0f)
-            (this as IDamageable).Die();
-        else
-            StartCoroutine(Stagger());
+        if (CurrentHealth <= 0f) (this as IDamageable).Die();
+        else StartCoroutine(Stagger());
     }
 
     /// <summary>

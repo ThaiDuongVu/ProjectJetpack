@@ -452,7 +452,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -563,6 +563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b33fdb5265f7d4eb4680d592021e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CircleCollider2D: {fileID: 1312538583227358213}
+  BoxCollider2D: {fileID: 4147020627121483301}
   upgrades:
   - {fileID: 0}
   dashSlicePrefab: {fileID: 734268438956018802, guid: 6e5d99882f8f45a488ea53b6a5ce76c9, type: 3}

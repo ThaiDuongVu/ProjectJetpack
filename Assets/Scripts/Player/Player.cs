@@ -32,6 +32,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public Animator Animator { get; private set; }
     public Rigidbody2D Rigidbody2D { get; private set; }
+    public CircleCollider2D CircleCollider2D;
+    public BoxCollider2D BoxCollider2D;
 
     #endregion
 
@@ -136,9 +138,43 @@ public class Player : MonoBehaviour, IDamageable
     /// <summary>
     /// Handle player collision with another object.
     /// </summary>
-    /// <param>Collision object</param>
+    /// <param name="other">Collision object</param>
     private void OnCollisionEnter2D(Collision2D other)
     {
 
+    }
+
+    /// <summary>
+    /// Handle player trigger collision with another object.
+    /// </summary>
+    /// <param name="other">Collider object</param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.CompareTag("Enemy"))
+        {
+            if (State != PlayerState.Flying) return;
+            
+            // Get enemy to damage
+            Enemy enemy = other.GetComponent<Enemy>();
+            // If enemy cannot be damaged then do nothing
+            if (!enemy.CanTakeDamage) return;
+
+            // Deal damage to enemy
+            Combat.DealDamage(enemy);
+            enemy.CanTakeDamage = false;
+        }
+    }
+
+    /// <summary>
+    /// Handle player trigger collision exit with another object.
+    /// </summary>
+    /// <param name="other">Collider object</param>
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.transform.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            enemy.CanTakeDamage = true;
+        }
     }
 }

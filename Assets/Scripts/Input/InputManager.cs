@@ -323,6 +323,22 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Boost"",
+                    ""type"": ""Button"",
+                    ""id"": ""552b5c6c-78fb-4df6-9744-b153fb55ca22"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Brake"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f5025b4-beba-441b-b000-49a6ab9fc52e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -732,6 +748,50 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""Fly"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33d71b83-6b33-4e75-b509-e96f105c18c4"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Boost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6e1a75a-72db-4210-b3b3-840289b369da"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Boost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1564921-095a-49f5-9ea5-0f057b705a51"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Brake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31bdf5c7-1f1c-460a-8404-f2876991ea62"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Brake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -777,6 +837,8 @@ public class @InputManager : IInputActionCollection, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fly = m_Player.FindAction("Fly", throwIfNotFound: true);
+        m_Player_Boost = m_Player.FindAction("Boost", throwIfNotFound: true);
+        m_Player_Brake = m_Player.FindAction("Brake", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -886,6 +948,8 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fly;
+    private readonly InputAction m_Player_Boost;
+    private readonly InputAction m_Player_Brake;
     public struct PlayerActions
     {
         private @InputManager m_Wrapper;
@@ -893,6 +957,8 @@ public class @InputManager : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fly => m_Wrapper.m_Player_Fly;
+        public InputAction @Boost => m_Wrapper.m_Player_Boost;
+        public InputAction @Brake => m_Wrapper.m_Player_Brake;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -911,6 +977,12 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Fly.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFly;
                 @Fly.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFly;
                 @Fly.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFly;
+                @Boost.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBoost;
+                @Boost.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBoost;
+                @Boost.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBoost;
+                @Brake.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBrake;
+                @Brake.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBrake;
+                @Brake.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBrake;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -924,6 +996,12 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @Fly.started += instance.OnFly;
                 @Fly.performed += instance.OnFly;
                 @Fly.canceled += instance.OnFly;
+                @Boost.started += instance.OnBoost;
+                @Boost.performed += instance.OnBoost;
+                @Boost.canceled += instance.OnBoost;
+                @Brake.started += instance.OnBrake;
+                @Brake.performed += instance.OnBrake;
+                @Brake.canceled += instance.OnBrake;
             }
         }
     }
@@ -958,5 +1036,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFly(InputAction.CallbackContext context);
+        void OnBoost(InputAction.CallbackContext context);
+        void OnBrake(InputAction.CallbackContext context);
     }
 }

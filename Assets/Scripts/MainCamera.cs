@@ -3,14 +3,16 @@ using UnityEngine.InputSystem;
 
 public class MainCamera : MonoBehaviour
 {
-    private const float FollowInterpolationRatio = 0.1f;
+    private const float FollowInterpolationRatio = 0.15f;
     private const float YOffset = 15f;
     public Transform followTarget;
 
     private float lookVelocity;
-    public const float LookSensitivity = 1f;
-    private const float MaxLookVelocity = 6f;
+    public const float LookSensitivity = 1.4f;
+    private const float MaxLookVelocity = 8f;
     private const float LookDeadZone = 0.1f;
+
+    public Animator Animator { get; set; }
 
     private InputManager inputManager;
 
@@ -61,6 +63,15 @@ public class MainCamera : MonoBehaviour
     private void OnDisable()
     {
         inputManager.Disable();
+    }
+
+    /// <summary>
+    /// Unity Event function.
+    /// Get component references.
+    /// </summary>
+    private void Awake()
+    {
+        Animator = GetComponent<Animator>();
     }
 
     /// <summary>
