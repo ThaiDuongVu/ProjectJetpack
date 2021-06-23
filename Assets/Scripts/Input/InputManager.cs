@@ -751,6 +751,17 @@ public class @InputManager : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""d8bf7ce9-fb52-45ca-bd9c-35dca854dcf5"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""33d71b83-6b33-4e75-b509-e96f105c18c4"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",

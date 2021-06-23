@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private static readonly int IsRunningAnimationTrigger = Animator.StringToHash("isRunning");
     private static readonly int IsFlyingAnimationTrigger = Animator.StringToHash("isFlying");
 
-    private float LookInterpolationRatio { get; set; } = 0.3f;
+    private float LookInterpolationRatio { get; set; } = 0.4f;
 
     private InputManager inputManager;
 

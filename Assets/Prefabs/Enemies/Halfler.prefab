@@ -785,7 +785,7 @@ MonoBehaviour:
   - {x: -1, y: -0.1, z: 0}
   m_ShapePathHash: -2031836327
   m_Mesh: {fileID: 0}
-  m_InstanceId: 199888
+  m_InstanceId: -2548
 --- !u!114 &2788245107629841290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,7 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPracticeDummy: 0
   light2D: {fileID: 1169574463398243947}
-  MaxHealth: 1
+  MaxHealth: 2
   rig:
   - {fileID: 1169574463524079578}
   - {fileID: 1169574463193811282}
