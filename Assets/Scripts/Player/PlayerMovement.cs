@@ -188,8 +188,8 @@ public class PlayerMovement : MonoBehaviour
         player.Rigidbody2D.MovePosition(
             player.Rigidbody2D.position + movement * (currentVelocity * Time.fixedDeltaTime));
         // Rotate player to movement direction
-        // player.transform.up = Vector2.Lerp(player.transform.up, movement, LookInterpolationRatio);
-        player.transform.up = Vector2.Lerp(player.transform.up, camera.transform.up, LookInterpolationRatio);
+        player.transform.up = Vector2.Lerp(player.transform.up, movement, LookInterpolationRatio);
+        // player.transform.up = Vector2.Lerp(player.transform.up, camera.transform.up, LookInterpolationRatio);
     }
 
     /// <summary>

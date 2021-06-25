@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4abe1bd77b2c89e46a504d5688553679
+guid: 12c36a329518d144c8fd1230bc76beb5
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,12 +9,9 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Dosis
+  - Nunito
   fallbackFontReferences:
-  - {fileID: 12800000, guid: 61f894a73539a104fb86645f80820c49, type: 3}
-  - {fileID: 12800000, guid: a3d57d0773f12b440b6d087a611f6e48, type: 3}
-  - {fileID: 12800000, guid: b78e5c63f708ad3468de7d966403f54e, type: 3}
-  - {fileID: 12800000, guid: 822fb674424c45440b07d36684f0bdbc, type: 3}
+  - {fileID: 12800000, guid: 3035f1884ea65c24bb1e1cf984c16df6, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
