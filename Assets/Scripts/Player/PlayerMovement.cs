@@ -104,15 +104,15 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        player = Player.Instance;
+        player = GetComponent<Player>();
         camera = Camera.main;
     }
 
     /// <summary>
     /// Unity Event function.
-    /// Update at consistent time.
+    /// Update once per frame.
     /// </summary>
-    private void FixedUpdate()
+    private void Update()
     {
         if (Time.timeScale == 0f) return;
 
@@ -130,8 +130,15 @@ public class PlayerMovement : MonoBehaviour
         if (!player.IsStaggered) Run();
         // Sync player animation with current velocity
         if (!player.IsStaggered) Animate();
+    }
 
-        if (player.upgrades[0].isActive) UpdatePreviewRig();
+    /// <summary>
+    /// Unity Event function.
+    /// Update at consistent time.
+    /// </summary>
+    private void FixedUpdate()
+    {
+
     }
 
     /// <summary>
@@ -207,8 +214,6 @@ public class PlayerMovement : MonoBehaviour
         player.Animator.SetTrigger(EnterDashAnimationTrigger);
 
         DashCooldown = 0f;
-        // Enable motion blur effect
-        // EffectsController.Instance.SetMotionBlur(true);
 
         // Deal damage to enemy if acquired
         if (player.Target) player.Combat.DealDamage(player.Target);
@@ -226,9 +231,6 @@ public class PlayerMovement : MonoBehaviour
         // Reset player trail color & animation
         player.Trail.SetColor(player.white);
         player.Animator.SetTrigger(ExitDashAnimationTrigger);
-
-        // Disable motion blur effect
-        // EffectsController.Instance.SetMotionBlur(false);
     }
 
     /// <summary>
@@ -249,17 +251,5 @@ public class PlayerMovement : MonoBehaviour
         // Set animation speed to velocity length if sync animation is enabled
         if (currentVelocity > 0f) player.Animator.speed = currentVelocity / MaxVelocity;
         else player.Animator.speed = 1f;
-    }
-
-    /// <summary>
-    /// Update player preview rig to reflect dash position.
-    /// </summary>
-    private void UpdatePreviewRig()
-    {
-        // Enable player preview if upgrade enable
-        player.previewRig.SetActive(true);
-        // Set rig position & scale
-        player.previewRig.transform.position = player.transform.position + player.transform.up * DashDistance * DashCooldown * DashRate;
-        player.previewRig.transform.localScale = new Vector3(DashCooldown * DashRate, DashCooldown * DashRate, 1f);
     }
 }

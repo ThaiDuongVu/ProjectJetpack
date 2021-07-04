@@ -17,7 +17,6 @@ public class GameController : MonoBehaviour
         get
         {
             if (instance == null) instance = FindObjectOfType<GameController>();
-
             return instance;
         }
     }
@@ -26,8 +25,8 @@ public class GameController : MonoBehaviour
 
     public GameState State { get; set; } = GameState.Started;
 
-    [SerializeField] private Menu pauseMenu;
-    [SerializeField] private Menu[] otherMenus;
+    private Menu pauseMenu;
+    private Menu[] menus;
 
     private InputManager inputManager;
 
@@ -83,6 +82,16 @@ public class GameController : MonoBehaviour
 
     /// <summary>
     /// Unity Event function.
+    /// Get component references.
+    /// </summary>
+    private void Awake()
+    {
+        pauseMenu = GameObject.Find("PauseMenu").GetComponent<Menu>();
+        menus = FindObjectsOfType<Menu>();
+    }
+
+    /// <summary>
+    /// Unity Event function.
     /// Initialize before first frame update.
     /// </summary>
     private void Start()
@@ -119,7 +128,8 @@ public class GameController : MonoBehaviour
         // Enable depth of field effect
         EffectsController.Instance.SetDepthOfField(true);
         // Enable pause menu
-        pauseMenu.SetEnabled(true);
+        pauseMenu.SetActive(true);
+
         // Enable mouse cursor
         EnableCursor();
 
@@ -137,15 +147,9 @@ public class GameController : MonoBehaviour
 
         // Disable depth of field effect
         EffectsController.Instance.SetDepthOfField(false);
+        // Disable all menus
+        foreach (var menu in menus) menu.SetActive(false);
 
-        // Disable menus
-        pauseMenu.SetEnabled(false);
-        pauseMenu.SetInteractable(true);
-        foreach (Menu menu in otherMenus)
-        {
-            menu.SetEnabled(false);
-            menu.SetInteractable(true);
-        }
         // Disable mouse cursor
         DisableCursor();
 

@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Title
   - Enemy
-  - Background
   layers:
   - Default
   - TransparentFX
@@ -15,8 +14,8 @@ TagManager:
   - Water
   - UI
   - PostProcessing
-  - Player
   - Enemy
+  - 
   - 
   - 
   - 
@@ -45,17 +44,17 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 692900119
+    uniqueID: 3865283857
     locked: 0
   - name: Objects
-    uniqueID: 2012812425
+    uniqueID: 2501697937
     locked: 0
   - name: Enemies
-    uniqueID: 2987454053
+    uniqueID: 3007427535
     locked: 0
   - name: Player
-    uniqueID: 2257709013
+    uniqueID: 590527361
     locked: 0
   - name: UI
-    uniqueID: 2810802399
+    uniqueID: 1426662337
     locked: 0

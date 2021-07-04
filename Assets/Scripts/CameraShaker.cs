@@ -13,7 +13,6 @@ public class CameraShaker : MonoBehaviour
         get
         {
             if (instance == null) instance = FindObjectOfType<CameraShaker>();
-
             return instance;
         }
     }

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour
 {
     // Use a singleton pattern to make the class globally accessible
 
@@ -16,7 +16,6 @@ public class Player : MonoBehaviour, IDamageable
         get
         {
             if (instance == null) instance = FindObjectOfType<Player>();
-
             return instance;
         }
     }
@@ -33,6 +32,8 @@ public class Player : MonoBehaviour, IDamageable
     public Animator Animator { get; private set; }
     public Rigidbody2D Rigidbody2D { get; private set; }
     public CircleCollider2D CircleCollider2D { get; private set; }
+    public Trail Trail { get; set; }
+    public Enemy Target { get; set; }
 
     #endregion
 
@@ -45,34 +46,24 @@ public class Player : MonoBehaviour, IDamageable
 
     #endregion
 
-    #region Player Upgrades
-
-    public List<PlayerUpgrade> upgrades = new List<PlayerUpgrade>();
-    // Upgrade IDs
-    // 0: Preview
-
-    #endregion
-
     #region Prefab References
 
-    public LineRenderer dashSlicePrefab;
+    public LineRenderer slicePrefab;
     public ParticleSystem bloodSpatPrefab;
+    public Trail trailPrefab;
 
     #endregion
-
-    [SerializeField] private Trail trailPrefab;
-    public Trail Trail { get; set; }
 
     public Color white;
     public Color red;
     public Color blue;
     public Transform directionArrow;
     public SpriteRenderer directionArrowSprite;
-    private RaycastHit2D[] hit2Ds;
-    public Enemy Target { get; set; }
-
-    public GameObject previewRig;
     public Transform raycastPoint;
+    private RaycastHit2D[] hit2Ds;
+
+    private static readonly int EnterStaggerAnimationTrigger = Animator.StringToHash("enterStagger");
+    private static readonly int ExitStaggerAnimationTrigger = Animator.StringToHash("exitStagger");
 
     /// <summary>
     /// Unity Event function.
@@ -98,8 +89,6 @@ public class Player : MonoBehaviour, IDamageable
     {
         Trail = Instantiate(trailPrefab, transform.position, transform.rotation).GetComponent<Trail>();
         Trail.Target = transform;
-
-        previewRig.SetActive(false);
     }
 
     /// <summary>
@@ -143,23 +132,26 @@ public class Player : MonoBehaviour, IDamageable
     /// Deal damage to player.
     /// </summary>
     /// <param name="damage">Damage to deal</param>
-    void IDamageable.TakeDamage(float damage, Vector2 direction)
+    public void TakeDamage(float damage, Vector2 direction)
     {
         Resources.CurrentHealth -= damage;
         if (IsDashing) Movement.ExitDash();
+
         // Flavours
         StartCoroutine(Stagger());
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
 
+        // If health below 0 then die
         if (Resources.CurrentHealth <= 0f)
-            (this as IDamageable).Die();
+            Die();
     }
 
     /// <summary>
     /// Handle player death.
-    /// </summary>
-    void IDamageable.Die()
+    /// </summary>    
+    public void Die()
     {
+
     }
 
     /// <summary>
@@ -170,21 +162,12 @@ public class Player : MonoBehaviour, IDamageable
         if (IsStaggered) yield return null;
 
         IsStaggered = true;
-        Animator.SetTrigger("enterStagger");
+        Animator.SetTrigger(EnterStaggerAnimationTrigger);
 
         yield return new WaitForSeconds(StaggerDuration);
 
         IsStaggered = false;
-        Animator.SetTrigger("exitStagger");
-        Animator.ResetTrigger("enterStagger");
-    }
-
-    /// <summary>
-    /// Handle player collision with another object.
-    /// </summary>
-    /// <param>Collision object</param>
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-
+        Animator.SetTrigger(ExitStaggerAnimationTrigger);
+        Animator.ResetTrigger(EnterStaggerAnimationTrigger);
     }
 }

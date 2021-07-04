@@ -15,7 +15,6 @@ public class GamepadRumbler : MonoBehaviour
         get
         {
             if (instance == null) instance = FindObjectOfType<GamepadRumbler>();
-
             return instance;
         }
     }

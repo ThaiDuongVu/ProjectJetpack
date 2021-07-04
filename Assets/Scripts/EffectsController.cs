@@ -15,7 +15,6 @@ public class EffectsController : MonoBehaviour
         get
         {
             if (instance == null) instance = FindObjectOfType<EffectsController>();
-
             return instance;
         }
     }
