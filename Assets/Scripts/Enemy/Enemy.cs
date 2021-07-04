@@ -64,7 +64,9 @@ public class Enemy : MonoBehaviour
     /// <param name="direction">Direction to deal damage</param>
     public void TakeDamage(float damage, Vector2 direction)
     {
+        Resources.CurrentHealth -= damage;
 
+        if (Resources.CurrentHealth <= 0f) Die();
     }
 
     /// <summary>
@@ -72,7 +74,9 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Die()
     {
-
+        EnableRagdoll();
+        GameController.Instance.StartCoroutine(GameController.Instance.SlowDownEffect());
+        DelayDestroyer.enabled = true;
     }
 
     /// <summary>

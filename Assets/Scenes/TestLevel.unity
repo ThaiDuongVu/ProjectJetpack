@@ -710,7 +710,7 @@ Animator:
   m_GameObject: {fileID: 968224136}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: ffe2f38180b40014381162768dd11246, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -786,7 +786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff999f5f7940be04e84d10d8b9a22dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 2
+  delay: 3
 --- !u!224 &983987466 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4991336777759499132, guid: 5a68d1e5e6465ac4089e012690235e40, type: 3}
@@ -1797,6 +1797,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1756884699}
     m_Modifications:
+    - target: {fileID: 2196191657801345588, guid: 5a68d1e5e6465ac4089e012690235e40, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196191657801345588, guid: 5a68d1e5e6465ac4089e012690235e40, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196191657801345588, guid: 5a68d1e5e6465ac4089e012690235e40, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1848094799}
+    - target: {fileID: 2196191657801345588, guid: 5a68d1e5e6465ac4089e012690235e40, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196191657801345588, guid: 5a68d1e5e6465ac4089e012690235e40, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Load
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196191657801345588, guid: 5a68d1e5e6465ac4089e012690235e40, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196191657801345588, guid: 5a68d1e5e6465ac4089e012690235e40, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Home
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196191657801345588, guid: 5a68d1e5e6465ac4089e012690235e40, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2196191658050431382, guid: 5a68d1e5e6465ac4089e012690235e40, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
