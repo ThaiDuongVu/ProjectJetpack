@@ -10,8 +10,6 @@ public class SceneLoader : MonoBehaviour
 
     private string sceneToLoad = "";
 
-    private Canvas[] canvases;
-
     /// <summary>
     /// Unity Event function.
     /// Get component references.
@@ -19,8 +17,6 @@ public class SceneLoader : MonoBehaviour
     private void Awake()
     {
         if (Camera.main is { }) cameraAnimator = Camera.main.GetComponent<Animator>();
-
-        canvases = FindObjectsOfType<Canvas>();
     }
 
     /// <summary>
@@ -32,15 +28,8 @@ public class SceneLoader : MonoBehaviour
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Single);
         asyncOperation.allowSceneActivation = false;
 
-        // Enable motion blur effect
-        // EffectsController.Instance.SetMotionBlur(true);
-        EffectsController.Instance.SetDepthOfField(false);
         // Play camera animation
         cameraAnimator.SetTrigger(OutroTrigger);
-
-        // Disable all game UI
-        // foreach (Canvas canvas in canvases)
-        //     canvas.gameObject.SetActive(false);
 
         // Wait for camera animation to complete
         yield return new WaitForSeconds(cameraOutroAnimationClip.averageDuration);
@@ -57,7 +46,6 @@ public class SceneLoader : MonoBehaviour
     {
         Time.timeScale = 1f;
         sceneToLoad = scene;
-
         StartCoroutine(Load());
     }
 

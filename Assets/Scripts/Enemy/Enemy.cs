@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public DelayDestroyer DelayDestroyer { get; set; }
     public Animator Animator { get; set; }
     public CircleCollider2D[] CircleColliders2D { get; set; }
+    public ShadowCaster2D ShadowCaster2D { get; set; }
 
     public bool IsDead { get; set; }
     public bool IsRagdoll { get; set; }
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour
         DelayDestroyer = GetComponent<DelayDestroyer>();
         Animator = GetComponent<Animator>();
         CircleColliders2D = GetComponents<CircleCollider2D>();
+        ShadowCaster2D = GetComponent<ShadowCaster2D>();
 
         ragdolls = rig.GetComponentsInChildren<Transform>();
         ragdollPositions = new Vector2[ragdolls.Length];
@@ -90,6 +92,7 @@ public class Enemy : MonoBehaviour
 
         // Disable light, collider, shadows and animations
         light2D.enabled = false;
+        ShadowCaster2D.enabled = false;
         foreach (CircleCollider2D collider in CircleColliders2D) collider.enabled = false;
         Animator.SetTrigger("die");
 
