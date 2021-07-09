@@ -441,7 +441,7 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""id"": ""533fe286-1d43-4049-8c08-1e48792210d5"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=-3,y=-3)"",
                     ""groups"": """",
                     ""action"": ""Look"",
                     ""isComposite"": true,
