@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1815466, g: 0.22718978, b: 0.3074084, a: 1}
+  m_IndirectSpecularColor: {r: 0.18154866, g: 0.22718975, b: 0.3074077, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -128,6 +128,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2910908420265434828, guid: 8426ebf030ed3c947b26d7740b70deb9, type: 3}
   m_PrefabInstance: {fileID: 2910908420388266532}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &417430958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1850665487091671406, guid: 2e7c56a523ec1e640a39be13e18074b2, type: 3}
+  m_PrefabInstance: {fileID: 1850665488686190827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc19468a00002044dbcb0b35e9cdfa04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &596612474
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,13 +414,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836380365}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 1, z: 100}
+  m_LocalScale: {x: 50, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!1001 &982811722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -421,6 +432,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1690647062}
+    - target: {fileID: 4985515940799753272, guid: 1fa4fe25bd7edcc46a7f91dc67a9e4d6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 417430958}
     - target: {fileID: 6317695442681545315, guid: 1fa4fe25bd7edcc46a7f91dc67a9e4d6, type: 3}
       propertyPath: m_Name
       value: PauseMenu
@@ -796,7 +811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2910908420265434828, guid: 8426ebf030ed3c947b26d7740b70deb9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 2910908420265434828, guid: 8426ebf030ed3c947b26d7740b70deb9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -804,7 +819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2910908420265434828, guid: 8426ebf030ed3c947b26d7740b70deb9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 2910908420265434828, guid: 8426ebf030ed3c947b26d7740b70deb9, type: 3}
       propertyPath: m_LocalRotation.z
@@ -816,7 +831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2910908420265434828, guid: 8426ebf030ed3c947b26d7740b70deb9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -135
       objectReference: {fileID: 0}
     - target: {fileID: 2910908420265434828, guid: 8426ebf030ed3c947b26d7740b70deb9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -898,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3925542201725734845, guid: 44c7178a0488cd14ba8241da49c6bead, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3925542201725734845, guid: 44c7178a0488cd14ba8241da49c6bead, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1004,7 +1019,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8063940445855231112, guid: b1535abccd2d75840a0d76ad6ddceee9, type: 3}
       propertyPath: m_Name
-      value: CameraParent
+      value: CameraHolder
       objectReference: {fileID: 0}
     - target: {fileID: 8063940445855231119, guid: b1535abccd2d75840a0d76ad6ddceee9, type: 3}
       propertyPath: m_RootOrder

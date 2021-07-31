@@ -4,9 +4,8 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     public Transform followTarget;
-    public static Vector3 DefaultOffset { get; set; } = new Vector3(0f, 0f, 0f);
-    public Vector3 Offset { get; set; } = DefaultOffset;
-    private const float InterpolationRatio = 0.3f;
+    private const float InterpolationRatio = 0.2f;
+    private float zOffset = -25f;
 
     private float lookVelocity;
     public const float LookSensitivity = 1f;
@@ -81,9 +80,9 @@ public class CameraController : MonoBehaviour
     {
         if (!followTarget) return;
 
-        Vector3 followPosition = new Vector3(followTarget.position.x, 25f, followTarget.position.z);
-        Offset = new Vector3(Offset.x, 0f, Offset.z);
-        transform.position = Vector3.Lerp(transform.position, followPosition - Offset, InterpolationRatio);
+        Vector3 followPosition = new Vector3(followTarget.position.x, 25f, followTarget.position.z) + transform.parent.forward * zOffset;
+        followPosition.y = 25f;
+        transform.position = Vector3.Lerp(transform.position, followPosition, InterpolationRatio);
     }
 
     /// <summary>
@@ -96,6 +95,6 @@ public class CameraController : MonoBehaviour
 
         // Clamp look velocity for mouse input
         lookVelocity = Mathf.Clamp(lookVelocity, -MaxLookVelocity, MaxLookVelocity);
-        transform.Rotate(Vector3.up, -lookVelocity * (PlayerPrefs.GetInt("InvertLook", 0) == 0 ? 1f : -1f) * Time.timeScale, Space.World);
+        transform.parent.Rotate(Vector3.up, -lookVelocity * (PlayerPrefs.GetInt("InvertLook", 0) == 0 ? 1f : -1f) * Time.timeScale, Space.World);
     }
 }

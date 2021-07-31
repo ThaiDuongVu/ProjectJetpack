@@ -24,13 +24,13 @@
      inkscape:pagecheckerboard="1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.19420595"
-     inkscape:cx="975.76825"
-     inkscape:cy="769.80134"
+     inkscape:zoom="1.5536476"
+     inkscape:cx="1955.7202"
+     inkscape:cy="998.61771"
      inkscape:window-width="1920"
-     inkscape:window-height="1057"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="29"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      showborder="false" />
@@ -70,10 +70,10 @@
        height="720"
        x="-1.7763568e-15"
        y="0"
-       ry="25"
-       inkscape:export-filename="C:\Users\Duong Vu\Documents\Development\Projects\ProjectHook\Assets\Sprites\UI\background.png"
+       inkscape:export-filename="C:\Users\Duong Vu\Documents\Development\Projects\ProjectHome\Assets\Textures\UI\menu_background.png"
        inkscape:export-xdpi="25.4"
-       inkscape:export-ydpi="25.4" />
+       inkscape:export-ydpi="25.4"
+       ry="5" />
     <rect
        style="fill:#ffffff;stroke-width:10.7421;stroke-opacity:0.5"
        id="rect1159"
@@ -81,10 +81,10 @@
        height="50"
        x="500"
        y="0"
-       ry="20"
-       inkscape:export-filename="C:\Users\Duong Vu\Documents\Development\Projects\ProjectHook\Assets\Sprites\UI\button.png"
+       inkscape:export-filename="C:\Users\Duong Vu\Documents\Development\Projects\ProjectHome\Assets\Textures\UI\button.png"
        inkscape:export-xdpi="25.4"
-       inkscape:export-ydpi="25.4" />
+       inkscape:export-ydpi="25.4"
+       ry="5" />
     <circle
        style="fill:#ffffff;stroke-width:2.06782;stroke-opacity:0.5"
        id="path1521"
@@ -94,5 +94,43 @@
        inkscape:export-xdpi="25.4"
        inkscape:export-ydpi="25.4"
        r="7.5" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:9.65646;stroke-opacity:0.5"
+       id="rect872"
+       width="10.606602"
+       height="10.606602"
+       x="535.63336"
+       y="-252.79068"
+       transform="rotate(45)"
+       ry="1"
+       inkscape:export-filename="C:\Users\Duong Vu\Documents\Development\Projects\ProjectHome\Assets\Textures\UI\selector.png"
+       inkscape:export-xdpi="25.4"
+       inkscape:export-ydpi="25.4" />
+    <g
+       id="g1720"
+       inkscape:export-filename="C:\Users\Duong Vu\Documents\Development\Projects\ProjectHome\Assets\Textures\UI\cursor.png"
+       inkscape:export-xdpi="25.4"
+       inkscape:export-ydpi="25.4">
+      <rect
+         style="fill:#000000;fill-opacity:0;stroke-width:17.1137;stroke-opacity:0.5"
+         id="rect1180"
+         width="40"
+         height="40"
+         x="500"
+         y="250"
+         ry="0.91256517" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke-width:16.5319;stroke-opacity:0.5"
+         id="rect1280"
+         width="18.158461"
+         height="18.158461"
+         x="549.53516"
+         y="-185.85594"
+         transform="rotate(45.000001)"
+         ry="0.82256895"
+         inkscape:export-filename="C:\Users\Duong Vu\Documents\Development\Projects\ProjectHome\Assets\Textures\UI\selector.png"
+         inkscape:export-xdpi="25.4"
+         inkscape:export-ydpi="25.4" />
+    </g>
   </g>
 </svg>

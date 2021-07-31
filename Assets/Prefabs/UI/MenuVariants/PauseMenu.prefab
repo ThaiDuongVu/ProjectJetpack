@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7295942548843678331, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
+      propertyPath: backButton
+      value: 
+      objectReference: {fileID: 6317695443088720511}
     - target: {fileID: 7295942549114037841, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
       propertyPath: m_text
       value: Resume
@@ -230,5 +234,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a31689d9faee9346ad1521f3d955318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6317695443088720511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7295942548168067705, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
+  m_PrefabInstance: {fileID: 3669470111290296326}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
