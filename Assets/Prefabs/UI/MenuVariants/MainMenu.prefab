@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 184115590167838847, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
       propertyPath: m_text
-      value: Wick
+      value: Home
       objectReference: {fileID: 0}
     - target: {fileID: 184115590167838847, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
       propertyPath: m_fontSize
