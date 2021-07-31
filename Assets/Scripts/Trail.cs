@@ -3,6 +3,7 @@ using UnityEngine;
 public class Trail : MonoBehaviour
 {
     public Transform Target { get; set; }
+    [SerializeField] private Material particleMaterial;
     private ParticleSystem particle;
     private ParticleSystem.MainModule mainModule;
 
@@ -34,6 +35,7 @@ public class Trail : MonoBehaviour
     /// <param name="color">Color to set</param>
     public void SetColor(Color color)
     {
-        mainModule.startColor = color;
+        // mainModule.startColor = color;
+        particleMaterial.color = color;
     }
 }

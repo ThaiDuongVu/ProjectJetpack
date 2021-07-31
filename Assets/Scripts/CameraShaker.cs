@@ -21,12 +21,20 @@ public class CameraShaker : MonoBehaviour
 
 
     private float shakeDuration; // How long to shake the camera
-
     private float shakeIntensity; // How hard to shake the camera
-
     private float decreaseFactor; // How steep should the shake decrease
 
     private Vector3 originalPosition;
+    private CameraController cameraController;
+
+    /// <summary>
+    /// Unity Event function.
+    /// Get component references.
+    /// </summary>
+    private void Awake()
+    {
+        cameraController = GetComponent<CameraController>();
+    }
 
     /// <summary>
     /// Unity Event function.
@@ -51,20 +59,19 @@ public class CameraShaker : MonoBehaviour
     /// </summary>
     private void Randomize()
     {
-        // While shake duration is greater than 0
         if (shakeDuration > 0)
         {
-            // Randomize position
+            // Randomize position & decrease shake duration
             transform.localPosition = originalPosition + Random.insideUnitSphere * shakeIntensity;
-            // Decrease shake duration
+            // cameraController.Offset = Random.insideUnitSphere * shakeIntensity;
             shakeDuration -= Time.fixedDeltaTime * decreaseFactor * Time.timeScale;
         }
-        // When shake duration reaches 0
         else
         {
             // Reset everything
             shakeDuration = 0f;
             transform.localPosition = originalPosition;
+            // cameraController.Offset = CameraController.DefaultOffset;
         }
     }
 
@@ -82,21 +89,21 @@ public class CameraShaker : MonoBehaviour
         {
             case CameraShakeMode.Micro:
                 shakeDuration = 0.1f;
-                shakeIntensity = 1f;
+                shakeIntensity = 0.8f;
 
                 GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Micro);
                 break;
 
             case CameraShakeMode.Light:
                 shakeDuration = 0.2f;
-                shakeIntensity = 1.2f;
+                shakeIntensity = 1f;
 
                 GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Light);
                 break;
 
             case CameraShakeMode.Normal:
                 shakeDuration = 0.3f;
-                shakeIntensity = 1.4f;
+                shakeIntensity = 1.2f;
 
                 GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Normal);
                 break;
