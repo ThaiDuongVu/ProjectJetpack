@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
 
     public GameState State { get; set; } = GameState.Started;
 
-    private Menu pauseMenu;
+    [SerializeField] private Menu pauseMenu;
     private Menu[] menus;
 
     private InputManager inputManager;
@@ -71,7 +71,6 @@ public class GameController : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        pauseMenu = GameObject.Find("PauseMenu").GetComponent<Menu>();
         menus = FindObjectsOfType<Menu>();
     }
 
@@ -113,6 +112,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0f;
         EffectsController.Instance.SetDepthOfField(true);
         SetCursorEnabled(true);
+        if (HomeController.Instance) HomeController.Instance.SetPromptText("");
 
         pauseMenu.SetActive(true);
     }
@@ -128,6 +128,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1f;
         EffectsController.Instance.SetDepthOfField(false);
         SetCursorEnabled(false);
+        if (HomeController.Instance) HomeController.Instance.SetPromptText("Press Escape to start");
 
         pauseMenu.SetActive(false);
     }

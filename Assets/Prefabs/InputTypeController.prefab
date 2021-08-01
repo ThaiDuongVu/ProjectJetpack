@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 104616755126176432}
   - component: {fileID: 104616755126176433}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: InputTypeController
   m_TagString: Untagged
   m_Icon: {fileID: 0}

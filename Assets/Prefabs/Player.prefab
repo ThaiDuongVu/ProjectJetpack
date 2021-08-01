@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8859751464855368218}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3993026461593322360}
   - component: {fileID: 3200913900193055332}
   - component: {fileID: 5670175290065556047}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 2910908419850898887}
   - component: {fileID: 2910908419850898882}
   - component: {fileID: 2910908419850898881}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 2910908420115217375}
   - component: {fileID: 3313140146249609619}
   - component: {fileID: 5934318789020607880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LegRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 627407072406715826}
   - component: {fileID: 4237217119094916004}
   - component: {fileID: 6151286597776314573}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -425,13 +425,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc264dfde0dfd642987850deddfd38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slicePrefab: {fileID: 0}
+  slicePrefab: {fileID: 4420101076535536093, guid: b228409dcd2578046b40062a0a692bd9, type: 3}
   bloodSpatPrefab: {fileID: 0}
   trailPrefab: {fileID: 8151179791400010530, guid: c85ffed9abe1ade44ad70425120697e5, type: 3}
   white: {r: 1, g: 1, b: 1, a: 1}
   blue: {r: 0.039215688, g: 0.7411765, b: 0.8901961, a: 1}
   red: {r: 0.93333334, g: 0.32156864, b: 0.3254902, a: 1}
   directionArrow: {fileID: 8859751464855368218}
+  arrowMaterial: {fileID: 2100000, guid: 8f6c15d171740684dabbbeced35e7298, type: 2}
 --- !u!114 &4237217119094916004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,7 +470,7 @@ GameObject:
   - component: {fileID: 2910908420416017304}
   - component: {fileID: 3325647898187495642}
   - component: {fileID: 8450580150787081562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EarRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +583,7 @@ GameObject:
   - component: {fileID: 2910908420438490173}
   - component: {fileID: 6549166724252735371}
   - component: {fileID: 7874795151847603328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2910908420757264844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,7 +732,7 @@ GameObject:
   - component: {fileID: 2910908421221383924}
   - component: {fileID: 7509776720063030932}
   - component: {fileID: 3951181083958822727}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LegLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -844,7 +845,7 @@ GameObject:
   - component: {fileID: 2910908421372825819}
   - component: {fileID: 7812248058468371304}
   - component: {fileID: 6225401713426322859}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EarLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -955,7 +956,7 @@ GameObject:
   - component: {fileID: 4659502946242808154}
   - component: {fileID: 337375040487624770}
   - component: {fileID: 6590661704661259083}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1037,7 +1038,7 @@ GameObject:
   - component: {fileID: 8571105532852499140}
   - component: {fileID: 2837252308853523221}
   - component: {fileID: 2609482851209699395}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

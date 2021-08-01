@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public Rigidbody Rigidbody { get; private set; }
     public BoxCollider BoxCollider { get; private set; }
     public Trail Trail { get; set; }
+    public Enemy Target { get; set; }
 
     #endregion
 
@@ -53,6 +54,7 @@ public class Player : MonoBehaviour
     public Color blue;
     public Color red;
     public Transform directionArrow;
+    public Material arrowMaterial;
 
     private static readonly int EnterStaggerAnimationTrigger = Animator.StringToHash("enterStagger");
     private static readonly int ExitStaggerAnimationTrigger = Animator.StringToHash("exitStagger");
@@ -87,7 +89,26 @@ public class Player : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
+        CheckTarget();
+    }
 
+    /// <summary>
+    /// Perform a raycast from player forward to check if any target is within dash range.
+    /// </summary>
+    private void CheckTarget()
+    {
+        Target = null;
+        arrowMaterial.color = white;
+
+        if (Movement.DashCooldown < 1f / Movement.DashRate) return;
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, Movement.DashDistance - Movement.DashEpsilon, LayerMask.GetMask("Enemy"));
+        if (hits.Length <= 0) return;
+
+        if (hits[0].transform.CompareTag("Enemy"))
+        {
+            Target = hits[0].transform.GetComponent<Enemy>();
+            arrowMaterial.color = red;
+        }
     }
 
     /// <summary>

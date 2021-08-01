@@ -192,10 +192,8 @@ public class PlayerMovement : MonoBehaviour
         DashCooldown = 0f;
 
         // // Deal damage to enemy if acquired
-        // if (player.Target) player.Combat.DealDamage(player.Target);
-        // else CameraShaker.Instance.Shake(CameraShakeMode.Light);
-
-        CameraShaker.Instance.Shake(CameraShakeMode.Light);
+        if (player.Target) player.Combat.DealDamage(player.Target, 1f);
+        else CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 
     /// <summary>

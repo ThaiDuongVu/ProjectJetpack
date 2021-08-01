@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 836380368}
   - component: {fileID: 836380367}
   - component: {fileID: 836380366}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -846,6 +846,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 638887622, guid: d1769ba0a983561489071e9a27842b7c, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 982811724}
     - target: {fileID: 3410243821210717297, guid: d1769ba0a983561489071e9a27842b7c, type: 3}
       propertyPath: m_RootOrder
       value: 7

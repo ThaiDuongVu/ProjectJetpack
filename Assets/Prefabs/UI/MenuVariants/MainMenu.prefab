@@ -9,24 +9,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 184115590167838847, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
       propertyPath: m_text
-      value: Home
+      value: Main Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 184115590167838847, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
-      propertyPath: m_fontSize
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 184115590167838847, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: f1a9cd5f5f05eba4d92ebb880f8bf62b, type: 2}
     - target: {fileID: 184115590167838847, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
       propertyPath: m_fontSizeBase
       value: 64
       objectReference: {fileID: 0}
-    - target: {fileID: 184115590167838847, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 1241469463767801841, guid: f1a9cd5f5f05eba4d92ebb880f8bf62b, type: 2}
     - target: {fileID: 5284116163941362376, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
       propertyPath: m_TagString
       value: Title
@@ -149,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295942548843678331, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
       propertyPath: disableOnStartup
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7295942549114037841, guid: 65c3fe10db8cb70418e19869cbf326e7, type: 3}
       propertyPath: m_text
