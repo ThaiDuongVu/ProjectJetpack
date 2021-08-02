@@ -158,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
     private void Decelerate()
     {
         if (currentVelocity > MinVelocity) currentVelocity -= Deceleration * Time.deltaTime;
-        // If player near stopping then stop
+        // If player near stopping then fully stop
         else StopRunning();
     }
 
@@ -173,7 +173,6 @@ public class PlayerMovement : MonoBehaviour
         movement = Quaternion.Euler(0f, camera.transform.eulerAngles.y, 0f) * currentDirection;
         // Move & rotate player to movement direction
         player.Rigidbody.velocity = movement * currentVelocity;
-        // player.Rigidbody.MovePosition(player.Rigidbody.position + movement * (currentVelocity * Time.fixedDeltaTime));
         player.transform.forward = Vector3.Lerp(player.transform.forward, movement, LookInterpolationRatio);
     }
 
@@ -192,7 +191,7 @@ public class PlayerMovement : MonoBehaviour
 
         DashCooldown = 0f;
 
-        // Deal damage to enemy if acquired
+        // Deal damage to enemy if applicable
         if (player.Target) player.Combat.DealDamage(player.Target, 1f);
         else CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }

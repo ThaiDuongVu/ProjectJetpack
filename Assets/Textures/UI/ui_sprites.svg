@@ -143,5 +143,16 @@
        inkscape:export-filename="C:\Users\Duong Vu\Documents\Development\Projects\ProjectHome\Assets\Textures\UI\token.png"
        inkscape:export-xdpi="25.4"
        inkscape:export-ydpi="25.4" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:62.4291;stroke-opacity:0.5"
+       id="rect833"
+       width="300"
+       height="720"
+       x="-400"
+       y="0"
+       inkscape:export-filename="C:\Users\Duong Vu\Documents\Development\Projects\ProjectHome\Assets\Textures\UI\menu_background.png"
+       inkscape:export-xdpi="25.4"
+       inkscape:export-ydpi="25.4"
+       ry="5" />
   </g>
 </svg>

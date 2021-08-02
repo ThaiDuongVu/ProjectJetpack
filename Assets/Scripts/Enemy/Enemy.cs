@@ -9,9 +9,6 @@ public class Enemy : MonoBehaviour
     public DestroyDelay DestroyDelay { get; private set; }
     public CollectableSpawner CollectableSpawner { get; private set; }
 
-    public bool IsStagger { get; set; }
-    public bool IsDead { get; set; }
-
     public Transform rig;
     private Rigidbody[] rigRigidbodies;
     private BoxCollider[] rigColliders;
@@ -66,6 +63,7 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
         if (currentHealth <= 0f) Die();
+        else GameController.Instance.StartCoroutine(GameController.Instance.SlowDownEffect(0.8f, 0.2f));
     }
 
     /// <summary>
@@ -76,7 +74,6 @@ public class Enemy : MonoBehaviour
         CollectableSpawner.Spawn();
         GameController.Instance.StartCoroutine(GameController.Instance.SlowDownEffect());
         EnableRagdoll();
-        IsDead = true;
         DestroyDelay.enabled = true;
     }
 

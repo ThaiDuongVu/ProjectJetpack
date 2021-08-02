@@ -6,14 +6,14 @@ public class Collectable : MonoBehaviour
     private static readonly int CollectAnimationTrigger = Animator.StringToHash("collect");
 
     public Rigidbody Rigidbody { get; set; }
-    private const float InitForce = 1f;
+    private const float InitForce = 0.5f;
 
     public DestroyDelay DestroyDelay { get; set; }
 
     protected Player target;
     private bool isCollected;
 
-    private const float CollectInterpolatioRatio = 0.2f;
+    private const float CollectInterpolatioRatio = 0.1f;
 
     /// <summary>
     /// Unity Event function.
