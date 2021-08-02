@@ -157,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 255745451}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.375, y: 1.25, z: -0.375}
-  m_LocalScale: {x: 0.25000003, y: 0.5, z: 0.25000003}
+  m_LocalScale: {x: 0.25000003, y: 0.5, z: 0.25}
   m_Children: []
   m_Father: {fileID: 1435425466}
   m_RootOrder: 3
@@ -688,7 +688,7 @@ Transform:
   m_GameObject: {fileID: 1040011695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.375, y: 1.25, z: -0.375}
-  m_LocalScale: {x: 0.25, y: 0.5, z: 0.25000003}
+  m_LocalScale: {x: 0.25, y: 0.5, z: 0.25}
   m_Children: []
   m_Father: {fileID: 1435425466}
   m_RootOrder: 4
@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 1271259938}
   - component: {fileID: 1271259937}
   m_Layer: 7
-  m_Name: Body
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -903,6 +903,8 @@ GameObject:
   - component: {fileID: 1284760715}
   - component: {fileID: 1284760716}
   - component: {fileID: 1284760718}
+  - component: {fileID: 1284760719}
+  - component: {fileID: 1284760720}
   - component: {fileID: 1284760717}
   m_Layer: 7
   m_Name: Hyena
@@ -980,6 +982,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7c9064b31206c4995f5870b55e8b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rig: {fileID: 1435425466}
+  maxHealth: 3
 --- !u!95 &1284760718
 Animator:
   serializedVersion: 3
@@ -990,7 +994,7 @@ Animator:
   m_GameObject: {fileID: 1284760712}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 58933a6eb7376ea4fa7227805856aae3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -999,6 +1003,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1284760719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284760712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a8483113fe3574cbbc6f8c67cdb31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayDuration: 3
+--- !u!114 &1284760720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284760712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71856a4dc54c3d34b8dbbaa315352394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectablePrefab: {fileID: -362644374711349286, guid: beaf2222cb347ac42a8253641652a39a, type: 3}
 --- !u!1 &1435425465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,7 +1093,7 @@ Transform:
   m_GameObject: {fileID: 1683646394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.25, y: -0.375, z: 0}
-  m_LocalScale: {x: 0.25000003, y: 0.25, z: 0.25000003}
+  m_LocalScale: {x: 0.25000003, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 1435425466}
   m_RootOrder: 2
@@ -1293,7 +1323,7 @@ Transform:
   m_GameObject: {fileID: 1873100305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.25, y: -0.375, z: 0}
-  m_LocalScale: {x: 0.25000003, y: 0.25, z: 0.25000003}
+  m_LocalScale: {x: 0.25000003, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 1435425466}
   m_RootOrder: 1

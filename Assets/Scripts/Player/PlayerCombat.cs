@@ -4,6 +4,8 @@ public class PlayerCombat : MonoBehaviour
 {
     private Player player;
 
+    public float Damage { get; set; } = 1f;
+
     /// <summary>
     /// Unity Event function.
     /// Get component references.
@@ -25,8 +27,8 @@ public class PlayerCombat : MonoBehaviour
         slice.SetPosition(1, player.transform.position + player.transform.forward * player.Movement.DashDistance / 2f);
         slice.SetPosition(2, player.transform.position + player.transform.forward * player.Movement.DashDistance);
 
+        enemy.TakeDamage(damage);
         player.Combo.Add(1);
-
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
     }
 }

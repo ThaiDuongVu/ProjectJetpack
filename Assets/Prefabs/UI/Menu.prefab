@@ -285,6 +285,7 @@ MonoBehaviour:
   disableOnStartup: 1
   selector: {fileID: 7485823674227521837}
   buttonsParent: {fileID: 7295942548475213746}
+  backButton: {fileID: 0}
   layer: {fileID: 7295942549965388769}
 --- !u!1 &7295942549312961611
 GameObject:
@@ -303,7 +304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7295942549312961608
 RectTransform:
   m_ObjectHideFlags: 0
@@ -388,7 +389,7 @@ RectTransform:
   m_GameObject: {fileID: 7295942549965388771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7295942548292731088}
   m_RootOrder: 4

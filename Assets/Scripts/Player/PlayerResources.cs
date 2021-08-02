@@ -15,7 +15,7 @@ public class PlayerResources : MonoBehaviour
         }
     }
 
-    private float currentHealth;
+    private float currentHealth = 4f;
     public float Health
     {
         get => currentHealth;

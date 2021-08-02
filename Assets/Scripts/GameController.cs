@@ -138,7 +138,7 @@ public class GameController : MonoBehaviour
     /// </summary>
     /// <param name="scale">Slowed time scale</param>
     /// <param name="duration">Duration to slow for</param>
-    public IEnumerator SlowDownEffect(float scale = 0.6f, float duration = 0.4f)
+    public IEnumerator SlowDownEffect(float scale = 0.5f, float duration = 0.5f)
     {
         // Slow down
         Time.timeScale = scale;

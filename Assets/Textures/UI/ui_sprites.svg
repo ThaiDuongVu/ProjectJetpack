@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.3884119"
-     inkscape:cx="2480.614"
-     inkscape:cy="-11.585639"
+     inkscape:zoom="0.19420595"
+     inkscape:cx="713.16044"
+     inkscape:cy="1511.2822"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
      inkscape:window-x="-8"
@@ -38,33 +38,32 @@
      id="defs2">
     <linearGradient
        inkscape:collect="always"
-       id="linearGradient973">
+       id="linearGradient1595">
       <stop
          style="stop-color:#000000;stop-opacity:1;"
          offset="0"
-         id="stop969" />
+         id="stop1591" />
       <stop
          style="stop-color:#000000;stop-opacity:0;"
          offset="1"
-         id="stop971" />
+         id="stop1593" />
     </linearGradient>
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient973"
-       id="linearGradient975"
-       x1="10.21789"
-       y1="420.28555"
-       x2="310.21789"
-       y2="420.28555"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(-10.21789,-60.285553)" />
+       xlink:href="#linearGradient1595"
+       id="linearGradient1597"
+       x1="0"
+       y1="360"
+       x2="300"
+       y2="360"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:url(#linearGradient975);fill-opacity:1;stroke-width:62.4291;stroke-opacity:0.5"
+       style="fill:url(#linearGradient1597);fill-opacity:1;stroke-width:62.4291;stroke-opacity:0.5"
        id="rect843"
        width="300"
        height="720"
@@ -132,5 +131,17 @@
          inkscape:export-xdpi="25.4"
          inkscape:export-ydpi="25.4" />
     </g>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke-width:13.6262;stroke-opacity:0.5"
+       id="rect832"
+       width="14.967"
+       height="14.966921"
+       x="572.75647"
+       y="-290.15408"
+       transform="rotate(45)"
+       ry="1"
+       inkscape:export-filename="C:\Users\Duong Vu\Documents\Development\Projects\ProjectHome\Assets\Textures\UI\token.png"
+       inkscape:export-xdpi="25.4"
+       inkscape:export-ydpi="25.4" />
   </g>
 </svg>

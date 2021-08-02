@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
     public Transform rig;
     private Rigidbody[] rigRigidbodies;
     private BoxCollider[] rigColliders;
-    private const float RagdollForce = 3f;
+    private const float RagdollForce = 5f;
 
     private static readonly int EnterStaggerAnimationTrigger = Animator.StringToHash("enterStagger");
     private static readonly int ExitStaggerAnimationTrigger = Animator.StringToHash("exitStagger");
