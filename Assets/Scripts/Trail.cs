@@ -26,7 +26,7 @@ public class Trail : MonoBehaviour
         if (!Target) return;
 
         // Set trail position to target position
-        transform.position = Target.position;
+        transform.position = new Vector3(Target.position.x, transform.position.y, Target.position.z);
     }
 
     /// <summary>

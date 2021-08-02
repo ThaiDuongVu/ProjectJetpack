@@ -172,7 +172,8 @@ public class PlayerMovement : MonoBehaviour
         // Movement vector derived from input direction and camera angle
         movement = Quaternion.Euler(0f, camera.transform.eulerAngles.y, 0f) * currentDirection;
         // Move & rotate player to movement direction
-        player.Rigidbody.MovePosition(player.Rigidbody.position + movement * (currentVelocity * Time.fixedDeltaTime));
+        player.Rigidbody.velocity = movement * currentVelocity;
+        // player.Rigidbody.MovePosition(player.Rigidbody.position + movement * (currentVelocity * Time.fixedDeltaTime));
         player.transform.forward = Vector3.Lerp(player.transform.forward, movement, LookInterpolationRatio);
     }
 
@@ -191,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
 
         DashCooldown = 0f;
 
-        // // Deal damage to enemy if acquired
+        // Deal damage to enemy if acquired
         if (player.Target) player.Combat.DealDamage(player.Target, 1f);
         else CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }

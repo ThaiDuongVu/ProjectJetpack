@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public PlayerMovement Movement { get; private set; }
     public PlayerCombat Combat { get; private set; }
     public PlayerCombo Combo { get; private set; }
+    public PlayerResources Resources { get; private set; }
     public Animator Animator { get; private set; }
     public Rigidbody Rigidbody { get; private set; }
     public BoxCollider BoxCollider { get; private set; }
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
     public bool IsRunning { get; set; }
     public bool IsDashing { get; set; }
     public bool IsStaggered { get; set; }
+    public bool IsDead { get; set; }
     private const float StaggerDuration = 0.5f;
 
     #endregion
@@ -56,6 +58,11 @@ public class Player : MonoBehaviour
     public Transform directionArrow;
     public Material arrowMaterial;
 
+    public Transform rig;
+    private Rigidbody[] rigRigidbodies;
+    private BoxCollider[] rigColliders;
+    private const float RagdollForce = 3f;
+
     private static readonly int EnterStaggerAnimationTrigger = Animator.StringToHash("enterStagger");
     private static readonly int ExitStaggerAnimationTrigger = Animator.StringToHash("exitStagger");
 
@@ -68,9 +75,14 @@ public class Player : MonoBehaviour
         Movement = GetComponent<PlayerMovement>();
         Combat = GetComponent<PlayerCombat>();
         Combo = GetComponent<PlayerCombo>();
+        Resources = GetComponent<PlayerResources>();
+
         Animator = GetComponent<Animator>();
         Rigidbody = GetComponent<Rigidbody>();
         BoxCollider = GetComponent<BoxCollider>();
+
+        rigRigidbodies = rig.GetComponentsInChildren<Rigidbody>();
+        rigColliders = rig.GetComponentsInChildren<BoxCollider>();
     }
 
     /// <summary>
@@ -126,5 +138,22 @@ public class Player : MonoBehaviour
         IsStaggered = false;
         Animator.SetTrigger(ExitStaggerAnimationTrigger);
         Animator.ResetTrigger(EnterStaggerAnimationTrigger);
+    }
+
+    /// <summary>
+    /// Enable player rig's ragdoll physics.
+    /// </summary>
+    private void EnableRagdoll()
+    {
+        Rigidbody.isKinematic = true;
+        BoxCollider.enabled = false;
+        Animator.enabled = false;
+
+        foreach (var body in rigRigidbodies)
+        {
+            body.isKinematic = false;
+            body.AddForce(new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f)) * RagdollForce, ForceMode.Impulse);
+        }
+        foreach (var collider in rigColliders) collider.enabled = true;
     }
 }
