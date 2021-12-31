@@ -4,6 +4,23 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    // Use a singleton pattern to make the class globally accessible
+
+    #region Singleton
+
+    private static SceneLoader sceneLoaderInstance;
+
+    public static SceneLoader Instance
+    {
+        get
+        {
+            if (sceneLoaderInstance == null) sceneLoaderInstance = FindObjectOfType<SceneLoader>();
+            return sceneLoaderInstance;
+        }
+    }
+
+    #endregion
+
     private Animator cameraAnimator;
     private static readonly int OutroTrigger = Animator.StringToHash("outro");
     [SerializeField] private AnimationClip cameraOutroAnimationClip;

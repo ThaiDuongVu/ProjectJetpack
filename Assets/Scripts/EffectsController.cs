@@ -8,23 +8,26 @@ public class EffectsController : MonoBehaviour
 
     #region Singleton
 
-    private static EffectsController instance;
+    private static EffectsController effectsControllerInstance;
 
     public static EffectsController Instance
     {
         get
         {
-            if (instance == null) instance = FindObjectOfType<EffectsController>();
-            return instance;
+            if (effectsControllerInstance == null) effectsControllerInstance = FindObjectOfType<EffectsController>();
+            return effectsControllerInstance;
         }
     }
 
     #endregion
 
-    public VolumeProfile volumeProfile;
+    [SerializeField] private VolumeProfile volumeProfile;
     private DepthOfField depthOfField;
-    private MotionBlur motionBlur;
     private ChromaticAberration chromaticAberration;
+    private Vignette vignette;
+
+    public const float DefaultVignetteIntensity = 0.3f;
+    public const float DefaultChromaticAberrationIntensity = 0.2f;
 
     /// <summary>
     /// Unity Event function.
@@ -33,19 +36,12 @@ public class EffectsController : MonoBehaviour
     private void Awake()
     {
         volumeProfile.TryGet(out depthOfField);
-        volumeProfile.TryGet(out motionBlur);
         volumeProfile.TryGet(out chromaticAberration);
-    }
+        volumeProfile.TryGet(out vignette);
 
-    /// <summary>
-    /// Unity Event function.
-    /// Initialize before first frame update.
-    /// </summary>
-    private void Start()
-    {
-        SetDepthOfField(false);
         SetChromaticAberration(false);
-        // SetMotionBlur(false);
+        SetChromaticAberrationIntensity(DefaultChromaticAberrationIntensity);
+        SetVignetteIntensity(DefaultVignetteIntensity);
     }
 
     /// <summary>
@@ -58,20 +54,29 @@ public class EffectsController : MonoBehaviour
     }
 
     /// <summary>
-    /// Enable/disable motion blur effect.
-    /// </summary>
-    /// <param name="value">Enable state</param>
-    public void SetMotionBlur(bool value)
-    {
-        motionBlur.active = value;
-    }
-
-    /// <summary>
     /// Enable/disable chromatic aberration effect.
     /// </summary>
     /// <param name="value">Enable state</param>
     public void SetChromaticAberration(bool value)
     {
         chromaticAberration.active = value;
+    }
+
+    /// <summary>
+    /// Set chromatic aberration effect intensity.
+    /// </summary>
+    /// <param name="value">Value to set</param>
+    private void SetChromaticAberrationIntensity(float value)
+    {
+        chromaticAberration.intensity.value = value;
+    }
+
+    /// <summary>
+    /// Set vignette effect intensity.
+    /// </summary>
+    /// <param name="value">Value to set</param>
+    public void SetVignetteIntensity(float value)
+    {
+        vignette.intensity.value = value;
     }
 }

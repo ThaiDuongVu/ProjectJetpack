@@ -6,35 +6,24 @@ public class CameraShaker : MonoBehaviour
 
     #region Singleton
 
-    private static CameraShaker instance;
+    private static CameraShaker cameraShakerInstance;
 
     public static CameraShaker Instance
     {
         get
         {
-            if (instance == null) instance = FindObjectOfType<CameraShaker>();
-            return instance;
+            if (cameraShakerInstance == null) cameraShakerInstance = FindObjectOfType<CameraShaker>();
+            return cameraShakerInstance;
         }
     }
 
     #endregion
 
-
-    private float shakeDuration; // How long to shake the camera
-    private float shakeIntensity; // How hard to shake the camera
-    private float decreaseFactor; // How steep should the shake decrease
+    private float shakeDuration;
+    private float shakeIntensity;
+    private float shakeDecreaseFactor;
 
     private Vector3 originalPosition;
-    private CameraController cameraController;
-
-    /// <summary>
-    /// Unity Event function.
-    /// Get component references.
-    /// </summary>
-    private void Awake()
-    {
-        cameraController = GetComponent<CameraController>();
-    }
 
     /// <summary>
     /// Unity Event function.
@@ -59,23 +48,24 @@ public class CameraShaker : MonoBehaviour
     /// </summary>
     private void Randomize()
     {
+        // While shake duration is greater than 0
         if (shakeDuration > 0)
         {
-            // Randomize position & decrease shake duration
+            // Randomize position
             transform.localPosition = originalPosition + Random.insideUnitSphere * shakeIntensity;
-            // cameraController.Offset = Random.insideUnitSphere * shakeIntensity;
-            shakeDuration -= Time.fixedDeltaTime * decreaseFactor * Time.timeScale;
+            // Decrease shake duration
+            shakeDuration -= Time.fixedDeltaTime * shakeDecreaseFactor * Time.timeScale;
         }
+        // When shake duration reaches 0
         else
         {
             // Reset everything
             shakeDuration = 0f;
             transform.localPosition = originalPosition;
-            // cameraController.Offset = CameraController.DefaultOffset;
         }
     }
 
-    #region Shake Method
+    #region Shake Methods
 
     /// <summary>
     /// Start shaking camera.
@@ -83,35 +73,35 @@ public class CameraShaker : MonoBehaviour
     /// <param name="cameraShakeMode">Mode at which to shake</param>
     public void Shake(CameraShakeMode cameraShakeMode)
     {
-        originalPosition = transform.position;
+        // If screen shake disabled in menu then do nothing
+        if (PlayerPrefs.GetInt("ScreenShake", 0) == 1) return;
+
+        originalPosition = new Vector3(0f, 0f, -10f);
 
         switch (cameraShakeMode)
         {
+            case CameraShakeMode.Nano:
+                shakeDuration = shakeIntensity = 0.04f;
+                GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Nano);
+                break;
+                
             case CameraShakeMode.Micro:
-                shakeDuration = 0.1f;
-                shakeIntensity = 0.6f;
-
+                shakeDuration = shakeIntensity = 0.08f;
                 GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Micro);
                 break;
 
             case CameraShakeMode.Light:
-                shakeDuration = 0.2f;
-                shakeIntensity = 0.8f;
-
+                shakeDuration = shakeIntensity = 0.12f;
                 GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Light);
                 break;
 
             case CameraShakeMode.Normal:
-                shakeDuration = 0.3f;
-                shakeIntensity = 1f;
-
+                shakeDuration = shakeIntensity = 0.15f;
                 GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Normal);
                 break;
 
             case CameraShakeMode.Hard:
-                shakeDuration = 0.5f;
-                shakeIntensity = 1.2f;
-
+                shakeDuration = shakeIntensity = 0.2f;
                 GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Hard);
                 break;
 
@@ -119,7 +109,23 @@ public class CameraShaker : MonoBehaviour
                 return;
         }
 
-        decreaseFactor = 2f;
+        shakeDecreaseFactor = 2f;
+    }
+
+    /// <summary>
+    /// Start shaking camera.
+    /// </summary>
+    /// <param name="duration">How long to shake for</param>
+    /// <param name="intensity">How rough to shake for</param>
+    /// <param name="decreaseFactor">How long until shaking stops</param>
+    public void Shake(float duration, float intensity, float decreaseFactor)
+    {
+        originalPosition = new Vector3(0f, 0f, -10f);
+
+        shakeDuration = duration;
+        shakeIntensity = intensity;
+
+        shakeDecreaseFactor = decreaseFactor;
     }
 
     #endregion

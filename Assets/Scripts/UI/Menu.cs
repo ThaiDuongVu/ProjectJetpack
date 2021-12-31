@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class Menu : MonoBehaviour
 {
     [SerializeField] private bool disableOnStartup;
     [SerializeField] private Selector selector;
 
-    public bool IsActive { get; set; }
-    public bool IsInteractable { get; set; } = true;
+    public bool IsInteractable { get; private set; } = true;
 
     [SerializeField] private Transform buttonsParent;
-    public Button[] Buttons { get; set; }
-    public Animator[] ButtonAnimators { get; set; }
+    public Button[] Buttons { get; private set; }
+    public Animator[] ButtonAnimators { get; private set; }
     public int SelectedButtonIndex { get; set; }
 
     [SerializeField] private Button backButton;
@@ -30,9 +30,9 @@ public class Menu : MonoBehaviour
         inputManager = new InputManager();
 
         // Handle game UI input
-        inputManager.Game.Direction.performed += OnDirectionPerformed;
-        inputManager.Game.Click.performed += OnClickPerformed;
-        inputManager.Game.Back.performed += OnBackPerformed;
+        inputManager.Game.Direction.performed += DirectionOnPerformed;
+        inputManager.Game.Click.performed += ClickOnPerformed;
+        inputManager.Game.Back.performed += BackOnPerformed;
 
         inputManager.Enable();
 
@@ -45,9 +45,10 @@ public class Menu : MonoBehaviour
     /// On directional input performed.
     /// </summary>
     /// <param name="context">Input context</param>
-    private void OnDirectionPerformed(InputAction.CallbackContext context)
+    private void DirectionOnPerformed(InputAction.CallbackContext context)
     {
         if (!IsInteractable) return;
+        InputTypeController.Instance.CheckInputType(context);
 
         Vector2 direction = context.ReadValue<Vector2>();
 
@@ -57,7 +58,7 @@ public class Menu : MonoBehaviour
             if (SelectedButtonIndex > 0) SelectedButtonIndex--;
             else SelectedButtonIndex = Buttons.Length - 1;
         }
-        else
+        else if (direction.y < 0f)
         {
             if (SelectedButtonIndex < Buttons.Length - 1) SelectedButtonIndex++;
             else SelectedButtonIndex = 0;
@@ -71,9 +72,10 @@ public class Menu : MonoBehaviour
     /// On click input performed.
     /// </summary>
     /// <param name="context">Input context</param>
-    private void OnClickPerformed(InputAction.CallbackContext context)
+    private void ClickOnPerformed(InputAction.CallbackContext context)
     {
         if (!IsInteractable) return;
+        InputTypeController.Instance.CheckInputType(context);
 
         selector.Click(Buttons[SelectedButtonIndex]);
     }
@@ -82,9 +84,10 @@ public class Menu : MonoBehaviour
     /// On back input performed.
     /// </summary>
     /// <param name="context">Input context</param>
-    private void OnBackPerformed(InputAction.CallbackContext context)
+    private void BackOnPerformed(InputAction.CallbackContext context)
     {
         if (!IsInteractable || !backButton) return;
+        InputTypeController.Instance.CheckInputType(context);
 
         selector.Click(backButton);
     }
@@ -108,6 +111,8 @@ public class Menu : MonoBehaviour
     {
         Buttons = buttonsParent.GetComponentsInChildren<Button>();
         ButtonAnimators = buttonsParent.GetComponentsInChildren<Animator>();
+
+        selector.Menu = this;
     }
 
     /// <summary>
@@ -119,6 +124,23 @@ public class Menu : MonoBehaviour
         if (disableOnStartup) SetActive(false);
 
         selector.Select(SelectedButtonIndex);
+        for (var i = 0; i < Buttons.Length; i++) InitButton(i);
+    }
+
+    /// <summary>
+    /// Add event trigger to handle pointer enter event on button.
+    /// </summary>
+    /// <param name="index">Index of button</param>
+    private void InitButton(int index)
+    {
+        var eventTrigger = Buttons[index].GetComponent<EventTrigger>();
+        var entry = new EventTrigger.Entry
+        {
+            eventID = EventTriggerType.PointerEnter
+        };
+        
+        entry.callback.AddListener((_) => { selector.Select(index); });
+        eventTrigger.triggers.Add(entry);
     }
 
     /// <summary>
@@ -131,7 +153,7 @@ public class Menu : MonoBehaviour
     }
 
     /// <summary>
-    /// Set current menu interactable/uninteractable.
+    /// Set current menu interactable/non-interactable.
     /// </summary>
     /// <param name="value">Value to set</param>
     public void SetInteractable(bool value)

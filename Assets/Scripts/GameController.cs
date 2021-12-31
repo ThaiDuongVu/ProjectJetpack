@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -8,23 +9,26 @@ public class GameController : MonoBehaviour
 
     #region Singleton
 
-    private static GameController instance;
+    private static GameController gameControllerInstance;
 
     public static GameController Instance
     {
         get
         {
-            if (instance == null) instance = FindObjectOfType<GameController>();
-            return instance;
+            if (gameControllerInstance == null) gameControllerInstance = FindObjectOfType<GameController>();
+            return gameControllerInstance;
         }
     }
 
     #endregion
 
-    public GameState State { get; set; } = GameState.Started;
+    public GameState State { get; private set; } = GameState.Started;
 
     [SerializeField] private Menu pauseMenu;
-    private Menu[] menus;
+    [SerializeField] private Menu gameOverMenu;
+
+    [SerializeField] private GameObject uiMessage;
+    private TMP_Text uiMessageText;
 
     private InputManager inputManager;
 
@@ -50,6 +54,8 @@ public class GameController : MonoBehaviour
     /// <param name="context">Input context</param>
     private void OnEscapePerformed(InputAction.CallbackContext context)
     {
+        InputTypeController.Instance.CheckInputType(context);
+
         if (State == GameState.Started) Pause();
         else if (State == GameState.Paused) Resume();
     }
@@ -71,7 +77,7 @@ public class GameController : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        menus = FindObjectsOfType<Menu>();
+        uiMessageText = uiMessage.GetComponentInChildren<TMP_Text>();
     }
 
     /// <summary>
@@ -80,16 +86,12 @@ public class GameController : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        EffectsController.Instance.SetDepthOfField(false);
+        EffectsController.Instance.SetChromaticAberration(false);
+        EffectsController.Instance.SetVignetteIntensity(EffectsController.DefaultVignetteIntensity);
+
         SetCursorEnabled(false);
-    }
-
-    /// <summary>
-    /// Unity Event function.
-    /// Update at consistent time.
-    /// </summary>
-    private void FixedUpdate()
-    {
-
+        uiMessage.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -112,7 +114,6 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0f;
         EffectsController.Instance.SetDepthOfField(true);
         SetCursorEnabled(true);
-        if (HomeController.Instance) HomeController.Instance.SetPromptText("");
 
         pauseMenu.SetActive(true);
     }
@@ -128,9 +129,21 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1f;
         EffectsController.Instance.SetDepthOfField(false);
         SetCursorEnabled(false);
-        if (HomeController.Instance) HomeController.Instance.SetPromptText("Press Escape to start");
 
         pauseMenu.SetActive(false);
+    }
+
+    /// <summary>
+    /// Game over.
+    /// </summary>
+    public void GameOver()
+    {
+        State = GameState.Over;
+
+        EffectsController.Instance.SetDepthOfField(true);
+        SetCursorEnabled(true);
+
+        gameOverMenu.SetActive(true);
     }
 
     /// <summary>
@@ -138,12 +151,13 @@ public class GameController : MonoBehaviour
     /// </summary>
     /// <param name="scale">Slowed time scale</param>
     /// <param name="duration">Duration to slow for</param>
-    public IEnumerator SlowDownEffect(float scale = 0.5f, float duration = 0.5f)
+    public IEnumerator SlowDownEffect(float scale = 0.5f, float duration = 0.4f)
     {
         // Slow down
         Time.timeScale = scale;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         EffectsController.Instance.SetChromaticAberration(true);
+        EffectsController.Instance.SetVignetteIntensity(EffectsController.DefaultVignetteIntensity + 0.1f);
 
         yield return new WaitForSeconds(duration);
 
@@ -151,5 +165,17 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         EffectsController.Instance.SetChromaticAberration(false);
+        EffectsController.Instance.SetVignetteIntensity(EffectsController.DefaultVignetteIntensity);
+    }
+
+    /// <summary>
+    /// Send a string message to the player through the game's UI.
+    /// </summary>
+    /// <param name="message">Message to send</param>
+    public void SendUIMessage(string message)
+    {
+        uiMessage.gameObject.SetActive(false);
+        uiMessageText.text = message;
+        uiMessage.gameObject.SetActive(true);
     }
 }

@@ -3,9 +3,10 @@ using UnityEngine;
 public class Trail : MonoBehaviour
 {
     public Transform Target { get; set; }
-    [SerializeField] private Material particleMaterial;
-    private ParticleSystem particle;
-    private ParticleSystem.MainModule mainModule;
+    private readonly Vector2 offset = new Vector2(0f, -0.5f);
+    private const float InterpolationRatio = 0.5f;
+
+    private ParticleSystem.MainModule main;
 
     /// <summary>
     /// Unity Event function.
@@ -13,8 +14,7 @@ public class Trail : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        particle = GetComponent<ParticleSystem>();
-        mainModule = particle.main;
+        main = GetComponent<ParticleSystem>().main;
     }
 
     /// <summary>
@@ -24,9 +24,7 @@ public class Trail : MonoBehaviour
     private void FixedUpdate()
     {
         if (!Target) return;
-
-        // Set trail position to target position
-        transform.position = new Vector3(Target.position.x, transform.position.y, Target.position.z);
+        transform.position = Vector3.Lerp(transform.position, (Vector2)Target.transform.position + offset, InterpolationRatio);
     }
 
     /// <summary>
@@ -35,7 +33,6 @@ public class Trail : MonoBehaviour
     /// <param name="color">Color to set</param>
     public void SetColor(Color color)
     {
-        // mainModule.startColor = color;
-        particleMaterial.color = color;
+        main.startColor = color;
     }
 }

@@ -7,14 +7,15 @@ public class Selector : MonoBehaviour
     private EventSystem eventSystem;
     private PointerEventData eventData;
 
-    [SerializeField] private Menu menu;
+    public Menu Menu { get; set; }
 
     private RectTransform rectTransform;
     private Vector2 lerpPosition;
     private const float LerpInterpolationRatio = 0.2f;
-    private Vector2 offset = new Vector2(-100f, 0f);
-
-    public Animator Animator { get; set; }
+    private readonly Vector2 offset = new Vector2(50f, 0f);
+    
+    public Animator Animator { get; private set; }
+    private static readonly int IsSelectedAnimatorTrigger = Animator.StringToHash("isSelected");
 
     /// <summary>
     /// Unity Event function.
@@ -43,16 +44,16 @@ public class Selector : MonoBehaviour
     /// <summary>
     /// Select a menu button.
     /// </summary>
-    /// <param name="button">Button to select</param>
+    /// <param name="buttonIndex">Index of button to select</param>
     public void Select(int buttonIndex)
     {
         // Update button index & selector position
-        menu.SelectedButtonIndex = buttonIndex;
-        lerpPosition = menu.Buttons[buttonIndex].GetComponent<RectTransform>().anchoredPosition + offset;
+        Menu.SelectedButtonIndex = buttonIndex;
+        lerpPosition = Menu.Buttons[buttonIndex].GetComponent<RectTransform>().anchoredPosition + offset;
 
         // Update button animations accordingly
-        foreach (var animator in menu.ButtonAnimators) animator.SetBool("isSelected", false);
-        menu.ButtonAnimators[buttonIndex].SetBool("isSelected", true);
+        foreach (var animator in Menu.ButtonAnimators) animator.SetBool(IsSelectedAnimatorTrigger, false);
+        Menu.ButtonAnimators[buttonIndex].SetBool(IsSelectedAnimatorTrigger, true);
     }
 
     /// <summary>

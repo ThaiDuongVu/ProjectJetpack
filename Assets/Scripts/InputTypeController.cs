@@ -7,21 +7,20 @@ public class InputTypeController : MonoBehaviour
 
     #region Singleton
 
-    private static InputTypeController instance;
+    private static InputTypeController inputTypeControllerInstance;
 
     public static InputTypeController Instance
     {
         get
         {
-            if (instance == null) instance = FindObjectOfType<InputTypeController>();
-
-            return instance;
+            if (inputTypeControllerInstance == null) inputTypeControllerInstance = FindObjectOfType<InputTypeController>();
+            return inputTypeControllerInstance;
         }
     }
 
     #endregion
 
-    public InputType InputType { get; set; } = InputType.Gamepad;
+    public InputType InputType { get; private set; } = InputType.Gamepad;
 
     /// <summary>
     /// Switch input type based on current input context.

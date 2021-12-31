@@ -8,14 +8,14 @@ public class GamepadRumbler : MonoBehaviour
 
     #region Singleton
 
-    private static GamepadRumbler instance;
+    private static GamepadRumbler gamepadRumblerInstance;
 
     public static GamepadRumbler Instance
     {
         get
         {
-            if (instance == null) instance = FindObjectOfType<GamepadRumbler>();
-            return instance;
+            if (gamepadRumblerInstance == null) gamepadRumblerInstance = FindObjectOfType<GamepadRumbler>();
+            return gamepadRumblerInstance;
         }
     }
 
@@ -35,10 +35,10 @@ public class GamepadRumbler : MonoBehaviour
         InputSystem.ResetHaptics();
     }
 
-    #region Rumble Method
+    #region Rumble Methods
 
     /// <summary>
-    /// Rumble gamepad.
+    /// Rumble connected gamepad.
     /// </summary>
     /// <param name="gamepadRumbleMode">Mode at which to rumble</param>
     public void Rumble(GamepadRumbleMode gamepadRumbleMode)
@@ -49,25 +49,43 @@ public class GamepadRumbler : MonoBehaviour
         StopAllCoroutines();
         switch (gamepadRumbleMode)
         {
+            case GamepadRumbleMode.Nano:
+                StartCoroutine(StartRumble(0.01f, 0.01f));
+                break;
+
             case GamepadRumbleMode.Micro:
-                StartCoroutine(StartRumble(0.1f, 0.1f));
+                StartCoroutine(StartRumble(0.05f, 0.05f));
                 break;
 
             case GamepadRumbleMode.Light:
-                StartCoroutine(StartRumble(0.12f, 0.12f));
+                StartCoroutine(StartRumble(0.075f, 0.075f));
                 break;
 
             case GamepadRumbleMode.Normal:
-                StartCoroutine(StartRumble(0.15f, 0.15f));
+                StartCoroutine(StartRumble(0.1f, 0.1f));
                 break;
 
             case GamepadRumbleMode.Hard:
-                StartCoroutine(StartRumble(0.2f, 0.2f));
+                StartCoroutine(StartRumble(0.15f, 0.15f));
                 break;
 
             default:
                 return;
         }
+    }
+
+    /// <summary>
+    /// Rumble connected gamepad.
+    /// </summary>
+    /// <param name="leftHaptic">How rough should the left motor vibrate</param>
+    /// <param name="rightHaptic">How rough should the right motor vibrate</param>
+    public void Rumble(float leftHaptic, float rightHaptic)
+    {
+        // If no gamepad connected or vibration disabled then return
+        if (Gamepad.current == null || PlayerPrefs.GetInt("GamepadVibration", 0) == 1) return;
+
+        StopAllCoroutines();
+        StartCoroutine(StartRumble(leftHaptic, rightHaptic));
     }
 
     #endregion

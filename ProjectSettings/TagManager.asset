@@ -4,20 +4,22 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Title
+  - IgnoreFont
+  - Platform
   - Enemy
+  - Collectible
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcessing
   - Water
   - UI
-  - PostProcessing
-  - Enemy
   - Player
-  - Controllers
+  - Enemies
+  - Platforms
   - Objects
+  - Collectibles
   - 
   - 
   - 
@@ -42,4 +44,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1815938223
+    locked: 0
+  - name: Objects
+    uniqueID: 2674140813
+    locked: 0
+  - name: Enemies
+    uniqueID: 3794953697
+    locked: 0
+  - name: Player
+    uniqueID: 3960993521
+    locked: 0
+  - name: UI
+    uniqueID: 619353243
     locked: 0

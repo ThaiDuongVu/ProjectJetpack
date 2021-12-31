@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Rendering;
 using TMPro;
 
 public class SettingsController : MonoBehaviour
@@ -8,14 +7,14 @@ public class SettingsController : MonoBehaviour
 
     #region Singleton
 
-    private static SettingsController instance;
+    private static SettingsController settingsControllerInstance;
 
     public static SettingsController Instance
     {
         get
         {
-            if (instance == null) instance = FindObjectOfType<SettingsController>();
-            return instance;
+            if (settingsControllerInstance == null) settingsControllerInstance = FindObjectOfType<SettingsController>();
+            return settingsControllerInstance;
         }
     }
 
@@ -27,8 +26,6 @@ public class SettingsController : MonoBehaviour
 
     [SerializeField] private Setting font;
     [SerializeField] private TMP_FontAsset[] fonts;
-
-    [SerializeField] private new Setting audio;
 
     /// <summary>
     /// Unity Event function.
@@ -44,7 +41,6 @@ public class SettingsController : MonoBehaviour
     /// </summary>
     public void Apply()
     {
-        // Set target framerate to 60fps
         Application.targetFrameRate = 60;
 
         // Apply resolution & full screen settings
@@ -55,10 +51,10 @@ public class SettingsController : MonoBehaviour
         QualitySettings.SetQualityLevel(quality.CurrentState);
 
         // Apply font setting
-        foreach (Object obj in Resources.FindObjectsOfTypeAll(typeof(TMP_Text)))
+        foreach (var obj in Resources.FindObjectsOfTypeAll(typeof(TMP_Text)))
         {
-            TMP_Text text = (TMP_Text)obj;
-            if (text.CompareTag("Title")) continue;
+            var text = (TMP_Text)obj;
+            if (text.CompareTag("IgnoreFont")) continue;
             text.font = fonts[font.CurrentState];
         }
 

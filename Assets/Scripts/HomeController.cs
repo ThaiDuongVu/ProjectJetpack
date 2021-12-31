@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 
 public class HomeController : MonoBehaviour
 {
@@ -7,27 +6,27 @@ public class HomeController : MonoBehaviour
 
     #region Singleton
 
-    private static HomeController instance;
+    private static HomeController homeControllerInstance;
 
     public static HomeController Instance
     {
         get
         {
-            if (instance == null) instance = FindObjectOfType<HomeController>();
-            return instance;
+            if (homeControllerInstance == null) homeControllerInstance = FindObjectOfType<HomeController>();
+            return homeControllerInstance;
         }
     }
 
     #endregion
 
-    [SerializeField] private TMP_Text promptText;
-
     /// <summary>
-    /// Set prompt text message content.
+    /// Unity Event function.
+    /// Initialize before first frame update.
     /// </summary>
-    /// <param name="message">Message content to set</param>
-    public void SetPromptText(string message)
+    private void Start()
     {
-        promptText.text = message;
+        EffectsController.Instance.SetDepthOfField(true);
+        EffectsController.Instance.SetChromaticAberration(false);
+        EffectsController.Instance.SetVignetteIntensity(EffectsController.DefaultVignetteIntensity);
     }
 }
