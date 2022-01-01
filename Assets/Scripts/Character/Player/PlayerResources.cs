@@ -45,9 +45,11 @@ public class PlayerResources : MonoBehaviour
         set
         {
             currentFuel = value;
+            currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
             fuelDisplay.transform.localScale = new Vector2(value / maxFuel, 1f);
         }
     }
+    [SerializeField] private float fuelRefilRate = 10f;
 
     /// <summary>
     /// Unity Event function.
@@ -67,5 +69,14 @@ public class PlayerResources : MonoBehaviour
         Token = 0;
         Health = maxHealth;
         Fuel = maxFuel;
+    }
+    
+    /// <summary>
+    /// Unity Event function.
+    /// Update at consistent time.
+    /// </summary>
+    private void FixedUpdate()
+    {
+        if (Player.Movement.IsGrounded && Fuel < maxFuel) Fuel += fuelRefilRate * Time.fixedDeltaTime;
     }
 }

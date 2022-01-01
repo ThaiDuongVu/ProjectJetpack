@@ -8,8 +8,6 @@ public class PlayerMovement : CharacterMovement
     [SerializeField] private int maxJumps = 2;
     private int jumps;
 
-    [SerializeField] private ParticleSystem jumpParticlePrefab;
-
     private InputManager inputManager;
 
     /// <summary>
@@ -122,6 +120,5 @@ public class PlayerMovement : CharacterMovement
         base.Jump();
 
         jumps--;
-        Instantiate(jumpParticlePrefab, transform.position, Quaternion.identity);
     }
 }

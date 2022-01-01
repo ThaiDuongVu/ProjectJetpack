@@ -434,6 +434,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8559643829341109267}
+  - {fileID: 8435357509748060664}
   m_Father: {fileID: 6282313622560694732}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -451,7 +452,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverForce: 30
   hoverFuelDepletionRate: 5
-  jetpackMuzzle: {fileID: 8559643829341109266}
+  fireFore: 12
+  fireMuzzle: {fileID: 3827419661170153826, guid: 172af18f1b9bd7c4ebcb459c2ddb8892, type: 3}
+  fireFuelConsumptionPerShot: 10
+  gunPoint: {fileID: 8435357509748060664}
+  bulletPrefab: {fileID: 6054862245491694026, guid: 4c5b8f73c50b8a444b1001cc776b8351, type: 3}
 --- !u!1 &4547587335786630149
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +831,7 @@ MonoBehaviour:
   - {x: 0.1875, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 48940
+  m_InstanceId: 159460
 --- !u!114 &5961965257540654280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,7 +865,6 @@ MonoBehaviour:
   deceleration: 25
   jumpForce: 12
   maxJumps: 2
-  jumpParticlePrefab: {fileID: 3827419661170153826, guid: 172af18f1b9bd7c4ebcb459c2ddb8892, type: 3}
 --- !u!114 &6521612412145449497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -873,7 +877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51bb1efd271f0c84db9392afab5c1df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireFore: 12
 --- !u!114 &6557275940996674821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,6 +1017,37 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &6528993635080469139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8435357509748060664}
+  m_Layer: 6
+  m_Name: GunPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8435357509748060664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6528993635080469139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25, y: -0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5173254258640847698}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7414431154827382852
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,7 +1375,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3827419661170153824, guid: 2d232be9dd3014447b66d31cbaab1376, type: 3}
       propertyPath: m_Name
-      value: JetpackMuzzle
+      value: HoverMuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 3827419661170153827, guid: 2d232be9dd3014447b66d31cbaab1376, type: 3}
       propertyPath: m_RootOrder
@@ -1389,11 +1423,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d232be9dd3014447b66d31cbaab1376, type: 3}
---- !u!198 &8559643829341109266 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3827419661170153826, guid: 2d232be9dd3014447b66d31cbaab1376, type: 3}
-  m_PrefabInstance: {fileID: 4887618705012893040}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8559643829341109267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3827419661170153827, guid: 2d232be9dd3014447b66d31cbaab1376, type: 3}
