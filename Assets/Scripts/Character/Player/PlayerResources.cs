@@ -36,7 +36,7 @@ public class PlayerResources : MonoBehaviour
     }
 
     [Header("Fuel")]
-    [SerializeField] private float maxFuel;
+    public float maxFuel;
     [SerializeField] private Image fuelDisplay;
     private float currentFuel;
     public float Fuel

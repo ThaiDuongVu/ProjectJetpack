@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,12 +15,8 @@ public class PlayerCombat : MonoBehaviour
     {
         inputManager = new InputManager();
 
-        // Handle hover input
-        inputManager.Player.Hover.performed += HoverOnPerformed;
-        inputManager.Player.Hover.canceled += HoverOnCanceled;
-
-        // Handle fire input
-        inputManager.Player.Fire.performed += FireOnPerformed;
+        // Handle dash input
+        inputManager.Player.Dash.started += DashOnStarted;
 
         inputManager.Enable();
     }
@@ -38,41 +33,17 @@ public class PlayerCombat : MonoBehaviour
     #region Input Methods
 
     /// <summary>
-    /// On hover input performed.
+    /// On dash input performed.
     /// </summary>
     /// <param name="context">Input context</param>
-    private void HoverOnPerformed(InputAction.CallbackContext context)
+    private void DashOnStarted(InputAction.CallbackContext context)
     {
         if (GameController.Instance.State == GameState.Paused || !Player.IsControllable || Player.IsStagger) return;
-        if (Player.Resources.Fuel <= 0f) return;
         InputTypeController.Instance.CheckInputType(context);
 
-        Player.Jetpack.StartHovering();
+
     }
-
-    /// <summary>
-    /// On hover input canceled.
-    /// </summary>
-    /// <param name="context">Input context</param>
-    private void HoverOnCanceled(InputAction.CallbackContext context)
-    {
-        Player.Jetpack.StopHovering();
-    }
-
-    /// <summary>
-    /// On hover input performed.
-    /// </summary>
-    /// <param name="context">Input context</param>
-    private void FireOnPerformed(InputAction.CallbackContext context)
-    {
-        if (GameController.Instance.State == GameState.Paused || !Player.IsControllable || Player.IsStagger) return;
-        if (Player.Resources.Fuel < Player.Jetpack.fireFuelConsumptionPerShot) return;
-        InputTypeController.Instance.CheckInputType(context);
-
-        Player.Jetpack.StopHovering();
-        Player.Jetpack.Fire();
-    }
-
+    
     #endregion
 
     /// <summary>
@@ -92,4 +63,40 @@ public class PlayerCombat : MonoBehaviour
     {
         
     }
+
+    /// <summary>
+    /// Raycast at current arrow direction to check for enemies.
+    /// </summary>
+    private void Aim()
+    {
+
+    }
+
+    #region Dash
+
+    /// <summary>
+    /// Player enter dashing state.
+    /// </summary>
+    private void StartDashing()
+    {
+
+    }
+
+    /// <summary>
+    /// Player exit dashing state.
+    /// </summary>
+    private void StopDashing()
+    {
+
+    }
+
+    /// <summary>
+    /// Player perform dashing move.
+    /// </summary>
+    private void Dash()
+    {
+
+    }
+
+    #endregion
 }

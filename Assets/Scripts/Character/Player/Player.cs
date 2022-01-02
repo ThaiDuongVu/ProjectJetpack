@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Player : Character
@@ -7,9 +6,9 @@ public class Player : Character
 
     public PlayerMovement Movement { get; private set; }
     public PlayerCombat Combat { get; private set; }
-    public PlayerJetpack Jetpack { get; private set; }
     public PlayerResources Resources { get; private set; }
     public PlayerCombo Combo { get; private set; }
+    public PlayerArrow Arrow {get;private set;}
 
     [SerializeField] private Trail trailPrefab;
 
@@ -25,12 +24,9 @@ public class Player : Character
 
         Movement = GetComponent<PlayerMovement>();
         Combat = GetComponent<PlayerCombat>();
-        Jetpack = GetComponentInChildren<PlayerJetpack>();
-
         Resources = GetComponent<PlayerResources>();
         Combo = GetComponent<PlayerCombo>();
-
-        MainCameraController.Instance.FollowTarget = transform;
+        Arrow = GetComponentInChildren<PlayerArrow>();
     }
 
     /// <summary>
@@ -42,18 +38,6 @@ public class Player : Character
         base.Start();
 
         Instantiate(trailPrefab, transform.position, Quaternion.identity).Target = transform;
-    }
-
-    /// <summary>
-    /// Knock the player back using force.
-    /// </summary>
-    /// <param name="direction">Direction to apply force</param>
-    /// <param name="force">Force to apply</param>
-    /// <param name="duration">How long to stagger for</param>
-    public override IEnumerator Stagger(Vector2 direction, float force, float duration)
-    {
-        Jetpack.StopHovering();
-        return base.Stagger(direction, force, duration);
     }
 
     /// <summary>

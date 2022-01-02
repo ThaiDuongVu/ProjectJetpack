@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rookie_zombie_idle_0
+      name: rookie_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1079af233eaeb9419bba9c26ef27e3f
-      internalID: 740081647
+      spriteID: fb27b01d60cfdba469e561f00163aa50
+      internalID: -1862183189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rookie_zombie_idle_1
+      name: rookie_idle_1
       rect:
         serializedVersion: 2
         x: 16
@@ -139,50 +139,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1dd9b62dffed8f49a06491dc631b6d4
-      internalID: -1515583186
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rookie_zombie_idle_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a76af26980fcb8f458c09ad2ed590d5a
-      internalID: -1124913067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: rookie_zombie_idle_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 10758f17e08e60c4c8ac756c257521e4
-      internalID: -163943043
+      spriteID: 9cc995e06d4387c4ea0dda7da7e59cc4
+      internalID: -216818193
       vertices: []
       indices: 
       edges: []
@@ -198,10 +156,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rookie_zombie_idle_2: -1124913067
-      rookie_zombie_idle_3: -163943043
-      rookie_zombie_idle_0: 740081647
-      rookie_zombie_idle_1: -1515583186
+      rookie_idle_0: -1862183189
+      rookie_idle_1: -216818193
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

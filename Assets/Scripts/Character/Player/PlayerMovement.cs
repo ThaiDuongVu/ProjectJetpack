@@ -7,6 +7,7 @@ public class PlayerMovement : CharacterMovement
 
     [SerializeField] private int maxJumps = 2;
     private int jumps;
+    [SerializeField] private ParticleSystem jumpMuzzle;
 
     private InputManager inputManager;
 
@@ -23,7 +24,7 @@ public class PlayerMovement : CharacterMovement
         inputManager.Player.Move.canceled += MoveOnCanceled;
 
         // Handle jump input
-        // inputManager.Player.Jump.performed += JumpOnPerformed;
+        inputManager.Player.Jump.performed += JumpOnPerformed;
 
         inputManager.Enable();
     }
@@ -48,7 +49,11 @@ public class PlayerMovement : CharacterMovement
         if (GameController.Instance.State == GameState.Paused || !Player.IsControllable || Player.IsStagger) return;
         InputTypeController.Instance.CheckInputType(context);
 
-        StartRunning(context.ReadValue<Vector2>());
+        var direction = context.ReadValue<Vector2>();
+        Player.Arrow.Direction = direction;
+        
+        if (Mathf.Abs(direction.x) <= 0f) return;
+        StartRunning(direction);
     }
 
     /// <summary>
@@ -70,7 +75,6 @@ public class PlayerMovement : CharacterMovement
     private void JumpOnPerformed(InputAction.CallbackContext context)
     {
         if (GameController.Instance.State == GameState.Paused || !Player.IsControllable || Player.IsStagger) return;
-        if (Player.Jetpack.IsHovering) return;
         if (!IsGrounded && jumps <= 0) return;
         InputTypeController.Instance.CheckInputType(context);
 
@@ -120,5 +124,6 @@ public class PlayerMovement : CharacterMovement
         base.Jump();
 
         jumps--;
+        Instantiate(jumpMuzzle, transform.position, Quaternion.identity);
     }
 }
