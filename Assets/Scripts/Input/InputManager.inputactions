@@ -310,18 +310,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
+                    "name": "Hover",
                     "type": "Button",
-                    "id": "c5c342c5-413c-48d1-bc32-5c09d365854a",
+                    "id": "dbaf3632-5734-445f-b3aa-f4571d2cf691",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Dash",
+                    "name": "Fire",
                     "type": "Button",
-                    "id": "e151e2aa-0c21-48c7-b037-5428fa94f025",
+                    "id": "242ba39a-dd00-4c4c-ab78-5ccd05212429",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -551,45 +551,45 @@
                 },
                 {
                     "name": "",
-                    "id": "980223af-0e61-4183-ac12-f6b095235d2e",
-                    "path": "<Keyboard>/space",
+                    "id": "4387c9f3-e1dd-4287-8f8e-a3aa470121f2",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
-                    "action": "Jump",
+                    "action": "Hover",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "3ca15714-45ca-461f-8e3b-68dede62049b",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "420a6a18-9d55-4bf5-aba9-4a8536249c84",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Jump",
+                    "action": "Hover",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "271c81d3-2734-4ae8-bf8b-5fac7cf3212e",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5446f2fa-ec8c-4451-939e-278621a20d0b",
+                    "id": "47291d39-55a7-40c3-a4d6-ade26ce435bf",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
-                    "action": "Dash",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86945eac-77b7-4e88-b11f-af8ab0cde11d",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

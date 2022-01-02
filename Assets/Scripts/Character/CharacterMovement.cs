@@ -86,7 +86,7 @@ public class CharacterMovement : MonoBehaviour
         IsRunning = true;
 
         Character.SetFlipped(direction.x < 0f);
-        if (IsGrounded) Character.Animator.SetBool(IsRunningAnimationTrigger, true);
+        Character.Animator.SetBool(IsRunningAnimationTrigger, true);
     }
 
     /// <summary>

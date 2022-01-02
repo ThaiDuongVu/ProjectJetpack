@@ -15,8 +15,12 @@ public class PlayerCombat : MonoBehaviour
     {
         inputManager = new InputManager();
 
-        // Handle dash input
-        inputManager.Player.Dash.started += DashOnStarted;
+        // Handle hover input
+        inputManager.Player.Hover.started += HoverOnStarted;
+        inputManager.Player.Hover.canceled += HoverOnCanceled;
+
+        // Handle fire input
+        inputManager.Player.Fire.started += FireOnStarted;
 
         inputManager.Enable();
     }
@@ -33,17 +37,42 @@ public class PlayerCombat : MonoBehaviour
     #region Input Methods
 
     /// <summary>
-    /// On dash input performed.
+    /// On hover input started.
     /// </summary>
     /// <param name="context">Input context</param>
-    private void DashOnStarted(InputAction.CallbackContext context)
+    private void HoverOnStarted(InputAction.CallbackContext context)
     {
         if (GameController.Instance.State == GameState.Paused || !Player.IsControllable || Player.IsStagger) return;
         InputTypeController.Instance.CheckInputType(context);
 
-
+        Player.Jetpack.StartHovering();
     }
-    
+
+    /// <summary>
+    /// On hover input canceled.
+    /// </summary>
+    /// <param name="context">Input context</param>
+    private void HoverOnCanceled(InputAction.CallbackContext context)
+    {
+        if (GameController.Instance.State == GameState.Paused || !Player.IsControllable || Player.IsStagger) return;
+        InputTypeController.Instance.CheckInputType(context);
+
+        Player.Jetpack.StopHovering();
+    }
+
+    /// <summary>
+    /// On fire input started.
+    /// </summary>
+    /// <param name="context">Input context</param>
+    private void FireOnStarted(InputAction.CallbackContext context)
+    {
+        if (GameController.Instance.State == GameState.Paused || !Player.IsControllable || Player.IsStagger) return;
+        InputTypeController.Instance.CheckInputType(context);
+
+        if (Player.Jetpack.IsHovering) Player.Jetpack.StopHovering();
+        Player.Jetpack.Fire();
+    }
+
     #endregion
 
     /// <summary>
@@ -54,49 +83,13 @@ public class PlayerCombat : MonoBehaviour
     {
         Player = GetComponent<Player>();
     }
-    
+
     /// <summary>
     /// Unity Event function.
     /// Update at consistent time.
     /// </summary>
     private void FixedUpdate()
     {
-        
-    }
-
-    /// <summary>
-    /// Raycast at current arrow direction to check for enemies.
-    /// </summary>
-    private void Aim()
-    {
 
     }
-
-    #region Dash
-
-    /// <summary>
-    /// Player enter dashing state.
-    /// </summary>
-    private void StartDashing()
-    {
-
-    }
-
-    /// <summary>
-    /// Player exit dashing state.
-    /// </summary>
-    private void StopDashing()
-    {
-
-    }
-
-    /// <summary>
-    /// Player perform dashing move.
-    /// </summary>
-    private void Dash()
-    {
-
-    }
-
-    #endregion
 }

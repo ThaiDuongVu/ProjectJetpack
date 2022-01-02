@@ -7,7 +7,7 @@ public class PlayerMovement : CharacterMovement
 
     [SerializeField] private int maxJumps = 2;
     private int jumps;
-    [SerializeField] private ParticleSystem jumpMuzzle;
+    [SerializeField] private ParticleSystem jumpMuzzlePrefab;
 
     private InputManager inputManager;
 
@@ -24,7 +24,7 @@ public class PlayerMovement : CharacterMovement
         inputManager.Player.Move.canceled += MoveOnCanceled;
 
         // Handle jump input
-        inputManager.Player.Jump.performed += JumpOnPerformed;
+        // inputManager.Player.Jump.performed += JumpOnPerformed;
 
         inputManager.Enable();
     }
@@ -50,7 +50,6 @@ public class PlayerMovement : CharacterMovement
         InputTypeController.Instance.CheckInputType(context);
 
         var direction = context.ReadValue<Vector2>();
-        Player.Arrow.Direction = direction;
         
         if (Mathf.Abs(direction.x) <= 0f) return;
         StartRunning(direction);
@@ -124,6 +123,6 @@ public class PlayerMovement : CharacterMovement
         base.Jump();
 
         jumps--;
-        Instantiate(jumpMuzzle, transform.position, Quaternion.identity);
+        Instantiate(jumpMuzzlePrefab, transform.position, Quaternion.identity);
     }
 }
