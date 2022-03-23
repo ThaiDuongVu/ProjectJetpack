@@ -3,36 +3,29 @@ using UnityEngine;
 public class Trail : MonoBehaviour
 {
     public Transform Target { get; set; }
-    private readonly Vector2 offset = new Vector2(0f, -0.5f);
+    private readonly Vector2 _offset = new Vector2(0f, -0.55f);
     private const float InterpolationRatio = 0.5f;
 
-    private ParticleSystem.MainModule main;
+    private ParticleSystem.MainModule _main;
 
-    /// <summary>
-    /// Unity Event function.
-    /// Get component references.
-    /// </summary>
+    #region Unity Event
+
     private void Awake()
     {
-        main = GetComponent<ParticleSystem>().main;
+        _main = GetComponent<ParticleSystem>().main;
     }
 
-    /// <summary>
-    /// Unity Event function.
-    /// Update at consistent time.
-    /// </summary>
     private void FixedUpdate()
     {
         if (!Target) return;
-        transform.position = Vector3.Lerp(transform.position, (Vector2)Target.transform.position + offset, InterpolationRatio);
+        transform.position = Vector3.Lerp(transform.position, (Vector2) Target.transform.position + _offset,
+            InterpolationRatio);
     }
 
-    /// <summary>
-    /// Set current particle color.
-    /// </summary>
-    /// <param name="color">Color to set</param>
+    #endregion
+
     public void SetColor(Color color)
     {
-        main.startColor = color;
+        _main.startColor = color;
     }
 }

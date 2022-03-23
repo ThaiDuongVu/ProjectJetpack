@@ -5,10 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - IgnoreFont
-  - Platform
-  - Enemy
   - Collectible
-  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,12 +14,12 @@ TagManager:
   - PostProcessing
   - Water
   - UI
-  - Player
   - Enemies
-  - Platforms
-  - Objects
-  - Collectibles
-  - Bullets
+  - Obstacles
+  - Player
+  - Levels
+  - 
+  - 
   - 
   - 
   - 
@@ -47,17 +45,14 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 1815938223
+    uniqueID: 1265722231
     locked: 0
   - name: Objects
-    uniqueID: 2674140813
+    uniqueID: 818340529
     locked: 0
-  - name: Enemies
-    uniqueID: 3794953697
-    locked: 0
-  - name: Player
-    uniqueID: 3960993521
+  - name: Players
+    uniqueID: 1388383379
     locked: 0
   - name: UI
-    uniqueID: 619353243
+    uniqueID: 2271380611
     locked: 0

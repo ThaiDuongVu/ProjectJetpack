@@ -3,18 +3,17 @@ using TMPro;
 
 public class SettingsController : MonoBehaviour
 {
-    // Use a singleton pattern to make the class globally accessible
-
     #region Singleton
 
-    private static SettingsController settingsControllerInstance;
+    private static SettingsController _settingsControllerInstance;
 
     public static SettingsController Instance
     {
         get
         {
-            if (settingsControllerInstance == null) settingsControllerInstance = FindObjectOfType<SettingsController>();
-            return settingsControllerInstance;
+            if (_settingsControllerInstance == null)
+                _settingsControllerInstance = FindObjectOfType<SettingsController>();
+            return _settingsControllerInstance;
         }
     }
 
@@ -27,25 +26,23 @@ public class SettingsController : MonoBehaviour
     [SerializeField] private Setting font;
     [SerializeField] private TMP_FontAsset[] fonts;
 
-    /// <summary>
-    /// Unity Event function.
-    /// Initialize before first frame update.
-    /// </summary>
+    #region Unity Event
+
     private void Start()
     {
         Apply();
     }
 
-    /// <summary>
-    /// Apply current settings.
-    /// </summary>
+    #endregion
+
     public void Apply()
     {
         Application.targetFrameRate = 60;
-
+#if UNITY_STANDALONE
         // Apply resolution & full screen settings
         Screen.SetResolution(resolution.CurrentState, resolution.CurrentState / 16 * 9,
-            (FullScreenMode)fullScreen.CurrentState);
+            (FullScreenMode) fullScreen.CurrentState);
+#endif
 
         // Apply quality settings
         QualitySettings.SetQualityLevel(quality.CurrentState);
@@ -53,7 +50,7 @@ public class SettingsController : MonoBehaviour
         // Apply font setting
         foreach (var obj in Resources.FindObjectsOfTypeAll(typeof(TMP_Text)))
         {
-            var text = (TMP_Text)obj;
+            var text = (TMP_Text) obj;
             if (text.CompareTag("IgnoreFont")) continue;
             text.font = fonts[font.CurrentState];
         }

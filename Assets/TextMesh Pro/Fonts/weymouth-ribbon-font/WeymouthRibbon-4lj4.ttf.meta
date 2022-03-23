@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5a4d2b6d8edfcc94fa573b35707f6786
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - '{Weymouth Ribbon}'
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: bcf57d6e334f8f64e8304812c4216e4e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

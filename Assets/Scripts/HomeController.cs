@@ -2,31 +2,30 @@ using UnityEngine;
 
 public class HomeController : MonoBehaviour
 {
-    // Use a singleton pattern to make the class globally accessible
+    [Header("Menus")]
+    [SerializeField] private Canvas mainUI;
 
-    #region Singleton
+    [Header("UI Message")]
+    [SerializeField] private GameObject uiMessage;
 
-    private static HomeController homeControllerInstance;
+    #region Unity Event
 
-    public static HomeController Instance
+    private void Start()
     {
-        get
-        {
-            if (homeControllerInstance == null) homeControllerInstance = FindObjectOfType<HomeController>();
-            return homeControllerInstance;
-        }
+        EffectsController.Instance.SetDepthOfField(false);
+        EffectsController.Instance.SetChromaticAberration(false);
+        EffectsController.Instance.SetVignetteIntensity(EffectsController.DefaultVignetteIntensity);
+
+        uiMessage.gameObject.SetActive(false);
+        mainUI.gameObject.SetActive(true);
+        SetCursorEnabled(true);
     }
 
     #endregion
 
-    /// <summary>
-    /// Unity Event function.
-    /// Initialize before first frame update.
-    /// </summary>
-    private void Start()
+    private static void SetCursorEnabled(bool value)
     {
-        EffectsController.Instance.SetDepthOfField(true);
-        EffectsController.Instance.SetChromaticAberration(false);
-        EffectsController.Instance.SetVignetteIntensity(EffectsController.DefaultVignetteIntensity);
+        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = value;
     }
 }

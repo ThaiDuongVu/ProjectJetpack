@@ -1,76 +1,59 @@
-using System.Collections;
 using UnityEngine;
 
 public class Player : Character
 {
-    public bool IsControllable { get; set; } = true;
+    public PlayerMovement PlayerMovement { get; private set; }
+    public PlayerCombat PlayerCombat { get; private set; }
+    public PlayerResources PlayerResources { get; private set; }
+    public PlayerCombo PlayerCombo { get; private set; }
 
-    public PlayerMovement Movement { get; private set; }
-    public PlayerCombat Combat { get; private set; }
-    public PlayerResources Resources { get; private set; }
-    public PlayerCombo Combo { get; private set; }
+    [SerializeField] private Trail groundTrailPrefab;
+    public Trail GroundTrail { get; private set; }
 
-    public PlayerJetpack Jetpack { get; private set; }
+    [SerializeField] private ParticleSystem whiteExplosionPrefab;
 
-    [SerializeField] private Trail trailPrefab;
+    #region Unity Event
 
-    [SerializeField] private ParticleSystem explosionWhitePrefab;
-
-    /// <summary>
-    /// Unity Event function.
-    /// Get component references.
-    /// </summary>
     public override void Awake()
     {
         base.Awake();
 
-        Movement = GetComponent<PlayerMovement>();
-        Combat = GetComponent<PlayerCombat>();
-        Resources = GetComponent<PlayerResources>();
-        Combo = GetComponent<PlayerCombo>();
-
-        Jetpack = GetComponentInChildren<PlayerJetpack>();
+        PlayerMovement = GetComponent<PlayerMovement>();
+        PlayerCombat = GetComponent<PlayerCombat>();
+        PlayerResources = GetComponent<PlayerResources>();
+        PlayerCombo = GetComponent<PlayerCombo>();
     }
 
-    /// <summary>
-    /// Unity Event function.
-    /// Initialize before first frame update.
-    /// </summary>
     public override void Start()
     {
         base.Start();
 
-        Instantiate(trailPrefab, transform.position, Quaternion.identity).Target = transform;
+        GroundTrail = Instantiate(groundTrailPrefab, transform.position, Quaternion.identity);
+        GroundTrail.Target = transform;
     }
 
-    /// <summary>
-    /// Deal damage to current player.
-    /// </summary>
-    /// <param name="damage">Damage to deal</param>
-    public override void TakeDamage(float damage)
+    #endregion
+
+    #region Damage & Death
+
+    public override void TakeDamage(int damage)
     {
-        Resources.Health -= damage;
+        base.TakeDamage(damage);
+        PlayerCombo.Cancel();
     }
 
-    /// <summary>
-    /// Handle current player death.
-    /// </summary>
     public override void Die()
     {
-        if (IsDead) return;
+        base.Die();
 
-        IsDead = true;
+        Instantiate(whiteExplosionPrefab, transform.position, Quaternion.identity);
+        GameController.Instance.StartCoroutine(GameController.Instance.GameOver());
+        
+        CameraShaker.Instance.Shake(CameraShakeMode.Normal);
+        GameController.Instance.StartCoroutine(GameController.Instance.SlowDownEffect());
+
+        Destroy(gameObject);
     }
 
-    /// <summary>
-    /// Knock a character back using force.
-    /// </summary>
-    /// <param name="direction">Direction to apply force</param>
-    /// <param name="force">Force to apply</param>
-    /// <param name="duration">How long to stagger for</param>
-    public override IEnumerator Stagger(Vector2 direction, float force, float duration)
-    {
-        Jetpack.StopHovering();
-        return base.Stagger(direction, force, duration);
-    }
+    #endregion
 }

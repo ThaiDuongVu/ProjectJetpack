@@ -4,64 +4,51 @@ using UnityEngine.EventSystems;
 
 public class Selector : MonoBehaviour
 {
-    private EventSystem eventSystem;
-    private PointerEventData eventData;
+    private PointerEventData _eventData;
 
     public Menu Menu { get; set; }
 
-    private RectTransform rectTransform;
-    private Vector2 lerpPosition;
+    private RectTransform _rectTransform;
+    private Vector2 _lerpPosition;
     private const float LerpInterpolationRatio = 0.2f;
-    private readonly Vector2 offset = new Vector2(50f, 0f);
-    
+    private readonly Vector2 _offset = new Vector2(-110f, 0f);
+
     public Animator Animator { get; private set; }
     private static readonly int IsSelectedAnimatorTrigger = Animator.StringToHash("isSelected");
 
-    /// <summary>
-    /// Unity Event function.
-    /// Get component references.
-    /// </summary>
+    #region Unity Event
+
     private void Awake()
     {
-        eventSystem = EventSystem.current;
-        eventData = new PointerEventData(eventSystem);
+        _eventData = new PointerEventData(EventSystem.current);
 
-        rectTransform = GetComponent<RectTransform>();
-        lerpPosition = rectTransform.anchoredPosition;
+        _rectTransform = GetComponent<RectTransform>();
+        _lerpPosition = _rectTransform.anchoredPosition;
 
         Animator = GetComponent<Animator>();
     }
 
-    /// <summary>
-    /// Unity Event function.
-    /// Update once per frame.
-    /// </summary>
     private void Update()
     {
-        rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, lerpPosition, LerpInterpolationRatio);
+        _rectTransform.anchoredPosition =
+            Vector2.Lerp(_rectTransform.anchoredPosition, _lerpPosition, LerpInterpolationRatio);
     }
 
-    /// <summary>
-    /// Select a menu button.
-    /// </summary>
-    /// <param name="buttonIndex">Index of button to select</param>
-    public void Select(int buttonIndex)
+    #endregion
+
+    public void SelectButton(int buttonIndex)
     {
         // Update button index & selector position
         Menu.SelectedButtonIndex = buttonIndex;
-        lerpPosition = Menu.Buttons[buttonIndex].GetComponent<RectTransform>().anchoredPosition + offset;
+        _lerpPosition = Menu.Buttons[buttonIndex].GetComponent<RectTransform>().anchoredPosition + _offset;
 
         // Update button animations accordingly
         foreach (var animator in Menu.ButtonAnimators) animator.SetBool(IsSelectedAnimatorTrigger, false);
         Menu.ButtonAnimators[buttonIndex].SetBool(IsSelectedAnimatorTrigger, true);
     }
 
-    /// <summary>
-    /// Click a menu button.
-    /// </summary>
-    /// <param name="button">Button to click</param>
-    public void Click(Button button)
+    public void ClickButton(Button button)
     {
-        button.OnPointerClick(eventData);
+        button.OnPointerClick(_eventData);
     }
 }

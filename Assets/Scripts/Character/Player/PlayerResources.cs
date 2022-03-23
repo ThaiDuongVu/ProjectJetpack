@@ -2,81 +2,86 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerResources : MonoBehaviour
+public class PlayerResources : CharacterResources
 {
-    public Player Player { get; private set; }
+    private Player _player;
 
-    [Header("Token")]
-    [SerializeField] private TMP_Text tokenText;
-    private int token;
-    public int Token
+    [SerializeField] private Transform healthDisplay;
+    public int lowHealthThreshold = 3;
+    private Animator _healthDisplayAnimator;
+    private static readonly int IsLowHealthAnimationTrigger = Animator.StringToHash("isLowHealth");
+    private Image[] _healthIcons;
+    public override int Health
     {
-        get => token;
+        get => base.Health;
         set
         {
-            token = value;
-            tokenText.text = value.ToString();
-        }
-    }
+            base.Health = value;
+            _healthDisplayAnimator.SetBool(IsLowHealthAnimationTrigger, value <= lowHealthThreshold);
+            UpdateHealthBar();
 
-    [Header("Health")]
-    [SerializeField] private float maxHealth;
-    [SerializeField] private Image healthDisplay;
-    private float currentHealth;
-    public float Health
-    {
-        get => currentHealth;
-        set
-        {
-            currentHealth = value;
-            healthDisplay.transform.localScale = new Vector2(value / maxHealth, 1f);
-
-            if (value <= 0f) Player.Die();
+            if (value <= 0) _player.Die();
         }
     }
 
     [Header("Fuel")]
-    public float maxFuel;
-    [SerializeField] private Image fuelDisplay;
-    private float currentFuel;
+    [SerializeField] private Image fuelBar;
+    public float maxFuel = 100f;
+    private float _fuel;
     public float Fuel
     {
-        get => currentFuel;
+        get => _fuel;
         set
         {
-            currentFuel = value;
-            currentFuel = Mathf.Clamp(currentFuel, 0f, maxFuel);
-            fuelDisplay.transform.localScale = new Vector2(value / maxFuel, 1f);
+            _fuel = value;
+            UpdateFuelBar();
         }
     }
-    [SerializeField] private float fuelRefilRate = 10f;
 
-    /// <summary>
-    /// Unity Event function.
-    /// Get component references.
-    /// </summary>
-    private void Awake()
+    [Header("Token")]
+    [SerializeField] private TMP_Text tokenText;
+    private int _token;
+    public int Token
     {
-        Player = GetComponent<Player>();
+        get => _token;
+        set
+        {
+            _token = value;
+            tokenText.text = value.ToString();
+        }
     }
 
-    /// <summary>
-    /// Unity Event function.
-    /// Initialize before first frame update.
-    /// </summary>
-    private void Start()
+    #region Unity Event
+
+    public override void Awake()
     {
-        Token = 0;
-        Health = maxHealth;
+        base.Awake();
+
+        _player = GetComponent<Player>();
+
+        _healthIcons = healthDisplay.GetComponentsInChildren<Image>();
+        _healthDisplayAnimator = healthDisplay.GetComponent<Animator>();
+    }
+
+    public override void Start()
+    {
+        base.Start();
+
         Fuel = maxFuel;
     }
-    
-    /// <summary>
-    /// Unity Event function.
-    /// Update at consistent time.
-    /// </summary>
-    private void FixedUpdate()
+
+    #endregion
+
+    private void UpdateHealthBar()
     {
-        if (Player.Movement.IsGrounded && Fuel < maxFuel) Fuel += fuelRefilRate * Time.fixedDeltaTime;
+        if (Health < 0) return;
+        for (int i = 0; i < Health; i++) _healthIcons[i].gameObject.SetActive(true);
+        for (int i = Health; i < maxHealth; i++) _healthIcons[i].gameObject.SetActive(false);
+    }
+
+    private void UpdateFuelBar()
+    {
+        if (Fuel < 0f) return;
+        fuelBar.transform.localScale = new Vector2(Fuel / maxFuel, 1f);
     }
 }

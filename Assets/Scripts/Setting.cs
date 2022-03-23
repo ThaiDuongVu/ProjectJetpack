@@ -4,7 +4,7 @@ using TMPro;
 public class Setting : MonoBehaviour
 {
     [SerializeField] private int[] toggles;
-    private int toggleIndex;
+    private int _toggleIndex;
 
     public int CurrentState { get; private set; }
 
@@ -12,31 +12,29 @@ public class Setting : MonoBehaviour
     [SerializeField] private TMP_Text propertyText;
     [SerializeField] private string[] properties;
 
-    /// <summary>
-    /// Unity Event function.
-    /// Get component references.
-    /// </summary>
+    #region Unity Event
+
     private void Awake()
     {
-        toggleIndex = PlayerPrefs.GetInt(propertyName, 0);
+        _toggleIndex = PlayerPrefs.GetInt(propertyName, 0);
 
-        CurrentState = toggles[toggleIndex];
-        propertyText.text = properties[toggleIndex];
+        CurrentState = toggles[_toggleIndex];
+        propertyText.text = properties[_toggleIndex];
     }
 
-    /// <summary>
-    /// Cycle between settings.
-    /// </summary>
+    #endregion
+
     public void Toggle()
     {
-        if (toggleIndex < toggles.Length - 1) toggleIndex++;
-        else toggleIndex = 0;
+        // Cycle between settings
+        if (_toggleIndex < toggles.Length - 1) _toggleIndex++;
+        else _toggleIndex = 0;
 
-        CurrentState = toggles[toggleIndex];
-        propertyText.text = properties[toggleIndex];
+        // Apply setting
+        CurrentState = toggles[_toggleIndex];
+        propertyText.text = properties[_toggleIndex];
 
-        PlayerPrefs.SetInt(propertyName, toggleIndex);
-
+        PlayerPrefs.SetInt(propertyName, _toggleIndex);
         SettingsController.Instance.Apply();
     }
 }

@@ -4,29 +4,21 @@ using UnityEngine.InputSystem;
 
 public class GamepadRumbler : MonoBehaviour
 {
-    // Use the singleton pattern to make the class globally accessible
-
     #region Singleton
 
-    private static GamepadRumbler gamepadRumblerInstance;
+    private static GamepadRumbler _gamepadRumblerInstance;
 
     public static GamepadRumbler Instance
     {
         get
         {
-            if (gamepadRumblerInstance == null) gamepadRumblerInstance = FindObjectOfType<GamepadRumbler>();
-            return gamepadRumblerInstance;
+            if (_gamepadRumblerInstance == null) _gamepadRumblerInstance = FindObjectOfType<GamepadRumbler>();
+            return _gamepadRumblerInstance;
         }
     }
 
     #endregion
 
-    /// <summary>
-    /// Start rumbling gamepad.
-    /// </summary>
-    /// <param name="duration">Number of seconds to rumble</param>
-    /// <param name="intensity">How hard to rumble</param>
-    /// <returns></returns>
     private static IEnumerator StartRumble(float duration, float intensity)
     {
         Gamepad.current.SetMotorSpeeds(intensity, intensity);
@@ -37,10 +29,6 @@ public class GamepadRumbler : MonoBehaviour
 
     #region Rumble Methods
 
-    /// <summary>
-    /// Rumble connected gamepad.
-    /// </summary>
-    /// <param name="gamepadRumbleMode">Mode at which to rumble</param>
     public void Rumble(GamepadRumbleMode gamepadRumbleMode)
     {
         // If no gamepad connected or vibration disabled then return
@@ -74,11 +62,6 @@ public class GamepadRumbler : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Rumble connected gamepad.
-    /// </summary>
-    /// <param name="leftHaptic">How rough should the left motor vibrate</param>
-    /// <param name="rightHaptic">How rough should the right motor vibrate</param>
     public void Rumble(float leftHaptic, float rightHaptic)
     {
         // If no gamepad connected or vibration disabled then return

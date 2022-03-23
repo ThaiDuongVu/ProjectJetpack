@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Menu : MonoBehaviour
 {
+    public bool IsActive { get; private set; }
     [SerializeField] private bool disableOnStartup;
     [SerializeField] private Selector selector;
 
@@ -19,40 +20,18 @@ public class Menu : MonoBehaviour
 
     [SerializeField] private Image layer;
 
-    private InputManager inputManager;
-
-    /// <summary>
-    /// Unity Event function.
-    /// On current object enabled.
-    /// </summary>
-    private void OnEnable()
-    {
-        inputManager = new InputManager();
-
-        // Handle game UI input
-        inputManager.Game.Direction.performed += DirectionOnPerformed;
-        inputManager.Game.Click.performed += ClickOnPerformed;
-        inputManager.Game.Back.performed += BackOnPerformed;
-
-        inputManager.Enable();
-
-        selector.Select(SelectedButtonIndex);
-    }
+    private InputManager _inputManager;
 
     #region Input Methods
 
-    /// <summary>
-    /// On directional input performed.
-    /// </summary>
-    /// <param name="context">Input context</param>
-    private void DirectionOnPerformed(InputAction.CallbackContext context)
+    private void DirectionOnStarted(InputAction.CallbackContext context)
     {
         if (!IsInteractable) return;
         InputTypeController.Instance.CheckInputType(context);
 
         Vector2 direction = context.ReadValue<Vector2>();
 
-        // Pick button to select
+        // Decide which button to select
         if (direction.y > 0f)
         {
             if (SelectedButtonIndex > 0) SelectedButtonIndex--;
@@ -65,48 +44,48 @@ public class Menu : MonoBehaviour
         }
 
         // Select new button
-        selector.Select(SelectedButtonIndex);
+        selector.SelectButton(SelectedButtonIndex);
     }
 
-    /// <summary>
-    /// On click input performed.
-    /// </summary>
-    /// <param name="context">Input context</param>
-    private void ClickOnPerformed(InputAction.CallbackContext context)
+    private void ClickOnStarted(InputAction.CallbackContext context)
     {
         if (!IsInteractable) return;
         InputTypeController.Instance.CheckInputType(context);
 
-        selector.Click(Buttons[SelectedButtonIndex]);
+        selector.ClickButton(Buttons[SelectedButtonIndex]);
     }
 
-    /// <summary>
-    /// On back input performed.
-    /// </summary>
-    /// <param name="context">Input context</param>
-    private void BackOnPerformed(InputAction.CallbackContext context)
+    private void BackOnStarted(InputAction.CallbackContext context)
     {
         if (!IsInteractable || !backButton) return;
         InputTypeController.Instance.CheckInputType(context);
 
-        selector.Click(backButton);
+        selector.ClickButton(backButton);
     }
 
     #endregion
 
-    /// <summary>
-    /// Unity Event function.
-    /// On current object disabled.
-    /// </summary>
-    private void OnDisable()
+    #region Unity Event
+
+    private void OnEnable()
     {
-        inputManager.Disable();
+        _inputManager = new InputManager();
+
+        // Handle game UI input
+        _inputManager.Game.Direction.started += DirectionOnStarted;
+        _inputManager.Game.Click.started += ClickOnStarted;
+        _inputManager.Game.Back.started += BackOnStarted;
+
+        _inputManager.Enable();
+
+        selector.SelectButton(SelectedButtonIndex);
     }
 
-    /// <summary>
-    /// Unity Event function.
-    /// Get component references.
-    /// </summary>
+    private void OnDisable()
+    {
+        _inputManager.Disable();
+    }
+
     private void Awake()
     {
         Buttons = buttonsParent.GetComponentsInChildren<Button>();
@@ -115,22 +94,16 @@ public class Menu : MonoBehaviour
         selector.Menu = this;
     }
 
-    /// <summary>
-    /// Unity Event function.
-    /// Initialize before first frame update.
-    /// </summary>
     private void Start()
     {
         if (disableOnStartup) SetActive(false);
 
-        selector.Select(SelectedButtonIndex);
+        selector.SelectButton(SelectedButtonIndex);
         for (var i = 0; i < Buttons.Length; i++) InitButton(i);
     }
 
-    /// <summary>
-    /// Add event trigger to handle pointer enter event on button.
-    /// </summary>
-    /// <param name="index">Index of button</param>
+    #endregion
+
     private void InitButton(int index)
     {
         var eventTrigger = Buttons[index].GetComponent<EventTrigger>();
@@ -138,24 +111,19 @@ public class Menu : MonoBehaviour
         {
             eventID = EventTriggerType.PointerEnter
         };
-        
-        entry.callback.AddListener((_) => { selector.Select(index); });
+
+        entry.callback.AddListener((_) => { selector.SelectButton(index); });
         eventTrigger.triggers.Add(entry);
     }
 
-    /// <summary>
-    /// Set current menu active/inactive.
-    /// </summary>
-    /// <param name="value">Value to set</param>
+    #region Menu Control
+
     public void SetActive(bool value)
     {
         gameObject.SetActive(value);
+        IsActive = value;
     }
 
-    /// <summary>
-    /// Set current menu interactable/non-interactable.
-    /// </summary>
-    /// <param name="value">Value to set</param>
     public void SetInteractable(bool value)
     {
         layer.gameObject.SetActive(!value);
@@ -164,23 +132,21 @@ public class Menu : MonoBehaviour
         IsInteractable = value;
     }
 
-    /// <summary>
-    /// Navigate to the next menu.
-    /// </summary>
-    /// <param name="next">Menu to navigate to</param>
+    #endregion
+
+    #region Menu Navigation
+
     public void NextMenu(Menu next)
     {
         SetInteractable(false);
         next.SetActive(true);
     }
 
-    /// <summary>
-    /// Navigate to the previous menu.
-    /// </summary>
-    /// <param name="previous">Menu to navigate to</param>
     public void PreviousMenu(Menu previous)
     {
         previous.SetInteractable(true);
         SetActive(false);
     }
+
+    #endregion
 }

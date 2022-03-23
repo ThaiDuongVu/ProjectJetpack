@@ -1,95 +1,47 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat : CharacterCombat
 {
-    public Player Player { get; private set; }
+    private Player _player;
+    public float force = 500f;
 
-    private InputManager inputManager;
-
-    /// <summary>
-    /// Unity Event function.
-    /// On current object enabled.
-    /// </summary>
-    private void OnEnable()
-    {
-        inputManager = new InputManager();
-
-        // Handle hover input
-        inputManager.Player.Hover.started += HoverOnStarted;
-        inputManager.Player.Hover.canceled += HoverOnCanceled;
-
-        // Handle fire input
-        inputManager.Player.Fire.started += FireOnStarted;
-
-        inputManager.Enable();
-    }
-
-    /// <summary>
-    /// Unity Event function.
-    /// On current object disabled.
-    /// </summary>
-    private void OnDisable()
-    {
-        inputManager.Disable();
-    }
+    private InputManager _inputManager;
 
     #region Input Methods
 
-    /// <summary>
-    /// On hover input started.
-    /// </summary>
-    /// <param name="context">Input context</param>
-    private void HoverOnStarted(InputAction.CallbackContext context)
-    {
-        if (GameController.Instance.State == GameState.Paused || !Player.IsControllable || Player.IsStagger) return;
-        InputTypeController.Instance.CheckInputType(context);
+    #endregion
 
-        Player.Jetpack.StartHovering();
+    #region Unity Event
+
+    private void OnEnable()
+    {
+        _inputManager = new InputManager();
+
+        _inputManager.Enable();
     }
 
-    /// <summary>
-    /// On hover input canceled.
-    /// </summary>
-    /// <param name="context">Input context</param>
-    private void HoverOnCanceled(InputAction.CallbackContext context)
+    private void OnDisable()
     {
-        if (GameController.Instance.State == GameState.Paused || !Player.IsControllable || Player.IsStagger) return;
-        InputTypeController.Instance.CheckInputType(context);
-
-        Player.Jetpack.StopHovering();
+        _inputManager.Disable();
     }
 
-    /// <summary>
-    /// On fire input started.
-    /// </summary>
-    /// <param name="context">Input context</param>
-    private void FireOnStarted(InputAction.CallbackContext context)
+    public override void Awake()
     {
-        if (GameController.Instance.State == GameState.Paused || !Player.IsControllable || Player.IsStagger) return;
-        InputTypeController.Instance.CheckInputType(context);
+        base.Awake();
 
-        if (Player.Jetpack.IsHovering) Player.Jetpack.StopHovering();
-        Player.Jetpack.Fire();
+        _player = GetComponent<Player>();
+    }
+
+    public override void Start()
+    {
+        base.Start();
+    }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
     }
 
     #endregion
-
-    /// <summary>
-    /// Unity Event function.
-    /// Get component references.
-    /// </summary>
-    private void Awake()
-    {
-        Player = GetComponent<Player>();
-    }
-
-    /// <summary>
-    /// Unity Event function.
-    /// Update at consistent time.
-    /// </summary>
-    private void FixedUpdate()
-    {
-
-    }
 }

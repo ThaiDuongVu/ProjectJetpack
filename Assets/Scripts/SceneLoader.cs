@@ -4,49 +4,44 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    // Use a singleton pattern to make the class globally accessible
-
     #region Singleton
 
-    private static SceneLoader sceneLoaderInstance;
+    private static SceneLoader _sceneLoaderInstance;
 
     public static SceneLoader Instance
     {
         get
         {
-            if (sceneLoaderInstance == null) sceneLoaderInstance = FindObjectOfType<SceneLoader>();
-            return sceneLoaderInstance;
+            if (_sceneLoaderInstance == null) _sceneLoaderInstance = FindObjectOfType<SceneLoader>();
+            return _sceneLoaderInstance;
         }
     }
 
     #endregion
 
-    private Animator cameraAnimator;
+    private Animator _cameraAnimator;
     private static readonly int OutroTrigger = Animator.StringToHash("outro");
     [SerializeField] private AnimationClip cameraOutroAnimationClip;
 
-    private string sceneToLoad = "";
+    private string _sceneToLoad = "";
 
-    /// <summary>
-    /// Unity Event function.
-    /// Get component references.
-    /// </summary>
+    #region Unity Event
+
     private void Awake()
     {
-        if (Camera.main is { }) cameraAnimator = Camera.main.GetComponent<Animator>();
+        if (Camera.main is { }) _cameraAnimator = Camera.main.GetComponent<Animator>();
     }
 
-    /// <summary>
-    /// Load a scene in the background.
-    /// </summary>
+    #endregion
+
     private IEnumerator Load()
     {
         // Load scene in background but don't allow transition
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Single);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_sceneToLoad, LoadSceneMode.Single);
         asyncOperation.allowSceneActivation = false;
 
         // Play camera animation
-        cameraAnimator.SetTrigger(OutroTrigger);
+        _cameraAnimator.SetTrigger(OutroTrigger);
 
         // Wait for camera animation to complete
         yield return new WaitForSeconds(cameraOutroAnimationClip.averageDuration);
@@ -55,29 +50,19 @@ public class SceneLoader : MonoBehaviour
         asyncOperation.allowSceneActivation = true;
     }
 
-    /// <summary>
-    /// Load a scene.
-    /// </summary>
-    /// <param name="scene">Scene to load</param>
     public void Load(string scene)
     {
         Time.timeScale = 1f;
-        sceneToLoad = scene;
+        _sceneToLoad = scene;
         StartCoroutine(Load());
     }
 
-    /// <summary>
-    /// Restart scene.
-    /// </summary>
     public void Restart()
     {
         // Reload current active scene
         Load(SceneManager.GetActiveScene().name);
     }
 
-    /// <summary>
-    /// Quit game.
-    /// </summary>
     public static void Quit()
     {
         Application.Quit();

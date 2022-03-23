@@ -5,153 +5,126 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
-    // Use a singleton pattern to make the class globally accessible
-
     #region Singleton
 
-    private static GameController gameControllerInstance;
+    private static GameController _gameControllerInstance;
 
     public static GameController Instance
     {
         get
         {
-            if (gameControllerInstance == null) gameControllerInstance = FindObjectOfType<GameController>();
-            return gameControllerInstance;
+            if (_gameControllerInstance == null) _gameControllerInstance = FindObjectOfType<GameController>();
+            return _gameControllerInstance;
         }
     }
 
     #endregion
 
-    public GameState State { get; private set; } = GameState.Started;
+    public GameState State { get; private set; } = GameState.InProgress;
 
+    [Header("Menus")] [SerializeField] private Canvas mainUI;
     [SerializeField] private Menu pauseMenu;
     [SerializeField] private Menu gameOverMenu;
 
+    [Header("UI Message")]
     [SerializeField] private GameObject uiMessage;
-    private TMP_Text uiMessageText;
 
-    private InputManager inputManager;
+    private TMP_Text _uiMessageText;
 
-    /// <summary>
-    /// Unity Event function.
-    /// On current object enabled.
-    /// </summary>
-    private void OnEnable()
-    {
-        inputManager = new InputManager();
-
-        // Handle game pause input
-        inputManager.Game.Escape.performed += OnEscapePerformed;
-
-        inputManager.Enable();
-    }
+    private InputManager _inputManager;
 
     #region Input Methods
 
-    /// <summary>
-    /// On escape input performed.
-    /// </summary>
-    /// <param name="context">Input context</param>
-    private void OnEscapePerformed(InputAction.CallbackContext context)
+    private void EscapeOnPerformed(InputAction.CallbackContext context)
     {
         InputTypeController.Instance.CheckInputType(context);
 
-        if (State == GameState.Started) Pause();
-        else if (State == GameState.Paused) Resume();
+        if (State == GameState.InProgress) Pause();
     }
 
     #endregion
 
-    /// <summary>
-    /// Unity Event function.
-    /// On current object disabled.
-    /// </summary>
+    #region Unity Event
+
+    private void OnEnable()
+    {
+        _inputManager = new InputManager();
+
+        // Handle game pause input
+        _inputManager.Game.Escape.performed += EscapeOnPerformed;
+
+        _inputManager.Enable();
+    }
+
     private void OnDisable()
     {
-        inputManager.Disable();
+        _inputManager.Disable();
     }
 
-    /// <summary>
-    /// Unity Event function.
-    /// Get component references.
-    /// </summary>
     private void Awake()
     {
-        uiMessageText = uiMessage.GetComponentInChildren<TMP_Text>();
+        _uiMessageText = uiMessage.GetComponentInChildren<TMP_Text>();
     }
 
-    /// <summary>
-    /// Unity Event function.
-    /// Initialize before first frame update.
-    /// </summary>
     private void Start()
     {
         EffectsController.Instance.SetDepthOfField(false);
         EffectsController.Instance.SetChromaticAberration(false);
         EffectsController.Instance.SetVignetteIntensity(EffectsController.DefaultVignetteIntensity);
 
-        SetCursorEnabled(false);
         uiMessage.gameObject.SetActive(false);
+        mainUI.gameObject.SetActive(true);
+        SetCursorEnabled(false);
     }
 
-    /// <summary>
-    /// Set whether cursor is enabled.
-    /// </summary>
-    /// <param name="value">Value to set</param>
-    public void SetCursorEnabled(bool value)
+    private void FixedUpdate()
     {
-        Cursor.visible = value;
-        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
-    /// <summary>
-    /// Pause current game.
-    /// </summary>
+    #endregion
+
+    private static void SetCursorEnabled(bool value)
+    {
+        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = value;
+    }
+
+    #region Game State Methods
+
     public void Pause()
     {
-        State = GameState.Paused;
-
         Time.timeScale = 0f;
+        State = GameState.Paused;
+        pauseMenu.SetActive(true);
+
         EffectsController.Instance.SetDepthOfField(true);
         SetCursorEnabled(true);
-
-        pauseMenu.SetActive(true);
     }
 
-    /// <summary>
-    /// Resume current game.
-    /// </summary>
     public void Resume()
     {
-        if (!pauseMenu.IsInteractable) return;
-        State = GameState.Started;
-
         Time.timeScale = 1f;
+        State = GameState.InProgress;
+        pauseMenu.SetActive(false);
+
         EffectsController.Instance.SetDepthOfField(false);
         SetCursorEnabled(false);
-
-        pauseMenu.SetActive(false);
     }
 
-    /// <summary>
-    /// Game over.
-    /// </summary>
-    public void GameOver()
+    public IEnumerator GameOver()
     {
-        State = GameState.Over;
+        yield return new WaitForSeconds(0.5f);
+        
+        State = GameState.Paused;
+        gameOverMenu.SetActive(true);
 
         EffectsController.Instance.SetDepthOfField(true);
         SetCursorEnabled(true);
-
-        gameOverMenu.SetActive(true);
     }
 
-    /// <summary>
-    /// Slow the game down for a slight amount of time.
-    /// </summary>
-    /// <param name="scale">Slowed time scale</param>
-    /// <param name="duration">Duration to slow for</param>
-    public IEnumerator SlowDownEffect(float scale = 0.5f, float duration = 0.4f)
+    #endregion
+
+    public IEnumerator SlowDownEffect(float scale = 0.5f, float duration = 0.25f)
     {
         // Slow down
         Time.timeScale = scale;
@@ -168,14 +141,18 @@ public class GameController : MonoBehaviour
         EffectsController.Instance.SetVignetteIntensity(EffectsController.DefaultVignetteIntensity);
     }
 
-    /// <summary>
-    /// Send a string message to the player through the game's UI.
-    /// </summary>
-    /// <param name="message">Message to send</param>
     public void SendUIMessage(string message)
     {
+        if (string.IsNullOrEmpty(message)) return;
+
         uiMessage.gameObject.SetActive(false);
-        uiMessageText.text = message;
+        _uiMessageText.text = message;
         uiMessage.gameObject.SetActive(true);
+    }
+
+    public void SetTimeScale(float scale)
+    {
+        Time.timeScale = scale;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
 }
