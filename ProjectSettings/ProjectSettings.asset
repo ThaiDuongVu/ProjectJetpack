@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Tabby Cat
-  productName: Project Dash
+  productName: Project Jetpack
   defaultCursor: {fileID: 2800000, guid: 6e66289facba7514eb00f52c01befff8, type: 3}
   cursorHotspot: {x: 20, y: 20}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}

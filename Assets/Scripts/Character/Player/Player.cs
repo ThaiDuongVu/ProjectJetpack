@@ -9,8 +9,13 @@ public class Player : Character
 
     [SerializeField] private Trail groundTrailPrefab;
     public Trail GroundTrail { get; private set; }
+    [SerializeField] private Color transparent;
+    [SerializeField] private Color white;
 
     [SerializeField] private ParticleSystem whiteExplosionPrefab;
+
+    public bool IsFalling { get; set; }
+    private static readonly int IsFallingAnimationTrigger = Animator.StringToHash("isFalling");
 
     #region Unity Event
 
@@ -32,7 +37,21 @@ public class Player : Character
         GroundTrail.Target = transform;
     }
 
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        DetectFall();
+    }
+
     #endregion
+
+    private void DetectFall()
+    {
+        IsFalling = Rigidbody2D.velocity.y != 0f;
+        Animator.SetBool(IsFallingAnimationTrigger, IsFalling);
+        GroundTrail.SetColor(IsFalling ? transparent : white);
+    }
 
     #region Damage & Death
 
@@ -48,7 +67,7 @@ public class Player : Character
 
         Instantiate(whiteExplosionPrefab, transform.position, Quaternion.identity);
         GameController.Instance.StartCoroutine(GameController.Instance.GameOver());
-        
+
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
         GameController.Instance.StartCoroutine(GameController.Instance.SlowDownEffect());
 
