@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,7 @@ public class PlayerCombat : CharacterCombat
     [SerializeField] private float jumpForce = 18f;
     [SerializeField] private ParticleSystem jumpMuzzlePrefab;
     [SerializeField] private Transform jumpPoint;
-    [SerializeField] private float fuelConsumptionPerJump = 10f;
+    [SerializeField] private float fuelConsumptionPerJump = 20f;
     [SerializeField] private int jumpRate = 4;
     private float _maxJumpTimer;
     private float _jumpTimer;
@@ -18,10 +19,20 @@ public class PlayerCombat : CharacterCombat
     [Header("Hover Properties")]
     [SerializeField] private float hoverForce = 26f;
     [SerializeField] private ParticleSystem hoverMuzzle;
-    [SerializeField] private float fuelConsumptionPerHoverSecond = 10f;
+    [SerializeField] private float fuelConsumptionPerHoverSecond = 25f;
 
     [Header("Recharge Properties")]
-    [SerializeField] private float fuelRechargePerSecond = 40f;
+    [SerializeField] private float fuelRechargePerSecond = 50f;
+
+    [Header("Shoot Properties")]
+    [SerializeField] private Transform shootPoint;
+    [SerializeField] private GameObject shootLine;
+    [SerializeField] private BulletEffect bulletEffectPrefab;
+    [SerializeField] private ParticleSystem bloodSplashPrefab;
+
+    [Header("Damage Properties")]
+    [SerializeField] private int damagerPerJump = 1;
+    [SerializeField] private int damagePerHoverSecond = 1;
 
     public bool IsInHoverMode { get; set; }
 
@@ -113,6 +124,8 @@ public class PlayerCombat : CharacterCombat
         _player.Rigidbody2D.velocity = Vector2.zero;
         _player.Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
+        JumpShoot(shootPoint.position, Vector2.down);
+
         _jumpTimer = 0f;
         _canJump = false;
         _player.PlayerResources.Fuel -= fuelConsumptionPerJump;
@@ -152,5 +165,28 @@ public class PlayerCombat : CharacterCombat
     private void Recharge()
     {
         _player.PlayerResources.Fuel += fuelRechargePerSecond * Time.fixedDeltaTime;
+    }
+
+    private void JumpShoot(Vector2 point, Vector2 direction)
+    {
+        var hit = Physics2D.Raycast(point, direction, Mathf.Infinity, LayerMask.GetMask("Enemies"));
+        if (!hit) return;
+
+        var enemy = hit.transform.GetComponent<Enemy>();
+        enemy.TakeDamage(damagerPerJump);
+
+        Instantiate(bulletEffectPrefab, shootPoint.position, Quaternion.identity).targetPosition = hit.point;
+        Instantiate(bloodSplashPrefab, hit.point, Quaternion.identity).transform.up = -direction;
+        // StartCoroutine(FlashShootLine(hit.point));
+    }
+
+    private IEnumerator FlashShootLine(Vector2 point)
+    {
+        shootLine.transform.localScale = new Vector2(0.125f, shootPoint.position.y - point.y);
+        shootLine.SetActive(true);
+
+        yield return new WaitForSeconds(0.1f);
+
+        shootLine.SetActive(false);
     }
 }

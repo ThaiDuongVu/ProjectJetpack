@@ -56,4 +56,14 @@ public class Character : MonoBehaviour
     }
 
     #endregion
+
+    public void Stagger(Vector2 direction, float force)
+    {
+        if (!Rigidbody2D) return;
+
+        CharacterMovement?.StopRunningImmediate();
+        
+        Rigidbody2D.velocity = Vector2.zero;
+        Rigidbody2D.AddForce(direction * force, ForceMode2D.Impulse);
+    }
 }
