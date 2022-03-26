@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : CharacterMovement
 {
-    private Player _player;
-
     private InputManager _inputManager;
 
     #region Input Methods
@@ -54,7 +52,7 @@ public class PlayerMovement : CharacterMovement
     {
         base.Awake();
 
-        _player = GetComponent<Player>();
+        GetComponent<Player>();
     }
 
     #endregion

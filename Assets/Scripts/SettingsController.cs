@@ -38,11 +38,10 @@ public class SettingsController : MonoBehaviour
     public void Apply()
     {
         Application.targetFrameRate = 60;
-#if UNITY_STANDALONE
+
         // Apply resolution & full screen settings
         Screen.SetResolution(resolution.CurrentState, resolution.CurrentState / 16 * 9,
             (FullScreenMode) fullScreen.CurrentState);
-#endif
 
         // Apply quality settings
         QualitySettings.SetQualityLevel(quality.CurrentState);

@@ -77,10 +77,6 @@ public class GameController : MonoBehaviour
         SetCursorEnabled(false);
     }
 
-    private void FixedUpdate()
-    {
-    }
-
     #endregion
 
     private static void SetCursorEnabled(bool value)

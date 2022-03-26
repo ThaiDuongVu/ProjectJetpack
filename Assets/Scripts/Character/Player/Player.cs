@@ -14,8 +14,8 @@ public class Player : Character
 
     [SerializeField] private ParticleSystem whiteExplosionPrefab;
 
-    public bool IsFalling { get; set; }
-    private static readonly int IsFallingAnimationTrigger = Animator.StringToHash("isFalling");
+    public bool IsAirbourne { get; set; }
+    private static readonly int IsAirbourneAnimationTrigger = Animator.StringToHash("isAirbourne");
 
     #region Unity Event
 
@@ -41,16 +41,16 @@ public class Player : Character
     {
         base.FixedUpdate();
 
-        DetectFall();
+        DetectAirbourne();
     }
 
     #endregion
 
-    private void DetectFall()
+    private void DetectAirbourne()
     {
-        IsFalling = Rigidbody2D.velocity.y != 0f;
-        Animator.SetBool(IsFallingAnimationTrigger, IsFalling);
-        GroundTrail.SetColor(IsFalling ? transparent : white);
+        IsAirbourne = Rigidbody2D.velocity.y != 0f;
+        Animator.SetBool(IsAirbourneAnimationTrigger, IsAirbourne);
+        GroundTrail.SetColor(IsAirbourne ? transparent : white);
     }
 
     #region Damage & Death

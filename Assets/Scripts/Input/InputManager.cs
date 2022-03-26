@@ -833,8 +833,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""abca6d95-5d04-47ee-88ec-569b3fdbc0bb"",
-                    ""path"": ""<Keyboard>/rightCtrl"",
+                    ""id"": ""ada4011a-7b3e-4484-9d99-5e32144b4920"",
+                    ""path"": ""<Keyboard>/period"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
@@ -877,8 +877,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f73c873c-8172-4973-aa18-e04a4939c809"",
-                    ""path"": ""<Keyboard>/rightAlt"",
+                    ""id"": ""7a2e2d03-5d19-4962-ae84-36914b2f96e8"",
+                    ""path"": ""<Keyboard>/comma"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",

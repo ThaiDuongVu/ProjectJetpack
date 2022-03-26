@@ -33,6 +33,8 @@ public class PlayerResources : CharacterResources
         get => _fuel;
         set
         {
+            if (value > maxFuel) return;
+            
             _fuel = value;
             UpdateFuelBar();
         }
@@ -75,8 +77,8 @@ public class PlayerResources : CharacterResources
     private void UpdateHealthBar()
     {
         if (Health < 0) return;
-        for (int i = 0; i < Health; i++) _healthIcons[i].gameObject.SetActive(true);
-        for (int i = Health; i < maxHealth; i++) _healthIcons[i].gameObject.SetActive(false);
+        for (var i = 0; i < Health; i++) _healthIcons[i].gameObject.SetActive(true);
+        for (var i = Health; i < maxHealth; i++) _healthIcons[i].gameObject.SetActive(false);
     }
 
     private void UpdateFuelBar()

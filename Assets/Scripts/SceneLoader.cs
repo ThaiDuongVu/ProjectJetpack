@@ -37,7 +37,7 @@ public class SceneLoader : MonoBehaviour
     private IEnumerator Load()
     {
         // Load scene in background but don't allow transition
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_sceneToLoad, LoadSceneMode.Single);
+        var asyncOperation = SceneManager.LoadSceneAsync(_sceneToLoad, LoadSceneMode.Single);
         asyncOperation.allowSceneActivation = false;
 
         // Play camera animation
