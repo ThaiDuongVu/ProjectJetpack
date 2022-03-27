@@ -7,6 +7,7 @@ TagManager:
   - IgnoreFont
   - Collectible
   - Enemy
+  - BottomBorder
   layers:
   - Default
   - TransparentFX

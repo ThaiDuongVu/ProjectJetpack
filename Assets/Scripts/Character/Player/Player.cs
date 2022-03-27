@@ -75,4 +75,9 @@ public class Player : Character
     }
 
     #endregion
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("BottomBorder")) Die();
+    }
 }

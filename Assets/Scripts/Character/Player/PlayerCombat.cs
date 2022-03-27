@@ -11,6 +11,7 @@ public class PlayerCombat : CharacterCombat
     [SerializeField] private ParticleSystem jumpMuzzlePrefab;
     [SerializeField] private Transform jumpPoint;
     [SerializeField] private float fuelConsumptionPerJump = 20f;
+    [SerializeField] private int healthConsumptionPerJump = 1;
     [SerializeField] private int jumpRate = 4;
     private float _maxJumpTimer;
     private float _jumpTimer;
@@ -119,7 +120,6 @@ public class PlayerCombat : CharacterCombat
     private void Jump()
     {
         if (!_canJump) return;
-        if (_player.PlayerResources.Fuel < fuelConsumptionPerJump) return;
 
         _player.Rigidbody2D.velocity = Vector2.zero;
         _player.Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -128,7 +128,8 @@ public class PlayerCombat : CharacterCombat
 
         _jumpTimer = 0f;
         _canJump = false;
-        _player.PlayerResources.Fuel -= fuelConsumptionPerJump;
+        if (_player.PlayerResources.Fuel < fuelConsumptionPerJump) _player.PlayerResources.Health -= healthConsumptionPerJump;
+        else _player.PlayerResources.Fuel -= fuelConsumptionPerJump;
 
         Instantiate(jumpMuzzlePrefab, jumpPoint.position, Quaternion.identity);
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
