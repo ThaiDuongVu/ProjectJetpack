@@ -19,13 +19,10 @@ public class DemonicRatCombat : EnemyCombat
     {
         if (!other.transform.CompareTag("Player")) return;
 
-        _demonicRat.Rigidbody2D.velocity = Vector2.zero;
-
         var player = other.transform.GetComponent<Player>();
         player.TakeDamage(_demonicRat.DemonicRatResources.damage);
         
-        // TODO: Update stagger direction
-        player.Stagger((Vector2.left + Vector2.up).normalized, _demonicRat.DemonicRatResources.staggerForce);
+        player.Stagger((_demonicRat.Direction + Vector2.up).normalized, _demonicRat.DemonicRatResources.staggerForce);
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
     }
 }

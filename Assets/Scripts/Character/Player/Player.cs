@@ -59,6 +59,7 @@ public class Player : Character
     {
         base.TakeDamage(damage);
         PlayerCombo.Cancel();
+        PlayerCombat.ExitHoverMode();
     }
 
     public override void Die()

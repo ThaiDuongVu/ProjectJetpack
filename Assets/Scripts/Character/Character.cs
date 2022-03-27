@@ -61,8 +61,7 @@ public class Character : MonoBehaviour
     {
         if (!Rigidbody2D) return;
 
-        CharacterMovement?.StopRunningImmediate();
-        
+        if (CharacterMovement) CharacterMovement.StopRunningImmediate();
         Rigidbody2D.velocity = Vector2.zero;
         Rigidbody2D.AddForce(direction * force, ForceMode2D.Impulse);
     }

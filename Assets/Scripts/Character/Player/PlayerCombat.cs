@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,12 +26,11 @@ public class PlayerCombat : CharacterCombat
 
     [Header("Shoot Properties")]
     [SerializeField] private Transform shootPoint;
-    [SerializeField] private GameObject shootLine;
     [SerializeField] private BulletEffect bulletEffectPrefab;
     [SerializeField] private ParticleSystem bloodSplashPrefab;
 
     [Header("Damage Properties")]
-    [SerializeField] private int damagerPerJump = 1;
+    [SerializeField] private int damagePerJump = 1;
     [SerializeField] private int damagePerHoverSecond = 1;
 
     public bool IsInHoverMode { get; set; }
@@ -124,7 +122,7 @@ public class PlayerCombat : CharacterCombat
         _player.Rigidbody2D.velocity = Vector2.zero;
         _player.Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-        JumpShoot(shootPoint.position, Vector2.down);
+        Shoot(shootPoint.position, Vector2.down);
 
         _jumpTimer = 0f;
         _canJump = false;
@@ -145,7 +143,7 @@ public class PlayerCombat : CharacterCombat
         IsInHoverMode = true;
     }
 
-    private void ExitHoverMode()
+    public void ExitHoverMode()
     {
         hoverMuzzle.Stop();
 
@@ -168,26 +166,16 @@ public class PlayerCombat : CharacterCombat
         _player.PlayerResources.Fuel += fuelRechargePerSecond * Time.fixedDeltaTime;
     }
 
-    private void JumpShoot(Vector2 point, Vector2 direction)
+    private void Shoot(Vector2 point, Vector2 direction)
     {
         var hit = Physics2D.Raycast(point, direction, Mathf.Infinity, LayerMask.GetMask("Enemies"));
         if (!hit) return;
 
         var enemy = hit.transform.GetComponent<Enemy>();
-        enemy.TakeDamage(damagerPerJump);
+        enemy.TakeDamage(damagePerJump);
+        _player.PlayerCombo.Add(1);
 
         Instantiate(bulletEffectPrefab, shootPoint.position, Quaternion.identity).targetPosition = hit.point;
         Instantiate(bloodSplashPrefab, hit.point, Quaternion.identity).transform.up = -direction;
-        // StartCoroutine(FlashShootLine(hit.point));
-    }
-
-    private IEnumerator FlashShootLine(Vector2 point)
-    {
-        shootLine.transform.localScale = new Vector2(0.125f, shootPoint.position.y - point.y);
-        shootLine.SetActive(true);
-
-        yield return new WaitForSeconds(0.1f);
-
-        shootLine.SetActive(false);
     }
 }
