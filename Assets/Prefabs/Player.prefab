@@ -1549,7 +1549,7 @@ MonoBehaviour:
   - {x: 0.375, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 52624
+  m_InstanceId: 50678
 --- !u!114 &7367146481410131851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1567,6 +1567,7 @@ MonoBehaviour:
   transparent: {r: 0, g: 0, b: 0, a: 0}
   white: {r: 0.34117648, g: 0.39607844, b: 0.45490196, a: 1}
   whiteExplosionPrefab: {fileID: 3827419661170153826, guid: 604de0e7b0179f1449145727268eb369, type: 3}
+  airbourneVelocityThreshold: 0.1
 --- !u!114 &7367146481410131852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1606,10 +1607,9 @@ MonoBehaviour:
   fuelConsumptionPerHoverSecond: 25
   fuelRechargePerSecond: 50
   shootPoint: {fileID: 9203814971321710099}
-  shootLine: {fileID: 0}
   bulletEffectPrefab: {fileID: 8968046176659990773, guid: 51379624f5a548a4491da9affa707d20, type: 3}
   bloodSplashPrefab: {fileID: 3827419661170153826, guid: 432d4be562e08624e99aafd3ab408fe0, type: 3}
-  damagerPerJump: 1
+  damagePerJump: 1
   damagePerHoverSecond: 1
 --- !u!114 &7367146481410131854
 MonoBehaviour:

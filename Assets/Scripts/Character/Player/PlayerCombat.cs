@@ -168,8 +168,9 @@ public class PlayerCombat : CharacterCombat
 
     private void Shoot(Vector2 point, Vector2 direction)
     {
-        var hit = Physics2D.Raycast(point, direction, Mathf.Infinity, LayerMask.GetMask("Enemies"));
+        var hit = Physics2D.Raycast(point, direction, Mathf.Infinity);
         if (!hit) return;
+        if (!hit.transform.CompareTag("Enemy")) return;
 
         var enemy = hit.transform.GetComponent<Enemy>();
         enemy.TakeDamage(damagePerJump);

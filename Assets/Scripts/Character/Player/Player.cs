@@ -7,6 +7,7 @@ public class Player : Character
     public PlayerResources PlayerResources { get; private set; }
     public PlayerCombo PlayerCombo { get; private set; }
 
+
     [SerializeField] private Trail groundTrailPrefab;
     public Trail GroundTrail { get; private set; }
     [SerializeField] private Color transparent;
@@ -15,6 +16,7 @@ public class Player : Character
     [SerializeField] private ParticleSystem whiteExplosionPrefab;
 
     public bool IsAirbourne { get; set; }
+    [SerializeField] private float airbourneVelocityThreshold = 0.1f;
     private static readonly int IsAirbourneAnimationTrigger = Animator.StringToHash("isAirbourne");
 
     #region Unity Event
@@ -48,7 +50,7 @@ public class Player : Character
 
     private void DetectAirbourne()
     {
-        IsAirbourne = Rigidbody2D.velocity.y != 0f;
+        IsAirbourne = Mathf.Abs(Rigidbody2D.velocity.y) > airbourneVelocityThreshold;
         Animator.SetBool(IsAirbourneAnimationTrigger, IsAirbourne);
         GroundTrail.SetColor(IsAirbourne ? transparent : white);
     }
