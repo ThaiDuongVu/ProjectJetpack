@@ -16,7 +16,7 @@ public class Collectible : MonoBehaviour
     private const float TimeoutDuration = 30f;
 
     private Rigidbody2D _rigidbody2D;
-    private const float InitForce = 10f;
+    private const float InitForce = 8f;
 
     #region Unity Event
 
