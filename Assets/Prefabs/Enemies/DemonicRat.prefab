@@ -163,7 +163,7 @@ MonoBehaviour:
   - {x: 0.3499999, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 71588
+  m_InstanceId: 62252
 --- !u!114 &5975208529055845311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,9 +178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainSprite: {fileID: 5975208529549287681}
   explosionRedPrefab: {fileID: 3827419661170153826, guid: 356f312eb193de64ba0411401a1da186, type: 3}
-  aimRange: 4
-  wanderVelocity: 3
-  rushVelocity: 6
 --- !u!114 &5975208529055845308
 MonoBehaviour:
   m_ObjectHideFlags: 0

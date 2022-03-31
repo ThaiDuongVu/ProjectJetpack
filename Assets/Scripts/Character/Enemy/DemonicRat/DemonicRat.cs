@@ -46,13 +46,13 @@ public class DemonicRat : Enemy
 
     private void WanderCurrentDirection()
     {
-        State = DemonicRatState.Idle;
+        State = DemonicRatState.Wander;
         DemonicRatMovement.StartRunning(Direction);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("DemonicRatBorder"))
+        if (other.CompareTag("DemonicRatBorder") && (other.transform.position.x - transform.position.x) * Direction.x >= 0f)
         {
             DemonicRatMovement.StopRunning();
             State = DemonicRatState.Idle;
