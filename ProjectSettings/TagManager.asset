@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - BottomBorder
   - DemonicRatBorder
+  - Fireball
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Obstacles
   - Player
   - Levels
-  - 
-  - 
+  - Fireballs
+  - FireballsFriendly
   - 
   - 
   - 

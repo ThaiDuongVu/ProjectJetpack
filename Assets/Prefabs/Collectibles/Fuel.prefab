@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7005dd71fed1a004e8fbdc04efa57163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reward: 20
+  reward: 10
 --- !u!1 &3769514848582535541
 GameObject:
   m_ObjectHideFlags: 0

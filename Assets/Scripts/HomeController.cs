@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class HomeController : MonoBehaviour
 {
@@ -8,7 +10,23 @@ public class HomeController : MonoBehaviour
     [Header("UI Message")]
     [SerializeField] private GameObject uiMessage;
 
+    private InputManager _inputManager;
+
     #region Unity Event
+
+    private void OnEnable()
+    {
+        _inputManager = new InputManager();
+
+        _inputManager.Game.Test.performed += (InputAction.CallbackContext context) => { SceneManager.LoadScene("Playground"); };
+
+        _inputManager.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _inputManager.Disable();
+    }
 
     private void Start()
     {

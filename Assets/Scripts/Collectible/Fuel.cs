@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Fuel : Collectible
 {
-    [SerializeField] private float reward = 20f;
+    [SerializeField] private float reward = 10f;
 
     public override void Collect(Transform target)
     {

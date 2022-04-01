@@ -22,7 +22,7 @@ public class PlayerCombat : CharacterCombat
     [SerializeField] private float fuelConsumptionPerHoverSecond = 25f;
 
     [Header("Recharge Properties")]
-    [SerializeField] private float fuelRechargePerSecond = 50f;
+    [SerializeField] private float fuelRechargePerSecond = 100f;
 
     [Header("Shoot Properties")]
     [SerializeField] private Transform shootPoint;
@@ -122,7 +122,7 @@ public class PlayerCombat : CharacterCombat
         _player.Rigidbody2D.velocity = Vector2.zero;
         _player.Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-        Shoot(shootPoint.position, Vector2.down);
+        CameraShaker.Instance.Shake(Shoot(shootPoint.position, Vector2.down) ? CameraShakeMode.Normal : CameraShakeMode.Light);
 
         _jumpTimer = 0f;
         _canJump = false;
@@ -130,7 +130,6 @@ public class PlayerCombat : CharacterCombat
         else _player.PlayerResources.Fuel -= fuelConsumptionPerJump;
 
         Instantiate(jumpMuzzlePrefab, jumpPoint.position, Quaternion.identity);
-        CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 
     private void EnterHoverMode()
@@ -166,17 +165,29 @@ public class PlayerCombat : CharacterCombat
         _player.PlayerResources.Fuel += fuelRechargePerSecond * Time.fixedDeltaTime;
     }
 
-    private void Shoot(Vector2 point, Vector2 direction)
+    private bool Shoot(Vector2 point, Vector2 direction)
     {
         var hit = Physics2D.Raycast(point, direction, Mathf.Infinity);
-        if (!hit) return;
-        if (!hit.transform.CompareTag("Enemy")) return;
+        if (!hit) return false;
 
-        var enemy = hit.transform.GetComponent<Enemy>();
-        enemy.TakeDamage(damagePerJump);
-        _player.PlayerCombo.Add(1);
+        if (hit.transform.CompareTag("Enemy"))
+        {
+            var enemy = hit.transform.GetComponent<Enemy>();
+            enemy.TakeDamage(damagePerJump);
 
-        Instantiate(bulletEffectPrefab, shootPoint.position, Quaternion.identity).targetPosition = hit.point;
-        Instantiate(bloodSplashPrefab, hit.point, Quaternion.identity).transform.up = -direction;
+            _player.PlayerCombo.Add(1);
+            Instantiate(bloodSplashPrefab, hit.point, Quaternion.identity).transform.up = -direction;
+            Instantiate(bulletEffectPrefab, shootPoint.position, Quaternion.identity).targetPosition = hit.point;
+        }
+        else if (hit.transform.CompareTag("Fireball"))
+        {
+            var fireball = hit.transform.GetComponent<Fireball>();
+            fireball.ReturnToSender();
+
+            _player.PlayerCombo.Add(1);
+            Instantiate(bulletEffectPrefab, shootPoint.position, Quaternion.identity).targetPosition = hit.point;
+        }
+
+        return true;
     }
 }

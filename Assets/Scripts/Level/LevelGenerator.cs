@@ -18,7 +18,7 @@ public class LevelGenerator : MonoBehaviour
     {
         foreach (var position in levelPositions)
         {
-            Instantiate(levelFragmentPrefabs[0], position, Quaternion.identity).transform.parent = transform;
+            Instantiate(levelFragmentPrefabs[Random.Range(0, levelFragmentPrefabs.Length)], position, Quaternion.identity).transform.parent = transform;
         }
     }
 }
