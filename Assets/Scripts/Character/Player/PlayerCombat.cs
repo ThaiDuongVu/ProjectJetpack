@@ -5,6 +5,12 @@ public class PlayerCombat : CharacterCombat
 {
     private Player _player;
 
+    [Header("Aim Properties")]
+    [SerializeField] private SpriteRenderer crosshair;
+    [SerializeField] private Color normalColor;
+    [SerializeField] private Color aimColor;
+    private readonly string[] _aimLayers = { "Enemies", "Fireballs" };
+
     [Header("Jump Properties")]
     [SerializeField] private float jumpForce = 18f;
     [SerializeField] private ParticleSystem jumpMuzzlePrefab;
@@ -31,7 +37,6 @@ public class PlayerCombat : CharacterCombat
 
     [Header("Damage Properties")]
     [SerializeField] private int damagePerJump = 1;
-    [SerializeField] private int damagePerHoverSecond = 1;
 
     public bool IsInHoverMode { get; set; }
 
@@ -104,6 +109,8 @@ public class PlayerCombat : CharacterCombat
     {
         base.FixedUpdate();
 
+        Aim(shootPoint.position, Vector2.down);
+
         if (_jumpTimer < _maxJumpTimer) _jumpTimer += Time.fixedDeltaTime;
         else _canJump = true;
 
@@ -112,6 +119,23 @@ public class PlayerCombat : CharacterCombat
     }
 
     #endregion
+
+    private void Aim(Vector2 point, Vector2 direction)
+    {
+        if (!_player.IsAirbourne)
+        {
+            crosshair.gameObject.SetActive(false);
+            return;
+        }
+
+        crosshair.gameObject.SetActive(true);
+        crosshair.color = normalColor;
+
+        var hit = Physics2D.Raycast(point, direction, Mathf.Infinity, LayerMask.GetMask(_aimLayers));
+        if (!hit) return;
+
+        crosshair.color = aimColor;
+    }
 
     #region Jump & Hover
 

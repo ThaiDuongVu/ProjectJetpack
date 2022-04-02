@@ -7,7 +7,7 @@ public class DemonicRat : Enemy
     public DemonicRatResources DemonicRatResources { get; private set; }
 
     public DemonicRatState State { get; set; } = DemonicRatState.Idle;
-    private Vector2 _idleTimeRange = new Vector2(1f, 2f);
+    private readonly Vector2 _idleTimeRange = new Vector2(1f, 2f);
     public Vector2 Direction { get; set; }
 
     #region Unity Event
@@ -30,11 +30,6 @@ public class DemonicRat : Enemy
         WanderCurrentDirection();
     }
 
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-
     #endregion
 
     private void WanderOppositeDirection()
@@ -52,21 +47,20 @@ public class DemonicRat : Enemy
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("DemonicRatBorder") && (other.transform.position.x - transform.position.x) * Direction.x >= 0f)
-        {
-            DemonicRatMovement.StopRunning();
-            State = DemonicRatState.Idle;
-            Invoke(nameof(WanderOppositeDirection), Random.Range(_idleTimeRange.x, _idleTimeRange.y));
-        }
+        if (!other.CompareTag("DemonicRatBorder") ||
+            !((other.transform.position.x - transform.position.x) * Direction.x >= 0f)) return;
+        
+        DemonicRatMovement.StopRunning();
+        State = DemonicRatState.Idle;
+        Invoke(nameof(WanderOppositeDirection), Random.Range(_idleTimeRange.x, _idleTimeRange.y));
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.transform.CompareTag("Player"))
-        {
-            DemonicRatMovement.StopRunning();
-            State = DemonicRatState.Idle;
-            Invoke(nameof(WanderCurrentDirection), Random.Range(_idleTimeRange.x, _idleTimeRange.y));
-        }
+        if (!other.transform.CompareTag("Player")) return;
+        
+        DemonicRatMovement.StopRunning();
+        State = DemonicRatState.Idle;
+        Invoke(nameof(WanderCurrentDirection), Random.Range(_idleTimeRange.x, _idleTimeRange.y));
     }
 }

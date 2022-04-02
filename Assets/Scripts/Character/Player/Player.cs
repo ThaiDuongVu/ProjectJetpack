@@ -19,6 +19,10 @@ public class Player : Character
     [SerializeField] private float airbourneVelocityThreshold = 0.1f;
     private static readonly int IsAirbourneAnimationTrigger = Animator.StringToHash("isAirbourne");
 
+    [SerializeField] private SpriteRenderer arrow;
+    private const float ArrowPosition = 7.5f;
+    private const float MaxPositionY = 9f;
+
     #region Unity Event
 
     public override void Awake()
@@ -44,6 +48,13 @@ public class Player : Character
         base.FixedUpdate();
 
         DetectAirbourne();
+
+        if (transform.position.y >= MaxPositionY)
+        {
+            arrow.gameObject.SetActive(true);
+            arrow.transform.position = new Vector3(transform.position.x, 7.5f);
+        }
+        else arrow.gameObject.SetActive(false);
     }
 
     #endregion

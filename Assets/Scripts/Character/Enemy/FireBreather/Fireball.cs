@@ -56,7 +56,7 @@ public class Fireball : MonoBehaviour
             return;
         }
 
-        _currentDirection = ((Target.position + Vector3.up * 0.5f) - transform.position).normalized;
+        _currentDirection = (Target.position - transform.position).normalized;
         _rigidbody2d.MovePosition(_rigidbody2d.position + _currentDirection * (_currentVelocity * Time.fixedDeltaTime));
     }
 

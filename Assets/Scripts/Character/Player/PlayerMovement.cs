@@ -48,12 +48,5 @@ public class PlayerMovement : CharacterMovement
         _inputManager.Disable();
     }
 
-    public override void Awake()
-    {
-        base.Awake();
-
-        GetComponent<Player>();
-    }
-
     #endregion
 }
