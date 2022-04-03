@@ -66,7 +66,7 @@ public class Fireball : MonoBehaviour
     {
         mainSprite.color = friendlyColor;
         light2d.color = friendlyColor;
-        trail.startColor = friendlyColor;
+        trail.startColor = trail.endColor = friendlyColor;
 
         Target = Sender;
         _currentVelocity = returnVelocity;
@@ -83,6 +83,7 @@ public class Fireball : MonoBehaviour
         Instantiate(explosionRedPrefab, transform.position, Quaternion.identity);
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
         FireBreather.BulletsCount--;
+
         Destroy(gameObject);
     }
 
@@ -93,8 +94,8 @@ public class Fireball : MonoBehaviour
         {
             character.TakeDamage(damage);
             character.Stagger(_currentDirection, staggerForce);
+            
+            Explode();
         }
-
-        Explode();
     }
 }

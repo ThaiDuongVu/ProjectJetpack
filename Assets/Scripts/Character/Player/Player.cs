@@ -7,7 +7,6 @@ public class Player : Character
     public PlayerResources PlayerResources { get; private set; }
     public PlayerCombo PlayerCombo { get; private set; }
 
-
     [SerializeField] private Trail groundTrailPrefab;
     public Trail GroundTrail { get; private set; }
     [SerializeField] private Color transparent;
@@ -22,6 +21,8 @@ public class Player : Character
     [SerializeField] private SpriteRenderer arrow;
     private const float ArrowPosition = 7.5f;
     private const float MaxPositionY = 9f;
+
+    public bool CanExit { get; set; }
 
     #region Unity Event
 
@@ -46,6 +47,11 @@ public class Player : Character
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    public override void Update()
+    {
+        base.Update();
 
         DetectAirbourne();
 
@@ -93,5 +99,15 @@ public class Player : Character
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("BottomBorder")) Die();
+        else if (other.CompareTag("Portal"))
+        {
+            var portal = other.GetComponent<Portal>();
+            if (portal.IsOpen) CanExit = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Portal")) CanExit = false;
     }
 }

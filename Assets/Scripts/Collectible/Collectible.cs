@@ -9,11 +9,11 @@ public class Collectible : MonoBehaviour
     public bool CanBeCollected { get; set; }
 
     private Transform _collectTarget;
-    private const float CollectDelay = 0.5f;
+    private const float CollectDelay = 0.2f;
     private const float CollectInterpolationRatio = 0.1f;
 
     private DelayedDestroyer _delayedDestroyer;
-    private const float TimeoutDuration = 30f;
+    private const float TimeoutDuration = 15f;
 
     private Rigidbody2D _rigidbody2D;
     private const float InitForce = 8f;

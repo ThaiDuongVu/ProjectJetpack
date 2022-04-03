@@ -10,6 +10,7 @@ TagManager:
   - BottomBorder
   - DemonicRatBorder
   - Fireball
+  - Portal
   layers:
   - Default
   - TransparentFX

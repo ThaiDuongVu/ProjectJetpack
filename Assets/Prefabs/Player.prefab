@@ -1554,9 +1554,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 3
+  m_LinearDrag: 2
   m_AngularDrag: 0
-  m_GravityScale: 3
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1624,7 +1624,7 @@ MonoBehaviour:
   - {x: 0.375, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 44726
+  m_InstanceId: 72392
 --- !u!114 &7367146481410131851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1675,13 +1675,13 @@ MonoBehaviour:
   crosshair: {fileID: 4602825760384080552}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   aimColor: {r: 1, g: 0.41960785, b: 0.41960785, a: 1}
-  jumpForce: 18
+  jumpForce: 20
   jumpMuzzlePrefab: {fileID: 3827419661170153826, guid: ffd25c1ae9c01d844bb70e1b75ab00d9, type: 3}
   jumpPoint: {fileID: 2145706152490120779}
   fuelConsumptionPerJump: 20
   healthConsumptionPerJump: 1
   jumpRate: 5
-  hoverForce: 26
+  hoverForce: 36
   hoverMuzzle: {fileID: 5990039662304289379}
   fuelConsumptionPerHoverSecond: 25
   fuelRechargePerSecond: 100
@@ -1769,7 +1769,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000007763714bb1e2c630930cc15283846287

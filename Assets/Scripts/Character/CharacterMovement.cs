@@ -87,8 +87,6 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void Run()
     {
-        if (_character.Rigidbody2D.isKinematic) return;
-        
         _character.Rigidbody2D.velocity = new Vector2(CurrentDirection.x * CurrentVelocity, _character.Rigidbody2D.velocity.y);
         _character.SetFlipped(CurrentDirection.x < 0f);
     }

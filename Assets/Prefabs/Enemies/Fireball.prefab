@@ -344,7 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6726453188943978712}
   - component: {fileID: 6726453188943978713}
-  - component: {fileID: 6726453188943978714}
+  - component: {fileID: 7303961574047008275}
   - component: {fileID: 6573034555113870041}
   - component: {fileID: 6726453188943978715}
   m_Layer: 10
@@ -362,7 +362,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6726453188943978711}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.5, y: -4.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -385,15 +385,15 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 3
+  m_LinearDrag: 2
   m_AngularDrag: 0
-  m_GravityScale: 3
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &6726453188943978714
+--- !u!58 &7303961574047008275
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -408,7 +408,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.2
 --- !u!61 &6573034555113870041
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -455,5 +455,5 @@ MonoBehaviour:
   returnVelocity: 20
   damage: 1
   staggerForce: 10
-  explosionRedPrefab: {fileID: 3827419661170153826, guid: 356f312eb193de64ba0411401a1da186, type: 3}
+  explosionRedPrefab: {fileID: 3827419661170153826, guid: 04437647add97d64185cd3b1af609593, type: 3}
   friendlyLayer: FireballsFriendly

@@ -36,6 +36,10 @@ public class Character : MonoBehaviour
     {
     }
 
+    public virtual void Update()
+    {
+    }
+
     #endregion
 
     public virtual void SetFlipped(bool value)
@@ -60,6 +64,7 @@ public class Character : MonoBehaviour
     public void Stagger(Vector2 direction, float force)
     {
         if (!Rigidbody2D) return;
+        if (Rigidbody2D.isKinematic) return;
 
         if (CharacterMovement) CharacterMovement.StopRunningImmediate();
         Rigidbody2D.velocity = Vector2.zero;
