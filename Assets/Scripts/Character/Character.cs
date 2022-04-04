@@ -9,7 +9,12 @@ public class Character : MonoBehaviour
 
     public CharacterMovement CharacterMovement { get; private set; }
     public CharacterCombat CharacterCombat { get; private set; }
+    public CharacterPathfinder CharacterPathfinder { get; private set; }
     public CharacterResources CharacterResources { get; private set; }
+
+    [Header("Position Properties")]
+    public Vector2 minPosition;
+    public Vector2 maxPosition;
 
     public bool IsDead { get; set; }
     public bool IsFlipped { get; set; }
@@ -35,6 +40,7 @@ public class Character : MonoBehaviour
 
         CharacterMovement = GetComponent<CharacterMovement>();
         CharacterCombat = GetComponent<CharacterCombat>();
+        CharacterPathfinder = GetComponent<CharacterPathfinder>();
         CharacterResources = GetComponent<CharacterResources>();
     }
 
@@ -49,6 +55,8 @@ public class Character : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, _staggerPosition, StaggerInterpolationRatio);
             if (Vector2.Distance(transform.position, _staggerPosition) <= staggerEpsilon) SetStagger(false);
         }
+
+        if (Rigidbody2D) Rigidbody2D.velocity = Vector2.zero;
     }
 
     public virtual void Update()

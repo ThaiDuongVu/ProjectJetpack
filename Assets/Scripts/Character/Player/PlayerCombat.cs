@@ -104,16 +104,20 @@ public class PlayerCombat : CharacterCombat
         TargetEnemies = null;
 
         // Perform raycast to check if any enemies are hit
-        var hits = Physics2D.RaycastAll(transform.position, _player.PlayerArrow.CurrentDirection, dashDistance, LayerMask.GetMask("Enemies"));
+        var hits = Physics2D.RaycastAll(dashPoint.position, _player.PlayerArrow.CurrentDirection, dashDistance, LayerMask.GetMask("Enemies"));
+        if (hits == null) return;
         if (hits.Length <= 0) return;
 
         // Set color and targets if raycast hit
         _player.PlayerArrow.SetColor(red);
+        TargetEnemies = new Enemy[hits.Length];
         for (int i = 0; i < hits.Length; i++) TargetEnemies[i] = hits[i].transform.GetComponent<Enemy>();
     }
 
     private void DealDamage(Enemy enemy)
     {
+        if (!enemy) return;
+
         enemy.TakeDamage(damage);
         _player.PlayerCombo.Add(1);
     }
@@ -140,6 +144,7 @@ public class PlayerCombat : CharacterCombat
         _dashPosition = (Vector2)transform.position + _dashDirection * dashDistance;
 
         SetDash(true);
+        if (TargetEnemies != null) foreach (var enemy in TargetEnemies) DealDamage(enemy);
 
         Instantiate(muzzlePrefab, dashPoint.position, Quaternion.identity).transform.up = _dashDirection;
         CameraShaker.Instance.Shake(CameraShakeMode.Light);

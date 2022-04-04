@@ -7,8 +7,6 @@ TagManager:
   - IgnoreFont
   - Collectible
   - Enemy
-  - BottomBorder
-  - DemonicRatBorder
   - Fireball
   - Portal
   layers:
