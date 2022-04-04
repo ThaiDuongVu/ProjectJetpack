@@ -1680,7 +1680,7 @@ MonoBehaviour:
   - {x: 0.375, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -5130
+  m_InstanceId: 28242
 --- !u!114 &7367146481410131851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6261f44c5c8cdf4eb48cdc9f4b28cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashDistance: 4.5
+  dashDistance: 4
   dashInterpolationRatio: 0.3
   dashEpsilon: 0.5
   dashRate: 4

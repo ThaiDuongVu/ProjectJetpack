@@ -8,7 +8,7 @@ public class PlayerCombat : CharacterCombat
     public bool IsDashing { get; set; }
 
     [Header("Dash Properties")]
-    [SerializeField] private float dashDistance = 4.5f;
+    [SerializeField] private float dashDistance = 4f;
     [SerializeField] private float dashInterpolationRatio = 0.3f;
     [SerializeField] private float dashEpsilon = 0.5f;
     [SerializeField] private int dashRate = 4;
@@ -44,8 +44,8 @@ public class PlayerCombat : CharacterCombat
         if (GameController.Instance.State == GameState.Paused) return;
         InputTypeController.Instance.CheckInputType(context);
 
-        // Dash();
-        _player.Stagger(Vector2.down);
+        Dash();
+        // _player.Stagger(Vector2.down);
     }
 
     #endregion
