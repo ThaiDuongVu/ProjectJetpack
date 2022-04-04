@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,14 +13,9 @@ public class PlayerMovement : CharacterMovement
         if (GameController.Instance.State == GameState.Paused) return;
         InputTypeController.Instance.CheckInputType(context);
 
-        var direction = context.ReadValue<Vector2>() * (PlayerPrefs.GetInt("InvertAim", 0) == 0 ? 1f : -1f);
-
-        if (direction.y <= -0.75f) StartCoroutine(FallThroughPlatform());
-
-        if (direction.x < 0f) direction = Vector2.left;
-        else if (direction.x > 0f) direction = Vector2.right;
-        else direction = Vector2.zero;
-
+        var direction = context.ReadValue<Vector2>().normalized * (PlayerPrefs.GetInt("InvertAim", 0) == 0 ? 1f : -1f);
+        
+        _player.PlayerArrow.TargetDirection = direction;
         StartRunning(direction);
     }
 
@@ -61,11 +55,4 @@ public class PlayerMovement : CharacterMovement
     }
 
     #endregion
-
-    private IEnumerator FallThroughPlatform()
-    {
-        if (!_player.IsAirbourne) _player.Collider2D.enabled = false;
-        yield return new WaitForSeconds(0.5f);
-        _player.Collider2D.enabled = true;
-    }
 }

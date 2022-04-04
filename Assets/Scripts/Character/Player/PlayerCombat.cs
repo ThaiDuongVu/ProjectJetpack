@@ -5,69 +5,49 @@ public class PlayerCombat : CharacterCombat
 {
     private Player _player;
 
-    [Header("Aim Properties")]
-    [SerializeField] private SpriteRenderer crosshair;
-    [SerializeField] private Color normalColor;
-    [SerializeField] private Color aimColor;
-    private readonly string[] _aimLayers = { "Enemies", "Fireballs" };
+    public bool IsDashing { get; set; }
 
-    [Header("Jump Properties")]
-    [SerializeField] private float jumpForce = 18f;
-    [SerializeField] private ParticleSystem jumpMuzzlePrefab;
-    [SerializeField] private Transform jumpPoint;
-    [SerializeField] private float fuelConsumptionPerJump = 20f;
-    [SerializeField] private int healthConsumptionPerJump = 1;
-    [SerializeField] private int jumpRate = 4;
-    private float _maxJumpTimer;
-    private float _jumpTimer;
-    private bool _canJump;
+    [Header("Dash Properties")]
+    [SerializeField] private float dashDistance = 4.5f;
+    [SerializeField] private float dashInterpolationRatio = 0.3f;
+    [SerializeField] private float dashEpsilon = 0.5f;
+    [SerializeField] private int dashRate = 4;
+    [SerializeField] private Transform dashPoint;
+    [SerializeField] private ParticleSystem muzzlePrefab;
+    [SerializeField] private float fuelConsumptionPerDash = 10f;
+    [SerializeField] private int healthConsumptionPerDash = 1;
 
-    [Header("Hover Properties")]
-    [SerializeField] private float hoverForce = 26f;
-    [SerializeField] private ParticleSystem hoverMuzzle;
-    [SerializeField] private float fuelConsumptionPerHoverSecond = 25f;
+    private Vector2 _dashPosition;
+    private Vector2 _dashDirection;
+    private Timer _dashTimer;
+    private float _dashTimeout;
+    private bool _canDash = true;
+    private static readonly int IsDashingAnimationTrigger = Animator.StringToHash("isDashing");
 
-    [Header("Recharge Properties")]
-    [SerializeField] private float fuelRechargePerSecond = 100f;
+    [Header("Combat Properties")]
+    [SerializeField] private int damage = 1;
+    private Enemy[] TargetEnemies;
+    private GameObject[] TargetObstacles;
 
-    [Header("Shoot Properties")]
-    [SerializeField] private Transform shootPoint;
-    [SerializeField] private BulletEffect bulletEffectPrefab;
-    [SerializeField] private ParticleSystem bloodSplashPrefab;
-
-    [Header("Damage Properties")]
-    [SerializeField] private int damagePerJump = 1;
-
-    public bool IsInHoverMode { get; set; }
+    [Header("Colors")]
+    [SerializeField] private Color grey;
+    [SerializeField] private Color transparent;
+    [SerializeField] private Color blue;
+    [SerializeField] private Color red;
 
     private InputManager _inputManager;
 
     #region Input Methods
 
-    private void JumpOnPerformed(InputAction.CallbackContext context)
+    private void DashOnStarted(InputAction.CallbackContext context)
     {
         if (GameController.Instance.State == GameState.Paused) return;
         InputTypeController.Instance.CheckInputType(context);
 
-        ExitHoverMode();
-        Jump();
+        // Dash();
+        _player.Stagger(Vector2.down);
     }
 
-    private void HoverOnPerformed(InputAction.CallbackContext context)
-    {
-        if (GameController.Instance.State == GameState.Paused) return;
-        InputTypeController.Instance.CheckInputType(context);
-
-        EnterHoverMode();
-    }
-
-    private void HoverOnCanceled(InputAction.CallbackContext context)
-    {
-        if (GameController.Instance.State == GameState.Paused) return;
-        InputTypeController.Instance.CheckInputType(context);
-
-        ExitHoverMode();
-    }
     #endregion
 
     #region Unity Event
@@ -76,12 +56,8 @@ public class PlayerCombat : CharacterCombat
     {
         _inputManager = new InputManager();
 
-        // Handle jump input
-        _inputManager.Player.Jump.performed += JumpOnPerformed;
-
-        // Handle hover input
-        _inputManager.Player.Hover.performed += HoverOnPerformed;
-        _inputManager.Player.Hover.canceled += HoverOnCanceled;
+        // Handle dash input
+        _inputManager.Player.Dash.started += DashOnStarted;
 
         _inputManager.Enable();
     }
@@ -102,116 +78,75 @@ public class PlayerCombat : CharacterCombat
     {
         base.Start();
 
-        _maxJumpTimer = 1f / jumpRate;
+        _dashTimeout = 1f / dashRate;
+        _dashTimer = new Timer(_dashTimeout);
     }
 
     public override void FixedUpdate()
     {
         base.FixedUpdate();
 
-        Aim(shootPoint.position, Vector2.down);
+        Aim();
 
-        if (_jumpTimer < _maxJumpTimer) _jumpTimer += Time.fixedDeltaTime;
-        else _canJump = true;
-
-        if (IsInHoverMode) Hover();
-        if (!_player.IsAirbourne) Recharge();
+        if (IsDashing)
+        {
+            transform.position = Vector2.Lerp(transform.position, _dashPosition, dashInterpolationRatio);
+            if (Vector2.Distance(transform.position, _dashPosition) <= dashEpsilon) SetDash(false);
+        }
+        if (_dashTimer.IsReached()) _canDash = true;
     }
 
     #endregion
 
-    private void Aim(Vector2 point, Vector2 direction)
+    private void Aim()
     {
-        if (!_player.IsAirbourne)
-        {
-            crosshair.gameObject.SetActive(false);
-            return;
-        }
+        _player.PlayerArrow.SetColor(blue);
+        TargetEnemies = null;
 
-        crosshair.gameObject.SetActive(true);
-        crosshair.color = normalColor;
+        // Perform raycast to check if any enemies are hit
+        var hits = Physics2D.RaycastAll(transform.position, _player.PlayerArrow.CurrentDirection, dashDistance, LayerMask.GetMask("Enemies"));
+        if (hits.Length <= 0) return;
 
-        var hit = Physics2D.Raycast(point, direction, Mathf.Infinity, LayerMask.GetMask(_aimLayers));
-        if (!hit) return;
-
-        crosshair.color = aimColor;
+        // Set color and targets if raycast hit
+        _player.PlayerArrow.SetColor(red);
+        for (int i = 0; i < hits.Length; i++) TargetEnemies[i] = hits[i].transform.GetComponent<Enemy>();
     }
 
-    #region Jump & Hover
-
-    private void Jump()
+    private void DealDamage(Enemy enemy)
     {
-        if (!_canJump) return;
-
-        _player.Rigidbody2D.velocity = Vector2.zero;
-        _player.Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-        CameraShaker.Instance.Shake(Shoot(shootPoint.position, Vector2.down) ? CameraShakeMode.Normal : CameraShakeMode.Light);
-
-        _jumpTimer = 0f;
-        _canJump = false;
-        if (_player.PlayerResources.Fuel < fuelConsumptionPerJump) _player.PlayerResources.Health -= healthConsumptionPerJump;
-        else _player.PlayerResources.Fuel -= fuelConsumptionPerJump;
-
-        Instantiate(jumpMuzzlePrefab, jumpPoint.position, Quaternion.identity);
+        enemy.TakeDamage(damage);
+        _player.PlayerCombo.Add(1);
     }
 
-    private void EnterHoverMode()
+    #region Dash Methods
+
+    private void SetDash(bool value)
     {
-        if (_player.PlayerResources.Fuel <= 0f) return;
+        _player.Collider2D.enabled = !value;
+        _player.Animator.SetBool(IsDashingAnimationTrigger, value);
 
-        _player.Rigidbody2D.velocity = Vector2.zero;
-        hoverMuzzle.Play();
-
-        IsInHoverMode = true;
+        _player.GroundTrail.SetColor(value ? transparent : grey);
+        IsDashing = value;
     }
 
-    public void ExitHoverMode()
+    private void Dash()
     {
-        hoverMuzzle.Stop();
+        if (IsDashing || !_canDash) return;
 
-        IsInHoverMode = false;
-    }
+        if (_player.PlayerResources.Fuel >= fuelConsumptionPerDash) _player.PlayerResources.Fuel -= fuelConsumptionPerDash;
+        else _player.PlayerResources.Health -= healthConsumptionPerDash;
 
-    private void Hover()
-    {
-        if (_player.PlayerResources.Fuel <= 0f) ExitHoverMode();
-        _player.Rigidbody2D.AddForce(Vector2.up * hoverForce, ForceMode2D.Force);
-        _player.PlayerResources.Fuel -= fuelConsumptionPerHoverSecond * Time.fixedDeltaTime;
+        _dashDirection = _player.PlayerArrow.CurrentDirection;
+        _dashPosition = (Vector2)transform.position + _dashDirection * dashDistance;
 
-        CameraShaker.Instance.Shake(CameraShakeMode.Nano);
+        SetDash(true);
+
+        Instantiate(muzzlePrefab, dashPoint.position, Quaternion.identity).transform.up = _dashDirection;
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
+
+        _canDash = false;
+        _dashTimer.Reset(_dashTimeout);
     }
 
     #endregion
-
-    private void Recharge()
-    {
-        _player.PlayerResources.Fuel += fuelRechargePerSecond * Time.fixedDeltaTime;
-    }
-
-    private bool Shoot(Vector2 point, Vector2 direction)
-    {
-        var hit = Physics2D.Raycast(point, direction, Mathf.Infinity);
-        if (!hit) return false;
-
-        if (hit.transform.CompareTag("Enemy"))
-        {
-            var enemy = hit.transform.GetComponent<Enemy>();
-            enemy.TakeDamage(damagePerJump);
-
-            _player.PlayerCombo.Add(1);
-            Instantiate(bloodSplashPrefab, hit.point, Quaternion.identity).transform.up = -direction;
-            Instantiate(bulletEffectPrefab, shootPoint.position, Quaternion.identity).targetPosition = hit.point;
-        }
-        else if (hit.transform.CompareTag("Fireball"))
-        {
-            var fireball = hit.transform.GetComponent<Fireball>();
-            fireball.ReturnToSender();
-
-            _player.PlayerCombo.Add(1);
-            Instantiate(bulletEffectPrefab, shootPoint.position, Quaternion.identity).targetPosition = hit.point;
-        }
-
-        return true;
-    }
 }

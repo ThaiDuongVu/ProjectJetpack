@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -13,6 +14,15 @@ public class Character : MonoBehaviour
     public bool IsDead { get; set; }
     public bool IsFlipped { get; set; }
 
+    public bool IsStagger { get; set; }
+    private static readonly int StaggerAnimationTrigger = Animator.StringToHash("isStagger");
+    [Header("Stagger Properties")]
+    [SerializeField] private float staggerDistance = 1.2f;
+    [SerializeField] private float staggerEpsilon = 0.2f;
+    private const float StaggerInterpolationRatio = 0.3f;
+    private Vector2 _staggerPosition;
+
+    [Header("")]
     [SerializeField] private SpriteRenderer mainSprite;
 
     #region Unity Event
@@ -34,6 +44,11 @@ public class Character : MonoBehaviour
 
     public virtual void FixedUpdate()
     {
+        if (IsStagger)
+        {
+            transform.position = Vector2.Lerp(transform.position, _staggerPosition, StaggerInterpolationRatio);
+            if (Vector2.Distance(transform.position, _staggerPosition) <= staggerEpsilon) SetStagger(false);
+        }
     }
 
     public virtual void Update()
@@ -61,13 +76,15 @@ public class Character : MonoBehaviour
 
     #endregion
 
-    public void Stagger(Vector2 direction, float force)
+    private void SetStagger(bool value)
     {
-        if (!Rigidbody2D) return;
-        if (Rigidbody2D.isKinematic) return;
+        IsStagger = value;
+        Animator.SetBool(StaggerAnimationTrigger, value);
+    }
 
-        if (CharacterMovement) CharacterMovement.StopRunningImmediate();
-        Rigidbody2D.velocity = Vector2.zero;
-        Rigidbody2D.AddForce(direction * force, ForceMode2D.Impulse);
+    public void Stagger(Vector2 direction)
+    {
+        _staggerPosition = (Vector2)transform.position + direction * staggerDistance;
+        SetStagger(true);
     }
 }
