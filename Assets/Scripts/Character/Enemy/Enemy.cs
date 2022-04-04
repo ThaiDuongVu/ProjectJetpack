@@ -3,13 +3,13 @@ using UnityEngine;
 public class Enemy : Character
 {
     [SerializeField] private ParticleSystem explosionRedPrefab;
-    // private CollectibleSpawner[] _collectibleSpawners;
+    private CollectibleSpawner[] _collectibleSpawners;
 
     public override void Awake()
     {
         base.Awake();
 
-        // _collectibleSpawners = GetComponentsInChildren<CollectibleSpawner>();
+        _collectibleSpawners = GetComponentsInChildren<CollectibleSpawner>();
     }
 
     public override void Die()
@@ -17,7 +17,7 @@ public class Enemy : Character
         if (IsDead) return;
 
         Instantiate(explosionRedPrefab, transform.position, Quaternion.identity);
-        // foreach (var spawner in _collectibleSpawners) spawner.Spawn();
+        foreach (var spawner in _collectibleSpawners) spawner.Spawn();
         
         GameController.Instance.StartCoroutine(GameController.Instance.SlowDownEffect());
         Destroy(gameObject);

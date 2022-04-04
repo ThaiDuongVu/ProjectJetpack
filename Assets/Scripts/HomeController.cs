@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class HomeController : MonoBehaviour
 {
@@ -16,8 +15,6 @@ public class HomeController : MonoBehaviour
     private void OnEnable()
     {
         _inputManager = new InputManager();
-
-        _inputManager.Game.Test.performed += _ => { SceneManager.LoadScene("Playground"); };
 
         _inputManager.Enable();
     }

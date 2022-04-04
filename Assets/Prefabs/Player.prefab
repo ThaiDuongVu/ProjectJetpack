@@ -1552,7 +1552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7367146481410131842}
   - component: {fileID: 7367146481410131841}
-  - component: {fileID: 1420116227446065551}
+  - component: {fileID: 5992721633787240168}
   - component: {fileID: 7367146481410131855}
   - component: {fileID: 3370057612237522701}
   - component: {fileID: 7367146481410131851}
@@ -1608,8 +1608,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &1420116227446065551
-BoxCollider2D:
+--- !u!70 &5992721633787240168
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1622,18 +1622,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.75, y: 1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!95 &7367146481410131855
 Animator:
   serializedVersion: 4
@@ -1680,7 +1670,7 @@ MonoBehaviour:
   - {x: 0.375, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 87860
+  m_InstanceId: 37486
 --- !u!114 &7367146481410131851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1729,7 +1719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashDistance: 4
-  dashInterpolationRatio: 0.3
+  dashInterpolationRatio: 0.25
   dashEpsilon: 0.5
   dashRate: 4
   dashPoint: {fileID: 8251458330421267201}

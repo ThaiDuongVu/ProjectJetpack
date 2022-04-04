@@ -9,7 +9,7 @@ public class PlayerCombat : CharacterCombat
 
     [Header("Dash Properties")]
     [SerializeField] private float dashDistance = 4f;
-    [SerializeField] private float dashInterpolationRatio = 0.3f;
+    [SerializeField] private float dashInterpolationRatio = 0.2f;
     [SerializeField] private float dashEpsilon = 0.5f;
     [SerializeField] private int dashRate = 4;
     [SerializeField] private Transform dashPoint;
@@ -29,8 +29,8 @@ public class PlayerCombat : CharacterCombat
 
     [Header("Combat Properties")]
     [SerializeField] private int damage = 1;
-    private Enemy[] TargetEnemies;
-    private GameObject[] TargetObstacles;
+    private Enemy[] _targetEnemies;
+    private GameObject[] _targetObstacles;
 
     [Header("Colors")]
     [SerializeField] private Color grey;
@@ -104,17 +104,16 @@ public class PlayerCombat : CharacterCombat
     private void Aim()
     {
         _player.PlayerArrow.SetColor(blue);
-        TargetEnemies = null;
+        _targetEnemies = null;
 
         // Perform raycast to check if any enemies are hit
         var hits = Physics2D.RaycastAll(dashPoint.position, _player.PlayerArrow.CurrentDirection, dashDistance, LayerMask.GetMask("Enemies"));
-        if (hits == null) return;
-        if (hits.Length <= 0) return;
+        if (hits is not {Length: > 0}) return;
 
         // Set color and targets if raycast hit
         _player.PlayerArrow.SetColor(red);
-        TargetEnemies = new Enemy[hits.Length];
-        for (int i = 0; i < hits.Length; i++) TargetEnemies[i] = hits[i].transform.GetComponent<Enemy>();
+        _targetEnemies = new Enemy[hits.Length];
+        for (var i = 0; i < hits.Length; i++) _targetEnemies[i] = hits[i].transform.GetComponent<Enemy>();
     }
 
     private void DealDamage(Enemy enemy)
@@ -135,10 +134,16 @@ public class PlayerCombat : CharacterCombat
         _player.GroundTrail.SetColor(value ? transparent : grey);
         if (value)
         {
-            _dashTrail = Instantiate(TargetEnemies == null ? dashTrailBluePrefab : dashTrailRedPrefab, transform.position, Quaternion.identity);
-            _dashTrail.transform.parent = transform;
+            if (_targetEnemies != null)
+            {
+                _dashTrail = Instantiate(dashTrailRedPrefab, transform.position, Quaternion.identity);
+                _dashTrail.transform.parent = transform;
+            }
         }
-        else _dashTrail.transform.parent = null;
+        else
+        {
+            if (_dashTrail) _dashTrail.transform.parent = null;
+        }
 
         IsDashing = value;
     }
@@ -154,7 +159,7 @@ public class PlayerCombat : CharacterCombat
         _dashPosition = (Vector2)transform.position + _dashDirection * dashDistance;
 
         SetDash(true);
-        if (TargetEnemies != null) foreach (var enemy in TargetEnemies) DealDamage(enemy);
+        if (_targetEnemies != null) foreach (var enemy in _targetEnemies) DealDamage(enemy);
 
         Instantiate(muzzlePrefab, dashPoint.position, Quaternion.identity).transform.up = _dashDirection;
         CameraShaker.Instance.Shake(CameraShakeMode.Light);

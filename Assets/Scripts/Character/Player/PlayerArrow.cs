@@ -4,7 +4,7 @@ public class PlayerArrow : MonoBehaviour
 {
     private const float InterpolationRatio = 0.5f;
     public Vector2 TargetDirection { get; set; } = Vector2.up;
-    public Vector2 CurrentDirection { get => transform.up; }
+    public Vector2 CurrentDirection => transform.up;
 
     [SerializeField] private SpriteRenderer sprite;
 
