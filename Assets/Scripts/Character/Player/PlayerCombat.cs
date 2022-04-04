@@ -14,6 +14,9 @@ public class PlayerCombat : CharacterCombat
     [SerializeField] private int dashRate = 4;
     [SerializeField] private Transform dashPoint;
     [SerializeField] private ParticleSystem muzzlePrefab;
+    [SerializeField] private TrailRenderer dashTrailRedPrefab;
+    [SerializeField] private TrailRenderer dashTrailBluePrefab;
+    private TrailRenderer _dashTrail;
     [SerializeField] private float fuelConsumptionPerDash = 10f;
     [SerializeField] private int healthConsumptionPerDash = 1;
 
@@ -130,6 +133,13 @@ public class PlayerCombat : CharacterCombat
         _player.Animator.SetBool(IsDashingAnimationTrigger, value);
 
         _player.GroundTrail.SetColor(value ? transparent : grey);
+        if (value)
+        {
+            _dashTrail = Instantiate(TargetEnemies == null ? dashTrailBluePrefab : dashTrailRedPrefab, transform.position, Quaternion.identity);
+            _dashTrail.transform.parent = transform;
+        }
+        else _dashTrail.transform.parent = null;
+
         IsDashing = value;
     }
 
