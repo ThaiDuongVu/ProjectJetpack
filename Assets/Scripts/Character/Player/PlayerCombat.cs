@@ -107,13 +107,13 @@ public class PlayerCombat : CharacterCombat
         _targetEnemies = null;
 
         // Perform raycast to check if any enemies are hit
-        var hits = Physics2D.RaycastAll(dashPoint.position, _player.PlayerArrow.CurrentDirection, dashDistance, LayerMask.GetMask("Enemies"));
-        if (hits is not {Length: > 0}) return;
+        var enemyHits = Physics2D.RaycastAll(dashPoint.position, _player.PlayerArrow.CurrentDirection, dashDistance, LayerMask.GetMask("Enemies"));
+        if (enemyHits is not {Length: > 0}) return;
 
         // Set color and targets if raycast hit
         _player.PlayerArrow.SetColor(red);
-        _targetEnemies = new Enemy[hits.Length];
-        for (var i = 0; i < hits.Length; i++) _targetEnemies[i] = hits[i].transform.GetComponent<Enemy>();
+        _targetEnemies = new Enemy[enemyHits.Length];
+        for (var i = 0; i < enemyHits.Length; i++) _targetEnemies[i] = enemyHits[i].transform.GetComponent<Enemy>();
     }
 
     private void DealDamage(Enemy enemy)
@@ -157,6 +157,8 @@ public class PlayerCombat : CharacterCombat
 
         _dashDirection = _player.PlayerArrow.CurrentDirection;
         _dashPosition = (Vector2)transform.position + _dashDirection * dashDistance;
+        _dashPosition = new Vector2(Mathf.Clamp(_dashPosition.x, _player.minPosition.x, _player.maxPosition.x),
+                                    Mathf.Clamp(_dashPosition.y, _player.minPosition.y, _player.maxPosition.y));
 
         SetDash(true);
         if (_targetEnemies != null) foreach (var enemy in _targetEnemies) DealDamage(enemy);
