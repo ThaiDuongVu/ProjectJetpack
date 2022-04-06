@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7284731369256792958}
   - component: {fileID: 7284731369256792963}
   - component: {fileID: 7284731369256792962}
+  - component: {fileID: 2536618391928635894}
   - component: {fileID: 7284731369256792961}
   - component: {fileID: 7284731369256792960}
   m_Layer: 6
@@ -173,7 +174,7 @@ MonoBehaviour:
   - {x: 0.3125, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 65864
+  m_InstanceId: 111766
 --- !u!114 &7284731369256792963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +194,6 @@ MonoBehaviour:
   mainSprite: {fileID: 7284731370750506325}
   explosionRedPrefab: {fileID: 3827419661170153826, guid: 356f312eb193de64ba0411401a1da186, type: 3}
   pathfindingUpdateRate: 1
-  bloodSplashRedPrefab: {fileID: 3827419661170153826, guid: 432d4be562e08624e99aafd3ab408fe0, type: 3}
 --- !u!114 &7284731369256792962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +210,19 @@ MonoBehaviour:
   minVelocity: 0
   acceleration: 12
   deceleration: 12
+--- !u!114 &2536618391928635894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284731369256792968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb6877baca35744c99fec2cbd26ad2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodSplashRedPrefab: {fileID: 3827419661170153826, guid: 432d4be562e08624e99aafd3ab408fe0, type: 3}
 --- !u!114 &7284731369256792961
 MonoBehaviour:
   m_ObjectHideFlags: 0

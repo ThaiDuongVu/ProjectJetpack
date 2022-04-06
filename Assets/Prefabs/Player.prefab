@@ -1670,7 +1670,7 @@ MonoBehaviour:
   - {x: 0.375, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 37486
+  m_InstanceId: 45264
 --- !u!114 &7367146481410131851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1685,8 +1685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minPosition: {x: -14, y: -7}
   maxPosition: {x: 14, y: 7}
-  staggerDistance: 2.2
-  staggerEpsilon: 0.2
+  staggerDistance: 1.5
+  staggerEpsilon: 0.1
   mainSprite: {fileID: 7367146480870843510}
   groundTrailPrefab: {fileID: 3724705232593504567, guid: 4029efcfcc3d5cd48abdc70f4f657e94, type: 3}
   whiteExplosionPrefab: {fileID: 3827419661170153826, guid: 604de0e7b0179f1449145727268eb369, type: 3}
@@ -1862,7 +1862,7 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 1.5
+  m_PointLightInnerRadius: 2
   m_PointLightOuterRadius: 5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0

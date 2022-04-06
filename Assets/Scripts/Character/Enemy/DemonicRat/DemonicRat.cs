@@ -4,16 +4,13 @@ public class DemonicRat : Enemy
 {
     public DemonicRatState State { get; set; } = DemonicRatState.Idle;
 
-    public DemonicRatResources DemonicRatResources { get; private set; }
     public DemonicRatMovement DemonicRatMovement { get; private set; }
+    public DemonicRatCombat DemonicRatCombat { get; private set; }
+    public DemonicRatResources DemonicRatResources { get; private set; }
     public DemonicRatPathfinder DemonicPathfinder { get; private set; }
 
     private Transform _rushTarget;
     [SerializeField] private float pathfindingUpdateRate = 1f;
-
-    [SerializeField] private ParticleSystem bloodSplashRedPrefab;
-
-    private static readonly int AttackAnimationTrigger = Animator.StringToHash("attack");
 
     #region Unity Event
 
@@ -21,8 +18,9 @@ public class DemonicRat : Enemy
     {
         base.Awake();
 
-        DemonicRatResources = GetComponent<DemonicRatResources>();
         DemonicRatMovement = GetComponent<DemonicRatMovement>();
+        DemonicRatCombat = GetComponent<DemonicRatCombat>();
+        DemonicRatResources = GetComponent<DemonicRatResources>();
         DemonicPathfinder = GetComponent<DemonicRatPathfinder>();
 
         _rushTarget = FindObjectOfType<Player>()?.transform;
@@ -41,7 +39,7 @@ public class DemonicRat : Enemy
         if (!_rushTarget && State != DemonicRatState.Wander)
         {
             CancelInvoke();
-            StartWandering();
+            Wander();
         }
     }
 
@@ -54,37 +52,22 @@ public class DemonicRat : Enemy
         if (!_rushTarget) return;
 
         DemonicPathfinder.FindPath(_rushTarget);
-        DemonicPathfinder.StartTracking();
+        DemonicPathfinder.SetTracking(true);
         State = DemonicRatState.Rush;
     }
 
-    private void StopRushing()
+    public void StopRushing()
     {
-        DemonicPathfinder.StopTracking();
+        DemonicPathfinder.SetTracking(false);
         State = DemonicRatState.Idle;
     }
 
     #endregion
 
-    public void StartWandering()
+    public void Wander()
     {
         DemonicPathfinder.FindPath(new Vector2(Random.Range(minPosition.x, maxPosition.x), Random.Range(minPosition.y, maxPosition.y)));
-        DemonicPathfinder.StartTracking();
+        DemonicPathfinder.SetTracking(true);
         State = DemonicRatState.Wander;
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (!other.transform.CompareTag("Player")) return;
-
-        Animator.SetTrigger(AttackAnimationTrigger);
-
-        var player = other.transform.GetComponent<Player>();
-        player.TakeDamage(DemonicRatResources.damage);
-        player.Stagger(DemonicRatMovement.CurrentDirection);
-
-        Instantiate(bloodSplashRedPrefab, player.transform.position, Quaternion.identity).transform.up = DemonicRatMovement.CurrentDirection;
-        CameraShaker.Instance.Shake(CameraShakeMode.Normal);
-        StopRushing();
     }
 }

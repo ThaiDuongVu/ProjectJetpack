@@ -148,6 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9a87d264b921043a3964a10cf4a9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpsLowerBound: 40
+  fpsLowerBound: 50
   updateDelay: 1
   updateInterval: 0.5

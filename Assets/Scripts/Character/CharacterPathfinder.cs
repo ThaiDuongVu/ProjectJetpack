@@ -20,7 +20,7 @@ public class CharacterPathfinder : MonoBehaviour
         _character = GetComponent<Character>();
         _seeker = GetComponent<Seeker>();
     }
-    
+
     public virtual void FixedUpdate()
     {
         if (_currentPath == null || !IsTracking) return;
@@ -37,9 +37,9 @@ public class CharacterPathfinder : MonoBehaviour
         if (Vector2.Distance(transform.position, _currentPath.vectorPath[_currentWaypoint]) <= nextWaypointDistance)
             _currentWaypoint++;
     }
-    
+
     #endregion
-    
+
     public void FindPath(Transform target)
     {
         _seeker.StartPath(transform.position, target.transform.position, path =>
@@ -50,7 +50,7 @@ public class CharacterPathfinder : MonoBehaviour
             _currentWaypoint = 0;
         });
     }
-    
+
     public void FindPath(Vector2 position)
     {
         _seeker.StartPath(transform.position, position, path =>
@@ -61,22 +61,13 @@ public class CharacterPathfinder : MonoBehaviour
             _currentWaypoint = 0;
         });
     }
-    
-    #region Tracking Methods
-    
-    public void StartTracking()
+
+    public void SetTracking(bool value)
     {
-        IsTracking = true;
+        IsTracking = value;
+        if (!value) _character.CharacterMovement.StopRunning();
     }
-    
-    public void StopTracking()
-    {
-        IsTracking = false;
-        _character.CharacterMovement.StopRunning();
-    }
-    
-    #endregion
-    
+
     public virtual void OnPathReached()
     {
     }

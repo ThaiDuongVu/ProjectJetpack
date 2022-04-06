@@ -30,7 +30,9 @@ public class PlayerCombat : CharacterCombat
     [Header("Combat Properties")]
     [SerializeField] private int damage = 1;
     private Enemy[] _targetEnemies;
-    private GameObject[] _targetObstacles;
+    private Vector2 _obstacleHitPoint;
+    private readonly Vector2 ObstacleDefaultPoint = new Vector2(100f, 100f);
+    private string[] _obstacleLayers = { "Obstacles", "Levels" };
 
     [Header("Colors")]
     [SerializeField] private Color grey;
@@ -48,7 +50,6 @@ public class PlayerCombat : CharacterCombat
         InputTypeController.Instance.CheckInputType(context);
 
         Dash();
-        // _player.Stagger(Vector2.down);
     }
 
     #endregion
@@ -106,14 +107,34 @@ public class PlayerCombat : CharacterCombat
         _player.PlayerArrow.SetColor(blue);
         _targetEnemies = null;
 
+        // Perform raycast to check if any obstacles are hit
+        var obstacleHit = Physics2D.Raycast(dashPoint.position, _player.PlayerArrow.CurrentDirection, dashDistance, LayerMask.GetMask(_obstacleLayers));
+        _obstacleHitPoint = obstacleHit ? obstacleHit.point : ObstacleDefaultPoint;
+        if (obstacleHit) _player.PlayerArrow.SetColor(grey);
+
         // Perform raycast to check if any enemies are hit
         var enemyHits = Physics2D.RaycastAll(dashPoint.position, _player.PlayerArrow.CurrentDirection, dashDistance, LayerMask.GetMask("Enemies"));
-        if (enemyHits is not {Length: > 0}) return;
+        if (enemyHits is not { Length: > 0 }) return;
 
-        // Set color and targets if raycast hit
-        _player.PlayerArrow.SetColor(red);
+        // Set target enemies based on raycast results    
         _targetEnemies = new Enemy[enemyHits.Length];
-        for (var i = 0; i < enemyHits.Length; i++) _targetEnemies[i] = enemyHits[i].transform.GetComponent<Enemy>();
+        for (var i = 0; i < enemyHits.Length; i++)
+        {
+            _targetEnemies[i] = enemyHits[i].transform.GetComponent<Enemy>();
+            // Remove an enemy from target if it is obstructed behind an obstacle
+            if (_obstacleHitPoint != ObstacleDefaultPoint)
+            {
+                if (Vector2.Distance(enemyHits[i].transform.position, dashPoint.position) > Vector2.Distance(_obstacleHitPoint, dashPoint.position))
+                    _targetEnemies[i] = null;
+            }
+        }
+
+        // Set arrow color based on raycast results
+        foreach (var enemy in _targetEnemies)
+        {
+            if (enemy) _player.PlayerArrow.SetColor(red);
+            break;
+        }
     }
 
     private void DealDamage(Enemy enemy)
@@ -156,9 +177,7 @@ public class PlayerCombat : CharacterCombat
         else _player.PlayerResources.Health -= healthConsumptionPerDash;
 
         _dashDirection = _player.PlayerArrow.CurrentDirection;
-        _dashPosition = (Vector2)transform.position + _dashDirection * dashDistance;
-        _dashPosition = new Vector2(Mathf.Clamp(_dashPosition.x, _player.minPosition.x, _player.maxPosition.x),
-                                    Mathf.Clamp(_dashPosition.y, _player.minPosition.y, _player.maxPosition.y));
+        _dashPosition = _obstacleHitPoint == ObstacleDefaultPoint ? (Vector2)transform.position + _dashDirection * dashDistance : _obstacleHitPoint;
 
         SetDash(true);
         if (_targetEnemies != null) foreach (var enemy in _targetEnemies) DealDamage(enemy);

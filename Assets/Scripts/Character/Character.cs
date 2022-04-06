@@ -23,7 +23,7 @@ public class Character : MonoBehaviour
     [Header("Stagger Properties")]
     [SerializeField] private float staggerDistance = 1.2f;
     [SerializeField] private float staggerEpsilon = 0.2f;
-    private const float StaggerInterpolationRatio = 0.3f;
+    private const float StaggerInterpolationRatio = 0.2f;
     private Vector2 _staggerPosition;
 
     [Header("")]

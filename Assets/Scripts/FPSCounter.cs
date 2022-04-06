@@ -24,6 +24,6 @@ public class FPSCounter : MonoBehaviour
         var fps = (int)(1f / Time.unscaledDeltaTime);
         _text.text = fps.ToString();
 
-        if (fps < fpsLowerBound) Debug.Break();
+        if (fps <= fpsLowerBound) Debug.Break();
     }
 }

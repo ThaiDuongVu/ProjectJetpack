@@ -16,7 +16,7 @@ public class DemonicRatPathfinder : CharacterPathfinder
     public override void OnPathReached()
     {
         base.OnPathReached();
-        StopTracking();
-        if (_demonicRat.State == DemonicRatState.Wander) _demonicRat.StartWandering();
+        SetTracking(false);
+        if (_demonicRat.State == DemonicRatState.Wander) _demonicRat.Wander();
     }
 }
