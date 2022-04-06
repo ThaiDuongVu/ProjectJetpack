@@ -27,7 +27,7 @@ public class Character : MonoBehaviour
     private Vector2 _staggerPosition;
 
     [Header("")]
-    [SerializeField] private SpriteRenderer mainSprite;
+    public SpriteRenderer mainSprite;
 
     #region Unity Event
 
