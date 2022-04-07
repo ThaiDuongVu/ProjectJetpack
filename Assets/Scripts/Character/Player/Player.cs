@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : Character
 {
@@ -13,10 +15,43 @@ public class Player : Character
 
     [SerializeField] private ParticleSystem whiteExplosionPrefab;
 
-    public bool CanExit { get; set; }
+    private Portal nearbyPortal;
+    private List<string> _collectKeyIds = new List<string>();
+
+    private InputManager _inputManager;
+
+    #region Input Methods
+
+    private void InteractOnPerformed(InputAction.CallbackContext context)
+    {
+        if (GameController.Instance.State == GameState.Paused) return;
+        InputTypeController.Instance.CheckInputType(context);
+
+        if (nearbyPortal)
+        {
+            if (nearbyPortal.IsOpen) nearbyPortal.onEntered.Invoke();
+            else nearbyPortal.Unlock(_collectKeyIds);
+        }
+    }
+
+    #endregion
 
     #region Unity Event
 
+    private void OnEnable()
+    {
+        _inputManager = new InputManager();
+
+        // Handle interact input
+        _inputManager.Player.Interact.performed += InteractOnPerformed;
+
+        _inputManager.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _inputManager.Disable();
+    }
     public override void Awake()
     {
         base.Awake();
@@ -60,4 +95,19 @@ public class Player : Character
     }
 
     #endregion
+
+    public void CollectKey(string keyId)
+    {
+        _collectKeyIds.Add(keyId);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Portal")) nearbyPortal = other.GetComponent<Portal>();
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Portal")) nearbyPortal = null;
+    }
 }

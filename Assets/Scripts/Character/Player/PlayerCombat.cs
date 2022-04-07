@@ -113,7 +113,7 @@ public class PlayerCombat : CharacterCombat
         if (obstacleHit) _player.PlayerArrow.SetColor(grey);
 
         // Perform raycast to check if any enemies are hit
-        var enemyHits = Physics2D.RaycastAll(dashPoint.position, _player.PlayerArrow.CurrentDirection, dashDistance, LayerMask.GetMask("Enemies"));
+        var enemyHits = Physics2D.RaycastAll(dashPoint.position, _player.PlayerArrow.CurrentDirection, dashDistance, LayerMask.GetMask("EnemyHitBoxes"));
         if (enemyHits is not { Length: > 0 }) return;
 
         // Set target enemies based on raycast results    
@@ -121,7 +121,8 @@ public class PlayerCombat : CharacterCombat
         for (var i = 0; i < enemyHits.Length; i++)
         {
             _targetEnemies[i] = enemyHits[i].transform.GetComponent<Enemy>();
-            // Remove an enemy from target if it is obstructed behind an obstacle
+            
+            // Remove an enemy from target list if it is obstructed behind an obstacle
             if (_obstacleHitPoint != ObstacleDefaultPoint)
             {
                 if (Vector2.Distance(enemyHits[i].transform.position, dashPoint.position) > Vector2.Distance(_obstacleHitPoint, dashPoint.position))
