@@ -45,8 +45,12 @@ public class Fireball : Enemy
     {
         base.FixedUpdate();
 
-        if (!Target) Die();
-        
+        if (!Target)
+        {
+            Die();
+            return;
+        }
+
         _currentDirection = (Target.position - transform.position).normalized;
         _rigidbody2D.MovePosition(_rigidbody2D.position + _currentDirection * _currentVelocity * Time.fixedDeltaTime);
     }

@@ -73,6 +73,12 @@ public class Player : Character
 
     #endregion
 
+    public override void Stagger(Vector2 direction)
+    {
+        PlayerCombat.SetDash(false);
+        base.Stagger(direction);
+    }
+
     #region Damage & Death
 
     public override void TakeDamage(int damage)

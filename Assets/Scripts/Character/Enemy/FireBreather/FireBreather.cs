@@ -32,6 +32,7 @@ public class FireBreather : Enemy
     {
         base.FixedUpdate();
 
+        if (!_playerTransform) return;
         SetFlipped(_playerTransform.position.x < transform.position.x);
     }
 

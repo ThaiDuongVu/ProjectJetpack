@@ -46,7 +46,7 @@ public class PlayerCombat : CharacterCombat
 
     private void DashOnStarted(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.State == GameState.Paused) return;
+        if (GameController.Instance.State == GameState.Paused || _player.IsStagger) return;
         InputTypeController.Instance.CheckInputType(context);
 
         Dash();
@@ -148,7 +148,7 @@ public class PlayerCombat : CharacterCombat
 
     #region Dash Methods
 
-    private void SetDash(bool value)
+    public void SetDash(bool value)
     {
         _player.Collider2D.enabled = !value;
         _player.Animator.SetBool(IsDashingAnimationTrigger, value);

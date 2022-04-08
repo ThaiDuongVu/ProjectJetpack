@@ -52,7 +52,7 @@ public class Collectible : MonoBehaviour
 
     #endregion
 
-    private void EnableCollect()
+    protected void EnableCollect()
     {
         CanBeCollected = true;
     }

@@ -89,7 +89,7 @@ public class Character : MonoBehaviour
         Animator.SetBool(StaggerAnimationTrigger, value);
     }
 
-    public void Stagger(Vector2 direction)
+    public virtual void Stagger(Vector2 direction)
     {
         _staggerPosition = (Vector2)transform.position + direction * staggerDistance;
         SetStagger(true);
