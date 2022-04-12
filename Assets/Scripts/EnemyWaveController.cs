@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyWaveController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class EnemyWaveController : MonoBehaviour
 
     [SerializeField] private Vector2 midSpawnRateRange = new Vector2(10f, 12f);
     private Timer _midWaveTimer;
+
+    [SerializeField] private UnityEvent onAllWavesCompleted;
 
     #region Unity Event
 
@@ -54,6 +57,7 @@ public class EnemyWaveController : MonoBehaviour
         {
             StopWavePermanent();
             IsWaveCompleted = true;
+            onAllWavesCompleted.Invoke();
             return;
         }
 

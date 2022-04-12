@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Key : Collectible
 {
-    public string[] ids;
+    [SerializeField] private string[] ids;
+    [SerializeField] private bool disableOnStartup;
 
     #region Unity Event
 
@@ -10,6 +11,8 @@ public class Key : Collectible
     {
         InitPosition = transform.position;
         EnableCollect();
+
+        gameObject.SetActive(!disableOnStartup);
     }
 
     #endregion

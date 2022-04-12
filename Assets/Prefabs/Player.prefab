@@ -1670,7 +1670,7 @@ MonoBehaviour:
   - {x: 0.375, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 103496
+  m_InstanceId: 78588
 --- !u!114 &7367146481410131851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1721,7 +1721,7 @@ MonoBehaviour:
   dashDistance: 4
   dashInterpolationRatio: 0.25
   dashEpsilon: 0.5
-  dashRate: 4
+  dashRate: 5
   dashPoint: {fileID: 8251458330421267201}
   muzzlePrefab: {fileID: 3827419661170153826, guid: a16894b688b5b614e9305b99616838cb, type: 3}
   dashTrailRedPrefab: {fileID: 1955162315831081397, guid: c49f7bf1dbc30e74291527a0beaa11bb, type: 3}

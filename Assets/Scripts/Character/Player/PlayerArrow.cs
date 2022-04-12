@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerArrow : MonoBehaviour
 {
-    private const float InterpolationRatio = 0.5f;
+    private const float InterpolationRatio = 0.6f;
     public Vector2 TargetDirection { get; set; } = Vector2.up;
     public Vector2 CurrentDirection => transform.up;
 

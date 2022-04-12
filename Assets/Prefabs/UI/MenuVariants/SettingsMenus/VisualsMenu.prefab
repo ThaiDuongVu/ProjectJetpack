@@ -209,11 +209,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
       propertyPath: toggles.Array.size
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
       propertyPath: properties.Array.size
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
       propertyPath: toggles.Array.data[0]
@@ -228,8 +228,24 @@ PrefabInstance:
       value: 1280
       objectReference: {fileID: 0}
     - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
+      propertyPath: toggles.Array.data[3]
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
+      propertyPath: toggles.Array.data[4]
+      value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
+      propertyPath: toggles.Array.data[5]
+      value: 3840
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
+      propertyPath: toggles.Array.data[6]
+      value: 2560
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
       propertyPath: properties.Array.data[0]
-      value: 1920 x 1080
+      value: 1920 x 1080 (FHD)
       objectReference: {fileID: 0}
     - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
       propertyPath: properties.Array.data[1]
@@ -237,7 +253,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
       propertyPath: properties.Array.data[2]
-      value: 1280 x 720
+      value: 1280 x 720 (HD)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
+      propertyPath: properties.Array.data[3]
+      value: 1024 x 576
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
+      propertyPath: properties.Array.data[4]
+      value: 640 x 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
+      propertyPath: properties.Array.data[5]
+      value: 3840 x 2160 (4K)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325567397336495821, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}
+      propertyPath: properties.Array.data[6]
+      value: 2560 x 1440 (QHD)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fed2bf2c5b9bfd4780c9fcd47f592ae, type: 3}

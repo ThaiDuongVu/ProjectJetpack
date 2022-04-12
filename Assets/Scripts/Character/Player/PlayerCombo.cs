@@ -5,7 +5,7 @@ public class PlayerCombo : MonoBehaviour
 {
     public int Multiplier { get; private set; }
     private float _timer;
-    private const float TimerMax = 6f;
+    private const float TimerMax = 3f;
 
     [SerializeField] private TMP_Text text;
     private RectTransform _textTransform;

@@ -415,12 +415,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minPosition: {x: -14, y: -7}
   maxPosition: {x: 14, y: 7}
-  staggerDistance: 0.8
+  staggerDistance: 1.2
   staggerEpsilon: 0.2
   mainSprite: {fileID: 7526404513569436253}
   explosionRedPrefab: {fileID: 3827419661170153826, guid: 356f312eb193de64ba0411401a1da186, type: 3}
-  fireDelayRange: {x: 1, y: 2}
-  fireIntervalRange: {x: 3, y: 5}
+  fireDelayRange: {x: 0.5, y: 1.5}
+  fireIntervalRange: {x: 2, y: 4}
 --- !u!114 &7526404513536190005
 MonoBehaviour:
   m_ObjectHideFlags: 0

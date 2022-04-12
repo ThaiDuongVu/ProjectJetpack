@@ -52,6 +52,7 @@ public class Player : Character
     {
         _inputManager.Disable();
     }
+
     public override void Awake()
     {
         base.Awake();
