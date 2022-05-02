@@ -124,6 +124,7 @@ public class Player : Character
     {
         base.Die();
 
+        PlayerResources.ClearTemp();
         GameController.Instance.StartCoroutine(GameController.Instance.GameOver());
 
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
@@ -146,7 +147,7 @@ public class Player : Character
         base.DetectGrounded();
 
         GroundTrail.SetColor(IsGrounded ? trailDefaultColor : transparentColor);
-        if (GroundPlatform.transform.CompareTag("BasePlatform") && !BasePlatformReached)
+        if (GroundPlatform && GroundPlatform.transform.CompareTag("BasePlatform") && !BasePlatformReached)
         {
             BasePlatformReached = true;
             UpdateObjectiveTexts();

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Build Settings
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 586
+  controlID: 59
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 143
+  controlID: 60
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 115
+  controlID: 117
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: InspectorWindow
+  m_Name: BuildPlayerWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -299,14 +299,14 @@ MonoBehaviour:
     y: 0
     width: 535
     height: 939
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 22}
+  m_MinSize: {x: 631, y: 601}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 22}
   - {fileID: 23}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -373,9 +373,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 48713d123c2e71f4996e4d64b22103cf, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: f64618683f91d0548b38f8546866c12f, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 6400201457582472929, guid: 48713d123c2e71f4996e4d64b22103cf, type: 2}
+  - m_Target: {fileID: -3852149162539708132, guid: f64618683f91d0548b38f8546866c12f, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1476,7 +1476,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -4944
+  m_LastSelectedObjectID: 41026
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1510,7 +1510,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 8af0ffff2afbffff
+      m_ExpandedIDs: ecd4feff66d5feff88defeffc2e4feff165bfffff06dffff6a6effff8077ffff9c7dffff8e84ffff0885ffff328cffff4c92ffff8e9affff089bffff1ea4ffff3aaaffff20e1ffff9ae1ffffb4eaffffd6f0ffff22fbffff82da0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1575,22 +1575,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Levels/Objectives/Set1
+    - Assets/Resources/Player
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Resources/Levels/Objectives/Set1
+  - Assets/Resources/Player
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Duong Vu\Documents\Projects\ProjectJetpack
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d0c10000
-    m_LastClickedID: 49616
-    m_ExpandedIDs: 00000000d86d0000da6d0000dc6d0000fc6d0000006e00000e6e000010720000ce720000
+    m_SelectedIDs: 46700000
+    m_LastClickedID: 28742
+    m_ExpandedIDs: 00000000ee6f0000f06f0000f26f00002a7000003670000038700000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1618,7 +1618,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d86d0000da6d0000dc6d0000
+    m_ExpandedIDs: 00000000ee6f0000f06f0000f26f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

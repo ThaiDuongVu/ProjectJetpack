@@ -11,7 +11,7 @@ public class PlayerResources : CharacterResources
     private Animator _healthDisplayAnimator;
     private static readonly int IsLowHealthAnimationTrigger = Animator.StringToHash("isLowHealth");
     private Image[] _healthIcons;
-    private const string HealthTempKey = "TempHealth";
+    public const string HealthTempKey = "TempHealth";
     public override int Health
     {
         get => base.Health;
@@ -68,7 +68,7 @@ public class PlayerResources : CharacterResources
 
     public override void Start()
     {
-        Load();
+        LoadTemp();
     }
 
     #endregion
@@ -87,21 +87,21 @@ public class PlayerResources : CharacterResources
     }
 
     #region Save & Load Methods
-    public void Save()
+    public void SaveTemp()
     {
         PlayerPrefs.SetInt(HealthTempKey, Health);
         PlayerPrefs.SetInt(TokenTempKey, Token);
         PlayerPrefs.SetFloat(FuelTempKey, Fuel);
     }
 
-    public void Load()
+    public void LoadTemp()
     {
         Health = PlayerPrefs.GetInt(HealthTempKey, maxHealth);
         Token = PlayerPrefs.GetInt(TokenTempKey, 0);
         Fuel = PlayerPrefs.GetFloat(FuelTempKey, maxFuel);
     }
 
-    public void Clear()
+    public void ClearTemp()
     {
         PlayerPrefs.SetInt(HealthTempKey, maxHealth);
         PlayerPrefs.SetInt(TokenTempKey, 0);

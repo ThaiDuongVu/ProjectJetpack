@@ -65,7 +65,7 @@ public class SceneLoader : MonoBehaviour
 
     public void Quit()
     {
-        FindObjectOfType<Player>()?.PlayerResources.Clear();
+        FindObjectOfType<Player>()?.PlayerResources.ClearTemp();
         Application.Quit();
     }
 }

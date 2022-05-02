@@ -16,7 +16,7 @@ public class LevelObjective3 : LevelObjective
     {
         base.Start();
 
-        _initHealth = Player.PlayerResources.Health;
+        _initHealth = PlayerPrefs.GetInt(PlayerResources.HealthTempKey, Player.PlayerResources.maxHealth);
     }
 
     #endregion

@@ -34,7 +34,7 @@ public class HomeController : MonoBehaviour
         mainUI.gameObject.SetActive(true);
         SetCursorEnabled(true);
 
-        FindObjectOfType<Player>()?.PlayerResources.Clear();
+        FindObjectOfType<Player>()?.PlayerResources.ClearTemp();
     }
 
     #endregion
