@@ -548,7 +548,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Dash"",
+                    ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""ab87d789-10f2-453f-8d86-537879e38ad2"",
                     ""expectedControlType"": ""Button"",
@@ -557,9 +557,18 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Hover"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5c49ce7-ec49-4156-9c37-d181932a9802"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""60f50837-7bdb-449a-a3f3-02a68bc184b0"",
+                    ""id"": ""4ba02913-feaa-42f0-901d-ba1df6b1a05b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -794,7 +803,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
-                    ""action"": ""Dash"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -805,7 +814,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
-                    ""action"": ""Dash"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -816,7 +825,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Dash"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -827,36 +836,80 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Dash"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fde2cd9c-ffa6-42e3-83b9-061edd40b69a"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""4f041522-821f-4607-8fb9-4cfcf418d971"",
+                    ""path"": ""<Keyboard>/period"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
-                    ""action"": ""Interact"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""46476505-cfb8-4ce4-a4d9-aceea76471ed"",
+                    ""id"": ""334d64da-c977-465b-941f-e591e31857ec"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Hover"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a7b8320-bec4-474d-b1fe-838d3f7dd68f"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Hover"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f62791c-9152-4966-8ad5-64a9462e2efc"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Hover"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""177ea1ba-fd24-4b89-9259-c2341edb3eb9"",
+                    ""path"": ""<Keyboard>/comma"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Hover"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5116c8e4-c96f-48c3-90fb-fda0e7d3296f"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""836018c8-a265-45dc-bc81-552ddc80bad1"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""id"": ""3998ce79-b5c2-4466-9632-f15c39d62ac3"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -866,8 +919,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1c73a6d0-b1da-4029-9ad2-fba796c045fd"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""id"": ""5bb53f1a-6e17-4617-88e0-b6258fd2b115"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -920,7 +973,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Hover = m_Player.FindAction("Hover", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
     }
 
@@ -1063,14 +1117,16 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Hover;
     private readonly InputAction m_Player_Interact;
     public struct PlayerActions
     {
         private @InputManager m_Wrapper;
         public PlayerActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Hover => m_Wrapper.m_Player_Hover;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1084,9 +1140,12 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Hover.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHover;
+                @Hover.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHover;
+                @Hover.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHover;
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
@@ -1097,9 +1156,12 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Dash.started += instance.OnDash;
-                @Dash.performed += instance.OnDash;
-                @Dash.canceled += instance.OnDash;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Hover.started += instance.OnHover;
+                @Hover.performed += instance.OnHover;
+                @Hover.canceled += instance.OnHover;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
@@ -1138,7 +1200,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnDash(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnHover(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
     }
 }

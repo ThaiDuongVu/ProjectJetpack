@@ -70,22 +70,22 @@ public class CameraShaker : MonoBehaviour
                 break;
 
             case CameraShakeMode.Micro:
-                _shakeDuration = _shakeIntensity = 0.08f;
+                _shakeDuration = _shakeIntensity = 0.1f;
                 GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Micro);
                 break;
 
             case CameraShakeMode.Light:
-                _shakeDuration = _shakeIntensity = 0.12f;
+                _shakeDuration = _shakeIntensity = 0.15f;
                 GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Light);
                 break;
 
             case CameraShakeMode.Normal:
-                _shakeDuration = _shakeIntensity = 0.15f;
+                _shakeDuration = _shakeIntensity = 0.18f;
                 GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Normal);
                 break;
 
             case CameraShakeMode.Hard:
-                _shakeDuration = _shakeIntensity = 0.2f;
+                _shakeDuration = _shakeIntensity = 0.22f;
                 GamepadRumbler.Instance.Rumble(GamepadRumbleMode.Hard);
                 break;
 

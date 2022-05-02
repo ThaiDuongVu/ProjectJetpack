@@ -24,8 +24,8 @@ public class EffectsController : MonoBehaviour
     private ChromaticAberration _chromaticAberration;
     private Vignette _vignette;
 
-    public const float DefaultVignetteIntensity = 0.3f;
-    public const float DefaultChromaticAberrationIntensity = 0.2f;
+    public const float DefaultVignetteIntensity = 0.5f;
+    public const float DefaultChromaticAberrationIntensity = 0.4f;
 
     #region Unity Event
 

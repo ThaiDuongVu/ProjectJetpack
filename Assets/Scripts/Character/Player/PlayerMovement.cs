@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,18 +11,30 @@ public class PlayerMovement : CharacterMovement
 
     private void MoveOnPerformed(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.State == GameState.Paused) return;
+        if (GameController.Instance.State == GameState.Paused || !_player.IsControllable) return;
         InputTypeController.Instance.CheckInputType(context);
 
         var direction = context.ReadValue<Vector2>().normalized * (PlayerPrefs.GetInt("InvertAim", 0) == 0 ? 1f : -1f);
-        
+
         _player.PlayerArrow.TargetDirection = direction;
+
+        if (direction.y < -0.8f) StartCoroutine(DropDownPlatform());
+
+        if (direction.x < 0f) direction = Vector2.left;
+        else if (direction.x > 0f) direction = Vector2.right;
+        else
+        {
+            StopRunning();
+            return;
+        }
+
+        if (direction.x * CurrentDirection.x < 0f) StopRunningImmediate();
         StartRunning(direction);
     }
 
     private void MoveOnCanceled(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.State == GameState.Paused) return;
+        if (GameController.Instance.State == GameState.Paused || !_player.IsControllable) return;
         InputTypeController.Instance.CheckInputType(context);
 
         StopRunning();
@@ -55,4 +68,15 @@ public class PlayerMovement : CharacterMovement
     }
 
     #endregion
+
+    private IEnumerator DropDownPlatform()
+    {
+        if (_player.IsGrounded && _player.GroundPlatform)
+        {
+            var tempGround = _player.GroundPlatform;
+            Physics2D.IgnoreCollision(_player.Collider2D, tempGround, true);
+            yield return new WaitForSeconds(0.5f);
+            Physics2D.IgnoreCollision(_player.Collider2D, tempGround, false);
+        }
+    }
 }

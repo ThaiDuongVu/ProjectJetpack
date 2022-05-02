@@ -63,8 +63,9 @@ public class SceneLoader : MonoBehaviour
         Load(SceneManager.GetActiveScene().name);
     }
 
-    public static void Quit()
+    public void Quit()
     {
+        FindObjectOfType<Player>()?.PlayerResources.Clear();
         Application.Quit();
     }
 }

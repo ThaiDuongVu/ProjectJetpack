@@ -17,7 +17,6 @@ public class CharacterMovement : MonoBehaviour
     public float deceleration;
     private static readonly int IsRunningAnimationTrigger = Animator.StringToHash("isRunning");
 
-
     #region Unity Event
 
     public virtual void Awake()
@@ -87,7 +86,7 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void Run()
     {
-        _character.Rigidbody2D.MovePosition(_character.Rigidbody2D.position + CurrentDirection * CurrentVelocity * Time.fixedDeltaTime);
+        _character.Rigidbody2D.velocity = new Vector2(CurrentDirection.x * CurrentVelocity, _character.Rigidbody2D.velocity.y);
         _character.SetFlipped(CurrentDirection.x < 0f);
     }
 

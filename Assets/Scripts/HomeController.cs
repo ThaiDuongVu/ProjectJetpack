@@ -33,6 +33,8 @@ public class HomeController : MonoBehaviour
         uiMessage.gameObject.SetActive(false);
         mainUI.gameObject.SetActive(true);
         SetCursorEnabled(true);
+
+        FindObjectOfType<Player>()?.PlayerResources.Clear();
     }
 
     #endregion

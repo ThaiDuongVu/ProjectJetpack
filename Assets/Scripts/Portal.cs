@@ -1,63 +1,74 @@
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Portal : MonoBehaviour
 {
-    public string[] ids;
+    public float xPositionStart = -4.5f;
 
-    public bool IsOpen { get; set; }
-    private Animator _animator;
-    private static readonly int OpenAnimationTrigger = Animator.StringToHash("open");
+    private Transform target;
+    private bool _targetEntered;
+    private const float InterpolationRatio = 0.05f;
+    private const float EnterDelay = 1f;
+    [SerializeField] private Transform enterPoint;
+    [SerializeField] private UnityEvent onEntered;
 
     private InputPrompt _inputPrompt;
-
-    public UnityEvent onEntered;
 
     #region Unity Event
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
         _inputPrompt = GetComponentInChildren<InputPrompt>();
     }
 
     private void Start()
     {
+        var xPositionLeftDistance = Random.Range(0, 9);
+        transform.position = new Vector2(xPositionStart + (float)xPositionLeftDistance + 1f, transform.position.y);
+
         _inputPrompt.gameObject.SetActive(false);
+    }
+
+    private void FixedUpdate()
+    {
+        if (!_targetEntered) return;
+
+        target.position = Vector2.Lerp(target.position, enterPoint.position, InterpolationRatio);
+        target.localScale = Vector2.Lerp(target.localScale, Vector2.zero, InterpolationRatio);
     }
 
     #endregion
 
-    public void Unlock(List<string> keyIds)
+    public IEnumerator Enter(Player player)
     {
-        foreach (var id in ids)
-        {
-            if (!keyIds.Contains(id))
-            {
-                GameController.Instance.SendUIMessage("Missing key(s) to unlock portal");
-                return;
-            }
-        }
+        this.target = player.transform;
+        player.IsControllable = false;
+        player.Animator.SetBool("isRunning", true);
+        _targetEntered = true;
 
-        Open();
-    }
+        yield return new WaitForSeconds(EnterDelay);
 
-    public void Open()
-    {
-        IsOpen = true;
-        _animator.SetTrigger(OpenAnimationTrigger);
-        _inputPrompt.gameObject.SetActive(false);
-        _inputPrompt.gameObject.SetActive(true);
+        onEntered.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) _inputPrompt.gameObject.SetActive(true);
+        if (!other.CompareTag("Player")) return;
+
+        _inputPrompt.gameObject.SetActive(true);
+
+        var player = other.GetComponent<Player>();
+        player.Portal = this;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) _inputPrompt.gameObject.SetActive(false);
+        if (!other.CompareTag("Player")) return;
+
+        _inputPrompt.gameObject.SetActive(false);
+
+        var player = other.GetComponent<Player>();
+        player.Portal = null;
     }
 }

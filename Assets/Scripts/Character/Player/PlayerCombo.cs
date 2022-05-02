@@ -5,7 +5,7 @@ public class PlayerCombo : MonoBehaviour
 {
     public int Multiplier { get; private set; }
     private float _timer;
-    private const float TimerMax = 3f;
+    private const float TimerMax = 5f;
 
     [SerializeField] private TMP_Text text;
     private RectTransform _textTransform;
@@ -34,7 +34,7 @@ public class PlayerCombo : MonoBehaviour
 
     #endregion
 
-    public void Add(int amount)
+    public void Add(int amount = 1)
     {
         Multiplier += amount;
         _timer = TimerMax;

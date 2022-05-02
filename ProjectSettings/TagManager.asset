@@ -5,10 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - IgnoreFont
-  - Collectible
+  - Platform
   - Enemy
-  - Fireball
+  - Collectible
   - Portal
+  - BasePlatform
   layers:
   - Default
   - TransparentFX
@@ -16,12 +17,12 @@ TagManager:
   - PostProcessing
   - Water
   - UI
-  - Enemies
   - Obstacles
-  - Player
   - Levels
-  - Collectibles
-  - EnemyHitBoxes
+  - Enemies
+  - Borders
+  - Player
+  - 
   - 
   - 
   - 
@@ -47,14 +48,14 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 1265722231
+    uniqueID: 2143975921
     locked: 0
   - name: Objects
-    uniqueID: 818340529
+    uniqueID: 280097827
     locked: 0
-  - name: Players
-    uniqueID: 1388383379
+  - name: Characters
+    uniqueID: 1033147871
     locked: 0
   - name: UI
-    uniqueID: 2271380611
+    uniqueID: 4160823409
     locked: 0

@@ -1,0 +1,19 @@
+take no damage
+take at most 1 damage
+take at most 2 damage
+take at most 3 damage
+
+stay on the ground for no more than 10s
+stay on the ground for no more than 15s
+stay on the ground for no more than 20s
+reach the base platform in 60s
+reach the base platform in 75s
+reach the base platform in 90s
+
+kill all enemies
+kill at least half of enemies
+reach at least x5 combo
+reach at least x8 combo
+reach at least x10 combo
+// achieve a double-kill
+// achive at least 2 double-kills

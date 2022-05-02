@@ -526,7 +526,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Dash",
+                    "name": "Jump",
                     "type": "Button",
                     "id": "ab87d789-10f2-453f-8d86-537879e38ad2",
                     "expectedControlType": "Button",
@@ -535,9 +535,18 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Hover",
+                    "type": "Button",
+                    "id": "c5c49ce7-ec49-4156-9c37-d181932a9802",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
-                    "id": "60f50837-7bdb-449a-a3f3-02a68bc184b0",
+                    "id": "4ba02913-feaa-42f0-901d-ba1df6b1a05b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -772,7 +781,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
-                    "action": "Dash",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -783,7 +792,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
-                    "action": "Dash",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -794,7 +803,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Dash",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -805,36 +814,80 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Dash",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "fde2cd9c-ffa6-42e3-83b9-061edd40b69a",
-                    "path": "<Keyboard>/e",
+                    "id": "4f041522-821f-4607-8fb9-4cfcf418d971",
+                    "path": "<Keyboard>/period",
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
-                    "action": "Interact",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "46476505-cfb8-4ce4-a4d9-aceea76471ed",
+                    "id": "334d64da-c977-465b-941f-e591e31857ec",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "MouseKeyboard",
+                    "action": "Hover",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a7b8320-bec4-474d-b1fe-838d3f7dd68f",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Hover",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f62791c-9152-4966-8ad5-64a9462e2efc",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Hover",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "177ea1ba-fd24-4b89-9259-c2341edb3eb9",
+                    "path": "<Keyboard>/comma",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "Hover",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5116c8e4-c96f-48c3-90fb-fda0e7d3296f",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "836018c8-a265-45dc-bc81-552ddc80bad1",
-                    "path": "<Gamepad>/buttonWest",
+                    "id": "3998ce79-b5c2-4466-9632-f15c39d62ac3",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -844,8 +897,8 @@
                 },
                 {
                     "name": "",
-                    "id": "1c73a6d0-b1da-4029-9ad2-fba796c045fd",
-                    "path": "<Gamepad>/rightShoulder",
+                    "id": "5bb53f1a-6e17-4617-88e0-b6258fd2b115",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",

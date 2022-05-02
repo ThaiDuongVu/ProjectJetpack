@@ -11,6 +11,7 @@ public class PlayerResources : CharacterResources
     private Animator _healthDisplayAnimator;
     private static readonly int IsLowHealthAnimationTrigger = Animator.StringToHash("isLowHealth");
     private Image[] _healthIcons;
+    private const string HealthTempKey = "TempHealth";
     public override int Health
     {
         get => base.Health;
@@ -24,24 +25,9 @@ public class PlayerResources : CharacterResources
         }
     }
 
-    [Header("Fuel")]
-    [SerializeField] private Image fuelBar;
-    public float maxFuel = 100f;
-    private float _fuel;
-    public float Fuel
-    {
-        get => _fuel;
-        set
-        {
-            if (value > maxFuel) return;
-            
-            _fuel = value;
-            UpdateFuelBar();
-        }
-    }
-
     [Header("Token")]
     [SerializeField] private TMP_Text tokenText;
+    private const string TokenTempKey = "TempToken";
     private int _token;
     public int Token
     {
@@ -50,6 +36,21 @@ public class PlayerResources : CharacterResources
         {
             _token = value;
             tokenText.text = value.ToString();
+        }
+    }
+
+    [Header("Fuel")]
+    [SerializeField] private Image fuelBar;
+    public float maxFuel = 1f;
+    private const string FuelTempKey = "TempFuel";
+    private float _fuel;
+    public float Fuel
+    {
+        get => _fuel;
+        set
+        {
+            _fuel = Mathf.Clamp(value, 0f, maxFuel);
+            UpdateFuelBar();
         }
     }
 
@@ -67,9 +68,7 @@ public class PlayerResources : CharacterResources
 
     public override void Start()
     {
-        base.Start();
-
-        Fuel = maxFuel;
+        Load();
     }
 
     #endregion
@@ -84,6 +83,30 @@ public class PlayerResources : CharacterResources
     private void UpdateFuelBar()
     {
         if (Fuel < 0f) return;
-        fuelBar.transform.localScale = new Vector2(Fuel / maxFuel, 1f);
+        fuelBar.fillAmount = Fuel;
     }
+
+    #region Save & Load Methods
+    public void Save()
+    {
+        PlayerPrefs.SetInt(HealthTempKey, Health);
+        PlayerPrefs.SetInt(TokenTempKey, Token);
+        PlayerPrefs.SetFloat(FuelTempKey, Fuel);
+    }
+
+    public void Load()
+    {
+        Health = PlayerPrefs.GetInt(HealthTempKey, maxHealth);
+        Token = PlayerPrefs.GetInt(TokenTempKey, 0);
+        Fuel = PlayerPrefs.GetFloat(FuelTempKey, maxFuel);
+    }
+
+    public void Clear()
+    {
+        PlayerPrefs.SetInt(HealthTempKey, maxHealth);
+        PlayerPrefs.SetInt(TokenTempKey, 0);
+        PlayerPrefs.SetFloat(FuelTempKey, maxFuel);
+    }
+
+    #endregion
 }

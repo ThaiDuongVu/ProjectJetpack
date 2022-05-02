@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Fuel : Collectible
 {
-    public float reward = 10f;
+    public float reward = 0.1f;
 
     public override void OnCollected(Transform target)
     {

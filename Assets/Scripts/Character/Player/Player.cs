@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Player : Character
 {
@@ -10,13 +10,38 @@ public class Player : Character
     public PlayerCombo PlayerCombo { get; private set; }
     public PlayerArrow PlayerArrow { get; private set; }
 
+    public bool IsControllable { get; set; } = true;
+
+    [Header("Effects Properties")]
     [SerializeField] private Trail groundTrailPrefab;
     public Trail GroundTrail { get; private set; }
+    [SerializeField] private Color transparentColor;
+    private Color trailDefaultColor;
+    [SerializeField] private ParticleSystem bloodSplashPrefab;
 
-    [SerializeField] private ParticleSystem whiteExplosionPrefab;
+    [Header("Crosshair Properties")]
+    public SpriteRenderer crosshair;
+    public override bool IsGrounded
+    {
+        get => base.IsGrounded;
+        set
+        {
+            base.IsGrounded = value;
+            crosshair.gameObject.SetActive(!value && PlayerResources.Fuel >= PlayerCombat.fuelConsumptionPerJump);
+        }
+    }
 
-    private Portal nearbyPortal;
-    private List<string> _collectKeyIds = new List<string>();
+    public bool BasePlatformReached { get; set; }
+    public Portal Portal { get; set; }
+
+    [Header("Level Objectives")]
+    [SerializeField] private Transform objectiveParent;
+    private LevelObjective objective1;
+    private LevelObjective objective2;
+    private LevelObjective objective3;
+    [SerializeField] private TMP_Text objective1Text;
+    [SerializeField] private TMP_Text objective2Text;
+    [SerializeField] private TMP_Text objective3Text;
 
     private InputManager _inputManager;
 
@@ -24,14 +49,13 @@ public class Player : Character
 
     private void InteractOnPerformed(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.State == GameState.Paused) return;
+        if (GameController.Instance.State == GameState.Paused || !IsControllable) return;
         InputTypeController.Instance.CheckInputType(context);
 
-        if (nearbyPortal)
-        {
-            if (nearbyPortal.IsOpen) nearbyPortal.onEntered.Invoke();
-            else nearbyPortal.Unlock(_collectKeyIds);
-        }
+        if (!Portal) return;
+
+        CheckLevelObjectives();
+        StartCoroutine(Portal.Enter(this));
     }
 
     #endregion
@@ -62,6 +86,8 @@ public class Player : Character
         PlayerResources = GetComponent<PlayerResources>();
         PlayerCombo = GetComponent<PlayerCombo>();
         PlayerArrow = GetComponentInChildren<PlayerArrow>();
+
+        LoadLevelObjectives();
     }
 
     public override void Start()
@@ -70,29 +96,32 @@ public class Player : Character
 
         GroundTrail = Instantiate(groundTrailPrefab, transform.position, Quaternion.identity);
         GroundTrail.Target = transform;
+        trailDefaultColor = GroundTrail.GetComponent<ParticleSystem>().main.startColor.color;
+    }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        DetectGrounded();
     }
 
     #endregion
-
-    public override void Stagger(Vector2 direction)
-    {
-        PlayerCombat.SetDash(false);
-        base.Stagger(direction);
-    }
 
     #region Damage & Death
 
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+
         PlayerCombo.Cancel();
+        CameraShaker.Instance.Shake(CameraShakeMode.Normal);
     }
 
     public override void Die()
     {
         base.Die();
 
-        Instantiate(whiteExplosionPrefab, transform.position, Quaternion.identity);
         GameController.Instance.StartCoroutine(GameController.Instance.GameOver());
 
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
@@ -103,18 +132,45 @@ public class Player : Character
 
     #endregion
 
-    public void CollectKey(string keyId)
+    public override void KnockBack(Vector2 direction, float force)
     {
-        _collectKeyIds.Add(keyId);
+        base.KnockBack(direction, force);
+
+        Instantiate(bloodSplashPrefab, transform.position, Quaternion.identity).transform.up = direction;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void DetectGrounded()
     {
-        if (other.CompareTag("Portal")) nearbyPortal = other.GetComponent<Portal>();
+        base.DetectGrounded();
+
+        GroundTrail.SetColor(IsGrounded ? trailDefaultColor : transparentColor);
+        if (GroundPlatform.transform.CompareTag("BasePlatform") && !BasePlatformReached) BasePlatformReached = true;
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    #region Level Objectives Methods
+
+    private void LoadLevelObjectives()
     {
-        if (other.CompareTag("Portal")) nearbyPortal = null;
+        var objective1Set = Resources.LoadAll<LevelObjective>("Levels/Objectives/Set1");
+        objective1 = Instantiate(objective1Set[Random.Range(0, objective1Set.Length)], transform.position, Quaternion.identity);
+        objective1.transform.parent = objectiveParent;
+        objective1Text.text = objective1.name;
+
+        var objective2Set = Resources.LoadAll<LevelObjective>("Levels/Objectives/Set2");
+        objective2 = Instantiate(objective2Set[Random.Range(0, objective2Set.Length)], transform.position, Quaternion.identity);
+        objective2.transform.parent = objectiveParent;
+        objective2Text.text = objective2.name;
+
+        var objective3Set = Resources.LoadAll<LevelObjective>("Levels/Objectives/Set3");
+        objective3 = Instantiate(objective3Set[Random.Range(0, objective3Set.Length)], transform.position, Quaternion.identity);
+        objective3.transform.parent = objectiveParent;
+        objective3Text.text = objective3.name;
     }
+
+    private void CheckLevelObjectives()
+    {
+        // TODO: Reward player for completing level objectives
+    }
+
+    #endregion
 }
