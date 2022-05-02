@@ -26,7 +26,15 @@ public class MainCameraController : MonoBehaviour
     private const float MinYPosition = -80f;
     private const float MaxYPosition = 0f;
 
+    private Animator _animator;
+    private static readonly int OutroAnimationTrigger = Animator.StringToHash("outro");
+
     #region Unity Event
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     private void FixedUpdate()
     {
@@ -43,5 +51,10 @@ public class MainCameraController : MonoBehaviour
         var lerpPosition = new Vector3(0f, Mathf.Clamp(targetPosition.y + YOffset, MinYPosition, MaxYPosition), -10f);
 
         transform.position = Vector3.Lerp(transform.position, lerpPosition, FollowInterpolationRatio);
+    }
+
+    public void Outro()
+    {
+        _animator.SetTrigger(OutroAnimationTrigger);
     }
 }

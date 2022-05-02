@@ -18,7 +18,7 @@ public class PlayerMovement : CharacterMovement
 
         _player.PlayerArrow.TargetDirection = direction;
 
-        if (direction.y < -0.8f) StartCoroutine(DropDownPlatform());
+        if (direction.y <= -0.7f) StartCoroutine(DropDownPlatform());
 
         if (direction.x < 0f) direction = Vector2.left;
         else if (direction.x > 0f) direction = Vector2.right;

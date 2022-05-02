@@ -56,7 +56,6 @@ public class Player : Character
 
         if (!Portal) return;
 
-        UpdateObjectiveTexts();
         StartCoroutine(Portal.Enter(this));
     }
 
@@ -106,6 +105,7 @@ public class Player : Character
         base.FixedUpdate();
 
         DetectGrounded();
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -4.5f, 4.5f), transform.position.y);
     }
 
     #endregion
@@ -151,6 +151,7 @@ public class Player : Character
         {
             BasePlatformReached = true;
             UpdateObjectiveTexts();
+            CheckLevelObjectives();
         }
     }
 
@@ -188,7 +189,11 @@ public class Player : Character
 
     private void CheckLevelObjectives()
     {
-        // TODO: Reward player for completing level objectives
+        var basePlatformSpawners = GroundPlatform.GetComponentsInChildren<CollectibleSpawner>();
+
+        if (objective1.IsCompleted) basePlatformSpawners[0].Spawn();
+        if (objective2.IsCompleted) basePlatformSpawners[1].Spawn();
+        if (objective3.IsCompleted) basePlatformSpawners[2].Spawn();
     }
 
     #endregion

@@ -4,6 +4,7 @@ public class Collectible : MonoBehaviour
 {
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
+    private Collider2D[] _colliders;
     private DelayedDestroyer _delayedDestroyer;
 
     protected bool IsCollected { get; set; }
@@ -22,6 +23,7 @@ public class Collectible : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _colliders = GetComponents<Collider2D>();
         _delayedDestroyer = GetComponent<DelayedDestroyer>();
     }
 
@@ -57,6 +59,7 @@ public class Collectible : MonoBehaviour
 
         _animator.SetTrigger(CollectAnimationTrigger);
         _rigidbody2D.gravityScale = 0f;
+        foreach (var collider in _colliders) collider.enabled = false;
         StartCoroutine(_delayedDestroyer.Destroy());
     }
 
