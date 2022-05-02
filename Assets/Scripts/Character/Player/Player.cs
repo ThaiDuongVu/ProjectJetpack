@@ -36,6 +36,8 @@ public class Player : Character
 
     [Header("Level Objectives")]
     [SerializeField] private Transform objectiveParent;
+    [SerializeField] private Color objectiveIncompleteColor;
+    [SerializeField] private Color objectiveCompleteColor;
     private LevelObjective objective1;
     private LevelObjective objective2;
     private LevelObjective objective3;
@@ -54,7 +56,7 @@ public class Player : Character
 
         if (!Portal) return;
 
-        CheckLevelObjectives();
+        UpdateObjectiveTexts();
         StartCoroutine(Portal.Enter(this));
     }
 
@@ -144,7 +146,11 @@ public class Player : Character
         base.DetectGrounded();
 
         GroundTrail.SetColor(IsGrounded ? trailDefaultColor : transparentColor);
-        if (GroundPlatform.transform.CompareTag("BasePlatform") && !BasePlatformReached) BasePlatformReached = true;
+        if (GroundPlatform.transform.CompareTag("BasePlatform") && !BasePlatformReached)
+        {
+            BasePlatformReached = true;
+            UpdateObjectiveTexts();
+        }
     }
 
     #region Level Objectives Methods
@@ -165,6 +171,18 @@ public class Player : Character
         objective3 = Instantiate(objective3Set[Random.Range(0, objective3Set.Length)], transform.position, Quaternion.identity);
         objective3.transform.parent = objectiveParent;
         objective3Text.text = objective3.name;
+    }
+
+    private void UpdateObjectiveTexts()
+    {
+        objective1Text.color = objective1.IsCompleted ? objectiveCompleteColor : objectiveIncompleteColor;
+        objective1Text.fontStyle = objective1.IsCompleted ? FontStyles.Strikethrough : FontStyles.Normal;
+
+        objective2Text.color = objective2.IsCompleted ? objectiveCompleteColor : objectiveIncompleteColor;
+        objective2Text.fontStyle = objective2.IsCompleted ? FontStyles.Strikethrough : FontStyles.Normal;
+
+        objective3Text.color = objective3.IsCompleted ? objectiveCompleteColor : objectiveIncompleteColor;
+        objective3Text.fontStyle = objective3.IsCompleted ? FontStyles.Strikethrough : FontStyles.Normal;
     }
 
     private void CheckLevelObjectives()

@@ -370,7 +370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 25, y: -125}
+  m_AnchoredPosition: {x: 0, y: -125}
   m_SizeDelta: {x: 375, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2875800725776633084
@@ -1670,7 +1670,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 25, y: -75}
+  m_AnchoredPosition: {x: 0, y: -75}
   m_SizeDelta: {x: 375, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9176757924854773220
@@ -2457,7 +2457,7 @@ MonoBehaviour:
   - {x: 0.25, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 48032
+  m_InstanceId: 53250
 --- !u!114 &7117147716524371643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2480,6 +2480,8 @@ MonoBehaviour:
   bloodSplashPrefab: {fileID: 3827419661170153826, guid: 432d4be562e08624e99aafd3ab408fe0, type: 3}
   crosshair: {fileID: 7497392771668976605}
   objectiveParent: {fileID: 2024502278736432015}
+  objectiveIncompleteColor: {r: 1, g: 1, b: 1, a: 1}
+  objectiveCompleteColor: {r: 0.0627451, g: 0.6745098, b: 0.5176471, a: 1}
   objective1Text: {fileID: 6796241968085029462}
   objective2Text: {fileID: 565490773291509513}
   objective3Text: {fileID: 6691082055459020922}
@@ -3448,7 +3450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 25, y: -25}
+  m_AnchoredPosition: {x: 0, y: -25}
   m_SizeDelta: {x: 375, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &837181928858306611
