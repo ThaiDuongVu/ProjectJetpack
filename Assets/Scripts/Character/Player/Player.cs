@@ -50,12 +50,10 @@ public class Player : Character
 
     private void InteractOnPerformed(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.State == GameState.Paused || !IsControllable) return;
+        if (!IsControllable || GameController.Instance.State == GameState.Paused) return;
         InputTypeController.Instance.CheckInputType(context);
 
-        if (!Portal) return;
-
-        StartCoroutine(Portal.Enter(this));
+        EnterPortal();
     }
 
     #endregion
@@ -154,6 +152,14 @@ public class Player : Character
             CameraShaker.Instance.Shake(CameraShakeMode.Light);
             GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
         }
+    }
+
+    public void EnterPortal()
+    {
+        if (!Portal) return;
+
+        StartCoroutine(Portal.Enter(this));
+        IsControllable = false;
     }
 
     #region Level Objectives Methods

@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 626886531658451925, guid: 7f57c8aec4125d4488925d5f2913c609, type: 3}
       propertyPath: m_text
-      value: Play
+      value: Resume
       objectReference: {fileID: 0}
     - target: {fileID: 626886532411972560, guid: 7f57c8aec4125d4488925d5f2913c609, type: 3}
       propertyPath: m_Name
@@ -102,11 +102,7 @@ PrefabInstance:
     - target: {fileID: 626886532411972565, guid: 7f57c8aec4125d4488925d5f2913c609, type: 3}
       propertyPath: backButton
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 626886532411972565, guid: 7f57c8aec4125d4488925d5f2913c609, type: 3}
-      propertyPath: disableOnStartup
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8816659455362585880}
     - target: {fileID: 626886532916713491, guid: 7f57c8aec4125d4488925d5f2913c609, type: 3}
       propertyPath: m_text
       value: Main Menu
@@ -125,3 +121,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f57c8aec4125d4488925d5f2913c609, type: 3}
+--- !u!114 &8816659455362585880 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 626886532050183257, guid: 7f57c8aec4125d4488925d5f2913c609, type: 3}
+  m_PrefabInstance: {fileID: 8279926142315147585}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

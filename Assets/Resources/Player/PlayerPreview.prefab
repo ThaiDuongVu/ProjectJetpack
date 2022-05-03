@@ -55,29 +55,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPreview
       objectReference: {fileID: 0}
-    - target: {fileID: 7117147716524371637, guid: 3b22af394c04057479be4f7dae00c44b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7117147716524371640, guid: 3b22af394c04057479be4f7dae00c44b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7117147716524371641, guid: 3b22af394c04057479be4f7dae00c44b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7117147716524371645, guid: 3b22af394c04057479be4f7dae00c44b, type: 3}
-      propertyPath: m_BodyType
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7117147716524371646, guid: 3b22af394c04057479be4f7dae00c44b, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7117147716524371646, guid: 3b22af394c04057479be4f7dae00c44b, type: 3}
       propertyPath: m_InstanceId
-      value: -59548
+      value: -157896
       objectReference: {fileID: 0}
     - target: {fileID: 7117147716601457484, guid: 3b22af394c04057479be4f7dae00c44b, type: 3}
       propertyPath: m_IsActive

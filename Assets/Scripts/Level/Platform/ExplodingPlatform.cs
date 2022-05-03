@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ExplodingPlatform : Platform
@@ -7,13 +8,15 @@ public class ExplodingPlatform : Platform
     [SerializeField] private float explodingForce = 15f;
 
     private Timer explodingTimer;
-	private const float MaxTimer = 2f;
+    private const float MaxTimer = 1f;
     private bool _timerStarted;
+    private bool _exploded;
 
     private Animator _animator;
     private static readonly int FlashAnimationTrigger = Animator.StringToHash("flash");
 
     private Player _player;
+    private List<Enemy> _enemies = new List<Enemy>();
 
     #region Unity Event
 
@@ -42,13 +45,22 @@ public class ExplodingPlatform : Platform
 
     public void Explode()
     {
+        if (_exploded) return;
+
         if (_player)
         {
             _player.TakeDamage(damage);
             _player.KnockBack((_player.transform.position - transform.position).normalized, explodingForce);
         }
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        for (int i = 0; i < _enemies.Count; i++)
+        {
+            var enemy = _enemies[i];
+            enemy.TakeDamage(damage);
+            enemy.KnockBack((enemy.transform.position - transform.position).normalized, explodingForce);
+        }
 
+        _exploded = true;
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
 
@@ -65,15 +77,19 @@ public class ExplodingPlatform : Platform
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.transform.CompareTag("Player")) return;
+        if (other.transform.CompareTag("Enemy"))
+            _enemies.Add(other.transform.GetComponent<Enemy>());
 
-        _player = other.transform.GetComponent<Player>();
+        if (other.transform.CompareTag("Player"))
+            _player = other.transform.GetComponent<Player>();
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!other.transform.CompareTag("Player")) return;
+        if (other.transform.CompareTag("Enemy") && _enemies.Contains(other.transform.GetComponent<Enemy>()))
+            _enemies.Remove(other.transform.GetComponent<Enemy>());
 
-        _player = null;
+        if (other.transform.CompareTag("Player"))
+            _player = null;
     }
 }

@@ -11,7 +11,7 @@ public class PlayerMovement : CharacterMovement
 
     private void MoveOnPerformed(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.State == GameState.Paused || !_player.IsControllable) return;
+        if (!_player.IsControllable || GameController.Instance.State == GameState.Paused) return;
         InputTypeController.Instance.CheckInputType(context);
 
         var direction = context.ReadValue<Vector2>().normalized * (PlayerPrefs.GetInt("InvertAim", 0) == 0 ? 1f : -1f);
@@ -32,7 +32,7 @@ public class PlayerMovement : CharacterMovement
 
     private void MoveOnCanceled(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.State == GameState.Paused || !_player.IsControllable) return;
+        if (!_player.IsControllable || GameController.Instance.State == GameState.Paused) return;
         InputTypeController.Instance.CheckInputType(context);
 
         StopRunning();

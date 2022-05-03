@@ -46,7 +46,7 @@ public class PlayerCombat : CharacterCombat
 
     private void JumpOnStarted(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.State == GameState.Paused || !_player.IsControllable) return;
+        if (!_player.IsControllable || GameController.Instance.State == GameState.Paused) return;
         InputTypeController.Instance.CheckInputType(context);
 
         if (_isHovering) SetHovering(false);
@@ -55,7 +55,7 @@ public class PlayerCombat : CharacterCombat
 
     private void HoverOnStarted(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.State == GameState.Paused || !_player.IsControllable) return;
+        if (!_player.IsControllable || GameController.Instance.State == GameState.Paused) return;
         InputTypeController.Instance.CheckInputType(context);
 
         SetHovering(true);
@@ -63,7 +63,7 @@ public class PlayerCombat : CharacterCombat
 
     private void HoverOnCanceled(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.State == GameState.Paused || !_player.IsControllable) return;
+        if (!_player.IsControllable || GameController.Instance.State == GameState.Paused) return;
         InputTypeController.Instance.CheckInputType(context);
 
         SetHovering(false);

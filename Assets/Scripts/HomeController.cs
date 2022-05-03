@@ -1,47 +1,43 @@
+using System.Collections;
 using UnityEngine;
 
 public class HomeController : MonoBehaviour
 {
-    [Header("Menus")]
-    [SerializeField] private Canvas mainUI;
-
-    [Header("UI Message")]
-    [SerializeField] private GameObject uiMessage;
-
-    private InputManager _inputManager;
+    private Player _playerPreview;
 
     #region Unity Event
 
-    private void OnEnable()
+    private void Awake()
     {
-        _inputManager = new InputManager();
-
-        _inputManager.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _inputManager.Disable();
+        _playerPreview = FindObjectOfType<Player>();
     }
 
     private void Start()
     {
-        EffectsController.Instance.SetDepthOfField(false);
-        EffectsController.Instance.SetChromaticAberration(false);
-        EffectsController.Instance.SetVignetteIntensity(EffectsController.DefaultVignetteIntensity);
-
-        uiMessage.gameObject.SetActive(false);
-        mainUI.gameObject.SetActive(true);
-        SetCursorEnabled(true);
-
-        FindObjectOfType<Player>()?.PlayerResources.ClearTemp();
+        _playerPreview.PlayerResources.ClearTemp();
+        // StartCoroutine(PlayHomeIntroAnimation());
     }
 
     #endregion
 
-    private static void SetCursorEnabled(bool value)
+    private IEnumerator PlayHomeIntroAnimation()
     {
-        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = value;
+        _playerPreview.PlayerMovement.StartRunning(Vector2.right);
+
+        yield return new WaitForSeconds(0.75f);
+
+        _playerPreview.PlayerMovement.StopRunning();
+
+        yield return new WaitForSeconds(2f);
+
+        _playerPreview.PlayerMovement.StartRunning(Vector2.right);
+
+        yield return new WaitForSeconds(0.5f);
+
+        _playerPreview.PlayerMovement.StopRunning();
+
+        yield return new WaitForSeconds(0.25f);
+
+        _playerPreview.EnterPortal();
     }
 }

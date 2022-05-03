@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 328f213402e7c594b9eb8468838535ad
+guid: c8f18cd894e41ec429bd7710138dbadd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: portal_0
+      name: portal_yellow_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1bd653c2629b254296a1fad386f0ca6
-      internalID: 851362316
+      spriteID: d0019117a9619ee40a63afee7bff13d3
+      internalID: 1801508348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: portal_1
+      name: portal_yellow_1
       rect:
         serializedVersion: 2
         x: 32
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d763527d1119524caf3bebcda918629
-      internalID: -1824677098
+      spriteID: adaf75056682ed545ab43d375c46cde8
+      internalID: -764421112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: portal_2
+      name: portal_yellow_2
       rect:
         serializedVersion: 2
         x: 64
@@ -160,8 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7044fd7769d9c4046a416aefbb27bd98
-      internalID: 960025016
+      spriteID: 05b8ffc4e04a79c40b9ca123d1a225a4
+      internalID: 568844707
       vertices: []
       indices: 
       edges: []
@@ -177,9 +177,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      portal_0: 851362316
-      portal_1: -1824677098
-      portal_2: 960025016
+      portal_yellow_0: 1801508348
+      portal_yellow_2: 568844707
+      portal_yellow_1: -764421112
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

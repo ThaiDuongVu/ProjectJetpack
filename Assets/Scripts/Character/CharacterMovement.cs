@@ -15,7 +15,7 @@ public class CharacterMovement : MonoBehaviour
     public float minVelocity;
     public float acceleration;
     public float deceleration;
-    private static readonly int IsRunningAnimationTrigger = Animator.StringToHash("isRunning");
+    public static readonly int IsRunningAnimationTrigger = Animator.StringToHash("isRunning");
 
     #region Unity Event
 
@@ -30,7 +30,7 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void FixedUpdate()
     {
-        if (GameController.Instance.State == GameState.Paused)
+        if (GameController.Instance && GameController.Instance.State == GameState.Paused)
         {
             if (IsRunning) StopRunningImmediate();
             return;

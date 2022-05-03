@@ -2476,7 +2476,7 @@ MonoBehaviour:
   - {x: 0.25, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46872
+  m_InstanceId: 106332
 --- !u!114 &7117147716524371643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2494,6 +2494,7 @@ MonoBehaviour:
   groundRaycastDistance: 0.55
   edgePoints: []
   edgeRaycastDistance: 0.55
+  isControllable: 1
   groundTrailPrefab: {fileID: 3724705232593504567, guid: 4029efcfcc3d5cd48abdc70f4f657e94, type: 3}
   transparentColor: {r: 0, g: 0, b: 0, a: 0}
   bloodSplashPrefab: {fileID: 3827419661170153826, guid: 432d4be562e08624e99aafd3ab408fe0, type: 3}
@@ -3008,7 +3009,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 280097827
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fdd70ddd2c0e572438c1ebb2641c81d0, type: 3}
   m_Color: {r: 0.039215688, g: 0.7411765, b: 0.8901961, a: 1}
   m_FlipX: 0
