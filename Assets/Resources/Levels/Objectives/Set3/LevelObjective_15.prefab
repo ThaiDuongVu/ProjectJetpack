@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f20d952bbc14e488869fa87cd961f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Reach at least x5 combo
+  name: Achieve a x5 combo

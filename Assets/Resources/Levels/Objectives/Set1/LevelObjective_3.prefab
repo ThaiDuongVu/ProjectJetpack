@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9028deb602bd6b143a2bd26f97605f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Take at most 2 damage
+  name: Take no more than 2 damage

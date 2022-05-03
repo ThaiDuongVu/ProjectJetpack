@@ -6,7 +6,7 @@ public class LevelObjective10 : LevelObjective
 
     public override bool IsCompleted
     {
-        get => timer <= 75f;
+        get => timer <= 45f;
         set => base.IsCompleted = value;
     }
 

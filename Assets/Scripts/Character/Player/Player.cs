@@ -8,7 +8,6 @@ public class Player : Character
     public PlayerCombat PlayerCombat { get; private set; }
     public PlayerResources PlayerResources { get; private set; }
     public PlayerCombo PlayerCombo { get; private set; }
-    public PlayerArrow PlayerArrow { get; private set; }
 
     public bool IsControllable { get; set; } = true;
 
@@ -86,7 +85,6 @@ public class Player : Character
         PlayerCombat = GetComponent<PlayerCombat>();
         PlayerResources = GetComponent<PlayerResources>();
         PlayerCombo = GetComponent<PlayerCombo>();
-        PlayerArrow = GetComponentInChildren<PlayerArrow>();
 
         LoadLevelObjectives();
     }
@@ -152,6 +150,9 @@ public class Player : Character
             BasePlatformReached = true;
             UpdateObjectiveTexts();
             CheckLevelObjectives();
+
+            CameraShaker.Instance.Shake(CameraShakeMode.Light);
+            GameController.Instance.StartCoroutine(GameController.Instance.SlowDownEffect());
         }
     }
 

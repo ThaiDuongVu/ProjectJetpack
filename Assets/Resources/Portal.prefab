@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9fe9678e5476844398ace122d95b8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xPositionStart: -4.5
+  xPositionStart: -3.5
   enterPoint: {fileID: 7514494318059859275}
   onEntered:
     m_PersistentCalls:

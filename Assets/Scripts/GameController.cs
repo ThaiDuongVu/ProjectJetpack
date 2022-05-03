@@ -109,7 +109,7 @@ public class GameController : MonoBehaviour
 
     public IEnumerator GameOver()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         
         State = GameState.Paused;
         gameOverMenu.SetActive(true);

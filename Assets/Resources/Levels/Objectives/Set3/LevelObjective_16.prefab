@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3378115d338248408d1bcfb7b8e4ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Reach at least x8 combo
+  name: Achieve a x8 combo

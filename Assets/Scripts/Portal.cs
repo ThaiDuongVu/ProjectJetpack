@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class Portal : MonoBehaviour
 {
-    public float xPositionStart = -4.5f;
+    public float xPositionStart = -3.5f;
 
     private Transform target;
     private bool _targetEntered;
@@ -24,8 +24,8 @@ public class Portal : MonoBehaviour
 
     private void Start()
     {
-        var xPositionLeftDistance = Random.Range(0, 9);
-        transform.position = new Vector2(xPositionStart + (float)xPositionLeftDistance + 1f, transform.position.y);
+        var xPositionLeftDistance = Random.Range(0, 6);
+        transform.position = new Vector2(xPositionStart + (float)xPositionLeftDistance, transform.position.y);
 
         _inputPrompt.gameObject.SetActive(false);
     }

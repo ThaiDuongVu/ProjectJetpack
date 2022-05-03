@@ -22,4 +22,9 @@ public class Enemy : Character
         foreach (var spawner in _collectibleSpawners) spawner.Spawn();
         GameController.Instance.StartCoroutine(GameController.Instance.SlowDownEffect());
     }
+
+    public virtual void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.transform.CompareTag("BasePlatform")) Destroy(gameObject);
+    }
 }

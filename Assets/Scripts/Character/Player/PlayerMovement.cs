@@ -16,8 +16,6 @@ public class PlayerMovement : CharacterMovement
 
         var direction = context.ReadValue<Vector2>().normalized * (PlayerPrefs.GetInt("InvertAim", 0) == 0 ? 1f : -1f);
 
-        _player.PlayerArrow.TargetDirection = direction;
-
         if (direction.y <= -0.7f) StartCoroutine(DropDownPlatform());
 
         if (direction.x < 0f) direction = Vector2.left;
@@ -71,7 +69,7 @@ public class PlayerMovement : CharacterMovement
 
     private IEnumerator DropDownPlatform()
     {
-        if (_player.IsGrounded && _player.GroundPlatform)
+        if (_player.IsGrounded && _player.GroundPlatform && !_player.GroundPlatform.transform.CompareTag("BasePlatform"))
         {
             var tempGround = _player.GroundPlatform;
             Physics2D.IgnoreCollision(_player.Collider2D, tempGround, true);

@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d167076962352504681263fbffa80296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Reach the base platform in 60 seconds
+  name: Reach the base platform in 30 seconds or less

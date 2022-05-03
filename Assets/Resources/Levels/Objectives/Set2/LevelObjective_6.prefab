@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f8027f305a1b24a833cfd481454be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Stay on the ground for no more than 10 seconds
+  name: Stay on the ground for no more than 5 seconds
