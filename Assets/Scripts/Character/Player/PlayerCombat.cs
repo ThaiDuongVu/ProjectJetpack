@@ -34,9 +34,11 @@ public class PlayerCombat : CharacterCombat
     [SerializeField] private float fuelConsumptionPerHoverSecond = 0.25f;
     [SerializeField] private float fuelRechargeRate = 0.5f;
 
-    private Enemy _target;
+    private Enemy _targetEnemy;
     private Vector2 _hitPoint;
     [SerializeField] private BulletEffect bulletEffectPrefab;
+
+    private DestructablePlatform _targetDestructablePlatform;
 
     private InputManager _inputManager;
 
@@ -120,15 +122,29 @@ public class PlayerCombat : CharacterCombat
 
     private void Aim()
     {
-        _target = null;
+        _targetEnemy = null;
+        _targetDestructablePlatform = null;
         crosshair.color = regularColor;
 
         var hit = Physics2D.Raycast(transform.position, Vector2.down, range);
         if (!hit) return;
-        if (!hit.transform.CompareTag("Enemy")) return;
+
+        var isHit = false;
+        
+        if (hit.transform.CompareTag("Enemy"))
+        {
+            _targetEnemy = hit.transform.GetComponent<Enemy>();
+            isHit = true;
+        }
+        else if (hit.transform.CompareTag("DestructablePlatform"))
+        {
+            _targetDestructablePlatform = hit.transform.GetComponent<DestructablePlatform>();
+            isHit = true;
+        }
+
+        if (!isHit) return;
 
         _hitPoint = hit.point;
-        _target = hit.transform.GetComponent<Enemy>();
         crosshair.color = aimColor;
     }
 
@@ -185,13 +201,20 @@ public class PlayerCombat : CharacterCombat
 
     private void Fire()
     {
-        if (_target)
+        if (_targetEnemy)
         {
-            _target.TakeDamage(damage);
+            _targetEnemy.TakeDamage(damage);
             Instantiate(bulletEffectPrefab, transform.position, Quaternion.identity).TargetPosition = _hitPoint;
 
             CameraShaker.Instance.Shake(CameraShakeMode.Normal);
             _player.PlayerCombo.Add();
+        }
+        else if (_targetDestructablePlatform)
+        {
+            _targetDestructablePlatform.Explode();
+            Instantiate(bulletEffectPrefab, transform.position, Quaternion.identity).TargetPosition = _hitPoint;
+
+            CameraShaker.Instance.Shake(CameraShakeMode.Normal);
         }
         else CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }

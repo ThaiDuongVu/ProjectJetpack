@@ -120,7 +120,7 @@ public class GameController : MonoBehaviour
 
     #endregion
 
-    public IEnumerator SlowDownEffect(float scale = 0.5f, float duration = 0.25f)
+    public IEnumerator SlowMotionEffect(float scale = 0.5f, float duration = 0.25f)
     {
         // Slow down
         Time.timeScale = scale;

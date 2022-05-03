@@ -126,7 +126,7 @@ public class Player : Character
         GameController.Instance.StartCoroutine(GameController.Instance.GameOver());
 
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
-        GameController.Instance.StartCoroutine(GameController.Instance.SlowDownEffect());
+        GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
 
         Destroy(gameObject);
     }
@@ -152,7 +152,7 @@ public class Player : Character
             CheckLevelObjectives();
 
             CameraShaker.Instance.Shake(CameraShakeMode.Light);
-            GameController.Instance.StartCoroutine(GameController.Instance.SlowDownEffect());
+            GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
         }
     }
 

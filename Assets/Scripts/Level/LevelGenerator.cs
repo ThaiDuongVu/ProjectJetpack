@@ -72,7 +72,7 @@ public class LevelGenerator : MonoBehaviour
         if (Random.Range(0f, 1f) > floatingEnemySpawnProbability) return;
 
         var spawnEnemy = floatingEnemyPrefabs[Random.Range(0, floatingEnemyPrefabs.Length)];
-        var spawnEnemyPosition = new Vector2(0f, _currentBlock - Random.Range(blockDistanceRange.x / 2, blockDistanceRange.y / 2));
+        var spawnEnemyPosition = new Vector2(0f, _currentBlock - Random.Range(blockDistanceRange.x / 2, blockDistanceRange.y / 2 - 1));
 
         Instantiate(spawnEnemy, spawnEnemyPosition, Quaternion.identity);
     }

@@ -62,10 +62,8 @@ public class ToxicRat : Enemy
         Invoke(nameof(StartWandering), Random.Range(idleDurationRange.x, idleDurationRange.y));
     }
 
-    public override void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-		base.OnCollisionEnter2D(other);
-
         CancelInvoke();
         StopWandering();
     }

@@ -10,6 +10,7 @@ TagManager:
   - Collectible
   - Portal
   - BasePlatform
+  - DestructablePlatform
   layers:
   - Default
   - TransparentFX
