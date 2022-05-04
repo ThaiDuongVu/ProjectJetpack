@@ -92,7 +92,7 @@ public class Character : MonoBehaviour
         IsGrounded = false;
 
         var hit = Physics2D.Raycast(transform.position, Vector2.down, groundRaycastDistance);
-        if (hit)
+        if (hit && hit.transform.GetComponent<Platform>())
         {
             GroundPlatform = hit.transform.GetComponent<Collider2D>();
             IsGrounded = true;

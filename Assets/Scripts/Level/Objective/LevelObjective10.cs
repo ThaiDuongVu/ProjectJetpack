@@ -16,7 +16,7 @@ public class LevelObjective10 : LevelObjective
     {
         base.FixedUpdate();
 
-        if (!Player.BasePlatformReached) timer += Time.fixedDeltaTime;
+        if (!Player.basePlatformReached) timer += Time.fixedDeltaTime;
     }
 
     #endregion

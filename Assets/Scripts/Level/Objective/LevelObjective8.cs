@@ -16,7 +16,7 @@ public class LevelObjective8 : LevelObjective
     {
         base.FixedUpdate();
 
-        if (Player.IsGrounded && !Player.BasePlatformReached) groundTimer += Time.fixedDeltaTime;
+        if (Player.IsGrounded && !Player.basePlatformReached) groundTimer += Time.fixedDeltaTime;
     }
 
     #endregion

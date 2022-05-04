@@ -30,7 +30,7 @@ public class Player : Character
         }
     }
 
-    public bool BasePlatformReached { get; set; }
+    public bool basePlatformReached;
     public Portal Portal { get; set; }
 
     [Header("Level Objectives")]
@@ -83,8 +83,6 @@ public class Player : Character
         PlayerCombat = GetComponent<PlayerCombat>();
         PlayerResources = GetComponent<PlayerResources>();
         PlayerCombo = GetComponent<PlayerCombo>();
-
-        LoadLevelObjectives();
     }
 
     public override void Start()
@@ -94,6 +92,8 @@ public class Player : Character
         GroundTrail = Instantiate(groundTrailPrefab, transform.position, Quaternion.identity);
         GroundTrail.Target = transform;
         trailDefaultColor = GroundTrail.GetComponent<ParticleSystem>().main.startColor.color;
+
+        if (LevelGenerator.Instance && LevelGenerator.Instance.Variant == LevelVariant.Regular) InitLevelObjectives();
     }
 
     public override void FixedUpdate()
@@ -143,10 +143,9 @@ public class Player : Character
         base.DetectGrounded();
 
         GroundTrail.SetColor(IsGrounded ? trailDefaultColor : transparentColor);
-        if (GroundPlatform && GroundPlatform.transform.CompareTag("BasePlatform") && !BasePlatformReached)
+        if (GroundPlatform && GroundPlatform.transform.CompareTag("BasePlatform") && !basePlatformReached)
         {
-            BasePlatformReached = true;
-            UpdateObjectiveTexts();
+            basePlatformReached = true;
             CheckLevelObjectives();
 
             CameraShaker.Instance.Shake(CameraShakeMode.Light);
@@ -158,13 +157,14 @@ public class Player : Character
     {
         if (!Portal) return;
 
-        StartCoroutine(Portal.Enter(this));
         IsControllable = false;
+        PlayerMovement.StopRunningImmediate();
+        StartCoroutine(Portal.Enter(this));
     }
 
     #region Level Objectives Methods
 
-    private void LoadLevelObjectives()
+    private void InitLevelObjectives()
     {
         var objective1Set = Resources.LoadAll<LevelObjective>("Levels/Objectives/Set1");
         objective1 = Instantiate(objective1Set[Random.Range(0, objective1Set.Length)], transform.position, Quaternion.identity);
@@ -196,11 +196,18 @@ public class Player : Character
 
     private void CheckLevelObjectives()
     {
+        if (!objective1 || !objective2 || !objective3) return;
+
         var basePlatformSpawners = GroundPlatform.GetComponentsInChildren<CollectibleSpawner>();
 
         if (objective1.IsCompleted) basePlatformSpawners[0].Spawn();
         if (objective2.IsCompleted) basePlatformSpawners[1].Spawn();
         if (objective3.IsCompleted) basePlatformSpawners[2].Spawn();
+
+        if (objective1.IsCompleted && objective2.IsCompleted && objective3.IsCompleted)
+            basePlatformSpawners[3].Spawn();
+
+        UpdateObjectiveTexts();
     }
 
     #endregion

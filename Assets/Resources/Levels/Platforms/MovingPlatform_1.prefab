@@ -235,4 +235,4 @@ MonoBehaviour:
   spawnEnemyCount: 2
   xMinPositions: feffffff
   xMaxPositions: 02000000
-  velocityRange: {x: 1, y: 2}
+  velocityRange: {x: 1, y: 3}

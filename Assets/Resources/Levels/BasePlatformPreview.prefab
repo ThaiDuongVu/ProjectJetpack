@@ -55,10 +55,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasePlatformPreview
       objectReference: {fileID: 0}
-    - target: {fileID: 209025442516180487, guid: f1b2bf45353fb7b4c9514336ef0fb4b0, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 209025442516180507, guid: f1b2bf45353fb7b4c9514336ef0fb4b0, type: 3}
       propertyPath: m_Mesh
       value: 

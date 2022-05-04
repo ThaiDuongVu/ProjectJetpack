@@ -55,13 +55,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPreview
       objectReference: {fileID: 0}
+    - target: {fileID: 7117147716524371643, guid: 3b22af394c04057479be4f7dae00c44b, type: 3}
+      propertyPath: basePlatformReached
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7117147716524371646, guid: 3b22af394c04057479be4f7dae00c44b, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7117147716524371646, guid: 3b22af394c04057479be4f7dae00c44b, type: 3}
       propertyPath: m_InstanceId
-      value: -157896
+      value: -18746
       objectReference: {fileID: 0}
     - target: {fileID: 7117147716601457484, guid: 3b22af394c04057479be4f7dae00c44b, type: 3}
       propertyPath: m_IsActive

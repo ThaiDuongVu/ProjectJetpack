@@ -54,6 +54,8 @@ public class PlayerResources : CharacterResources
         }
     }
 
+    public const string LevelIndexKey = "LevelIndex";
+
     #region Unity Event
 
     public override void Awake()
@@ -92,6 +94,7 @@ public class PlayerResources : CharacterResources
         PlayerPrefs.SetInt(HealthTempKey, Health);
         PlayerPrefs.SetInt(TokenTempKey, Token);
         PlayerPrefs.SetFloat(FuelTempKey, Fuel);
+        PlayerPrefs.SetInt(LevelIndexKey, PlayerPrefs.GetInt(LevelIndexKey, 0) + 1);
     }
 
     public void LoadTemp()
@@ -106,6 +109,7 @@ public class PlayerResources : CharacterResources
         PlayerPrefs.SetInt(HealthTempKey, maxHealth);
         PlayerPrefs.SetInt(TokenTempKey, 0);
         PlayerPrefs.SetFloat(FuelTempKey, maxFuel);
+        PlayerPrefs.SetInt(LevelIndexKey, 0);
     }
 
     #endregion

@@ -2,6 +2,23 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    #region Singleton
+
+    private static LevelGenerator _levelGeneratorInstance;
+
+    public static LevelGenerator Instance
+    {
+        get
+        {
+            if (_levelGeneratorInstance == null) _levelGeneratorInstance = FindObjectOfType<LevelGenerator>();
+            return _levelGeneratorInstance;
+        }
+    }
+
+    #endregion
+
+    public LevelVariant Variant { get; set; }
+
     [SerializeField] private Transform platformsParent;
     private Platform[] platformPrefabs;
     private Enemy[] groundEnemyPrefabs;
@@ -23,11 +40,12 @@ public class LevelGenerator : MonoBehaviour
         groundEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Ground");
         wallEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Wall");
         floatingEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Floating");
+
+        Generate();
     }
 
     private void Start()
     {
-        Generate();
     }
 
     #endregion
@@ -36,14 +54,30 @@ public class LevelGenerator : MonoBehaviour
     {
         // TODO: Generate the first platform and spawn the player
 
-        while (_currentBlock > MinBlock)
+        var levelIndex = PlayerPrefs.GetInt(PlayerResources.LevelIndexKey, 0);
+
+        if (levelIndex != 0 && levelIndex % 4 == 0)
         {
-            _currentBlock -= SpawnPlatform().size.y;
-
-            SpawnFloatingEnemy();
-
-            _currentBlock -= Random.Range(blockDistanceRange.x, blockDistanceRange.y);
+            // TODO: Marketplace level
+            Variant = LevelVariant.Marketplace;
         }
+        else if (levelIndex != 1 && levelIndex % 4 == 1)
+        {
+            // TODO: Boss level
+            Variant = LevelVariant.Boss;
+        }
+        else
+        {
+            Variant = LevelVariant.Regular;
+
+            while (_currentBlock > MinBlock)
+            {
+                _currentBlock -= SpawnPlatform().size.y;
+                SpawnFloatingEnemy();
+                _currentBlock -= Random.Range(blockDistanceRange.x, blockDistanceRange.y);
+            }
+        }
+
     }
 
     private Platform SpawnPlatform()

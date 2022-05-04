@@ -6,7 +6,7 @@ public class LevelObjective14 : LevelObjective
 
     public override bool IsCompleted
     {
-        get => FindObjectsOfType<Enemy>().Length <= initEnemiesCount / 2;
+        get => FindObjectsOfType<Enemy>().Length <= (initEnemiesCount / 2);
         set => base.IsCompleted = value;
     }
 
