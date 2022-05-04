@@ -179,7 +179,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.25
 --- !u!95 &9188007968549554130
 Animator:
   serializedVersion: 4
@@ -226,7 +226,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 107812
+  m_InstanceId: 86586
 --- !u!114 &9188007968549554134
 MonoBehaviour:
   m_ObjectHideFlags: 0

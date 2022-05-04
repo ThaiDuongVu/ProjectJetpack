@@ -2472,7 +2472,7 @@ MonoBehaviour:
   - {x: 0.25, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -15876
+  m_InstanceId: 101070
 --- !u!114 &7117147716524371643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2532,11 +2532,12 @@ MonoBehaviour:
   jumpForce: 16
   jumpPoint: {fileID: 3928164900630100706}
   jumpMuzzlePrefab: {fileID: 3827419661170153826, guid: a16894b688b5b614e9305b99616838cb, type: 3}
-  jumpRate: 4
+  jumpRate: 5
   hoverForce: 26
   hoverMuzzle: {fileID: 595183727851002273}
   damage: 1
-  range: 10
+  range: 8
+  bloodSplashPrefab: {fileID: 3827419661170153826, guid: 432d4be562e08624e99aafd3ab408fe0, type: 3}
   crosshair: {fileID: 7497392771668976605}
   regularColor: {r: 1, g: 1, b: 1, a: 1}
   aimColor: {r: 0.93333334, g: 0.32156864, b: 0.3254902, a: 1}

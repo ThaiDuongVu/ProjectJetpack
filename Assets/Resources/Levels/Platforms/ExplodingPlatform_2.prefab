@@ -304,7 +304,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.5, y: 2}
+  m_Size: {x: 5.5, y: 2.5}
   m_EdgeRadius: 0
 --- !u!251 &2754397269578127534
 PlatformEffector2D:
@@ -371,7 +371,7 @@ MonoBehaviour:
   - {x: 2, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 50406
+  m_InstanceId: 76962
 --- !u!114 &-6189749326569035584
 MonoBehaviour:
   m_ObjectHideFlags: 0

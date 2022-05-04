@@ -23,6 +23,7 @@ public class PlayerCombat : CharacterCombat
     [Header("Combat Properties")]
     [SerializeField] private int damage = 1;
     [SerializeField] private float range = 5f;
+    [SerializeField] private ParticleSystem bloodSplashPrefab;
 
     [Header("Crosshair Properties")]
     [SerializeField] private SpriteRenderer crosshair;
@@ -204,6 +205,7 @@ public class PlayerCombat : CharacterCombat
         if (_targetEnemy)
         {
             _targetEnemy.TakeDamage(damage);
+            Instantiate(bloodSplashPrefab, _hitPoint, Quaternion.identity);
             Instantiate(bulletEffectPrefab, transform.position, Quaternion.identity).TargetPosition = _hitPoint;
 
             CameraShaker.Instance.Shake(CameraShakeMode.Normal);
