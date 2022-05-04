@@ -32,6 +32,7 @@ public class Player : Character
 
     public bool basePlatformReached;
     public Portal Portal { get; set; }
+    public VendingMachine VendingMachine { get; set; }
 
     [Header("Level Objectives")]
     [SerializeField] private Transform objectiveParent;
@@ -54,6 +55,7 @@ public class Player : Character
         InputTypeController.Instance.CheckInputType(context);
 
         EnterPortal();
+        PurchaseFromVendingMachine();
     }
 
     #endregion
@@ -160,6 +162,13 @@ public class Player : Character
         IsControllable = false;
         PlayerMovement.StopRunningImmediate();
         StartCoroutine(Portal.Enter(this));
+    }
+
+    public void PurchaseFromVendingMachine()
+    {
+        if (!VendingMachine) return;
+
+        VendingMachine.Purchase(this);
     }
 
     #region Level Objectives Methods

@@ -11,6 +11,7 @@ TagManager:
   - Portal
   - BasePlatform
   - DestructablePlatform
+  - VendingMachine
   layers:
   - Default
   - TransparentFX

@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 14786
+  controlID: 158
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 14787
+  controlID: 159
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -412,7 +412,7 @@ MonoBehaviour:
       layout: 4
   m_WindowGUID: ad883a32d22816847a3ef81282799d09
   m_Gizmos: 1
-  m_OverrideSceneCullingMask: 4611686018427387905
+  m_OverrideSceneCullingMask: 4611686018427387911
   m_SceneIsLit: 1
   m_SceneLighting: 1
   m_2DMode: 1
@@ -420,9 +420,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -3.0830157, y: -85.51958, z: -0.03829163}
+    m_Target: {x: -2.8851054, y: 0.5976291, z: -0.027722165}
     speed: 2
-    m_Value: {x: -2.8875632, y: -85.61654, z: -0.035809163}
+    m_Value: {x: -2.8851054, y: 0.5976291, z: -0.027722165}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -473,9 +473,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.764915
+    m_Target: 5.669213
     speed: 2
-    m_Value: 5.516665
+    m_Value: 5.669213
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1396,7 +1396,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -118354
+  m_LastSelectedObjectID: -136904
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1421,7 +1421,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 14882
+  controlID: 123
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1479,9 +1479,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 3c13feff
-      m_LastClickedID: -126148
-      m_ExpandedIDs: c414fefffa14feff0415feff
+      m_SelectedIDs: f47efeff
+      m_LastClickedID: -98572
+      m_ExpandedIDs: 287ffeff4c7ffeff10e40000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1497,7 +1497,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 4}
+        m_ClientGUIView: {fileID: 13}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -1572,22 +1572,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources
+    - Assets/Resources/Levels
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Resources
+  - Assets/Resources/Levels
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Duong Vu\Documents\Projects\ProjectJetpack
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 6c710000
-    m_LastClickedID: 29036
-    m_ExpandedIDs: 00000000687100006a7100006c7100006e7100007071000072710000
+    m_SelectedIDs: 0c720000
+    m_LastClickedID: 29196
+    m_ExpandedIDs: 00000000d0710000d2710000fc710000007200000c720000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1615,7 +1615,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000687100006a7100006c7100006e7100007071000072710000
+    m_ExpandedIDs: 00000000d0710000d2710000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1640,24 +1640,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 3c13feff
-    m_LastClickedInstanceID: -126148
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: f47efeff
+    m_LastClickedInstanceID: -98572
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: ec3f0100024001001c97010000b9010044e5010056de00004af30000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Platforms
+      m_OriginalName: Platforms
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 29220
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 15}
     m_CreateAssetUtility:

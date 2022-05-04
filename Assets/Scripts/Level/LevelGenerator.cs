@@ -31,6 +31,8 @@ public class LevelGenerator : MonoBehaviour
 
     [SerializeField] private float floatingEnemySpawnProbability = 0.2f;
 
+    [SerializeField] private GameObject marketplacePrefab;
+
     #region Unity Event
 
     private void Awake()
@@ -40,12 +42,11 @@ public class LevelGenerator : MonoBehaviour
         groundEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Ground");
         wallEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Wall");
         floatingEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Floating");
-
-        Generate();
     }
 
     private void Start()
     {
+        Generate();
     }
 
     #endregion
@@ -58,8 +59,8 @@ public class LevelGenerator : MonoBehaviour
 
         if (levelIndex != 0 && levelIndex % 4 == 0)
         {
-            // TODO: Marketplace level
             Variant = LevelVariant.Marketplace;
+            Instantiate(marketplacePrefab, Vector2.zero, Quaternion.identity).transform.parent = transform;
         }
         else if (levelIndex != 1 && levelIndex % 4 == 1)
         {

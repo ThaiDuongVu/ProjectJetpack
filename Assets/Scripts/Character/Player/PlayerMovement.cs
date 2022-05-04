@@ -72,9 +72,9 @@ public class PlayerMovement : CharacterMovement
         if (_player.IsGrounded && _player.GroundPlatform && !_player.GroundPlatform.transform.CompareTag("BasePlatform"))
         {
             var tempGround = _player.GroundPlatform;
-            Physics2D.IgnoreCollision(_player.Collider2D, tempGround, true);
+            if (tempGround) Physics2D.IgnoreCollision(_player.Collider2D, tempGround, true);
             yield return new WaitForSeconds(0.5f);
-            Physics2D.IgnoreCollision(_player.Collider2D, tempGround, false);
+            if (tempGround) Physics2D.IgnoreCollision(_player.Collider2D, tempGround, false);
         }
     }
 }

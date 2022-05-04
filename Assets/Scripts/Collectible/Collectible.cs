@@ -10,9 +10,9 @@ public class Collectible : MonoBehaviour
     protected bool IsCollected { get; set; }
     protected bool CanBeCollected { get; set; }
 
-    private const float CollectDelay = 0.2f;
+    [SerializeField] private float collectDelay = 0.2f;
+    [SerializeField] private float timeoutDuration = 10f;
     private const float CollectInterpolationRatio = 0.1f;
-    private const float TimeoutDuration = 10f;
 
     private static readonly int CollectAnimationTrigger = Animator.StringToHash("collect");
     private Transform _collectTarget;
@@ -29,8 +29,8 @@ public class Collectible : MonoBehaviour
 
     public virtual void Start()
     {
-        Invoke(nameof(EnableCollect), CollectDelay);
-        Invoke(nameof(Timeout), TimeoutDuration);
+        Invoke(nameof(EnableCollect), collectDelay);
+        Invoke(nameof(Timeout), timeoutDuration);
     }
 
     public virtual void FixedUpdate()

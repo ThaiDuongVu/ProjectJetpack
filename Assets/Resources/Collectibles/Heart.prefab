@@ -59,7 +59,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &5727047523105079664
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20dd55a37281ac4692848483192e9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectDelay: 1
+  timeoutDuration: Infinity
   reward: 1
 --- !u!1 &5727047523153471788
 GameObject:
