@@ -91,6 +91,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2876439941157496371, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876439941157496371, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -7
+      objectReference: {fileID: 0}
     - target: {fileID: 2938118808840939864, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -138,6 +146,14 @@ PrefabInstance:
     - target: {fileID: 2938118808840939865, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
       propertyPath: m_Name
       value: VendingMachineCustomize_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241978066479501235, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
+      propertyPath: m_text
+      value: Grey tabby cat
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241978066479501235, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3976967700898065011, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}

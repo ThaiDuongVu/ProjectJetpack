@@ -39,7 +39,7 @@ public class VendingMachineCustomization : VendingMachine
 
     public override void Purchase(Player player)
     {
-        if (player.PlayerResources.Token < price)
+        if (player.PlayerResources.Token < price && !_isUnlocked)
         {
             GameController.Instance.SendUIMessage("Not enough tokens!");
             return;
