@@ -81,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4380338999996745987, guid: 55b9e4d5ec1147049be0a8848f5dce49, type: 3}
       propertyPath: m_InstanceId
-      value: -159250
+      value: -224914
       objectReference: {fileID: 0}
     - target: {fileID: 4380338999996746014, guid: 55b9e4d5ec1147049be0a8848f5dce49, type: 3}
       propertyPath: m_RootOrder
@@ -199,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2754397269578127535, guid: 432c1511200717b4093f40d6c4798873, type: 3}
       propertyPath: m_InstanceId
-      value: -159294
+      value: -224958
       objectReference: {fileID: 0}
     - target: {fileID: 2754397269578127539, guid: 432c1511200717b4093f40d6c4798873, type: 3}
       propertyPath: m_Name
@@ -269,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2754397269578127535, guid: 432c1511200717b4093f40d6c4798873, type: 3}
       propertyPath: m_InstanceId
-      value: -159702
+      value: -224974
       objectReference: {fileID: 0}
     - target: {fileID: 2754397269578127539, guid: 432c1511200717b4093f40d6c4798873, type: 3}
       propertyPath: m_Name
@@ -345,18 +345,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: VendingMachineHeart
       objectReference: {fileID: 0}
-    - target: {fileID: 7041315256810845551, guid: 28600ddf33196e44d88ba2e2e827f6e4, type: 3}
-      propertyPath: m_text
-      value: 1000 tokens for 1 heart
-      objectReference: {fileID: 0}
-    - target: {fileID: 7041315256810845551, guid: 28600ddf33196e44d88ba2e2e827f6e4, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8028035155910381480, guid: 28600ddf33196e44d88ba2e2e827f6e4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28600ddf33196e44d88ba2e2e827f6e4, type: 3}
 --- !u!4 &3751009316842026905 stripped
@@ -421,7 +409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2754397269578127535, guid: 432c1511200717b4093f40d6c4798873, type: 3}
       propertyPath: m_InstanceId
-      value: -159376
+      value: -225056
       objectReference: {fileID: 0}
     - target: {fileID: 2754397269578127539, guid: 432c1511200717b4093f40d6c4798873, type: 3}
       propertyPath: m_Name

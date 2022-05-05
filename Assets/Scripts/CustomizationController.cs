@@ -1,7 +1,6 @@
-using System.Collections;
 using UnityEngine;
 
-public class HomeController : MonoBehaviour
+public class CustomizationController : MonoBehaviour
 {
     private Player _playerPreview;
 

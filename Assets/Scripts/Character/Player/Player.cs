@@ -45,6 +45,8 @@ public class Player : Character
     [SerializeField] private TMP_Text objective2Text;
     [SerializeField] private TMP_Text objective3Text;
 
+    public const string TokensKey = "Tokens";
+
     private InputManager _inputManager;
 
     #region Input Methods
@@ -122,9 +124,10 @@ public class Player : Character
     {
         base.Die();
 
+        PlayerPrefs.SetInt(TokensKey, PlayerPrefs.GetInt(TokensKey, 0) + PlayerResources.Token);
         PlayerResources.ClearTemp();
-        GameController.Instance.StartCoroutine(GameController.Instance.GameOver());
 
+        GameController.Instance.StartCoroutine(GameController.Instance.GameOver());
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
 
