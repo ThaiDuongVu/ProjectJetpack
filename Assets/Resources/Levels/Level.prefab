@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformsParent: {fileID: 2883191430065613357}
-  blockDistanceRange: {x: 3, y: 7}
+  blockDistanceRange: {x: 4, y: 8}
   floatingEnemySpawnProbability: 0.2
   marketplacePrefab: {fileID: 3751009316962501900, guid: f94add45c5b8f554785156786c7859ae, type: 3}
 --- !u!1 &2883191430065613358
@@ -223,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 209025442516180507, guid: f1b2bf45353fb7b4c9514336ef0fb4b0, type: 3}
       propertyPath: m_InstanceId
-      value: -45788
+      value: -4782
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1b2bf45353fb7b4c9514336ef0fb4b0, type: 3}
@@ -359,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2754397269578127535, guid: 432c1511200717b4093f40d6c4798873, type: 3}
       propertyPath: m_InstanceId
-      value: -46352
+      value: -4874
       objectReference: {fileID: 0}
     - target: {fileID: 2754397269578127539, guid: 432c1511200717b4093f40d6c4798873, type: 3}
       propertyPath: m_Name

@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854425851675226722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -162,7 +162,7 @@ MonoBehaviour:
   - {x: 0.75, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 100410
+  m_InstanceId: 39942
 --- !u!114 &854425851675226741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,7 +410,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7817838861335871284, guid: c7457f54b38fca14dab6587e7e170279, type: 3}
       propertyPath: spawnAmountRange.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7817838861335871284, guid: c7457f54b38fca14dab6587e7e170279, type: 3}
       propertyPath: spawnAmountRange.y

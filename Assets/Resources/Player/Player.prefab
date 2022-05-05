@@ -2472,7 +2472,7 @@ MonoBehaviour:
   - {x: 0.25, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 101070
+  m_InstanceId: 41456
 --- !u!114 &7117147716524371643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2485,7 +2485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04235953ab4991a4eb721d3f0b5292da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 3827419661170153826, guid: 356f312eb193de64ba0411401a1da186, type: 3}
+  explosionPrefab: {fileID: 3827419661170153826, guid: 2630ef59e1d7d27419b4b9b1417c354b, type: 3}
   mainSprite: {fileID: 7117147715474530664}
   groundRaycastDistance: 0.55
   edgePoints: []

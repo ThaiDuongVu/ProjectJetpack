@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class ToxicRat : Enemy
+public class BeamTurtle : Enemy
 {
-    public ToxicRatState State { get; set; } = ToxicRatState.Idle;
-    public ToxicRatMovement ToxicRatMovement { get; set; }
-    public ToxicRatResources ToxicRatResources { get; set; }
+    public BeamTurtleState State { get; set; } = BeamTurtleState.Idle;
+    public BeamTurtleMovement BeamTurtleMovement { get; set; }
+    public BeamTurtleResources BeamTurtleResources { get; set; }
 
     [SerializeField] private Vector2 wanderDurationRange = new Vector2(2f, 4f);
-    [SerializeField] private Vector2 idleDurationRange = new Vector2(1f, 2f);
+    [SerializeField] private Vector2 idleDurationRange = new Vector2(2f, 4f);
     public Vector2 Direction { get; set; }
 
     #region Unity Event
@@ -16,8 +16,8 @@ public class ToxicRat : Enemy
     {
         base.Awake();
 
-        ToxicRatMovement = GetComponent<ToxicRatMovement>();
-        ToxicRatResources = GetComponent<ToxicRatResources>();
+        BeamTurtleMovement = GetComponent<BeamTurtleMovement>();
+        BeamTurtleResources = GetComponent<BeamTurtleResources>();
     }
 
     public override void Start()
@@ -34,7 +34,7 @@ public class ToxicRat : Enemy
 
         DetectEdge();
 
-        if (IsEdged && State == ToxicRatState.Wander)
+        if (IsEdged && State == BeamTurtleState.Wander)
         {
             CancelInvoke();
             StopWandering();
@@ -47,16 +47,16 @@ public class ToxicRat : Enemy
     {
         Direction = -Direction;
         SetFlipped(!IsFlipped);
-        ToxicRatMovement.StartRunning(Direction);
-        State = ToxicRatState.Wander;
+        BeamTurtleMovement.StartRunning(Direction);
+        State = BeamTurtleState.Wander;
 
         Invoke(nameof(StopWandering), Random.Range(wanderDurationRange.x, wanderDurationRange.y));
     }
 
     private void StopWandering()
     {
-        ToxicRatMovement.StopRunningImmediate();
-        State = ToxicRatState.Idle;
+        BeamTurtleMovement.StopRunningImmediate();
+        State = BeamTurtleState.Idle;
 
         Invoke(nameof(StartWandering), Random.Range(idleDurationRange.x, idleDurationRange.y));
     }
