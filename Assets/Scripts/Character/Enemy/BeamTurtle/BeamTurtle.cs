@@ -61,8 +61,10 @@ public class BeamTurtle : Enemy
         Invoke(nameof(StartWandering), Random.Range(idleDurationRange.x, idleDurationRange.y));
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    public override void OnCollisionEnter2D(Collision2D other)
     {
+        base.OnCollisionEnter2D(other);
+        
         CancelInvoke();
         StopWandering();
     }

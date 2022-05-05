@@ -4,26 +4,26 @@ public class VendingMachine : MonoBehaviour
 {
     private InputPrompt _inputPrompt;
     private CollectibleSpawner[] _collectibleSpawners;
-    [SerializeField] private int price;
+    public int price;
 
     #region Unity Event
 
-    private void Awake()
+    public virtual void Awake()
     {
         _inputPrompt = GetComponentInChildren<InputPrompt>();
         _collectibleSpawners = GetComponentsInChildren<CollectibleSpawner>();
     }
 
-    private void Start()
+    public virtual void Start()
     {
         _inputPrompt.gameObject.SetActive(false);
     }
 
     #endregion
 
-    public void Purchase(Player player)
+    public virtual void Purchase(Player player)
     {
-        if (player.PlayerResources.Token < price) 
+        if (player.PlayerResources.Token < price)
         {
             GameController.Instance.SendUIMessage("Not enough tokens!");
             return;

@@ -21,8 +21,10 @@ public class Fireball : Enemy
 
     #endregion
 
-    private void OnCollisionEnter2D(Collision2D other)
+    public override void OnCollisionEnter2D(Collision2D other)
     {
+        base.OnCollisionEnter2D(other);
+
         if (other.transform.CompareTag("Player"))
         {
             var player = other.transform.GetComponent<Player>();
@@ -30,7 +32,8 @@ public class Fireball : Enemy
             player.TakeDamage(damage);
             player.KnockBack(_direction, knockBackForce);
         }
-
+		
+		CameraShaker.Instance.Shake(CameraShakeMode.Light);
         Die();
     }
 }

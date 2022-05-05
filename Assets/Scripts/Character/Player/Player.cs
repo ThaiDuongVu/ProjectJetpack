@@ -46,6 +46,8 @@ public class Player : Character
     [SerializeField] private TMP_Text objective3Text;
 
     public const string TokensKey = "Tokens";
+    public const string CustomizationUnlockKey = "CustomizationUnlock";
+    public const string CustomizationEquipKey = "CustomizationEquip";
 
     private InputManager _inputManager;
 
@@ -87,6 +89,8 @@ public class Player : Character
         PlayerCombat = GetComponent<PlayerCombat>();
         PlayerResources = GetComponent<PlayerResources>();
         PlayerCombo = GetComponent<PlayerCombo>();
+
+        PlayerPrefs.SetInt($"{Player.CustomizationUnlockKey}0", 1);
     }
 
     public override void Start()
@@ -98,6 +102,8 @@ public class Player : Character
         trailDefaultColor = GroundTrail.GetComponent<ParticleSystem>().main.startColor.color;
 
         if (LevelGenerator.Instance && LevelGenerator.Instance.Variant == LevelVariant.Regular) InitLevelObjectives();
+
+        LoadCustomization();
     }
 
     public override void FixedUpdate()
@@ -172,6 +178,18 @@ public class Player : Character
         if (!VendingMachine) return;
 
         VendingMachine.Purchase(this);
+        LoadCustomization();
+        foreach (var vendingMachine in FindObjectsOfType<VendingMachineCustomization>()) vendingMachine.UpdateText();
+    }
+
+    private void LoadCustomization()
+    {
+        var customizations = Resources.LoadAll<UnlockableCustomization>("Customization");
+        var equipId = PlayerPrefs.GetInt(CustomizationEquipKey, 0);
+
+        foreach (var customization in customizations)
+            if (customization.id == equipId) Animator.runtimeAnimatorController = customization.animatorController;
+
     }
 
     #region Level Objectives Methods
