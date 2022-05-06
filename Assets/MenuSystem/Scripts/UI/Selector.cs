@@ -45,10 +45,13 @@ public class Selector : MonoBehaviour
         // Update button animations accordingly
         foreach (var animator in Menu.ButtonAnimators) animator.SetBool(IsSelectedAnimatorTrigger, false);
         Menu.ButtonAnimators[buttonIndex].SetBool(IsSelectedAnimatorTrigger, true);
+
+        AudioController.Instance.Play(AudioVariant.Click);
     }
 
     public void ClickButton(Button button)
     {
         button.OnPointerClick(_eventData);
+        AudioController.Instance.Play(AudioVariant.Click);
     }
 }

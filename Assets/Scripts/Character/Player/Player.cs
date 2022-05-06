@@ -137,6 +137,7 @@ public class Player : Character
 
         GameController.Instance.StartCoroutine(GameController.Instance.GameOver());
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
+        AudioController.Instance.Play(AudioVariant.PlayerExplode);
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
 
         Destroy(gameObject);

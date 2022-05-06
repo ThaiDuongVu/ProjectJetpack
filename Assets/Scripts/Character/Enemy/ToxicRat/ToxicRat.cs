@@ -42,6 +42,13 @@ public class ToxicRat : Enemy
 
     #endregion
 
+    public override void Die()
+    {
+        base.Die();
+
+        AudioController.Instance.Play(AudioVariant.EnemyExplode1);
+    }
+
     private void StartWandering()
     {
         Direction = -Direction;

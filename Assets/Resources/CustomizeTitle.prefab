@@ -132,7 +132,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '{Customize}'
+  m_text: '{Customize-Cat}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90eb17b48f6661447bf98aa56afe5594, type: 2}
   m_sharedMaterial: {fileID: -3703089464149706873, guid: 90eb17b48f6661447bf98aa56afe5594, type: 2}
@@ -159,8 +159,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.9
-  m_fontSizeBase: 11.9
+  m_fontSize: 8.6
+  m_fontSizeBase: 8.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 12

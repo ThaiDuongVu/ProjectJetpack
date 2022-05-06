@@ -50,6 +50,7 @@ public class VendingMachineCustomization : VendingMachine
         if (_isUnlocked)
         {
             PlayerPrefs.SetInt($"{Player.CustomizationEquipKey}", id);
+            AudioController.Instance.Play(AudioVariant.UnlockCustomization);
         }
 
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());

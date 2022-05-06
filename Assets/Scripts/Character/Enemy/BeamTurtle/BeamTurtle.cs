@@ -41,6 +41,13 @@ public class BeamTurtle : Enemy
 
     #endregion
 
+    public override void Die()
+    {
+        base.Die();
+
+        AudioController.Instance.Play(AudioVariant.EnemyExplode2);
+    }
+
     private void StartWandering()
     {
         _direction = -_direction;

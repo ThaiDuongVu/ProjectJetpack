@@ -130,7 +130,7 @@ public class PlayerCombat : CharacterCombat
         if (!hit) return;
 
         var isHit = false;
-        
+
         if (hit.transform.CompareTag("Enemy"))
         {
             _targetEnemy = hit.transform.GetComponent<Enemy>();
@@ -172,8 +172,16 @@ public class PlayerCombat : CharacterCombat
 
         _player.Rigidbody2D.velocity = Vector2.zero;
 
-        if (value) hoverMuzzle.Play();
-        else hoverMuzzle.Stop();
+        if (value)
+        {
+            hoverMuzzle.Play();
+            AudioController.Instance.Play(AudioVariant.Hover);
+        }
+        else
+        {
+            hoverMuzzle.Stop();
+            AudioController.Instance.Stop(AudioVariant.Hover);
+        }
 
         _isHovering = value;
     }
@@ -208,6 +216,7 @@ public class PlayerCombat : CharacterCombat
             Instantiate(bulletEffectPrefab, transform.position, Quaternion.identity).TargetPosition = _hitPoint;
 
             CameraShaker.Instance.Shake(CameraShakeMode.Normal);
+            AudioController.Instance.Play(AudioVariant.JumpDamage);
             _player.PlayerCombo.Add();
         }
         else if (_targetDestructablePlatform)
@@ -216,7 +225,12 @@ public class PlayerCombat : CharacterCombat
             Instantiate(bulletEffectPrefab, transform.position, Quaternion.identity).TargetPosition = _hitPoint;
 
             CameraShaker.Instance.Shake(CameraShakeMode.Normal);
+            AudioController.Instance.Play(AudioVariant.JumpDamage);
         }
-        else CameraShaker.Instance.Shake(CameraShakeMode.Light);
+        else
+        {
+            CameraShaker.Instance.Shake(CameraShakeMode.Light);
+            AudioController.Instance.Play(AudioVariant.JumpNoDamage);
+        }
     }
 }

@@ -35,6 +35,13 @@ public class FireBird : Enemy
 
     #endregion
 
+    public override void Die()
+    {
+        base.Die();
+
+        AudioController.Instance.Play(AudioVariant.EnemyExplode2);
+    }
+
     private void DetectTarget()
     {
         _target = null;

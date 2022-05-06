@@ -1,0 +1,15 @@
+effects:
+//- click //
+//- jump no damage //
+//- jump damage //
+//- hover //
+//- enemy explode //
+//- player explode //
+//- unlock customization //
+//- player fall
+- platform explode
+- reach base platform
+- player take damage
+- player enter portal
+- collect item
+- send message
