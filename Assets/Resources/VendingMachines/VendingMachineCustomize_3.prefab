@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7241978066479501235, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
       propertyPath: m_text
-      value: Tom cat (without Jerry)
+      value: Tommy cat (without Jerry)
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3976967700898065011, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}

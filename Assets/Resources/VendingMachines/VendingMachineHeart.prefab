@@ -265,13 +265,17 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2876439941157496371, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2938118808840939864, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2938118808840939864, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2938118808840939864, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -315,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2977231112661507895, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3976967700898065011, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
       propertyPath: price
@@ -328,6 +332,10 @@ PrefabInstance:
     - target: {fileID: 4359951385965589281, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
       propertyPath: m_InstanceId
       value: -181122
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241978066479501235, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
+      propertyPath: m_text
+      value: Restore 1 health per purchase
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
