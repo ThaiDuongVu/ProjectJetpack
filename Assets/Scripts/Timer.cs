@@ -3,23 +3,23 @@ using UnityEngine;
 public class Timer
 {
     private float _timerMax;
-    public float Progress;
+    private float _progress;
 
     public Timer(float timerMax)
     {
         _timerMax = timerMax;
-        Progress = 0f;
+        _progress = 0f;
     }
 
     public void Reset(float max)
     {
         _timerMax = max;
-        Progress = 0f;
+        _progress = 0f;
     }
 
     public bool IsReached()
     {
-        Progress += Time.fixedDeltaTime;
-        return Progress >= _timerMax;
+        _progress += Time.fixedDeltaTime;
+        return _progress >= _timerMax;
     }
 }

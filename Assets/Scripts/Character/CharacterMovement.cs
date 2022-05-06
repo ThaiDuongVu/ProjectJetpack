@@ -4,11 +4,11 @@ public class CharacterMovement : MonoBehaviour
 {
     private Character _character;
 
-    public bool IsRunning { get; set; }
-    public bool IsAccelerating { get; set; }
+    private bool _isRunning;
+    private bool _isAccelerating;
 
-    public Vector2 CurrentDirection { get; set; }
-    public float CurrentVelocity { get; set; }
+    protected Vector2 CurrentDirection { get; private set; }
+    private float CurrentVelocity { get; set; }
 
     [Header("Movement Properties")]
     public float maxVelocity;
@@ -32,14 +32,14 @@ public class CharacterMovement : MonoBehaviour
     {
         if (GameController.Instance && GameController.Instance.State == GameState.Paused)
         {
-            if (IsRunning) StopRunningImmediate();
+            if (_isRunning) StopRunningImmediate();
             return;
         }
 
-        if (IsAccelerating) Accelerate();
+        if (_isAccelerating) Accelerate();
         else Decelerate();
 
-        if (IsRunning) Run();
+        if (_isRunning) Run();
 
         ScaleAnimation();
     }
@@ -52,22 +52,22 @@ public class CharacterMovement : MonoBehaviour
     {
         CurrentDirection = direction;
 
-        IsAccelerating = true;
-        IsRunning = true;
+        _isAccelerating = true;
+        _isRunning = true;
 
         if (_character.Animator) _character.Animator.SetBool(IsRunningAnimationTrigger, true);
     }
 
-    public virtual void StopRunning()
+    protected void StopRunning()
     {
-        IsAccelerating = false;
+        _isAccelerating = false;
     }
 
-    public virtual void StopRunningImmediate()
+    public void StopRunningImmediate()
     {
-        IsAccelerating = false;
+        _isAccelerating = false;
         CurrentVelocity = minVelocity;
-        IsRunning = false;
+        _isRunning = false;
 
         if (_character.Animator) _character.Animator.SetBool(IsRunningAnimationTrigger, false);
     }
@@ -84,7 +84,7 @@ public class CharacterMovement : MonoBehaviour
         else StopRunningImmediate();
     }
 
-    public virtual void Run()
+    private void Run()
     {
         _character.Rigidbody2D.velocity = new Vector2(CurrentDirection.x * CurrentVelocity, _character.Rigidbody2D.velocity.y);
         _character.SetFlipped(CurrentDirection.x < 0f);
@@ -95,6 +95,6 @@ public class CharacterMovement : MonoBehaviour
     private void ScaleAnimation()
     {
         if (!_character.Animator) return;
-        _character.Animator.speed = IsRunning && CurrentVelocity >= 0 ? CurrentVelocity / maxVelocity : 1f;
+        _character.Animator.speed = _isRunning && CurrentVelocity >= 0 ? CurrentVelocity / maxVelocity : 1f;
     }
 }

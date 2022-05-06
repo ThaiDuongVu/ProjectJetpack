@@ -16,7 +16,7 @@ public class Fireball : Enemy
         base.FixedUpdate();
 
         _direction = (Target.position - transform.position).normalized;
-        Rigidbody2D.MovePosition(Rigidbody2D.position + _direction * velocity * Time.fixedDeltaTime);
+        Rigidbody2D.MovePosition(Rigidbody2D.position + _direction * (velocity * Time.fixedDeltaTime));
     }
 
     #endregion

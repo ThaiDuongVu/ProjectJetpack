@@ -4,10 +4,9 @@ public class FireBird : Enemy
 {
     private Player _target;
     [SerializeField] private float detectRadius = 8f;
-    private string[] _detectLayers = { "Player" };
     [SerializeField] private Vector2 fireIntervalRange = new Vector2(1f, 3f);
 
-    public FireBirdCombat FireBirdCombat { get; set; }
+    private FireBirdCombat _fireBirdCombat;
 
     #region Unity Event
 
@@ -15,7 +14,7 @@ public class FireBird : Enemy
     {
         base.Awake();
 
-        FireBirdCombat = GetComponent<FireBirdCombat>();
+        _fireBirdCombat = GetComponent<FireBirdCombat>();
     }
 
     public override void Start()
@@ -49,7 +48,7 @@ public class FireBird : Enemy
 
     private void Fire()
     {
-        if (_target) StartCoroutine(FireBirdCombat.Fire(_target.transform));
+        if (_target) StartCoroutine(_fireBirdCombat.Fire(_target.transform));
 
         Invoke(nameof(Fire), Random.Range(fireIntervalRange.x, fireIntervalRange.y));
     }

@@ -4,7 +4,7 @@ public class MovingPlatform : Platform
 {
     [SerializeField] private int[] xMinPositions;
     [SerializeField] private int[] xMaxPositions;
-    [SerializeField] private Vector2 velocityRange = new Vector2(2f, 4f);
+    [SerializeField] private Vector2 velocityRange = new(2f, 4f);
 
     private Rigidbody2D _rigidbody2D;
     private int _xMinPosition;

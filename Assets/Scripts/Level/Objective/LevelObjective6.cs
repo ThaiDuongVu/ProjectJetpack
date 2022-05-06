@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class LevelObjective6 : LevelObjective
 {
-    private float groundTimer = 0f;
+    private float _groundTimer;
 
     public override bool IsCompleted
     {
-        get => groundTimer <= 5f;
-        set => base.IsCompleted = value;
+        get => _groundTimer <= 5f;
+        protected set => base.IsCompleted = value;
     }
 
     #region Unity Event
@@ -16,7 +16,7 @@ public class LevelObjective6 : LevelObjective
     {
         base.FixedUpdate();
 
-        if (Player.IsGrounded && !Player.basePlatformReached) groundTimer += Time.fixedDeltaTime;
+        if (Player.IsGrounded && !Player.basePlatformReached) _groundTimer += Time.fixedDeltaTime;
     }
 
     #endregion

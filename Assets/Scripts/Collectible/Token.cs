@@ -4,7 +4,7 @@ public class Token : Collectible
 {
     public int reward = 1;
 
-    public override void OnCollected(Transform target)
+    protected override void OnCollected(Transform target)
     {
         if (IsCollected || !CanBeCollected) return;
         base.OnCollected(target);

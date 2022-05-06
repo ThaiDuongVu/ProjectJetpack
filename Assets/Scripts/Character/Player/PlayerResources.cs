@@ -97,7 +97,7 @@ public class PlayerResources : CharacterResources
         PlayerPrefs.SetInt(LevelIndexKey, PlayerPrefs.GetInt(LevelIndexKey, 0) + 1);
     }
 
-    public void LoadTemp()
+    private void LoadTemp()
     {
         Health = PlayerPrefs.GetInt(HealthTempKey, maxHealth);
         Token = PlayerPrefs.GetInt(TokenTempKey, 0);

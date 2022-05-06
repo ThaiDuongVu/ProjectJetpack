@@ -7,8 +7,8 @@ public class Collectible : MonoBehaviour
     private Collider2D[] _colliders;
     private DelayedDestroyer _delayedDestroyer;
 
-    protected bool IsCollected { get; set; }
-    protected bool CanBeCollected { get; set; }
+    protected bool IsCollected { get; private set; }
+    protected bool CanBeCollected { get; private set; }
 
     [SerializeField] private float collectDelay = 0.2f;
     [SerializeField] private float timeoutDuration = 10f;
@@ -52,14 +52,14 @@ public class Collectible : MonoBehaviour
         StartCoroutine(_delayedDestroyer.Destroy());
     }
 
-    public virtual void OnCollected(Transform target)
+    protected virtual void OnCollected(Transform target)
     {
         _collectTarget = target;
         IsCollected = true;
 
         _animator.SetTrigger(CollectAnimationTrigger);
         _rigidbody2D.gravityScale = 0f;
-        foreach (var collider in _colliders) collider.enabled = false;
+        foreach (var col in _colliders) col.enabled = false;
         StartCoroutine(_delayedDestroyer.Destroy());
     }
 

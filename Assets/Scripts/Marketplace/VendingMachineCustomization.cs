@@ -26,15 +26,8 @@ public class VendingMachineCustomization : VendingMachine
         _isUnlocked = PlayerPrefs.GetInt($"{Player.CustomizationUnlockKey}{id.ToString()}", 0) == 1;
         _isEquipped = PlayerPrefs.GetInt($"{Player.CustomizationEquipKey}", 0) == id;
 
-        if (_isUnlocked)
-        {
-            if (_isEquipped) text.text = "Equipped";
-            else text.text = "Unlocked";
-        }
-        else
-        {
-            text.text = price.ToString();
-        }
+        if (_isUnlocked) text.text = _isEquipped ? "Equipped" : "Unlocked";
+        else text.text = price.ToString();
     }
 
     public override void Purchase(Player player)

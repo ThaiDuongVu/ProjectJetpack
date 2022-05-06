@@ -11,7 +11,8 @@ public class Bomb : Enemy
         base.Start();
 
         var xPositionLeftDistance = Random.Range(0, 10);
-        transform.position = new Vector2(xPositionStart + xPositionLeftDistance, transform.position.y);
+        var bombTransform = transform;
+        bombTransform.position = new Vector2(xPositionStart + xPositionLeftDistance, bombTransform.position.y);
     }
 
     #endregion

@@ -7,7 +7,7 @@ public class ExplodingPlatform : Platform
     [SerializeField] private int damage = 2;
     [SerializeField] private float explodingForce = 15f;
 
-    private Timer explodingTimer;
+    private Timer _explodingTimer;
     private const float MaxTimer = 1f;
     private bool _timerStarted;
     private bool _exploded;
@@ -16,7 +16,7 @@ public class ExplodingPlatform : Platform
     private static readonly int FlashAnimationTrigger = Animator.StringToHash("flash");
 
     private Player _player;
-    private List<Enemy> _enemies = new List<Enemy>();
+    private readonly List<Enemy> _enemies = new();
 
     #region Unity Event
 
@@ -31,19 +31,19 @@ public class ExplodingPlatform : Platform
     {
         base.Start();
 
-        explodingTimer = new Timer(MaxTimer);
+        _explodingTimer = new Timer(MaxTimer);
     }
 
     public override void FixedUpdate()
     {
         base.FixedUpdate();
 
-        if (_timerStarted && explodingTimer.IsReached()) Explode();
+        if (_timerStarted && _explodingTimer.IsReached()) Explode();
     }
 
     #endregion
 
-    public void Explode()
+    private void Explode()
     {
         if (_exploded) return;
 
@@ -52,9 +52,9 @@ public class ExplodingPlatform : Platform
             _player.TakeDamage(damage);
             _player.KnockBack((_player.transform.position - transform.position).normalized, explodingForce);
         }
-        for (int i = 0; i < _enemies.Count; i++)
+        
+        foreach (var enemy in _enemies)
         {
-            var enemy = _enemies[i];
             enemy.TakeDamage(damage);
             enemy.KnockBack((enemy.transform.position - transform.position).normalized, explodingForce);
         }

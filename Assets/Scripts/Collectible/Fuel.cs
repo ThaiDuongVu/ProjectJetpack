@@ -4,7 +4,7 @@ public class Fuel : Collectible
 {
     public float reward = 0.1f;
 
-    public override void OnCollected(Transform target)
+    protected override void OnCollected(Transform target)
     {
         if (IsCollected || !CanBeCollected) return;
 

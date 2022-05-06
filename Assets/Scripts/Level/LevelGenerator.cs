@@ -20,14 +20,14 @@ public class LevelGenerator : MonoBehaviour
     public LevelVariant Variant { get; set; }
 
     [SerializeField] private Transform platformsParent;
-    private Platform[] platformPrefabs;
-    private Enemy[] groundEnemyPrefabs;
-    private Enemy[] wallEnemyPrefabs;
-    private Enemy[] floatingEnemyPrefabs;
+    private Platform[] _platformPrefabs;
+    private Enemy[] _groundEnemyPrefabs;
+    private Enemy[] _wallEnemyPrefabs;
+    private Enemy[] _floatingEnemyPrefabs;
 
     [SerializeField] private Vector2Int blockDistanceRange;
     private const int MinBlock = -82;
-    private int _currentBlock = 0;
+    private int _currentBlock;
 
     [SerializeField] private float floatingEnemySpawnProbability = 0.2f;
 
@@ -37,11 +37,11 @@ public class LevelGenerator : MonoBehaviour
 
     private void Awake()
     {
-        platformPrefabs = Resources.LoadAll<Platform>("Levels/Platforms");
+        _platformPrefabs = Resources.LoadAll<Platform>("Levels/Platforms");
 
-        groundEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Ground");
-        wallEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Wall");
-        floatingEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Floating");
+        _groundEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Ground");
+        _wallEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Wall");
+        _floatingEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Floating");
     }
 
     private void Start()
@@ -83,17 +83,17 @@ public class LevelGenerator : MonoBehaviour
 
     private Platform SpawnPlatform()
     {
-        var platform = platformPrefabs[Random.Range(0, platformPrefabs.Length)];
+        var platform = _platformPrefabs[Random.Range(0, _platformPrefabs.Length)];
         var spawnPosition = new Vector2(platform.xPositions[Random.Range(0, platform.xPositions.Length)], _currentBlock);
 
         Instantiate(platform, spawnPosition, Quaternion.identity).transform.parent = platformsParent;
         // Spawn ground enemies
-        for (int i = 0; i < platform.spawnEnemyCount; i++)
+        for (var i = 0; i < platform.spawnEnemyCount; i++)
         {
             // Only spawn enemy if the probability checks out
             if (Random.Range(0f, 1f) > platform.spawnEnemyProbability) continue;
 
-            var spawnEnemy = groundEnemyPrefabs[Random.Range(0, groundEnemyPrefabs.Length)];
+            var spawnEnemy = _groundEnemyPrefabs[Random.Range(0, _groundEnemyPrefabs.Length)];
             var spawnEnemyPosition =
                 new Vector2(spawnPosition.x + Random.Range(-platform.size.x / 2f + 0.5f, platform.size.x / 2f - 0.5f), spawnPosition.y + 1f);
             Instantiate(spawnEnemy, spawnEnemyPosition, Quaternion.identity);
@@ -106,7 +106,7 @@ public class LevelGenerator : MonoBehaviour
     {
         if (Random.Range(0f, 1f) > floatingEnemySpawnProbability) return;
 
-        var spawnEnemy = floatingEnemyPrefabs[Random.Range(0, floatingEnemyPrefabs.Length)];
+        var spawnEnemy = _floatingEnemyPrefabs[Random.Range(0, _floatingEnemyPrefabs.Length)];
         var spawnEnemyPosition = new Vector2(0f, _currentBlock - Random.Range(blockDistanceRange.x / 2, blockDistanceRange.y / 2 - 1));
 
         Instantiate(spawnEnemy, spawnEnemyPosition, Quaternion.identity);

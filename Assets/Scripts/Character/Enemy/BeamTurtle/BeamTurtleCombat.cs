@@ -32,11 +32,10 @@ public class BeamTurtleCombat : EnemyCombat
         var hit = Physics2D.Raycast(beam.position, Vector2.up, range);
         if (!hit) return;
 
-        if (hit.transform.CompareTag("Player"))
-        {
-            _target = hit.transform.GetComponent<Player>();
-            Invoke(nameof(Fire), Random.Range(0.2f, 0.4f));
-        }
+        if (!hit.transform.CompareTag("Player")) return;
+        
+        _target = hit.transform.GetComponent<Player>();
+        Invoke(nameof(Fire), Random.Range(0.2f, 0.4f));
     }
 
     public void Fire()

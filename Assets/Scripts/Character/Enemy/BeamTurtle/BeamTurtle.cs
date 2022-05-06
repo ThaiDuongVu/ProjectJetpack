@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class BeamTurtle : Enemy
 {
-    public BeamTurtleState State { get; set; } = BeamTurtleState.Idle;
-    public BeamTurtleMovement BeamTurtleMovement { get; set; }
-    public BeamTurtleResources BeamTurtleResources { get; set; }
+    private BeamTurtleState State { get; set; } = BeamTurtleState.Idle;
+    private BeamTurtleMovement _beamTurtleMovement;
 
     [SerializeField] private Vector2 wanderDurationRange = new Vector2(2f, 4f);
     [SerializeField] private Vector2 idleDurationRange = new Vector2(2f, 4f);
-    public Vector2 Direction { get; set; }
+    private Vector2 _direction;
 
     #region Unity Event
 
@@ -16,15 +15,15 @@ public class BeamTurtle : Enemy
     {
         base.Awake();
 
-        BeamTurtleMovement = GetComponent<BeamTurtleMovement>();
-        BeamTurtleResources = GetComponent<BeamTurtleResources>();
+        _beamTurtleMovement = GetComponent<BeamTurtleMovement>();
+        GetComponent<BeamTurtleResources>();
     }
 
     public override void Start()
     {
         base.Start();
 
-        Direction = new Vector2(Random.Range(-1f, 1f), 0f).normalized;
+        _direction = new Vector2(Random.Range(-1f, 1f), 0f).normalized;
         Invoke(nameof(StartWandering), Random.Range(idleDurationRange.x, idleDurationRange.y));
     }
 
@@ -34,20 +33,19 @@ public class BeamTurtle : Enemy
 
         DetectEdge();
 
-        if (IsEdged && State == BeamTurtleState.Wander)
-        {
-            CancelInvoke();
-            StopWandering();
-        }
+        if (!IsEdged || State != BeamTurtleState.Wander) return;
+        
+        CancelInvoke();
+        StopWandering();
     }
 
     #endregion
 
     private void StartWandering()
     {
-        Direction = -Direction;
+        _direction = -_direction;
         SetFlipped(!IsFlipped);
-        BeamTurtleMovement.StartRunning(Direction);
+        _beamTurtleMovement.StartRunning(_direction);
         State = BeamTurtleState.Wander;
 
         Invoke(nameof(StopWandering), Random.Range(wanderDurationRange.x, wanderDurationRange.y));
@@ -55,7 +53,7 @@ public class BeamTurtle : Enemy
 
     private void StopWandering()
     {
-        BeamTurtleMovement.StopRunningImmediate();
+        _beamTurtleMovement.StopRunningImmediate();
         State = BeamTurtleState.Idle;
 
         Invoke(nameof(StartWandering), Random.Range(idleDurationRange.x, idleDurationRange.y));

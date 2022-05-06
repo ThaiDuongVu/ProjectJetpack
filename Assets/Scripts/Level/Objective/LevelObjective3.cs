@@ -7,7 +7,7 @@ public class LevelObjective3 : LevelObjective
     public override bool IsCompleted
     {
         get => _initHealth - Player.PlayerResources.Health <= 2;
-        set => base.IsCompleted = value;
+        protected set => base.IsCompleted = value;
     }
 
     #region Unity Event

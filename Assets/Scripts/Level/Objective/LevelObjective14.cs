@@ -1,13 +1,11 @@
-using UnityEngine;
-
 public class LevelObjective14 : LevelObjective
 {
-    private int initEnemiesCount;
+    private int _initEnemiesCount;
 
     public override bool IsCompleted
     {
-        get => FindObjectsOfType<Enemy>().Length <= (initEnemiesCount / 2);
-        set => base.IsCompleted = value;
+        get => FindObjectsOfType<Enemy>().Length <= (_initEnemiesCount / 2);
+        protected set => base.IsCompleted = value;
     }
 
     #region Unity Event
@@ -16,7 +14,7 @@ public class LevelObjective14 : LevelObjective
     {
         base.Awake();
 
-        initEnemiesCount = FindObjectsOfType<Enemy>().Length;
+        _initEnemiesCount = FindObjectsOfType<Enemy>().Length;
     }
 
     #endregion

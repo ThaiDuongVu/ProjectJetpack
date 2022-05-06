@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class LevelObjective15 : LevelObjective
 {
     private bool _comboReached;
@@ -7,7 +5,7 @@ public class LevelObjective15 : LevelObjective
     public override bool IsCompleted
     {
         get => _comboReached;
-        set => base.IsCompleted = value;
+        protected set => base.IsCompleted = value;
     }
 
     #region Unity Event

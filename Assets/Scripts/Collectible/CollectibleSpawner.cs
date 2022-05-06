@@ -8,7 +8,7 @@ public class CollectibleSpawner : MonoBehaviour
 
     public void Spawn()
     {
-        for (int i = 0; i < Random.Range(spawnAmountRange.x, spawnAmountRange.y); i++)
+        for (var i = 0; i < Random.Range(spawnAmountRange.x, spawnAmountRange.y); i++)
         {
             Instantiate(collectiblePrefab, transform.position, Quaternion.identity).GetComponent<Rigidbody2D>()
                 .AddForce(new Vector2(Random.Range(-1f, 1f), 1f).normalized * InitForce, ForceMode2D.Impulse);

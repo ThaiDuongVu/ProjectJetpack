@@ -69,12 +69,12 @@ public class PlayerMovement : CharacterMovement
 
     private IEnumerator DropDownPlatform()
     {
-        if (_player.IsGrounded && _player.GroundPlatform && !_player.GroundPlatform.transform.CompareTag("BasePlatform"))
-        {
-            var tempGround = _player.GroundPlatform;
-            if (tempGround) Physics2D.IgnoreCollision(_player.Collider2D, tempGround, true);
-            yield return new WaitForSeconds(0.5f);
-            if (tempGround) Physics2D.IgnoreCollision(_player.Collider2D, tempGround, false);
-        }
+        if (!_player.IsGrounded || !_player.GroundPlatform ||
+            _player.GroundPlatform.transform.CompareTag("BasePlatform")) yield break;
+        
+        var tempGround = _player.GroundPlatform;
+        if (tempGround) Physics2D.IgnoreCollision(_player.Collider2D, tempGround, true);
+        yield return new WaitForSeconds(0.5f);
+        if (tempGround) Physics2D.IgnoreCollision(_player.Collider2D, tempGround, false);
     }
 }

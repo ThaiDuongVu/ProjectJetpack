@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class ToxicRat : Enemy
 {
-    public ToxicRatState State { get; set; } = ToxicRatState.Idle;
-    public ToxicRatMovement ToxicRatMovement { get; set; }
-    public ToxicRatResources ToxicRatResources { get; set; }
+    private ToxicRatState _state;
+    private ToxicRatMovement _toxicRatMovement;
 
     [SerializeField] private Vector2 wanderDurationRange = new Vector2(2f, 4f);
     [SerializeField] private Vector2 idleDurationRange = new Vector2(1f, 2f);
-    public Vector2 Direction { get; set; }
+    public Vector2 Direction { get; private set; }
 
     #region Unity Event
 
@@ -16,8 +15,8 @@ public class ToxicRat : Enemy
     {
         base.Awake();
 
-        ToxicRatMovement = GetComponent<ToxicRatMovement>();
-        ToxicRatResources = GetComponent<ToxicRatResources>();
+        _toxicRatMovement = GetComponent<ToxicRatMovement>();
+        GetComponent<ToxicRatResources>();
     }
 
     public override void Start()
@@ -34,7 +33,7 @@ public class ToxicRat : Enemy
 
         DetectEdge();
 
-        if (IsEdged && State == ToxicRatState.Wander)
+        if (IsEdged && _state == ToxicRatState.Wander)
         {
             CancelInvoke();
             StopWandering();
@@ -47,16 +46,16 @@ public class ToxicRat : Enemy
     {
         Direction = -Direction;
         SetFlipped(!IsFlipped);
-        ToxicRatMovement.StartRunning(Direction);
-        State = ToxicRatState.Wander;
+        _toxicRatMovement.StartRunning(Direction);
+        _state = ToxicRatState.Wander;
 
         Invoke(nameof(StopWandering), Random.Range(wanderDurationRange.x, wanderDurationRange.y));
     }
 
     private void StopWandering()
     {
-        ToxicRatMovement.StopRunningImmediate();
-        State = ToxicRatState.Idle;
+        _toxicRatMovement.StopRunningImmediate();
+        _state = ToxicRatState.Idle;
 
         Invoke(nameof(StartWandering), Random.Range(idleDurationRange.x, idleDurationRange.y));
     }

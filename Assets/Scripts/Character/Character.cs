@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -6,28 +7,27 @@ public class Character : MonoBehaviour
     public Rigidbody2D Rigidbody2D { get; private set; }
     public Collider2D Collider2D { get; private set; }
 
-    public CharacterMovement CharacterMovement { get; private set; }
-    public CharacterCombat CharacterCombat { get; private set; }
-    public CharacterResources CharacterResources { get; private set; }
+    private CharacterMovement _characterMovement;
+    private CharacterCombat _characterCombat;
+    private CharacterResources _characterResources;
 
-    public bool IsDead { get; set; }
+    private bool _isDead;
     [SerializeField] private ParticleSystem explosionPrefab;
 
-    public bool IsFlipped { get; set; }
-    private static readonly int StaggerAnimationTrigger = Animator.StringToHash("isStagger");
+    public bool IsFlipped { get; private set; }
     public SpriteRenderer mainSprite;
 
     [Header("Ground Properties")]
     [SerializeField] private float groundRaycastDistance = 0.55f;
-    public virtual bool IsGrounded { get; set; }
-    public Collider2D GroundPlatform { get; set; }
+    public virtual bool IsGrounded { get; protected set; }
+    public Collider2D GroundPlatform { get; private set; }
     private static readonly int FallAnimationTrigger = Animator.StringToHash("isFalling");
 
     [Header("Edge Properties")]
     [SerializeField] private Transform[] edgePoints;
     [SerializeField] private float edgeRaycastDistance = 0.55f;
-    private string[] levelLayers = { "Levels" };
-    public virtual bool IsEdged { get; set; }
+    private readonly string[] _levelLayers = { "Levels" };
+    protected bool IsEdged { get; private set; }
 
     #region Unity Event
 
@@ -37,9 +37,9 @@ public class Character : MonoBehaviour
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Collider2D = GetComponent<Collider2D>();
 
-        CharacterMovement = GetComponent<CharacterMovement>();
-        CharacterCombat = GetComponent<CharacterCombat>();
-        CharacterResources = GetComponent<CharacterResources>();
+        _characterMovement = GetComponent<CharacterMovement>();
+        _characterCombat = GetComponent<CharacterCombat>();
+        _characterResources = GetComponent<CharacterResources>();
     }
 
     public virtual void Start()
@@ -57,14 +57,14 @@ public class Character : MonoBehaviour
 
     public virtual void TakeDamage(int damage)
     {
-        CharacterResources.Health -= damage;
+        _characterResources.Health -= damage;
     }
 
     public virtual void Die()
     {
-        if (IsDead) return;
+        if (_isDead) return;
 
-        IsDead = true;
+        _isDead = true;
 
         if (explosionPrefab) Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
@@ -81,13 +81,13 @@ public class Character : MonoBehaviour
     public virtual void KnockBack(Vector2 direction, float force)
     {
         if (!Rigidbody2D) return;
-        if (CharacterMovement) CharacterMovement.StopRunningImmediate();
+        if (_characterMovement) _characterMovement.StopRunningImmediate();
 
         Rigidbody2D.velocity = Vector2.zero;
         Rigidbody2D.AddForce(direction * force, ForceMode2D.Impulse);
     }
 
-    public virtual void DetectGrounded()
+    protected virtual void DetectGrounded()
     {
         IsGrounded = false;
 
@@ -101,17 +101,14 @@ public class Character : MonoBehaviour
         Animator.SetBool(FallAnimationTrigger, !IsGrounded);
     }
 
-    public virtual void DetectEdge()
+    protected void DetectEdge()
     {
         IsEdged = true;
 
-        foreach (var point in edgePoints)
+        if (edgePoints.Any(point => Physics2D.Raycast(point.position, Vector2.down, edgeRaycastDistance,
+                LayerMask.GetMask(_levelLayers))))
         {
-            if (Physics2D.Raycast(point.position, Vector2.down, edgeRaycastDistance, LayerMask.GetMask(levelLayers)))
-            {
-                IsEdged = false;
-                return;
-            }
+            IsEdged = false;
         }
     }
 }
