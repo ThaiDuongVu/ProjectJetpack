@@ -61,6 +61,7 @@ public class Collectible : MonoBehaviour
         _rigidbody2D.gravityScale = 0f;
         foreach (var col in _colliders) col.enabled = false;
         StartCoroutine(_delayedDestroyer.Destroy());
+        AudioController.Instance.Play(AudioVariant.PlayerCollectItem);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

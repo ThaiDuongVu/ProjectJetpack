@@ -39,7 +39,7 @@ public class FireBird : Enemy
     {
         base.Die();
 
-        AudioController.Instance.Play(AudioVariant.EnemyExplode2);
+        AudioController.Instance.Play(AudioVariant.Explode2);
     }
 
     private void DetectTarget()

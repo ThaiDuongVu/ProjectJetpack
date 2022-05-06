@@ -125,6 +125,7 @@ public class Player : Character
         base.TakeDamage(damage);
 
         PlayerCombo.Cancel();
+        AudioController.Instance.Play(AudioVariant.PlayerTakeDamage);
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
     }
 
@@ -162,6 +163,7 @@ public class Player : Character
         basePlatformReached = true;
         CheckLevelObjectives();
 
+        AudioController.Instance.Play(AudioVariant.PlayerReachBasePlatform);
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
     }
@@ -173,6 +175,8 @@ public class Player : Character
         IsControllable = false;
         _playerMovement.StopRunningImmediate();
         StartCoroutine(Portal.Enter(this));
+
+        AudioController.Instance.Play(AudioVariant.PlayerEnterPortal);
     }
 
     private void PurchaseFromVendingMachine()

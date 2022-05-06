@@ -62,6 +62,7 @@ public class ExplodingPlatform : Platform
         _exploded = true;
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
+        AudioController.Instance.Play(AudioVariant.Explode2);
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
 
         Destroy(gameObject);

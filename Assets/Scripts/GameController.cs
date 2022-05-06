@@ -144,6 +144,8 @@ public class GameController : MonoBehaviour
         uiMessage.gameObject.SetActive(false);
         _uiMessageText.text = message;
         uiMessage.gameObject.SetActive(true);
+
+        AudioController.Instance.Play(AudioVariant.SendMessage);
     }
 
     public void SetTimeScale(float scale)

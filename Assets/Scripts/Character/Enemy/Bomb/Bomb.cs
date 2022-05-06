@@ -21,6 +21,6 @@ public class Bomb : Enemy
     {
         base.Die();
 
-        AudioController.Instance.Play(AudioVariant.EnemyExplode1);
+        AudioController.Instance.Play(AudioVariant.Explode1);
     }
 }

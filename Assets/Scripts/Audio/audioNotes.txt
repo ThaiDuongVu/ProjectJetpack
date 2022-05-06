@@ -7,9 +7,9 @@ effects:
 //- player explode //
 //- unlock customization //
 //- player fall
-- platform explode
-- reach base platform
-- player take damage
-- player enter portal
-- collect item
-- send message
+//- platform explode //
+//- player reach base platform //
+//- player take damage //
+//- player enter portal //
+//- player collect item //
+//- send message

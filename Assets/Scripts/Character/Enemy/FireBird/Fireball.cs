@@ -25,7 +25,7 @@ public class Fireball : Enemy
     {
         base.Die();
 
-        AudioController.Instance.Play(AudioVariant.EnemyExplode1);
+        AudioController.Instance.Play(AudioVariant.Explode1);
     }
 
     public override void OnCollisionEnter2D(Collision2D other)
