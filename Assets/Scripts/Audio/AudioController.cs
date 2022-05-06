@@ -38,6 +38,8 @@ public class AudioController : MonoBehaviour
 
     public void Play(AudioVariant variant)
     {
+        if (PlayerPrefs.GetInt("Effects", 0) == 1) return;
+
         foreach (var effect in _audioEffects)
         {
             if (effect.variant == variant)
@@ -50,6 +52,8 @@ public class AudioController : MonoBehaviour
 
     public void Stop(AudioVariant variant)
     {
+        if (PlayerPrefs.GetInt("Effects", 0) == 1) return;
+        
         foreach (var effect in _audioEffects)
         {
             if (effect.variant == variant)
