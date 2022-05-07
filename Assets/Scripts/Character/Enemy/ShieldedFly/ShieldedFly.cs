@@ -37,14 +37,6 @@ public class ShieldedFly : Enemy
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-
-        DetectEdge();
-
-        if (IsEdged && _state == ShieldedFlyState.Wander)
-        {
-            CancelInvoke();
-            StopWandering();
-        }
     }
 
     #endregion
@@ -77,11 +69,14 @@ public class ShieldedFly : Enemy
 
     public override void OnCollisionEnter2D(Collision2D other)
     {
-        CancelInvoke();
-        StopWandering();
-
         if (!other.transform.CompareTag("Player")) return;
         var player = other.transform.GetComponent<Player>();
         player.KnockBack((player.transform.position - transform.position).normalized, knockBackForce);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        CancelInvoke();
+        StopWandering();
     }
 }

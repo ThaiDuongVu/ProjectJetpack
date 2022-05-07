@@ -7,7 +7,7 @@ public class LevelObjective18 : LevelObjective
 
     public override bool IsCompleted
     {
-        get => FindObjectsOfType<Enemy>().Length - _initEnemiesCount >= 3;
+        get => _initEnemiesCount - FindObjectsOfType<Enemy>().Length >= 3;
         protected set => base.IsCompleted = value;
     }
 

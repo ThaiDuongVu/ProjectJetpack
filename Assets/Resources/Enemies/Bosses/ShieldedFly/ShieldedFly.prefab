@@ -52,7 +52,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5385607703466162715}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 160822549
   m_Mesh: {fileID: 0}
-  m_InstanceId: 135148
+  m_InstanceId: 44986
 --- !u!114 &5385607703466162705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f411a6350a7fc04fb4421b3e3e5ac31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 6
+  maxVelocity: 3
   minVelocity: 0
   acceleration: 24
   deceleration: 24
