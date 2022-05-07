@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class MusicController : MonoBehaviour
@@ -46,11 +45,18 @@ public class MusicController : MonoBehaviour
     private void PlayAmbient()
     {
         if (PlayerPrefs.GetInt("Music", 0) == 1) return;
-        _currentAmbientMusic?.Stop();
+        
+        if (_currentAmbientMusic) _currentAmbientMusic.Stop();
 
         _currentAmbientMusic = _ambientMusicSources[Random.Range(0, _ambientMusicSources.Length)];
         _currentAmbientMusic.Play();
 
         Invoke(nameof(PlayAmbient), _currentAmbientMusic.AudioSource.clip.length);
+    }
+
+    public void StopAmbient()
+    {
+        if (_currentAmbientMusic) _currentAmbientMusic.Stop();
+        CancelInvoke();
     }
 }

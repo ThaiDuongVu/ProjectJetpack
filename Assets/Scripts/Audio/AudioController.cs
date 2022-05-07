@@ -42,11 +42,10 @@ public class AudioController : MonoBehaviour
 
         foreach (var effect in _audioEffects)
         {
-            if (effect.variant == variant)
-            {
-                effect.Play();
-                return;
-            }
+            if (effect.variant != variant) continue;
+            
+            effect.Play();
+            return;
         }
     }
 
@@ -56,11 +55,10 @@ public class AudioController : MonoBehaviour
         
         foreach (var effect in _audioEffects)
         {
-            if (effect.variant == variant)
-            {
-                effect.Stop();
-                return;
-            }
+            if (effect.variant != variant) continue;
+            
+            effect.Stop();
+            return;
         }
     }
 }

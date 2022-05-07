@@ -1,13 +1,17 @@
 using UnityEngine;
 
-public class ToxicRat : Enemy
+public class OneEyeSpider : Enemy
 {
-    private ToxicRatState _state;
-    private ToxicRatMovement _toxicRatMovement;
+    private OneEyeSpiderState _state;
+    private OneEyeSpiderMovement _oneEyeSpiderMovement;
 
     [SerializeField] private Vector2 wanderDurationRange = new Vector2(2f, 4f);
     [SerializeField] private Vector2 idleDurationRange = new Vector2(1f, 2f);
     public Vector2 Direction { get; private set; }
+
+    [SerializeField] private SpiderEye eyePrefab;
+
+    private Portal _portal;
 
     #region Unity Event
 
@@ -15,15 +19,20 @@ public class ToxicRat : Enemy
     {
         base.Awake();
 
-        _toxicRatMovement = GetComponent<ToxicRatMovement>();
+        _oneEyeSpiderMovement = GetComponent<OneEyeSpiderMovement>();
+        _portal = FindObjectOfType<Portal>();
     }
 
     public override void Start()
     {
         base.Start();
+        
+        _portal.gameObject.SetActive(false);
 
         Direction = new Vector2(Random.Range(-1f, 1f), 0f).normalized;
         Invoke(nameof(StartWandering), Random.Range(idleDurationRange.x, idleDurationRange.y));
+
+        Instantiate(eyePrefab, transform.position, Quaternion.identity).OneEyeSpider = this;
     }
 
     public override void FixedUpdate()
@@ -32,7 +41,7 @@ public class ToxicRat : Enemy
 
         DetectEdge();
 
-        if (IsEdged && _state == ToxicRatState.Wander)
+        if (IsEdged && _state == OneEyeSpiderState.Wander)
         {
             CancelInvoke();
             StopWandering();
@@ -45,30 +54,31 @@ public class ToxicRat : Enemy
     {
         base.Die();
 
-        AudioController.Instance.Play(AudioVariant.Explode1);
+        _portal.gameObject.SetActive(true);
+        AudioController.Instance.Play(AudioVariant.Explode2);
     }
 
     private void StartWandering()
     {
         Direction = -Direction;
         SetFlipped(!IsFlipped);
-        _toxicRatMovement.StartRunning(Direction);
-        _state = ToxicRatState.Wander;
+        _oneEyeSpiderMovement.StartRunning(Direction);
+        _state = OneEyeSpiderState.Wander;
 
         Invoke(nameof(StopWandering), Random.Range(wanderDurationRange.x, wanderDurationRange.y));
     }
 
     private void StopWandering()
     {
-        _toxicRatMovement.StopRunningImmediate();
-        _state = ToxicRatState.Idle;
+        _oneEyeSpiderMovement.StopRunningImmediate();
+        _state = OneEyeSpiderState.Idle;
 
         Invoke(nameof(StartWandering), Random.Range(idleDurationRange.x, idleDurationRange.y));
     }
 
     public override void OnCollisionEnter2D(Collision2D other)
     {
-        base.OnCollisionEnter2D(other);
+        // base.OnCollisionEnter2D(other);
         
         CancelInvoke();
         StopWandering();

@@ -33,6 +33,8 @@ public class LevelGenerator : MonoBehaviour
 
     [SerializeField] private GameObject marketplacePrefab;
 
+    private GameObject[] _bossLevelPrefabs;
+
     #region Unity Event
 
     private void Awake()
@@ -42,6 +44,8 @@ public class LevelGenerator : MonoBehaviour
         _groundEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Ground");
         _wallEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Wall");
         _floatingEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Floating");
+
+        _bossLevelPrefabs = Resources.LoadAll<GameObject>("Levels/BossLevels");
     }
 
     private void Start()
@@ -57,6 +61,12 @@ public class LevelGenerator : MonoBehaviour
 
         var levelIndex = PlayerPrefs.GetInt(PlayerResources.LevelIndexKey, 0);
 
+        if (levelIndex > 25)
+        {
+            // TODO: Game completed animation then go back to home
+            return;
+        }
+
         if (levelIndex != 0 && levelIndex % 4 == 0)
         {
             Variant = LevelVariant.Marketplace;
@@ -64,8 +74,29 @@ public class LevelGenerator : MonoBehaviour
         }
         else if (levelIndex != 1 && levelIndex % 4 == 1)
         {
-            // TODO: Boss level
             Variant = LevelVariant.Boss;
+
+            if (levelIndex == 5)
+            {
+                // One-eye Spider boss
+                Instantiate(_bossLevelPrefabs[0], Vector2.zero, Quaternion.identity).transform.parent = transform;
+            }
+            else if (levelIndex == 10)
+            {
+
+            }
+            else if (levelIndex == 15)
+            {
+
+            }
+            else if (levelIndex == 20)
+            {
+
+            }
+            else if (levelIndex == 25)
+            {
+                // TODO: Final boss
+            }
         }
         else
         {

@@ -158,8 +158,8 @@ public class Player : Character
         base.DetectGrounded();
 
         _groundTrail.SetColor(IsGrounded ? _trailDefaultColor : transparentColor);
-        if (!GroundPlatform || !GroundPlatform.transform.CompareTag("BasePlatform") || basePlatformReached) return;
-        
+        if (!GroundPlatform || !GroundPlatform.transform.CompareTag("BasePlatform") || basePlatformReached || !LevelGenerator.Instance || LevelGenerator.Instance.Variant != LevelVariant.Regular) return;
+
         basePlatformReached = true;
         CheckLevelObjectives();
 

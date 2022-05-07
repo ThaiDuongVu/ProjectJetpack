@@ -1,1 +1,3 @@
 teleporting platform
+bosses
+ugprades
