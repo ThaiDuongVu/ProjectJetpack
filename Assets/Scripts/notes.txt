@@ -1,3 +1,4 @@
 teleporting platform
 bosses
 ugprades
+game over report

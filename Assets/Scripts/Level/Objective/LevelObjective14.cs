@@ -1,3 +1,6 @@
+using System.Collections;
+using UnityEngine;
+
 public class LevelObjective14 : LevelObjective
 {
     private int _initEnemiesCount;
@@ -10,10 +13,9 @@ public class LevelObjective14 : LevelObjective
 
     #region Unity Event
 
-    public override void Awake()
+    private new IEnumerator Start()
     {
-        base.Awake();
-
+        yield return new WaitForSeconds(0.5f);
         _initEnemiesCount = FindObjectsOfType<Enemy>().Length;
     }
 

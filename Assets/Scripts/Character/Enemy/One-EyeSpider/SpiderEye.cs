@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class SpiderEye : Enemy
 {
     public OneEyeSpider OneEyeSpider { get; set; }

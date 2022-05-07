@@ -26,7 +26,7 @@ public class OneEyeSpider : Enemy
     public override void Start()
     {
         base.Start();
-        
+
         _portal.gameObject.SetActive(false);
 
         Direction = new Vector2(Random.Range(-1f, 1f), 0f).normalized;
@@ -38,8 +38,6 @@ public class OneEyeSpider : Enemy
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-
-        DetectEdge();
 
         if (IsEdged && _state == OneEyeSpiderState.Wander)
         {
@@ -78,8 +76,6 @@ public class OneEyeSpider : Enemy
 
     public override void OnCollisionEnter2D(Collision2D other)
     {
-        // base.OnCollisionEnter2D(other);
-        
         CancelInvoke();
         StopWandering();
     }

@@ -40,7 +40,7 @@ public class MovingPlatform : Platform
         || (transform.position.x >= _xMaxPosition && _direction == Vector2.right))
             _direction = -_direction;
 
-        _rigidbody2D.MovePosition(_rigidbody2D.position + _direction * _velocity * Time.fixedDeltaTime);
+        _rigidbody2D.MovePosition(_rigidbody2D.position + _direction * (_velocity * Time.fixedDeltaTime));
     }
 
     #endregion

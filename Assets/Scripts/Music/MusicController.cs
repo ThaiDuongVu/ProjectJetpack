@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MusicController : MonoBehaviour
@@ -21,6 +22,8 @@ public class MusicController : MonoBehaviour
     private AmbientMusic[] _ambientMusicSources;
     private AmbientMusic _currentAmbientMusic;
 
+    private const float MusicDefaultVolume = 0.2f;
+
     #region Unity Event
 
     private void Awake()
@@ -37,26 +40,32 @@ public class MusicController : MonoBehaviour
 
     private void Start()
     {
-        PlayAmbient();
+        PlayMusic();
+        StartCoroutine(CheckMusicVolume());
     }
 
     #endregion
 
-    private void PlayAmbient()
+    private void PlayMusic()
     {
-        if (PlayerPrefs.GetInt("Music", 0) == 1) return;
-        
         if (_currentAmbientMusic) _currentAmbientMusic.Stop();
 
         _currentAmbientMusic = _ambientMusicSources[Random.Range(0, _ambientMusicSources.Length)];
         _currentAmbientMusic.Play();
 
-        Invoke(nameof(PlayAmbient), _currentAmbientMusic.AudioSource.clip.length);
+        Invoke(nameof(PlayMusic), _currentAmbientMusic.AudioSource.clip.length);
     }
 
     public void StopAmbient()
     {
         if (_currentAmbientMusic) _currentAmbientMusic.Stop();
         CancelInvoke();
+    }
+
+    private IEnumerator CheckMusicVolume()
+    {
+        if (_currentAmbientMusic) _currentAmbientMusic.AudioSource.volume = PlayerPrefs.GetInt("Music", 0) == 0 ? MusicDefaultVolume : 0f;
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(CheckMusicVolume());
     }
 }

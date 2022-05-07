@@ -8,7 +8,6 @@ public class Character : MonoBehaviour
     public Collider2D Collider2D { get; private set; }
 
     private CharacterMovement _characterMovement;
-    private CharacterCombat _characterCombat;
     private CharacterResources _characterResources;
 
     private bool _isDead;
@@ -38,7 +37,6 @@ public class Character : MonoBehaviour
         Collider2D = GetComponent<Collider2D>();
 
         _characterMovement = GetComponent<CharacterMovement>();
-        _characterCombat = GetComponent<CharacterCombat>();
         _characterResources = GetComponent<CharacterResources>();
     }
 

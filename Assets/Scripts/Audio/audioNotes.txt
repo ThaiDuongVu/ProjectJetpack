@@ -6,10 +6,10 @@ effects:
 //- enemy explode //
 //- player explode //
 //- unlock customization //
-//- player fall
 //- platform explode //
 //- player reach base platform //
 //- player take damage //
 //- player enter portal //
 //- player collect item //
-//- send message
+//- send message //
+//- player fall

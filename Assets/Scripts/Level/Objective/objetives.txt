@@ -15,5 +15,8 @@ kill at least half of enemies
 achieve a x5 combo
 achieve a x8 combo
 achieve a x10 combo
+kill 3 enemie or more
+kill 4 enemies or more
+kill 5 enemies or more
 // achieve a double-kill
-// achive at least 2 double-kills
+// achieve at least 2 double-kills

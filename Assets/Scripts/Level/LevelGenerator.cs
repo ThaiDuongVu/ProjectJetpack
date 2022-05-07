@@ -17,7 +17,7 @@ public class LevelGenerator : MonoBehaviour
 
     #endregion
 
-    public LevelVariant Variant { get; set; }
+    public LevelVariant Variant { get; private set; }
 
     [SerializeField] private Transform platformsParent;
     private Platform[] _platformPrefabs;
@@ -61,55 +61,97 @@ public class LevelGenerator : MonoBehaviour
 
         var levelIndex = PlayerPrefs.GetInt(PlayerResources.LevelIndexKey, 0);
 
-        if (levelIndex > 25)
+        switch (levelIndex)
         {
-            // TODO: Game completed animation then go back to home
-            return;
-        }
+            case 0:
+                GenerateRegular();
+                break;
 
-        if (levelIndex != 0 && levelIndex % 4 == 0)
-        {
-            Variant = LevelVariant.Marketplace;
-            Instantiate(marketplacePrefab, Vector2.zero, Quaternion.identity).transform.parent = transform;
-        }
-        else if (levelIndex != 1 && levelIndex % 4 == 1)
-        {
-            Variant = LevelVariant.Boss;
+            case 1:
+                GenerateRegular();
+                break;
 
-            if (levelIndex == 5)
-            {
+            case 2:
+                GenerateMarketplace();
+                break;
+
+            case 3:
                 // One-eye Spider boss
-                Instantiate(_bossLevelPrefabs[0], Vector2.zero, Quaternion.identity).transform.parent = transform;
-            }
-            else if (levelIndex == 10)
-            {
+                GenerateBoss(0);
+                break;
 
-            }
-            else if (levelIndex == 15)
-            {
+            case 4:
+                GenerateRegular();
+                break;
 
-            }
-            else if (levelIndex == 20)
-            {
+            case 5:
+                GenerateRegular();
+                break;
 
-            }
-            else if (levelIndex == 25)
-            {
-                // TODO: Final boss
-            }
+            case 6:
+                GenerateMarketplace();
+                break;
+
+            case 7:
+                // Shielded Fly boss
+                GenerateBoss(1);
+                break;
+
+            case 8:
+                GenerateRegular();
+                break;
+
+            case 9:
+                GenerateRegular();
+                break;
+
+            case 10:
+                GenerateRegular();
+                break;
+
+            case 11:
+                GenerateMarketplace();
+                break;
+
+            case 12:
+                // TODO: Third boss fight
+                GenerateBoss(2);
+                break;
+
+            case 13:
+                GenerateRegular();
+                break;
+
+            case 14:
+                GenerateRegular();
+                break;
+
+            case 15:
+                GenerateRegular();
+                break;
+
+            case 16:
+                GenerateMarketplace();
+                break;
+
+            case 17:
+                // TODO: Fourth boss fight
+                GenerateBoss(3);
+                break;
+
+            case 18:
+                GenerateMarketplace();
+                break;
+
+            case 19:
+                // TODO: Fifth boss fight
+                GenerateBoss(4);
+                break;
+
+            default:
+                // TODO: Game completed animation then go back to home
+                break;
         }
-        else
-        {
-            Variant = LevelVariant.Regular;
-
-            while (_currentBlock > MinBlock)
-            {
-                _currentBlock -= SpawnPlatform().size.y;
-                SpawnFloatingEnemy();
-                _currentBlock -= Random.Range(blockDistanceRange.x, blockDistanceRange.y);
-            }
-        }
-
     }
 
     private Platform SpawnPlatform()
@@ -141,5 +183,31 @@ public class LevelGenerator : MonoBehaviour
         var spawnEnemyPosition = new Vector2(0f, _currentBlock - Random.Range(blockDistanceRange.x / 2, blockDistanceRange.y / 2 - 1));
 
         Instantiate(spawnEnemy, spawnEnemyPosition, Quaternion.identity);
+    }
+
+    private void GenerateRegular()
+    {
+        Variant = LevelVariant.Regular;
+
+        while (_currentBlock > MinBlock)
+        {
+            _currentBlock -= SpawnPlatform().size.y;
+            SpawnFloatingEnemy();
+            _currentBlock -= Random.Range(blockDistanceRange.x, blockDistanceRange.y);
+        }
+    }
+
+    private void GenerateMarketplace()
+    {
+        Variant = LevelVariant.Marketplace;
+        Instantiate(marketplacePrefab, Vector2.zero, Quaternion.identity).transform.parent = transform;
+    }
+
+    private void GenerateBoss(int index)
+    {
+        Variant = LevelVariant.Boss;
+        if (!_bossLevelPrefabs[index]) return;
+
+        Instantiate(_bossLevelPrefabs[index], Vector2.zero, Quaternion.identity).transform.parent = transform;
     }
 }
