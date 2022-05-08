@@ -1,6 +1,5 @@
 teleporting platform
 bosses
 upgrades
-game over report
 volume option
 portal animation

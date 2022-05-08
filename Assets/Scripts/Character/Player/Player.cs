@@ -133,13 +133,13 @@ public class Player : Character
     {
         base.Die();
 
-        PlayerPrefs.SetInt(TokensKey, PlayerPrefs.GetInt(TokensKey, 0) + PlayerResources.Token);
-        PlayerResources.ClearTemp();
-
         GameController.Instance.StartCoroutine(GameController.Instance.GameOver());
         CameraShaker.Instance.Shake(CameraShakeMode.Normal);
         AudioController.Instance.Play(AudioVariant.PlayerExplode);
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
+
+        PlayerPrefs.SetInt(TokensKey, PlayerPrefs.GetInt(TokensKey, 0) + PlayerResources.Token);
+        PlayerResources.ClearTemp();
 
         Destroy(gameObject);
     }

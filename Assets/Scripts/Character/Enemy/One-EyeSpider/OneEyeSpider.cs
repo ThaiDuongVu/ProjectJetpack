@@ -54,6 +54,7 @@ public class OneEyeSpider : Enemy
 
         _portal.gameObject.SetActive(true);
         AudioController.Instance.Play(AudioVariant.Explode2);
+        AudioController.Instance.Play(AudioVariant.PlayerReachBasePlatform);
     }
 
     private void StartWandering()

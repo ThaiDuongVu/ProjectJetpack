@@ -40,7 +40,8 @@ public class ShieldedFly : Enemy
         base.Die();
 
         _flyShieldSet.Die();
-        AudioController.Instance.Play(AudioVariant.Explode1);
+        AudioController.Instance.Play(AudioVariant.Explode2);
+        AudioController.Instance.Play(AudioVariant.PlayerReachBasePlatform);
     }
 
     private void StartWandering()

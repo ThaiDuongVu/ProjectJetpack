@@ -22,9 +22,11 @@ public class GameController : MonoBehaviour
 
     public GameState State { get; private set; } = GameState.InProgress;
 
-    [Header("Menus")] [SerializeField] private Canvas mainUI;
+    [Header("Menus")][SerializeField] private Canvas mainUI;
     [SerializeField] private Menu pauseMenu;
     [SerializeField] private Menu gameOverMenu;
+    [SerializeField] private TMP_Text levelIndexText;
+    [SerializeField] private TMP_Text tokensCollectedText;
 
     [Header("UI Message")]
     [SerializeField] private GameObject uiMessage;
@@ -109,8 +111,11 @@ public class GameController : MonoBehaviour
 
     public IEnumerator GameOver()
     {
+        levelIndexText.text = $"Level(s) Completed: {LevelGenerator.Instance.LevelIndex}";
+        tokensCollectedText.text = $"Token(s) Collected: {FindObjectOfType<Player>().PlayerResources.Token}";
+
         yield return new WaitForSeconds(1f);
-        
+
         State = GameState.Paused;
         gameOverMenu.SetActive(true);
 

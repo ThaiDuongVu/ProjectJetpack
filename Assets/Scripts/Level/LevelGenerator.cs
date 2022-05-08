@@ -18,6 +18,7 @@ public class LevelGenerator : MonoBehaviour
     #endregion
 
     public LevelVariant Variant { get; private set; }
+    public int LevelIndex { get; set; }
 
     [SerializeField] private Transform platformsParent;
     private Platform[] _platformPrefabs;
@@ -60,9 +61,9 @@ public class LevelGenerator : MonoBehaviour
     {
         // TODO: Generate the first platform and spawn the player
 
-        var levelIndex = PlayerPrefs.GetInt(PlayerResources.LevelIndexKey, 0);
+        LevelIndex = PlayerPrefs.GetInt(PlayerResources.LevelIndexKey, 0);
 
-        switch (levelIndex)
+        switch (LevelIndex)
         {
             case >= 0 and <= 1:
                 GenerateRegular();
@@ -156,9 +157,9 @@ public class LevelGenerator : MonoBehaviour
         if (Random.Range(0f, 1f) > wallEnemySpawnProbability) return;
 
         var spawnEnemy = _wallEnemyPrefabs[Random.Range(0, _wallEnemyPrefabs.Length)];
-        var spawnEnemyPosition = 
+        var spawnEnemyPosition =
             new Vector2(spawnEnemy.transform.position.x, _currentBlock - Random.Range(blockDistanceRange.x / 2, blockDistanceRange.y / 2 - 1));
-        
+
         Instantiate(spawnEnemy, spawnEnemyPosition, spawnEnemy.transform.rotation);
     }
 
