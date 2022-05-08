@@ -110,6 +110,7 @@ public class PlayerResources : CharacterResources
         PlayerPrefs.SetInt(TokenTempKey, 0);
         PlayerPrefs.SetFloat(FuelTempKey, maxFuel);
         PlayerPrefs.SetInt(LevelIndexKey, 0);
+        PlayerPrefs.SetInt(PlayerCombat.JetpackKey, 0);
     }
 
     #endregion

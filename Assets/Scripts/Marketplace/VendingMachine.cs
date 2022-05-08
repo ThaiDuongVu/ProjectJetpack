@@ -3,7 +3,7 @@ using UnityEngine;
 public class VendingMachine : MonoBehaviour
 {
     private InputPrompt _inputPrompt;
-    private CollectibleSpawner[] _collectibleSpawners;
+    protected CollectibleSpawner[] collectibleSpawners;
     public int price;
 
     #region Unity Event
@@ -11,7 +11,7 @@ public class VendingMachine : MonoBehaviour
     public virtual void Awake()
     {
         _inputPrompt = GetComponentInChildren<InputPrompt>();
-        _collectibleSpawners = GetComponentsInChildren<CollectibleSpawner>();
+        collectibleSpawners = GetComponentsInChildren<CollectibleSpawner>();
     }
 
     public virtual void Start()
@@ -29,7 +29,7 @@ public class VendingMachine : MonoBehaviour
             return;
         }
 
-        foreach (var collectible in _collectibleSpawners) collectible.Spawn();
+        foreach (var collectible in collectibleSpawners) collectible.Spawn();
         player.PlayerResources.Token -= price;
 
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());

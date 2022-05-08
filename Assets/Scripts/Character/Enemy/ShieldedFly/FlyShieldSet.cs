@@ -25,6 +25,6 @@ public class FlyShieldSet : MonoBehaviour
     public void Die()
     {
         foreach (var shield in _flyShields) shield.Die();
-        // Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

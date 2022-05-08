@@ -5,7 +5,7 @@ using TMPro;
 public class Player : Character
 {
     private PlayerMovement _playerMovement;
-    private PlayerCombat _playerCombat;
+    public PlayerCombat PlayerCombat { get; set; }
     public PlayerResources PlayerResources { get; private set; }
     public PlayerCombo PlayerCombo { get; private set; }
 
@@ -26,7 +26,8 @@ public class Player : Character
         protected set
         {
             base.IsGrounded = value;
-            crosshair.gameObject.SetActive(!value && PlayerResources.Fuel >= _playerCombat.PlayerJetpack.fuelConsumptionPerJump);
+            if (crosshair)
+                crosshair.gameObject.SetActive(!value && PlayerResources.Fuel >= PlayerCombat.PlayerJetpack.fuelConsumptionPerJump);
         }
     }
 
@@ -86,7 +87,7 @@ public class Player : Character
         base.Awake();
 
         _playerMovement = GetComponent<PlayerMovement>();
-        _playerCombat = GetComponent<PlayerCombat>();
+        PlayerCombat = GetComponent<PlayerCombat>();
         PlayerResources = GetComponent<PlayerResources>();
         PlayerCombo = GetComponent<PlayerCombo>();
 
