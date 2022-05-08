@@ -30,6 +30,7 @@ public class LevelGenerator : MonoBehaviour
     private int _currentBlock;
 
     [SerializeField] private float floatingEnemySpawnProbability = 0.2f;
+    [SerializeField] private float wallEnemySpawnProbability = 0.2f;
 
     [SerializeField] private GameObject marketplacePrefab;
 
@@ -63,93 +64,58 @@ public class LevelGenerator : MonoBehaviour
 
         switch (levelIndex)
         {
-            case 0:
+            case >= 0 and <= 1:
                 GenerateRegular();
                 break;
-
-            case 1:
-                GenerateRegular();
-                break;
-
             case 2:
                 GenerateMarketplace();
                 break;
-
             case 3:
                 // One-eye Spider boss
                 GenerateBoss(0);
                 break;
-
-            case 4:
+            case >= 4 and <= 6:
                 GenerateRegular();
                 break;
-
-            case 5:
-                GenerateRegular();
-                break;
-
-            case 6:
+            case 7:
                 GenerateMarketplace();
                 break;
-
-            case 7:
+            case 8:
                 // Shielded Fly boss
                 GenerateBoss(1);
                 break;
-
-            case 8:
+            case >= 9 and <= 12:
                 GenerateRegular();
                 break;
-
-            case 9:
-                GenerateRegular();
-                break;
-
-            case 10:
-                GenerateRegular();
-                break;
-
-            case 11:
+            case 13:
                 GenerateMarketplace();
                 break;
-
-            case 12:
+            case 14:
                 // TODO: Third boss fight
                 GenerateBoss(2);
                 break;
-
-            case 13:
+            case >= 15 and <= 19:
                 GenerateRegular();
                 break;
-
-            case 14:
-                GenerateRegular();
-                break;
-
-            case 15:
-                GenerateRegular();
-                break;
-
-            case 16:
+            case 20:
                 GenerateMarketplace();
                 break;
-
-            case 17:
+            case 21:
                 // TODO: Fourth boss fight
                 GenerateBoss(3);
                 break;
-
-            case 18:
+            case >= 22 and <= 26:
+                GenerateRegular();
+                break;
+            case 27:
                 GenerateMarketplace();
                 break;
-
-            case 19:
-                // TODO: Fifth boss fight
+            case 28:
+                // TODO: Final boss fight
                 GenerateBoss(4);
                 break;
-
             default:
-                // TODO: Game completed animation then go back to home
+                PlayGameCompleteAnimation();
                 break;
         }
     }
@@ -185,6 +151,17 @@ public class LevelGenerator : MonoBehaviour
         Instantiate(spawnEnemy, spawnEnemyPosition, Quaternion.identity);
     }
 
+    private void SpawnWallEnemy()
+    {
+        if (Random.Range(0f, 1f) > wallEnemySpawnProbability) return;
+
+        var spawnEnemy = _wallEnemyPrefabs[Random.Range(0, _wallEnemyPrefabs.Length)];
+        var spawnEnemyPosition = 
+            new Vector2(spawnEnemy.transform.position.x, _currentBlock - Random.Range(blockDistanceRange.x / 2, blockDistanceRange.y / 2 - 1));
+        
+        Instantiate(spawnEnemy, spawnEnemyPosition, spawnEnemy.transform.rotation);
+    }
+
     private void GenerateRegular()
     {
         Variant = LevelVariant.Regular;
@@ -192,7 +169,8 @@ public class LevelGenerator : MonoBehaviour
         while (_currentBlock > MinBlock)
         {
             _currentBlock -= SpawnPlatform().size.y;
-            SpawnFloatingEnemy();
+            if (Random.Range(-1f, 1f) > 0f) SpawnFloatingEnemy();
+            else SpawnWallEnemy();
             _currentBlock -= Random.Range(blockDistanceRange.x, blockDistanceRange.y);
         }
     }
@@ -209,5 +187,10 @@ public class LevelGenerator : MonoBehaviour
         if (!_bossLevelPrefabs[index]) return;
 
         Instantiate(_bossLevelPrefabs[index], Vector2.zero, Quaternion.identity).transform.parent = transform;
+    }
+
+    private void PlayGameCompleteAnimation()
+    {
+        // TODO: Play game complete animation
     }
 }

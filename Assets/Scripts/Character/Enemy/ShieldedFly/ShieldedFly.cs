@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class ShieldedFly : Enemy
 {
-    private ShieldedFlyState _state;
     private ShieldedFlyMovement _shieldedFlyMovement;
 
     [SerializeField] private Vector2 wanderDurationRange = new Vector2(2f, 4f);
     [SerializeField] private Vector2 idleDurationRange = new Vector2(1f, 2f);
-    public Vector2 Direction { get; private set; }
+    private Vector2 _direction;
 
     [SerializeField] private float knockBackForce = 10f;
 
@@ -27,16 +26,11 @@ public class ShieldedFly : Enemy
     {
         base.Start();
 
-        Direction = new Vector2(Random.Range(-1f, 1f), 0f).normalized;
+        _direction = new Vector2(Random.Range(-1f, 1f), 0f).normalized;
         Invoke(nameof(StartWandering), Random.Range(idleDurationRange.x, idleDurationRange.y));
 
         _flyShieldSet = Instantiate(flyShieldSetPrefab, transform.position, Quaternion.identity);
         _flyShieldSet.Target = this;
-    }
-
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
     }
 
     #endregion
@@ -51,10 +45,9 @@ public class ShieldedFly : Enemy
 
     private void StartWandering()
     {
-        Direction = -Direction;
+        _direction = -_direction;
         SetFlipped(!IsFlipped);
-        _shieldedFlyMovement.StartRunning(Direction);
-        _state = ShieldedFlyState.Wander;
+        _shieldedFlyMovement.StartRunning(_direction);
 
         Invoke(nameof(StopWandering), Random.Range(wanderDurationRange.x, wanderDurationRange.y));
     }
@@ -62,7 +55,6 @@ public class ShieldedFly : Enemy
     private void StopWandering()
     {
         _shieldedFlyMovement.StopRunningImmediate();
-        _state = ShieldedFlyState.Idle;
 
         Invoke(nameof(StartWandering), Random.Range(idleDurationRange.x, idleDurationRange.y));
     }

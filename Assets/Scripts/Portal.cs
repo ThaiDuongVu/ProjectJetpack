@@ -47,7 +47,7 @@ public class Portal : MonoBehaviour
 
     public IEnumerator Enter(Player player)
     {
-        this._target = player.transform;
+        _target = player.transform;
         player.IsControllable = false;
         player.Animator.SetBool(CharacterMovement.IsRunningAnimationTrigger, true);
         _inputPrompt.gameObject.SetActive(false);

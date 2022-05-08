@@ -1,4 +1,6 @@
 teleporting platform
 bosses
-ugprades
+upgrades
 game over report
+volume option
+portal animation
