@@ -2,4 +2,4 @@ teleporting platform
 bosses
 upgrades
 volume option
-portal animation
+credits menu
