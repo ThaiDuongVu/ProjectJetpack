@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9973d539d00a5a54f9539aea2d9f300a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 16
+  jumpForce: 20
   jumpPoint: {fileID: 5709746187608439233}
   jumpMuzzlePrefab: {fileID: 3827419661170153826, guid: d11ac10a68a739a4dbc635f98e0d839c, type: 3}
   jumpRate: 4
@@ -329,10 +329,10 @@ MonoBehaviour:
   crosshair: {fileID: 1275263944517574910}
   regularColor: {r: 1, g: 1, b: 1, a: 1}
   aimColor: {r: 0.93333334, g: 0.32156864, b: 0.3254902, a: 1}
-  fuelConsumptionPerJump: 0.1
+  fuelConsumptionPerJump: 0.15
   fuelConsumptionPerHoverSecond: 0.25
   fuelRechargeRate: 0.5
-  bulletEffectPrefab: {fileID: 5290994351216487016, guid: 29cb9efc22dbf034097784e1c5508aa9, type: 3}
+  bulletEffectPrefab: {fileID: 5290994351216487016, guid: 9181069ad6db41b49abe7aa547e1b8f3, type: 3}
 --- !u!1001 &8698051955620789338
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -317,10 +317,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9973d539d00a5a54f9539aea2d9f300a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 16
+  jumpForce: 12
   jumpPoint: {fileID: 5709746187608439233}
   jumpMuzzlePrefab: {fileID: 3827419661170153826, guid: 38d7d98566596bd45835e9261cce9ddd, type: 3}
-  jumpRate: 4
+  jumpRate: 6
   hoverForce: 26
   hoverMuzzle: {fileID: 6918269453252089826}
   damage: 1
@@ -332,7 +332,7 @@ MonoBehaviour:
   fuelConsumptionPerJump: 0.1
   fuelConsumptionPerHoverSecond: 0.25
   fuelRechargeRate: 0.5
-  bulletEffectPrefab: {fileID: 5290994351216487016, guid: 29cb9efc22dbf034097784e1c5508aa9, type: 3}
+  bulletEffectPrefab: {fileID: 5290994351216487016, guid: dd60b4ceccb947d4eadfe0a84c6c620a, type: 3}
 --- !u!1001 &6133648219892240000
 PrefabInstance:
   m_ObjectHideFlags: 0

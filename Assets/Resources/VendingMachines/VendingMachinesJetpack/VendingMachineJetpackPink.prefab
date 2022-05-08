@@ -339,7 +339,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7241978066479501235, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
       propertyPath: m_text
-      value: Swap for pink jetpack
+      value: 'Swap for pink jetpack
+
+
+        Higher jumps, less fuel, faster charge,
+        slower jump rate'
       objectReference: {fileID: 0}
     - target: {fileID: 7241978066479501235, guid: 627ccdfeea478f543b204d43958bd7c0, type: 3}
       propertyPath: m_HorizontalAlignment

@@ -13,6 +13,8 @@ public class ShieldedFly : Enemy
     [SerializeField] private FlyShieldSet flyShieldSetPrefab;
     private FlyShieldSet _flyShieldSet;
 
+    private Portal _portal;
+
     #region Unity Event
 
     public override void Awake()
@@ -20,11 +22,14 @@ public class ShieldedFly : Enemy
         base.Awake();
 
         _shieldedFlyMovement = GetComponent<ShieldedFlyMovement>();
+        _portal = FindObjectOfType<Portal>();
     }
 
     public override void Start()
     {
         base.Start();
+
+        _portal.gameObject.SetActive(false);
 
         _direction = new Vector2(Random.Range(-1f, 1f), 0f).normalized;
         Invoke(nameof(StartWandering), Random.Range(idleDurationRange.x, idleDurationRange.y));
@@ -39,6 +44,7 @@ public class ShieldedFly : Enemy
     {
         base.Die();
 
+        _portal.gameObject.SetActive(true);
         _flyShieldSet.Die();
         AudioController.Instance.Play(AudioVariant.Explode2);
         AudioController.Instance.Play(AudioVariant.PlayerReachBasePlatform);
