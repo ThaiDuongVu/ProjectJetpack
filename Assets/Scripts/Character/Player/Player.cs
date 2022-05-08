@@ -26,7 +26,7 @@ public class Player : Character
         protected set
         {
             base.IsGrounded = value;
-            crosshair.gameObject.SetActive(!value && PlayerResources.Fuel >= _playerCombat.fuelConsumptionPerJump);
+            crosshair.gameObject.SetActive(!value && PlayerResources.Fuel >= _playerCombat.PlayerJetpack.fuelConsumptionPerJump);
         }
     }
 

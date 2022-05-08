@@ -3,3 +3,4 @@ bosses
 upgrades
 volume option
 credits menu
+collectible crates
