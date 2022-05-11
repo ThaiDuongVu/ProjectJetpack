@@ -4,10 +4,10 @@ public class Fireball : Enemy
 {
     public Transform Target { get; set; }
 
-    [SerializeField] private float velocity = 4f;
-    [SerializeField] private int damage = 1;
-    [SerializeField] private float knockBackForce = 15f;
-    private Vector2 _direction;
+    [SerializeField] protected float velocity = 4f;
+    [SerializeField] protected int damage = 1;
+    [SerializeField] protected float knockBackForce = 15f;
+    protected Vector2 direction;
 
     #region Unity Event
 
@@ -15,8 +15,10 @@ public class Fireball : Enemy
     {
         base.FixedUpdate();
 
-        _direction = (Target.position - transform.position).normalized;
-        Rigidbody2D.MovePosition(Rigidbody2D.position + _direction * (velocity * Time.fixedDeltaTime));
+        if (!Target) Die();
+
+        direction = (Target.position - transform.position).normalized;
+        Rigidbody2D.MovePosition(Rigidbody2D.position + direction * (velocity * Time.fixedDeltaTime));
     }
 
     #endregion
@@ -37,10 +39,10 @@ public class Fireball : Enemy
             var player = other.transform.GetComponent<Player>();
 
             player.TakeDamage(damage);
-            player.KnockBack(_direction, knockBackForce);
+            player.KnockBack(direction, knockBackForce);
         }
-		
-		CameraShaker.Instance.Shake(CameraShakeMode.Light);
+
+        CameraShaker.Instance.Shake(CameraShakeMode.Light);
         Die();
     }
 }
