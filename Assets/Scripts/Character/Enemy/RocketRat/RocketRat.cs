@@ -1,10 +1,23 @@
 using UnityEngine;
+using System.Collections;
 
 public class RocketRat : Enemy
 {
     [SerializeField] private GameObject rocketSewersPrefab;
 
     private Portal _portal;
+
+    private static readonly int AttackAnimationTrigger = Animator.StringToHash("attack");
+    private int _sewerCount;
+    public int SewerCount
+    {
+        get => _sewerCount;
+        set
+        {
+            _sewerCount = value;
+            if (value <= 0) Die();
+        }
+    }
 
     #region Unity Event
 
@@ -15,12 +28,14 @@ public class RocketRat : Enemy
         _portal = FindObjectOfType<Portal>();
     }
 
-    public override void Start()
+    private new IEnumerator Start()
     {
-        base.Start();
-
         _portal.gameObject.SetActive(false);
-        Instantiate(rocketSewersPrefab, transform.position, Quaternion.identity);
+        var sewers = Instantiate(rocketSewersPrefab, transform.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(0.1f);
+
+        SewerCount = sewers.GetComponentsInChildren<RocketSewer>().Length;
     }
 
     #endregion

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Build Settings
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 2533
+  controlID: 152
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 2482
+  controlID: 159
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,8 +165,8 @@ MonoBehaviour:
     y: 0
     width: 924
     height: 561
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 14}
@@ -195,8 +195,8 @@ MonoBehaviour:
     y: 561
     width: 924
     height: 378
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 18}
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 2534
+  controlID: 80
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -247,8 +247,8 @@ MonoBehaviour:
     y: 0
     width: 461
     height: 302
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: InspectorWindow
+  m_Name: BuildPlayerWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -299,14 +299,14 @@ MonoBehaviour:
     y: 0
     width: 535
     height: 939
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 22}
+  m_MinSize: {x: 631, y: 601}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 22}
   - {fileID: 23}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -646,9 +646,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -4.3868966, y: -80.35805, z: -0.11457108}
+    m_Target: {x: -1.3486606, y: -85.068054, z: -0.03937801}
     speed: 2
-    m_Value: {x: -4.3868966, y: -80.35805, z: -0.11457108}
+    m_Value: {x: -1.3486606, y: -85.068054, z: -0.03937801}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -699,9 +699,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 10.130202
+    m_Target: 5.550349
     speed: 2
-    m_Value: 10.130202
+    m_Value: 5.550349
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -928,9 +928,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: b06366282ed451045aea7f95dc751130, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 22982c4e4f5d58244a3133793e6c8e3d, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -6182835636468030739, guid: b06366282ed451045aea7f95dc751130, type: 2}
+  - m_Target: {fileID: 80493624597108870, guid: 22982c4e4f5d58244a3133793e6c8e3d, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1612,7 +1612,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -96536
+  m_LastSelectedObjectID: -2666
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1644,9 +1644,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e886feff
-      m_LastClickedID: -96536
-      m_ExpandedIDs: a0b4ffff2afbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: e89effff629fffff3eacffff74b3ffffc6baffff2afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1711,22 +1711,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Enemies/Bosses/RocketRat
+    - Assets/Resources/Collectibles/Spawners
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Resources/Enemies/Bosses/RocketRat
+  - Assets/Resources/Collectibles/Spawners
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Duong Vu\Documents\Projects\ProjectJetpack
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 144}
-    m_SelectedIDs: 70750000
-    m_LastClickedID: 30064
-    m_ExpandedIDs: 0000000026750000287500002a7500002c7500002e75000030750000327500007a7500008475000050810000a08a0000
+    scrollPos: {x: 0, y: 416}
+    m_SelectedIDs: 3a7b0000
+    m_LastClickedID: 31546
+    m_ExpandedIDs: 00000000f8760000fa760000fc760000fe7600000077000002770000047700000a7700001c770000e8770000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1754,7 +1754,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000026750000287500002a7500002c7500002e7500003075000032750000
+    m_ExpandedIDs: 00000000f8760000fa760000fc760000fe760000007700000277000004770000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1785,18 +1785,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: ec3f0100024001001c97010000b9010044e5010056de00004af30000c0750000de7a0000027f0000aa1f010086200100f42201002a77000086770000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: RocketSewer
-      m_OriginalName: RocketSewer
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 25144
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:

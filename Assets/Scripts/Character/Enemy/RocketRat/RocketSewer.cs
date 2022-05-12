@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class RocketSewer : Enemy
 {
+    private RocketRat _rocketRat;
+
     private RocketSewerCombat _rocketSewerCombat;
 
     private Player _target;
@@ -14,6 +16,7 @@ public class RocketSewer : Enemy
     {
         base.Awake();
 
+        _rocketRat = FindObjectOfType<RocketRat>();
         _rocketSewerCombat = GetComponent<RocketSewerCombat>();
     }
 
@@ -36,7 +39,8 @@ public class RocketSewer : Enemy
     public override void Die()
     {
         base.Die();
-
+        
+        _rocketRat.SewerCount--;
         AudioController.Instance.Play(AudioVariant.Explode2);
     }
 
