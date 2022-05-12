@@ -54,6 +54,8 @@ public class GameController : MonoBehaviour
 
         // Handle game pause input
         _inputManager.Game.Escape.performed += EscapeOnPerformed;
+        // Handle game debug input
+        _inputManager.Game.Test.performed += (InputAction.CallbackContext context) => { SceneLoader.Instance.Load("Playground"); };
 
         _inputManager.Enable();
     }

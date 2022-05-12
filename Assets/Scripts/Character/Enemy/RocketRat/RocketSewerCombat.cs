@@ -27,7 +27,8 @@ public class RocketSewerCombat : EnemyCombat
 
         yield return new WaitForSeconds(fireFrame / 60f);
 
-        Instantiate(rocketPrefab, firePoint.position, Quaternion.identity).Target = target;
-        Instantiate(fireMuzzle, firePoint.position, Quaternion.identity).transform.up = -Vector2.up;
+        var firePointPosition = firePoint.position;
+        Instantiate(rocketPrefab, firePointPosition, Quaternion.identity).Target = target;
+        Instantiate(fireMuzzle, firePointPosition, Quaternion.identity).transform.up = -Vector2.up;
     }
 }

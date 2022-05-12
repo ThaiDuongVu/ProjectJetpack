@@ -53,4 +53,9 @@ public class RocketRat : Enemy
         AudioController.Instance.Play(AudioVariant.Explode2);
         AudioController.Instance.Play(AudioVariant.PlayerReachBasePlatform);
     }
+
+    public void Attack()
+    {
+        Animator.SetTrigger(AttackAnimationTrigger);
+    }
 }

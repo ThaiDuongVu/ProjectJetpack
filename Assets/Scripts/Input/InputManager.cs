@@ -381,8 +381,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9fc99f78-cdad-48b7-99cb-8f9b5d0745f1"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
                     ""action"": ""Test"",

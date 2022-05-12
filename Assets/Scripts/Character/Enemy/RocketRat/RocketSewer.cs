@@ -57,7 +57,11 @@ public class RocketSewer : Enemy
 
     private void Fire()
     {
-        if (_target) StartCoroutine(_rocketSewerCombat.Fire(_target.transform));
+        if (_target)
+        {
+            StartCoroutine(_rocketSewerCombat.Fire(_target.transform));
+            _rocketRat.Attack();
+        }
 
         Invoke(nameof(Fire), Random.Range(fireIntervalRange.x, fireIntervalRange.y));
     }

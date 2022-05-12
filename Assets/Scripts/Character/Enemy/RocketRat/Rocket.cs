@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Rocket : Fireball
 {
     #region Unity Event
