@@ -1,6 +1,6 @@
 teleporting platform
-bosses
-upgrades
-volume option
+more platforms
+boss 4
+final boss
 credits menu
 collectible crates
