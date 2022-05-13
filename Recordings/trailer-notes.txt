@@ -1,0 +1,15 @@
+trailer shots:
+
+1 - zoomed in shot of player falling through the world - 2s
+2 - zoom out and show some "standard" gameplay - 10s
+3 - player land on a base platform and enter the portal - 3s
+4 - fade to the next gameplay segment with some more "varied gameplay" - 10s
+5 - player land on a base platform and enter the portal - 3s
+6 - fade to customization scene and show player unlock an item - 10s
+7 - new player enter Play portal - 3s
+8 - fade to the game scene and show a walking montage with multiple player customizations - 5s
+9 - player enter portal again and fade to the rocket rat boss fight - 3s
+10 - this is the climax of the trailer, show the player jumping around trying to dodge all the bullets but then die and game over screen - 10s
+11 - fade to a custom ad screen showing the text "Coming soon to Steam" - 5s
+
+total duration: 64s; 1m4s

@@ -1,6 +1,5 @@
 teleporting platform
-more platforms
+more platform variants
 boss 4
 final boss
-credits menu
 collectible crates
