@@ -73,7 +73,7 @@ public class PlayerCombat : CharacterCombat
         base.Awake();
 
         _player = GetComponent<Player>();
-        _jetpackPrefabs = Resources.LoadAll<PlayerJetpack>("Player/Jetpacks");
+        _jetpackPrefabs = Resources.LoadAll<PlayerJetpack>("Players/Jetpacks");
     }
 
     public override void Start()
