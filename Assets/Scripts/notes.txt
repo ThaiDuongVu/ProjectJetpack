@@ -15,5 +15,5 @@ needed art:
 - small capsule: 231 x 87
 - main capsule: 616 x 353
 - vertical capsule: 374 x 448
-- page background (optional): 1438 x 810
-- screenshots: at least 5
+// - page background (optional): 1438 x 810
+// - screenshots: at least 5
