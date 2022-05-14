@@ -23,6 +23,7 @@ public class VendingMachineJetpack : VendingMachine
         player.PlayerCombat.UpdateJetpack();
 
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
+        AudioController.Instance.Play(AudioVariant.UnlockCustomization);
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 }

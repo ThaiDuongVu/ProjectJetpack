@@ -102,8 +102,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Careful! The One-eye Spider occupies the land below.
 
-    Hint: Target
-    its eye.'
+    Hint: Its eye
+    is the only weakness'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 60e94fa307df22240b8c9343f9e2616e, type: 2}
   m_sharedMaterial: {fileID: 6786209334006446569, guid: 60e94fa307df22240b8c9343f9e2616e, type: 2}
@@ -257,7 +257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7048595629469711205, guid: fba4ae12ef1c3294787f780d3981f54c, type: 3}
       propertyPath: m_InstanceId
-      value: -5030
+      value: -4064
       objectReference: {fileID: 0}
     - target: {fileID: 7048595629469711256, guid: fba4ae12ef1c3294787f780d3981f54c, type: 3}
       propertyPath: m_Name
@@ -327,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4380338999996745987, guid: 55b9e4d5ec1147049be0a8848f5dce49, type: 3}
       propertyPath: m_InstanceId
-      value: -5046
+      value: -4080
       objectReference: {fileID: 0}
     - target: {fileID: 4380338999996746014, guid: 55b9e4d5ec1147049be0a8848f5dce49, type: 3}
       propertyPath: m_RootOrder
@@ -441,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2754397269578127535, guid: 1706c8ef91f30ba49973bb2abaeb5b5c, type: 3}
       propertyPath: m_InstanceId
-      value: -5092
+      value: -4126
       objectReference: {fileID: 0}
     - target: {fileID: 2754397269578127539, guid: 1706c8ef91f30ba49973bb2abaeb5b5c, type: 3}
       propertyPath: m_Name
@@ -467,7 +467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1893197111729019075, guid: 029b069655dc5f247b50d8462097a635, type: 3}
       propertyPath: m_InstanceId
-      value: -5110
+      value: -4144
       objectReference: {fileID: 0}
     - target: {fileID: 1893197111729019101, guid: 029b069655dc5f247b50d8462097a635, type: 3}
       propertyPath: m_Name
@@ -537,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7048595629469711205, guid: fba4ae12ef1c3294787f780d3981f54c, type: 3}
       propertyPath: m_InstanceId
-      value: -5220
+      value: -4254
       objectReference: {fileID: 0}
     - target: {fileID: 7048595629469711256, guid: fba4ae12ef1c3294787f780d3981f54c, type: 3}
       propertyPath: m_Name

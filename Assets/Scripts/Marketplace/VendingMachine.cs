@@ -33,6 +33,7 @@ public class VendingMachine : MonoBehaviour
         player.PlayerResources.Token -= price;
 
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
+        AudioController.Instance.Play(AudioVariant.UnlockCustomization);
         CameraShaker.Instance.Shake(CameraShakeMode.Light);
     }
 
