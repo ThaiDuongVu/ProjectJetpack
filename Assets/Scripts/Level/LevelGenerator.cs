@@ -92,7 +92,7 @@ public class LevelGenerator : MonoBehaviour
                 GenerateMarketplace();
                 break;
             case 14:
-                // TODO: Third boss fight
+                // Rocket Rat boss
                 GenerateBoss(2);
                 break;
             case >= 15 and <= 19:
@@ -102,7 +102,7 @@ public class LevelGenerator : MonoBehaviour
                 GenerateMarketplace();
                 break;
             case 21:
-                // TODO: Fourth boss fight
+                // Three-headed Dragon boss
                 GenerateBoss(3);
                 break;
             case >= 22 and <= 26:

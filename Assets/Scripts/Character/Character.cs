@@ -11,7 +11,7 @@ public class Character : MonoBehaviour
     private CharacterResources _characterResources;
 
     private bool _isDead;
-    [SerializeField] private ParticleSystem explosionPrefab;
+    [SerializeField] protected ParticleSystem explosionPrefab;
 
     public bool IsFlipped { get; private set; }
     public SpriteRenderer mainSprite;

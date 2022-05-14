@@ -24,6 +24,6 @@ public class ToxicRatCombat : EnemyCombat
 
         var player = other.transform.GetComponent<Player>();
         player.TakeDamage(damage);
-        player.KnockBack(new Vector2(_toxicRat.Direction.x, 1f).normalized, knockBackForce);
+        player.KnockBack(new Vector2((player.transform.position - transform.position).normalized.x, 1f).normalized, knockBackForce);
     }
 }

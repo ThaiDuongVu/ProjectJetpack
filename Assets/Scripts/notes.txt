@@ -4,7 +4,7 @@ more platform variants
 more enemy variants
 - two-headed snake
 
-boss 4
+game complete animation
 final boss
 collectible crates
 
