@@ -4,8 +4,8 @@ using TMPro;
 
 public class Player : Character
 {
-    private PlayerMovement _playerMovement;
-    public PlayerCombat PlayerCombat { get; set; }
+    public PlayerMovement PlayerMovement { get; private set; }
+    public PlayerCombat PlayerCombat { get; private set; }
     public PlayerResources PlayerResources { get; private set; }
     public PlayerCombo PlayerCombo { get; private set; }
 
@@ -86,7 +86,7 @@ public class Player : Character
     {
         base.Awake();
 
-        _playerMovement = GetComponent<PlayerMovement>();
+        PlayerMovement = GetComponent<PlayerMovement>();
         PlayerCombat = GetComponent<PlayerCombat>();
         PlayerResources = GetComponent<PlayerResources>();
         PlayerCombo = GetComponent<PlayerCombo>();
@@ -174,7 +174,7 @@ public class Player : Character
         if (!Portal) return;
 
         IsControllable = false;
-        _playerMovement.StopRunningImmediate();
+        PlayerMovement.StopRunningImmediate();
         StartCoroutine(Portal.Enter(this));
 
         AudioController.Instance.Play(AudioVariant.PlayerEnterPortal);

@@ -3,6 +3,7 @@ using UnityEngine;
 public class Bomb : Enemy
 {
     public float xPositionStart = -4.5f;
+    [SerializeField] private bool isStatic;
 
     #region Unity Event
 
@@ -10,9 +11,12 @@ public class Bomb : Enemy
     {
         base.Start();
 
-        var xPositionLeftDistance = Random.Range(0, 10);
-        var bombTransform = transform;
-        bombTransform.position = new Vector2(xPositionStart + xPositionLeftDistance, bombTransform.position.y);
+        if (!isStatic)
+        {
+            var xPositionLeftDistance = Random.Range(0, 10);
+            var bombTransform = transform;
+            bombTransform.position = new Vector2(xPositionStart + xPositionLeftDistance, bombTransform.position.y);
+        }
     }
 
     #endregion

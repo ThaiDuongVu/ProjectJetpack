@@ -67,7 +67,7 @@ public class PlayerMovement : CharacterMovement
 
     #endregion
 
-    private IEnumerator DropDownPlatform()
+    public IEnumerator DropDownPlatform()
     {
         if (!_player.IsGrounded || !_player.GroundPlatform ||
             _player.GroundPlatform.transform.CompareTag("BasePlatform")) yield break;

@@ -256,6 +256,19 @@
     <property name="shotcut:hash">5d496163fcb92c2775752d97ddf3fef2</property>
     <property name="shotcut:caption">ad_take004.mp4</property>
   </chain>
+  <chain id="chain18" out="00:00:04.583">
+    <property name="length">00:00:04.600</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/ad_take004.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">5d496163fcb92c2775752d97ddf3fef2</property>
+    <property name="shotcut:caption">ad_take004.mp4</property>
+  </chain>
   <playlist id="playlist0">
     <property name="shotcut:video">1</property>
     <property name="shotcut:name">V1</property>
@@ -281,8 +294,9 @@
     <entry producer="chain16" in="00:00:00.000" out="00:00:04.500"/>
     <blank length="00:00:00.333"/>
     <entry producer="chain17" in="00:00:00.000" out="00:00:04.583"/>
+    <entry producer="chain18" in="00:00:00.250" out="00:00:02.533"/>
   </playlist>
-  <chain id="chain18" out="00:01:25.933">
+  <chain id="chain19" out="00:01:25.933">
     <property name="length">00:01:25.950</property>
     <property name="eof">pause</property>
     <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/for-food-99185.mp3</property>
@@ -295,7 +309,7 @@
     <property name="shotcut:hash">81a93a0252836f4208957b8b4b28f453</property>
     <property name="shotcut:caption">for-food-99185.mp3</property>
   </chain>
-  <chain id="chain19" out="00:01:25.933">
+  <chain id="chain20" out="00:01:25.933">
     <property name="length">00:01:25.950</property>
     <property name="eof">pause</property>
     <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/for-food-99185.mp3</property>
@@ -312,8 +326,8 @@
     <property name="shotcut:audio">1</property>
     <property name="shotcut:name">A1</property>
     <blank length="00:00:07.533"/>
-    <entry producer="chain18" in="00:00:00.000" out="00:00:51.483"/>
-    <entry producer="chain19" in="00:01:21.500" out="00:01:25.933"/>
+    <entry producer="chain19" in="00:00:00.000" out="00:00:51.483"/>
+    <entry producer="chain20" in="00:01:21.500" out="00:01:25.933"/>
   </playlist>
   <tractor id="tractor0" title="Shotcut version 22.04.25" in="00:00:00.000" out="00:01:03.467">
     <property name="shotcut">1</property>
