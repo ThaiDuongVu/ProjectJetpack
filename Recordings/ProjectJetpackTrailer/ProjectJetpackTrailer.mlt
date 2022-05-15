@@ -15,14 +15,79 @@
     <property name="creation_time">2022-05-13T01:22:34</property>
     <property name="xml">was here</property>
   </chain>
+  <chain id="chain1" out="00:02:46.867">
+    <property name="length">00:02:46.883</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/generalGameplay_take001.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">37bed9840e31b900f4dd632cf8704228</property>
+  </chain>
+  <chain id="chain2" out="00:01:25.933">
+    <property name="length">00:01:25.950</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/for-food-99185.mp3</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">0</property>
+    <property name="video_index">-1</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">81a93a0252836f4208957b8b4b28f453</property>
+  </chain>
+  <chain id="chain3" out="00:00:21.133">
+    <property name="length">00:00:21.150</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/customization_take001.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">50f4c44a56ad57de1553363455c2f560</property>
+  </chain>
+  <chain id="chain4" out="00:00:04.583">
+    <property name="length">00:00:04.600</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/ad_take004.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">5d496163fcb92c2775752d97ddf3fef2</property>
+  </chain>
+  <chain id="chain5" out="00:00:05.033">
+    <property name="length">00:00:05.050</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/montage_take008.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">09ea43f0979a52213ca29a459541bb8b</property>
+  </chain>
   <playlist id="main_bin" title="Shotcut version 22.04.25">
     <property name="shotcut:projectAudioChannels">2</property>
     <property name="shotcut:projectFolder">1</property>
     <property name="xml_retain">1</property>
     <entry producer="chain0" in="00:00:00.000" out="00:00:07.533"/>
+    <entry producer="chain1" in="00:00:00.000" out="00:02:46.867"/>
+    <entry producer="chain2" in="00:00:00.000" out="00:01:25.933"/>
+    <entry producer="chain3" in="00:00:00.000" out="00:00:21.133"/>
+    <entry producer="chain4" in="00:00:00.000" out="00:00:04.583"/>
+    <entry producer="chain5" in="00:00:00.000" out="00:00:05.033"/>
   </playlist>
-  <producer id="black" in="00:00:00.000" out="00:00:07.533">
-    <property name="length">00:00:07.550</property>
+  <producer id="black" in="00:00:00.000" out="00:01:03.467">
+    <property name="length">00:01:03.483</property>
     <property name="eof">pause</property>
     <property name="resource">0</property>
     <property name="aspect_ratio">1</property>
@@ -31,9 +96,9 @@
     <property name="set.test_audio">0</property>
   </producer>
   <playlist id="background">
-    <entry producer="black" in="00:00:00.000" out="00:00:07.533"/>
+    <entry producer="black" in="00:00:00.000" out="00:01:03.467"/>
   </playlist>
-  <chain id="chain1" out="00:00:07.533">
+  <chain id="chain6" out="00:00:07.533">
     <property name="length">00:00:07.550</property>
     <property name="eof">pause</property>
     <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/trailerShot1_take005.mp4</property>
@@ -48,36 +113,217 @@
     <property name="xml">was here</property>
     <property name="shotcut:caption">trailerShot1_take005.mp4</property>
   </chain>
-  <chain id="chain2" out="00:00:07.533">
-    <property name="length">00:00:07.550</property>
+  <chain id="chain7" out="00:02:46.867">
+    <property name="length">00:02:46.883</property>
     <property name="eof">pause</property>
-    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/trailerShot1_take005.mp4</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/generalGameplay_take001.mp4</property>
     <property name="mlt_service">avformat-novalidate</property>
     <property name="seekable">1</property>
     <property name="audio_index">1</property>
     <property name="video_index">0</property>
     <property name="mute_on_pause">0</property>
-    <property name="shotcut:hash">55c6cb239a75f3540a53f9fdad8dd53e</property>
-    <property name="ignore_points">0</property>
-    <property name="creation_time">2022-05-13T01:22:34</property>
     <property name="xml">was here</property>
-    <property name="shotcut:caption">trailerShot1_take005.mp4</property>
+    <property name="shotcut:hash">37bed9840e31b900f4dd632cf8704228</property>
+    <property name="shotcut:caption">generalGameplay_take001.mp4</property>
+  </chain>
+  <chain id="chain8" out="00:02:46.867">
+    <property name="length">00:02:46.883</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/generalGameplay_take001.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">37bed9840e31b900f4dd632cf8704228</property>
+    <property name="shotcut:caption">generalGameplay_take001.mp4</property>
+  </chain>
+  <chain id="chain9" out="00:02:46.867">
+    <property name="length">00:02:46.883</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/generalGameplay_take001.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">37bed9840e31b900f4dd632cf8704228</property>
+    <property name="shotcut:caption">generalGameplay_take001.mp4</property>
+  </chain>
+  <chain id="chain10" out="00:02:46.867">
+    <property name="length">00:02:46.883</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/generalGameplay_take001.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">37bed9840e31b900f4dd632cf8704228</property>
+    <property name="shotcut:caption">generalGameplay_take001.mp4</property>
+  </chain>
+  <chain id="chain11" out="00:02:46.867">
+    <property name="length">00:02:46.883</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/generalGameplay_take001.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">37bed9840e31b900f4dd632cf8704228</property>
+    <property name="shotcut:caption">generalGameplay_take001.mp4</property>
+  </chain>
+  <chain id="chain12" out="00:02:46.867">
+    <property name="length">00:02:46.883</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/generalGameplay_take001.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">37bed9840e31b900f4dd632cf8704228</property>
+    <property name="shotcut:caption">generalGameplay_take001.mp4</property>
+  </chain>
+  <chain id="chain13" out="00:00:21.133">
+    <property name="length">00:00:21.150</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/customization_take001.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">50f4c44a56ad57de1553363455c2f560</property>
+    <property name="shotcut:caption">customization_take001.mp4</property>
+  </chain>
+  <chain id="chain14" out="00:00:21.133">
+    <property name="length">00:00:21.150</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/customization_take001.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">50f4c44a56ad57de1553363455c2f560</property>
+    <property name="shotcut:caption">customization_take001.mp4</property>
+  </chain>
+  <chain id="chain15" out="00:00:21.133">
+    <property name="length">00:00:21.150</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/customization_take001.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">50f4c44a56ad57de1553363455c2f560</property>
+    <property name="shotcut:caption">customization_take001.mp4</property>
+  </chain>
+  <chain id="chain16" out="00:00:05.033">
+    <property name="length">00:00:05.050</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/montage_take008.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">09ea43f0979a52213ca29a459541bb8b</property>
+    <property name="shotcut:caption">montage_take008.mp4</property>
+  </chain>
+  <chain id="chain17" out="00:00:04.583">
+    <property name="length">00:00:04.600</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/ad_take004.mp4</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">1</property>
+    <property name="video_index">0</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">5d496163fcb92c2775752d97ddf3fef2</property>
+    <property name="shotcut:caption">ad_take004.mp4</property>
   </chain>
   <playlist id="playlist0">
     <property name="shotcut:video">1</property>
     <property name="shotcut:name">V1</property>
     <blank length="00:00:00.017"/>
-    <entry producer="chain1" in="00:00:00.000" out="00:00:07.500"/>
-    <entry producer="chain2" in="00:00:07.517" out="00:00:07.517"/>
+    <entry producer="chain6" in="00:00:00.000" out="00:00:07.500"/>
+    <blank length="00:00:00.467"/>
+    <entry producer="chain7" in="00:00:09.600" out="00:00:14.700"/>
+    <blank length="00:00:00.167"/>
+    <entry producer="chain8" in="00:00:31.733" out="00:00:36.683"/>
+    <entry producer="chain9" in="00:00:36.700" out="00:00:42.933"/>
+    <blank length="00:00:00.167"/>
+    <entry producer="chain10" in="00:00:54.600" out="00:01:03.733"/>
+    <blank length="00:00:00.167"/>
+    <entry producer="chain11" in="00:01:06.617" out="00:01:10.183"/>
+    <blank length="00:00:00.167"/>
+    <entry producer="chain12" in="00:01:22.683" out="00:01:26.533"/>
+    <blank length="00:00:00.467"/>
+    <entry producer="chain13" in="00:00:05.883" out="00:00:09.333"/>
+    <entry producer="chain14" in="00:00:11.200" out="00:00:14.317"/>
+    <blank length="00:00:00.167"/>
+    <entry producer="chain15" in="00:00:17.733" out="00:00:20.267"/>
+    <blank length="00:00:00.350"/>
+    <entry producer="chain16" in="00:00:00.000" out="00:00:04.500"/>
+    <blank length="00:00:00.333"/>
+    <entry producer="chain17" in="00:00:00.000" out="00:00:04.583"/>
   </playlist>
-  <tractor id="tractor0" title="Shotcut version 22.04.25" in="00:00:00.000" out="00:00:07.533">
+  <chain id="chain18" out="00:01:25.933">
+    <property name="length">00:01:25.950</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/for-food-99185.mp3</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">0</property>
+    <property name="video_index">-1</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">81a93a0252836f4208957b8b4b28f453</property>
+    <property name="shotcut:caption">for-food-99185.mp3</property>
+  </chain>
+  <chain id="chain19" out="00:01:25.933">
+    <property name="length">00:01:25.950</property>
+    <property name="eof">pause</property>
+    <property name="resource">C:/Users/Duong Vu/Documents/Projects/ProjectJetpack/Recordings/for-food-99185.mp3</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="audio_index">0</property>
+    <property name="video_index">-1</property>
+    <property name="mute_on_pause">0</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">81a93a0252836f4208957b8b4b28f453</property>
+    <property name="shotcut:caption">for-food-99185.mp3</property>
+  </chain>
+  <playlist id="playlist1">
+    <property name="shotcut:audio">1</property>
+    <property name="shotcut:name">A1</property>
+    <blank length="00:00:07.533"/>
+    <entry producer="chain18" in="00:00:00.000" out="00:00:51.483"/>
+    <entry producer="chain19" in="00:01:21.500" out="00:01:25.933"/>
+  </playlist>
+  <tractor id="tractor0" title="Shotcut version 22.04.25" in="00:00:00.000" out="00:01:03.467">
     <property name="shotcut">1</property>
     <property name="shotcut:projectAudioChannels">2</property>
     <property name="shotcut:projectFolder">1</property>
     <properties name="shotcut:markers"/>
-    <property name="shotcut:scaleFactor">13.4913</property>
+    <property name="shotcut:scaleFactor">1.41494</property>
     <track producer="background"/>
     <track producer="playlist0"/>
+    <track producer="playlist1" hide="video"/>
     <transition id="transition0">
       <property name="a_track">0</property>
       <property name="b_track">1</property>
@@ -92,6 +338,13 @@
       <property name="mlt_service">frei0r.cairoblend</property>
       <property name="threads">0</property>
       <property name="disable">1</property>
+    </transition>
+    <transition id="transition2">
+      <property name="a_track">0</property>
+      <property name="b_track">2</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
     </transition>
   </tractor>
 </mlt>
