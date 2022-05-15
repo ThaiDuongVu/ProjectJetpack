@@ -39,7 +39,7 @@ public class RocketSewer : Enemy
     public override void Die()
     {
         base.Die();
-        
+
         _rocketRat.SewerCount--;
         AudioController.Instance.Play(AudioVariant.Explode2);
     }

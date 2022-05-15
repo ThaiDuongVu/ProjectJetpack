@@ -16,8 +16,9 @@ public class FlyShieldSet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = Target.transform.position;
-        transform.RotateAround(transform.position, Vector3.forward, -RotateSpeed);
+        var setTransform = transform;
+        setTransform.position = Target.transform.position;
+        transform.RotateAround(setTransform.position, Vector3.forward, -RotateSpeed);
     }
 
     #endregion

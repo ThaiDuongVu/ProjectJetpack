@@ -34,7 +34,7 @@ public class BeamTurtle : Enemy
         DetectEdge();
 
         if (!IsEdged || State != BeamTurtleState.Wander) return;
-        
+
         CancelInvoke();
         StopWandering();
     }
@@ -69,7 +69,7 @@ public class BeamTurtle : Enemy
     public override void OnCollisionEnter2D(Collision2D other)
     {
         base.OnCollisionEnter2D(other);
-        
+
         CancelInvoke();
         StopWandering();
     }

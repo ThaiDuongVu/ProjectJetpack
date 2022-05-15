@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
         _inputManager.Game.Escape.performed += EscapeOnPerformed;
         // Handle game debug input
         _inputManager.Game.Test.performed += (InputAction.CallbackContext context) => { SceneLoader.Instance.Load("Playground"); };
-        _inputManager.Game.Test2.performed += (InputAction.CallbackContext context) => { ScreenCapture.CaptureScreenshot("Promotional/screenshot.png"); };
+        _inputManager.Game.Test2.performed += (InputAction.CallbackContext context) => { FindObjectOfType<Player>().GetComponentInChildren<Canvas>().gameObject.SetActive(false); };
 
         _inputManager.Enable();
     }

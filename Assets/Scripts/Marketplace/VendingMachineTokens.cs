@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class VendingMachineTokens : VendingMachine
 {
     public override void Purchase(Player player)
@@ -10,7 +8,7 @@ public class VendingMachineTokens : VendingMachine
             return;
         }
 
-        foreach (var collectible in collectibleSpawners) collectible.Spawn();
+        foreach (var collectible in CollectibleSpawners) collectible.Spawn();
         player.PlayerResources.Health -= price;
 
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());

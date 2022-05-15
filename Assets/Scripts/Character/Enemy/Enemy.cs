@@ -2,23 +2,14 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    protected CollectibleSpawner[] collectibleSpawners;
-
-    #region Unity Event
-
-    public override void Awake()
-    {
-        base.Awake();
-    }
-
-    #endregion
+    protected CollectibleSpawner[] CollectibleSpawners;
 
     public override void Die()
     {
         base.Die();
 
-        collectibleSpawners = GetComponentsInChildren<CollectibleSpawner>();
-        foreach (var spawner in collectibleSpawners) spawner.Spawn();
+        CollectibleSpawners = GetComponentsInChildren<CollectibleSpawner>();
+        foreach (var spawner in CollectibleSpawners) spawner.Spawn();
         GameController.Instance.StartCoroutine(GameController.Instance.SlowMotionEffect());
     }
 

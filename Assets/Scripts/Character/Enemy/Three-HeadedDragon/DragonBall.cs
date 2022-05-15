@@ -9,9 +9,9 @@ public class DragonBall : Enemy
     {
         // base.Die();
 
-        collectibleSpawners = GetComponentsInChildren<CollectibleSpawner>();
-        foreach (var spawner in collectibleSpawners) spawner.Spawn();
-        
+        CollectibleSpawners = GetComponentsInChildren<CollectibleSpawner>();
+        foreach (var spawner in CollectibleSpawners) spawner.Spawn();
+
         if (explosionPrefab) Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         AudioController.Instance.Play(AudioVariant.Explode1);
 

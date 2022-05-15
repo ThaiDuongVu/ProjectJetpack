@@ -7,7 +7,7 @@ public class Fireball : Enemy
     [SerializeField] protected float velocity = 4f;
     [SerializeField] protected int damage = 1;
     [SerializeField] protected float knockBackForce = 15f;
-    protected Vector2 direction;
+    protected Vector2 Direction;
 
     #region Unity Event
 
@@ -17,8 +17,8 @@ public class Fireball : Enemy
 
         if (!Target) Die();
 
-        direction = (Target.position - transform.position).normalized;
-        Rigidbody2D.MovePosition(Rigidbody2D.position + direction * (velocity * Time.fixedDeltaTime));
+        Direction = (Target.position - transform.position).normalized;
+        Rigidbody2D.MovePosition(Rigidbody2D.position + Direction * (velocity * Time.fixedDeltaTime));
     }
 
     #endregion
@@ -39,7 +39,7 @@ public class Fireball : Enemy
             var player = other.transform.GetComponent<Player>();
 
             player.TakeDamage(damage);
-            player.KnockBack(direction, knockBackForce);
+            player.KnockBack(Direction, knockBackForce);
         }
 
         CameraShaker.Instance.Shake(CameraShakeMode.Light);

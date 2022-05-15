@@ -115,8 +115,11 @@ public class LevelGenerator : MonoBehaviour
                 // TODO: Final boss fight
                 GenerateBoss(4);
                 break;
-            default:
+            case 29:
                 PlayGameCompleteAnimation();
+                break;
+            default:
+                GenerateRegular();
                 break;
         }
     }

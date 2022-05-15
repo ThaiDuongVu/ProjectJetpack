@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class ToxicRatCombat : EnemyCombat
 {
-    private ToxicRat _toxicRat;
-
     [SerializeField] private int damage = 1;
     [SerializeField] private float knockBackForce = 10f;
 
@@ -13,7 +11,7 @@ public class ToxicRatCombat : EnemyCombat
     {
         base.Awake();
 
-        _toxicRat = GetComponent<ToxicRat>();
+        GetComponent<ToxicRat>();
     }
 
     #endregion

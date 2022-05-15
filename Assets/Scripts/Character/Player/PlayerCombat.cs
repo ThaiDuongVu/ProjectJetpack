@@ -8,7 +8,6 @@ public class PlayerCombat : CharacterCombat
     [SerializeField] private Transform jetpackHolder;
     private PlayerJetpack[] _jetpackPrefabs;
     public const string JetpackKey = "PlayerJetpack";
-    [SerializeField] private PlayerJetpack blueJetpackPrefab;
 
     public PlayerJetpack PlayerJetpack { get; set; }
 
@@ -42,7 +41,7 @@ public class PlayerCombat : CharacterCombat
         InputTypeController.Instance.CheckInputType(context);
 
         if (!PlayerJetpack) return;
-        PlayerJetpack?.SetHovering(false);
+        if (PlayerJetpack) PlayerJetpack.SetHovering(false);
     }
 
     #endregion
@@ -88,8 +87,11 @@ public class PlayerCombat : CharacterCombat
     private void InitJetpack()
     {
         PlayerJetpack = Instantiate(_jetpackPrefabs[PlayerPrefs.GetInt(JetpackKey, 0)], jetpackHolder.position, Quaternion.identity);
-        PlayerJetpack.transform.parent = jetpackHolder;
-        PlayerJetpack.transform.localScale = Vector2.one;
+        
+        var jetpackTransform = PlayerJetpack.transform;
+        jetpackTransform.parent = jetpackHolder;
+        jetpackTransform.localScale = Vector2.one;
+        
         PlayerJetpack.Player = _player;
         _player.crosshair = PlayerJetpack.crosshair;
     }

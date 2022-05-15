@@ -1,7 +1,7 @@
 trailer shots:
 
-1 - zoomed in shot of player falling through the world - 2s
-2 - zoom out and show some "standard" gameplay - 10s
+1 - player falling through the world and enter protal - 2s
+2 - fade out show some "standard" gameplay - 10s - quick cuts in-between
 3 - player land on a base platform and enter the portal - 3s
 4 - fade to the next gameplay segment with some more "varied gameplay" - 10s
 5 - player land on a base platform and enter the portal - 3s

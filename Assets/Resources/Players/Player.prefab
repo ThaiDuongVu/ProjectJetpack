@@ -2344,7 +2344,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jetpackHolder: {fileID: 7117147717250077186}
-  blueJetpackPrefab: {fileID: 5332638517277096312, guid: fc591e525041fdf4d9fc5775c1b44dcd, type: 3}
 --- !u!114 &7117147716524371637
 MonoBehaviour:
   m_ObjectHideFlags: 0

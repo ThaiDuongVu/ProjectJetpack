@@ -6,7 +6,7 @@ public class Rocket : Fireball
     {
         base.FixedUpdate();
 
-        transform.up = direction;
+        transform.up = Direction;
     }
 
     #endregion

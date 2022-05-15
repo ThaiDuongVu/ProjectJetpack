@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class DragonHead : Enemy
 {
     private int _wingsCount;

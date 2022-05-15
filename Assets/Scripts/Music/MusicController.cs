@@ -66,6 +66,7 @@ public class MusicController : MonoBehaviour
     {
         if (_currentAmbientMusic) _currentAmbientMusic.AudioSource.volume = PlayerPrefs.GetInt("Music", 0) == 0 ? MusicDefaultVolume : 0f;
         yield return new WaitForSeconds(1f);
+        
         StartCoroutine(CheckMusicVolume());
     }
 }
