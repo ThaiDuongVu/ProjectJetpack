@@ -82,6 +82,15 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Test2"",
+                    ""type"": ""Button"",
+                    ""id"": ""77670a6f-bb2e-4439-9292-07234659b68d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Select"",
                     ""type"": ""Button"",
                     ""id"": ""30cf2a7b-41e2-49b7-bc9f-28837e89d30d"",
@@ -531,6 +540,17 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db499d7a-1650-4dac-a611-82576605fb04"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""MouseKeyboard"",
+                    ""action"": ""Test2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -969,6 +989,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         m_Game_Back = m_Game.FindAction("Back", throwIfNotFound: true);
         m_Game_Any = m_Game.FindAction("Any", throwIfNotFound: true);
         m_Game_Test = m_Game.FindAction("Test", throwIfNotFound: true);
+        m_Game_Test2 = m_Game.FindAction("Test2", throwIfNotFound: true);
         m_Game_Select = m_Game.FindAction("Select", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
@@ -1041,6 +1062,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Back;
     private readonly InputAction m_Game_Any;
     private readonly InputAction m_Game_Test;
+    private readonly InputAction m_Game_Test2;
     private readonly InputAction m_Game_Select;
     public struct GameActions
     {
@@ -1052,6 +1074,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         public InputAction @Back => m_Wrapper.m_Game_Back;
         public InputAction @Any => m_Wrapper.m_Game_Any;
         public InputAction @Test => m_Wrapper.m_Game_Test;
+        public InputAction @Test2 => m_Wrapper.m_Game_Test2;
         public InputAction @Select => m_Wrapper.m_Game_Select;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
@@ -1080,6 +1103,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Test.started -= m_Wrapper.m_GameActionsCallbackInterface.OnTest;
                 @Test.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnTest;
                 @Test.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnTest;
+                @Test2.started -= m_Wrapper.m_GameActionsCallbackInterface.OnTest2;
+                @Test2.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnTest2;
+                @Test2.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnTest2;
                 @Select.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSelect;
@@ -1105,6 +1131,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Test.started += instance.OnTest;
                 @Test.performed += instance.OnTest;
                 @Test.canceled += instance.OnTest;
+                @Test2.started += instance.OnTest2;
+                @Test2.performed += instance.OnTest2;
+                @Test2.canceled += instance.OnTest2;
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
@@ -1195,6 +1224,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         void OnBack(InputAction.CallbackContext context);
         void OnAny(InputAction.CallbackContext context);
         void OnTest(InputAction.CallbackContext context);
+        void OnTest2(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
     }
     public interface IPlayerActions

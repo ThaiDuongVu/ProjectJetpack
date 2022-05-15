@@ -9,11 +9,17 @@ final boss
 collectible crates
 
 long description
-short description
-needed art:
-- header capsule: 460 x 215
-- small capsule: 231 x 87
-- main capsule: 616 x 353
-- vertical capsule: 374 x 448
+// short description
+
+store assets:
+// - header capsule: 460 x 215
+// - small capsule: 231 x 87
+// - main capsule: 616 x 353
+// - vertical capsule: 374 x 448
 // - page background (optional): 1438 x 810
 // - screenshots: at least 5
+
+library assets:
+// - library capsule: 600 x 900
+// - library hero: 3840 x 1240
+// - library logo: 1280 x 720

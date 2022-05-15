@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Test2",
+                    "type": "Button",
+                    "id": "77670a6f-bb2e-4439-9292-07234659b68d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Select",
                     "type": "Button",
                     "id": "30cf2a7b-41e2-49b7-bc9f-28837e89d30d",
@@ -507,6 +516,17 @@
                     "processors": "",
                     "groups": "MouseKeyboard",
                     "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db499d7a-1650-4dac-a611-82576605fb04",
+                    "path": "<Keyboard>/o",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "MouseKeyboard",
+                    "action": "Test2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
