@@ -35,6 +35,7 @@ Transform:
   - {fileID: 6673870987073548774}
   - {fileID: 6673870987188327905}
   - {fileID: 4880609571133542637}
+  - {fileID: 8324147373951844495}
   - {fileID: 555538025822484354}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -223,7 +224,7 @@ MonoBehaviour:
   - {x: -0.25, y: -0.5, z: 0}
   m_ShapePathHash: -1854827745
   m_Mesh: {fileID: 0}
-  m_InstanceId: 137764
+  m_InstanceId: 149562
 --- !u!1 &6673870987188327910
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +376,78 @@ Transform:
   m_Father: {fileID: 6673870987007727465}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3208749300089298757
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 6673870987007727465}
+    m_Modifications:
+    - target: {fileID: 6846187843534823369, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: spawnAmountRange.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823369, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: spawnAmountRange.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846187843534823371, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+      propertyPath: m_Name
+      value: TokenSpawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+--- !u!4 &8324147373951844495 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6846187843534823370, guid: 868916351ac0aab4ab051cb55cb60d07, type: 3}
+  m_PrefabInstance: {fileID: 3208749300089298757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3885436563312354007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -429,11 +502,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3629475873651086678, guid: 36c20128cc6ca614682fbbd28a3fa1ca, type: 3}
       propertyPath: spawnAmountRange.x
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3629475873651086678, guid: 36c20128cc6ca614682fbbd28a3fa1ca, type: 3}
       propertyPath: spawnAmountRange.y
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3629475873651086679, guid: 36c20128cc6ca614682fbbd28a3fa1ca, type: 3}
       propertyPath: m_Name

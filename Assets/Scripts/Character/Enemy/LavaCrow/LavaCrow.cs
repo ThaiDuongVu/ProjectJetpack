@@ -3,7 +3,7 @@ using UnityEngine;
 public class LavaCrow : Enemy
 {
     private float _velocity = 1f;
-    private float _acceleration = 0.1f;
+    private float _acceleration = 0.2f;
 
     private Player _player;
     private Lava[] _lavas;
@@ -21,6 +21,8 @@ public class LavaCrow : Enemy
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+
+        if (!_player) return;
 
         Rigidbody2D.MovePosition(Rigidbody2D.position + Vector2.down * _velocity * Time.fixedDeltaTime);
         _velocity += Time.fixedDeltaTime * _acceleration;

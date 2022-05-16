@@ -37,6 +37,8 @@ public class LevelGenerator : MonoBehaviour
 
     private GameObject[] _bossLevelPrefabs;
 
+    private GameObject _gameCompleteLevelPrefab;
+
     #region Unity Event
 
     private void Awake()
@@ -48,6 +50,8 @@ public class LevelGenerator : MonoBehaviour
         _floatingEnemyPrefabs = Resources.LoadAll<Enemy>("Enemies/Floating");
 
         _bossLevelPrefabs = Resources.LoadAll<GameObject>("Levels/BossLevels");
+
+        _gameCompleteLevelPrefab = Resources.Load<GameObject>("Levels/GameCompleteLevel");
     }
 
     private void Start()
@@ -59,8 +63,6 @@ public class LevelGenerator : MonoBehaviour
 
     private void Generate()
     {
-        // TODO: Generate the first platform and spawn the player
-
         LevelIndex = PlayerPrefs.GetInt(PlayerResources.LevelIndexKey, 0);
 
         switch (LevelIndex)
@@ -116,7 +118,7 @@ public class LevelGenerator : MonoBehaviour
                 GenerateBoss(4);
                 break;
             case 29:
-                PlayGameCompleteAnimation();
+                GenerateGameComplete();
                 break;
             default:
                 GenerateRegular();
@@ -193,8 +195,9 @@ public class LevelGenerator : MonoBehaviour
         Instantiate(_bossLevelPrefabs[index], Vector2.zero, Quaternion.identity).transform.parent = transform;
     }
 
-    private void PlayGameCompleteAnimation()
+    private void GenerateGameComplete()
     {
-        // TODO: Play game complete animation
+        Variant = LevelVariant.Boss;
+        Instantiate(_gameCompleteLevelPrefab, Vector2.zero, Quaternion.identity);
     }
 }
