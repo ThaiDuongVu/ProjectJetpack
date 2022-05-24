@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -55,8 +57,8 @@ public class GameController : MonoBehaviour
         // Handle game pause input
         _inputManager.Game.Escape.performed += EscapeOnPerformed;
         // Handle game debug input
-        _inputManager.Game.Test.performed += (InputAction.CallbackContext context) => { SceneLoader.Instance.Load("Playground"); };
-        _inputManager.Game.Test2.performed += (InputAction.CallbackContext context) => { FindObjectOfType<Player>().GetComponentInChildren<Canvas>().gameObject.SetActive(false); };
+        _inputManager.Game.Test.performed += (InputAction.CallbackContext context) => { SavePNG(); };
+        _inputManager.Game.Test2.performed += (InputAction.CallbackContext context) => { ScreenCapture.CaptureScreenshot("Promotional/screenshot.png"); };
 
         _inputManager.Enable();
     }
@@ -161,4 +163,18 @@ public class GameController : MonoBehaviour
         Time.timeScale = scale;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
+	
+	public RenderTexture rt;
+	private string fileName = "screenshot";
+	public void SavePNG()
+     {
+         var tex = new Texture2D(rt.width, rt.height);
+         RenderTexture.active = rt;
+         tex.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
+         tex.Apply();
+ 
+         var path = "Promotional/" + fileName + ".png";
+         File.WriteAllBytes(path, tex.EncodeToPNG());
+         Debug.Log("Saved file to: " + path);
+     }
 }
